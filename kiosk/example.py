@@ -1,7 +1,7 @@
 #! /usr/bin/python2
 
-import time
 import sys
+import time
 
 EMULATE_HX711=False
 
@@ -37,8 +37,8 @@ hx.set_reading_format("MSB", "MSB")
 # In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
 # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
 # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
-#hx.set_reference_unit(113)
-hx.set_reference_unit(referenceUnit)
+hx.set_reference_unit(399)
+#hx.set_reference_unit(referenceUnit)
 
 hx.reset()
 
@@ -59,7 +59,7 @@ while True:
         # np_arr8_string = hx.get_np_arr8_string()
         # binary_string = hx.get_binary_string()
         # print binary_string + " " + np_arr8_string
-        
+
         # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
         val = hx.get_weight(5)
         print(val)

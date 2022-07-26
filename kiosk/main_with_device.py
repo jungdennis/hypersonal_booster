@@ -18,27 +18,30 @@ def cleanAndExit():
         GPIO.cleanup()
     print("Bye!")
     sys.exit()
-# dc모터설정
+#dc모터설정
 from gpiozero import Motor
 import time
 
-md1 = Motor(forward = 20, backward = 21)
-md2 = Motor(forward = 5, backward = 6)
-md3 = Motor(forward = 13, backward = 19)
-#텀블러, 원료통1~6세팅
-hx_main = HX711(20, 16)
-hx_1 = HX711(20, 16)
-hx_2 = HX711(20, 16)
-hx_3 = HX711(20, 16)
-hx_4 = HX711(20, 16)
-hx_5 = HX711(20, 16)
-hx_6 = HX711(20, 16)
+md1 = Motor(forward=20, backward=21)
+md2 = Motor(forward=12, backward=16)
+md3 = Motor(forward=7, backward=8)
 
+#텀블러, 원료통1~6세팅
+hx_main = HX711(26, 19)
+hx_1 = HX711(13, 6)
+'''
+hx_2 = HX711(5, 11)
+hx_3 = HX711(9, 10)
+hx_4 = HX711(22, 27)
+hx_5 = HX711(17, 4)
+hx_6 = HX711(3, 2)
+'''
 #무게센서 초기 오차값(텀블러는 이미 측정)
 hx_main.set_reading_format("MSB", "MSB")
 hx_main.set_reference_unit(399)
 hx_1.set_reading_format("MSB", "MSB")
 hx_1.set_reference_unit(referenceUnit)
+'''
 hx_2.set_reading_format("MSB", "MSB")
 hx_2.set_reference_unit(referenceUnit)
 hx_3.set_reading_format("MSB", "MSB")
@@ -49,53 +52,110 @@ hx_5.set_reading_format("MSB", "MSB")
 hx_5.set_reference_unit(referenceUnit)
 hx_6.set_reading_format("MSB", "MSB")
 hx_6.set_reference_unit(referenceUnit)
-
-def weight(hx):
-    count = 0
-    #무게센서 초기화
-    hx_main.reset()
-    hx_main.tare()
-    hx_1.reset()
-    hx_1.tare()
-    hx_2.reset()
-    hx_2.tare()
-    hx_3.reset()
-    hx_3.tare()
-    hx_4.reset()
-    hx_4.tare()
-    hx_5.reset()
-    hx_5.tare()
-    hx_6.reset()
-    hx_6.tare()
-
-    while True:
-        try:
-            #무게센서 값 측정
-            val_cup = hx_main.get_weight(5)
-            val_1 = hx_1.get_weight(5)
-            val_2 = hx_2.get_weight(5)
-            val_3 = hx_3.get_weight(5)
-            val_4 = hx_4.get_weight(5)
-            val_5 = hx_5.get_weight(5)
-            val_6 = hx_6.get_weight(5)
-            hx_main.power_down()
-            hx_main.power_up()
-            hx_1.power_down()
-            hx_1.power_up()
-            hx_2.power_down()
-            hx_2.power_up()
-            hx_3.power_down()
-            hx_3.power_up()
-            hx_4.power_down()
-            hx_4.power_up()
-            hx_5.power_down()
-            hx_5.power_up()
-            hx_6.power_down()
-            hx_6.power_up()
-            time.sleep(0.1)
-            count += 10
-        except (count == 10):
-            return val_cup
+'''
+class Weightsensor:
+    def __init__(self):
+        self.count = 0
+    def weight_cup(self):
+        hx_main.reset()
+        hx_main.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_main.get_weight(5)
+                hx_main.power_down()
+                hx_main.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    def weight_1(self):
+        hx_1.reset()
+        hx_1.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_1.get_weight(5)
+                hx_1.power_down()
+                hx_1.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    '''
+    def weight_2(self):
+        hx_2.reset()
+        hx_2.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_2.get_weight(5)
+                hx_2.power_down()
+                hx_2.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    def weight_3(self):
+        hx_3.reset()
+        hx_3.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_3.get_weight(5)
+                hx_3.power_down()
+                hx_3.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    def weight_4(self):
+        hx_4.reset()
+        hx_4.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_4.get_weight(5)
+                hx_4.power_down()
+                hx_4.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    def weight_5(self):
+        hx_5.reset()
+        hx_5.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_5.get_weight(5)
+                hx_5.power_down()
+                hx_5.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+    def weight_6(self):
+        hx_6.reset()
+        hx_6.tare()
+        while True:
+            try:
+                #무게센서 값 측정
+                val_cup = hx_6.get_weight(5)
+                hx_6.power_down()
+                hx_6.power_up()
+                time.sleep(0.1)
+                self.count += 1
+            except (self.count == 10):
+                return val_cup
+                break
+'''
 
 #창설정
 win = tk.Tk()
@@ -108,7 +168,9 @@ def change1to2():
     label_subtext.configure(text='인식시켰다면 화면을 클릭해 주세요')
     label_maintext.configure(text='카메라에 qr코드를 인식시켜 주세요')
     label_image.configure(image=image2,command=change2to3)
-    cupweight = weight()
+    wei = Weightsensor()
+    wei_1 = wei.weight_cup()
+    print(wei_1)
 def change2to3():
     label_subtext.configure(text='서버와 연동중입니다')
     label_maintext.configure(text='서버와 연동중입니다')

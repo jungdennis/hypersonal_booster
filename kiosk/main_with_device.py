@@ -31,6 +31,26 @@ import time
 md1 = Motor(forward=20, backward=21)
 md2 = Motor(forward=12, backward=16)
 md3 = Motor(forward=7, backward=8)
+def whichmotor(motorcontrol):
+    if motorcontrol == 0:
+        md1.forward(speed=0.3)
+        time.sleep(3)
+    elif motorcontrol == 1:
+        md1.backward(speed=0.3)
+        time.sleep(3)
+    elif motorcontrol == 2:
+        md2.forward(speed=0.3)
+        time.sleep(3)
+    elif motorcontrol == 3:
+        md2.backward(speed=0.3)
+        time.sleep(3)
+    elif motorcontrol == 4:
+        md3.forward(speed=0.3)
+        time.sleep(3)
+    elif motorcontrol == 5:
+        md3.backrward(speed=0.3)
+        time.sleep(3)
+
 
 # 텀블러, 원료통1~6세팅
 hx_main = HX711(26, 19)
@@ -52,63 +72,79 @@ hx_3.set_reference_unit(423)
 hx_4.set_reading_format("MSB", "MSB")
 hx_4.set_reference_unit(412)
 hx_5.set_reading_format("MSB", "MSB")
-hx_5.set_reference_unit(413)
+hx_5.set_reference_unit(406)
 hx_6.set_reading_format("MSB", "MSB")
-hx_6.set_reference_unit(406)
+hx_6.set_reference_unit(413)
 
 
 class Weightsensor:
     def __init__(self):
         self.count = 0
-
     def weight_cup(self):
         hx_main.reset()
-        hx_1.reset()
-        hx_2.reset()
-        hx_3.reset()
-        hx_4.reset()
-        hx_5.reset()
-        hx_6.reset()
         hx_main.tare()
-        hx_1.tare()
-        hx_2.tare()
-        hx_3.tare()
-        hx_4.tare()
-        hx_5.tare()
-        hx_6.tare()
         while TRUE:
             #무게 측정
             val_cup = round(hx_main.get_weight(5))
-            val_1 = round(hx_1.get_weight(5))
-            val_2 = round(hx_2.get_weight(5))
-            val_3 = round(hx_3.get_weight(5))
-            val_4 = round(hx_4.get_weight(5))
-            val_5 = round(hx_5.get_weight(5))
-            val_6 = round(hx_6.get_weight(5))
             hx_main.power_down()
-            hx_1.power_down()
-            hx_2.power_down()
-            hx_3.power_down()
-            hx_4.power_down()
-            hx_5.power_down()
-            hx_6.power_down()
             hx_main.power_up()
-            hx_1.power_up()
-            hx_2.power_up()
-            hx_3.power_up()
-            hx_4.power_up()
-            hx_5.power_up()
-            hx_6.power_up()
-
             time.sleep(0.1)
             print("컵 센서 측정값: %f" % val_cup)
+    def weight_1(self):
+        hx_1.reset()
+        hx_1.tare()
+        while TRUE:
+            val_1 = round(hx_1.get_weight(5),1)
+            hx_1.power_down()
+            hx_1.power_up()
+            time.sleep(0.1)
             print("원료통1 측정값: %f" % val_1)
+    def weight_2(self):
+        hx_2.reset()
+        hx_2.tare()
+        while TRUE:
+            val_2 = round(hx_2.get_weight(5),1)
+            hx_2.power_down()
+            hx_2.power_up()
+            time.sleep(0.1)
             print("원료통2 측정값: %f" % val_2)
+    def weight_3(self):
+        hx_3.reset()
+        hx_3.tare()
+        while TRUE:
+            val_3 = round(hx_3.get_weight(5),1)
+            hx_3.power_down()
+            hx_3.power_up()
+            time.sleep(0.1)
             print("원료통3 측정값: %f" % val_3)
+    def weight_4(self):
+        hx_4.reset()
+        hx_4.tare()
+        while TRUE:
+            val_4 = round(hx_4.get_weight(5),1)
+            hx_4.power_down()
+            hx_4.power_up()
+            time.sleep(0.1)
             print("원료통4 측정값: %f" % val_4)
+    def weight_5(self):
+        hx_5.reset()
+        hx_5.tare()
+        while TRUE:
+            val_5 = round(hx_5.get_weight(5), 1)
+            hx_5.power_down()
+            hx_5.power_up()
+            time.sleep(0.1)
             print("원료통5 측정값: %f" % val_5)
+    def weight_6(self):
+        hx_6.reset()
+        hx_6.tare()
+        while TRUE:
+            val_6 = round(hx_6.get_weight(5), 1)
+            hx_6.power_down()
+            hx_6.power_up()
+            time.sleep(0.1)
             print("원료통6 측정값: %f" % val_6)
-            self.count += 1
+
 
 # 창설정
 win = tk.Tk()
@@ -145,7 +181,21 @@ def change4to5():
     label_image.configure(image=image5, command=change5to6)
     label_yesbutton.pack_forget()
     label_nobutton.pack_forget()
+    '''
+    time.sleep(1)
+    whichmotor(0)
+    time.sleep(1)
+    whichmotor(1)
 
+    time.sleep(1)
+    whichmotor(2)
+    time.sleep(1)
+    whichmotor(3)
+    time.sleep(1)
+    whichmotor(4)
+    time.sleep(1)
+    whichmotor(5)
+'''
 
 def change5to6():
     label_subtext.configure(text='감사합니다')
@@ -180,12 +230,38 @@ label_nobutton = tkinter.Button(win, text="NO", command=change2to3, width=10, he
 
 # 실행
 if __name__ == "__main__":
-    wei = Weightsensor()
-    mp1 = multiprocessing.Process(target=win.mainloop)
-    mp2 = multiprocessing.Process(target=wei.weight_cup)
+    #무게센서 클래스 지정
+    wei_cup = Weightsensor()
+    wei_1 = Weightsensor()
+    wei_2 = Weightsensor()
+    wei_3 = Weightsensor()
+    wei_4 = Weightsensor()
+    wei_5 = Weightsensor()
+    wei_6 = Weightsensor()
 
-    mp1.start()
-    mp2.start()
+    mp_gui = multiprocessing.Process(target=win.mainloop)
+    mp_wei_cup = multiprocessing.Process(target=wei_cup.weight_cup)
+    mp_wei_1 = multiprocessing.Process(target=wei_1.weight_1)
+    mp_wei_2 = multiprocessing.Process(target=wei_2.weight_2)
+    mp_wei_3 = multiprocessing.Process(target=wei_3.weight_3)
+    mp_wei_4 = multiprocessing.Process(target=wei_4.weight_4)
+    mp_wei_5 = multiprocessing.Process(target=wei_5.weight_5)
+    mp_wei_6 = multiprocessing.Process(target=wei_6.weight_6)
 
-    mp1.join()
-    mp2.join()
+    mp_gui.start()
+    mp_wei_cup.start()
+    mp_wei_1.start()
+    mp_wei_2.start()
+    mp_wei_3.start()
+    mp_wei_4.start()
+    mp_wei_5.start()
+    mp_wei_6.start()
+
+    mp_gui.join()
+    mp_wei_cup.join()
+    mp_wei_1.join()
+    mp_wei_2.join()
+    mp_wei_3.join()
+    mp_wei_4.join()
+    mp_wei_5.join()
+    mp_wei_6.join()

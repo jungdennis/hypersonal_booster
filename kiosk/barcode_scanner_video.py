@@ -81,6 +81,7 @@ while True:
         break
 
 # close the output CSV file do a bit of cleanup
+print(barcodeData)
 print("[INFO] cleaning up...")
 csv.close()
 cv2.destroyAllWindows()

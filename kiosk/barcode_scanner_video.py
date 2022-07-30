@@ -19,8 +19,8 @@ args = vars(ap.parse_args())
 print("[INFO] starting video stream...")
 
 # vs = VideoStream(src=0).start()
-# vs = VideoStream(src=0).start()  # USB 웹캠 카메라 사용시
-vs = VideoStream(usePiCamera=True).start()     # 파이 카메라 사용시
+vs = VideoStream(src=0).start()  # USB 웹캠 카메라 사용시
+#vs = VideoStream(usePiCamera=True).start()     # 파이 카메라 사용시
 time.sleep(2.0)
 
 # open the output CSV file for writing and initialize the set of
@@ -31,6 +31,7 @@ found = set()
 
 ### Let’s begin capturing + processing frames:
 # loop over the frames from the video stream
+barcodeData = 0
 while True:
     # grab the frame from the threaded video stream and resize it to
     # have a maximum width of 400 pixels
@@ -77,12 +78,18 @@ while True:
 
     # if the `q` key was pressed, break from the loop
     # q를 누르면 loop를 break함
-    if key == ord("q"):
+    if barcodeData != 0:
+        time.sleep(1)
         break
 
-# close the output CSV file do a bit of cleanup
-print(barcodeData)
 print("[INFO] cleaning up...")
+print(barcodeData)
+usernumber = barcodeData[0:3]
+motorcontrol = barcodeData[3:5]
+gram = barcodeData[5:]
+print(usernumber)
+print(motorcontrol)
+print(gram)
 csv.close()
 cv2.destroyAllWindows()
 vs.stop()

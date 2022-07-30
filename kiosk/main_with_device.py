@@ -6,6 +6,13 @@ import sys
 import multiprocessing
 import RPi.GPIO as GPIO
 import time
+from imutils.video import VideoStream
+from pyzbar import pyzbar
+import argparse
+import datetime
+import imutils
+import time
+import cv2
 #endregion
 #region 모터설정
 GPIO.setmode(GPIO.BCM)
@@ -80,7 +87,7 @@ class Weightsensor:
             val_cup = round(hx_main.get_weight(5))
             hx_main.power_down()
             hx_main.power_up()
-            time.sleep(0.1)
+            time.sleep(5)
             print("컵 센서 측정값: %f" % val_cup)
     def weight_powder(self):
         #region reset&tare
@@ -137,12 +144,59 @@ win.title("Hy-personal Booster Vender")
 win.geometry("1280x800")
 win.resizable(True, True)
 #endregion
+
 #region 화면전환함수
 def change1to2():
     label_subtext.configure(text='인식시켰다면 화면을 클릭해 주세요')
     label_maintext.configure(text='카메라에 qr코드를 인식시켜 주세요')
     label_image.configure(image=image2, command=change2to3)
 def change2to3():
+    global barcodeData
+    global usernumber
+    global moctrl
+    global gram
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-o", "--output", type=str, default="barcodes.csv",
+                    help="path to output CSV file containing barcodes")
+    args = vars(ap.parse_args())
+    print("[INFO] starting video stream...")
+    vs = VideoStream(src=0).start()  # USB 웹캠 카메라 사용시
+    time.sleep(2.0)
+    csv = open(args["output"], "w")
+    found = set()
+    barcodeData = 0
+    while True:
+        frame = vs.read()
+        frame = imutils.resize(frame, width=400)
+        barcodes = pyzbar.decode(frame)
+        for barcode in barcodes:
+            (x, y, w, h) = barcode.rect
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            barcodeData = barcode.data.decode("utf-8")
+            barcodeType = barcode.type
+            text = "{} ({})".format(barcodeData, barcodeType)
+            cv2.putText(frame, text, (x, y - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            if barcodeData not in found:
+                csv.write("{},{}\n".format(datetime.datetime.now(),
+                                           barcodeData))
+                csv.flush()
+                found.add(barcodeData)
+        cv2.imshow("Barcode Scanner", frame)
+        if barcodeData != 0:
+            time.sleep(1)
+            break
+    print("[INFO] cleaning up...")
+    print(barcodeData)
+    usernumber = barcodeData[0:3]
+    moctrl = barcodeData[3:5]
+    gram = barcodeData[5:]
+    print(usernumber)
+    print(moctrl)
+    print(gram)
+    csv.close()
+    cv2.destroyAllWindows()
+    vs.stop()
     label_subtext.configure(text='서버와 연동중입니다')
     label_maintext.configure(text='서버와 연동중입니다')
     label_image.configure(image=image3, command=change3to4)
@@ -168,39 +222,39 @@ def resetscreen():
     label_maintext.configure(text="투입구에 텀블러를 올려주세요")
     label_image.configure(image=image1, command=change1to2)
     label_subtext.configure(text="투입하셨다면 클릭해주세요")
-def whichmotor(motorcontrol,time):
+def whichmotor(motorcontrol):
     if motorcontrol == 1:
         p1.start(0)
         p1.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p1.stop()
     elif motorcontrol == 2:
         p2.start(0)
         p2.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p2.stop()
     elif motorcontrol == 3:
         p3.start(0)
         p3.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p3.stop()
     elif motorcontrol == 4:
         p4.start(0)
         p4.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p4.stop()
     elif motorcontrol == 5:
         p5.start(0)
         p5.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p5.stop()
     elif motorcontrol == 6:
         p6.start(0)
         p6.ChangeDutyCycle(50)
-        time.sleep(time)
+        time.sleep(1)
         p6.stop()
 def actmotor():
-    whichmotor(2,1)
+    whichmotor(moctrl)
     change5to6()
 #endregion
 #region 이미지파일 및 초기설정
@@ -226,15 +280,13 @@ label_nobutton = tkinter.Button(win, text="NO", command=change2to3, width=10, he
 if __name__ == "__main__":
     #무게센서 클래스 지정
     wei_cup = Weightsensor()
-    wei_powder = Weightsensor()
+#    wei_powder = Weightsensor()
     mp_gui = multiprocessing.Process(target=win.mainloop)
     mp_wei_cup = multiprocessing.Process(target=wei_cup.weight_cup)
-    mp_wei_powder = multiprocessing.Process(target=wei_powder.weight_powder)
-
+#    mp_wei_powder = multiprocessing.Process(target=wei_powder.weight_powder)
     mp_gui.start()
     mp_wei_cup.start()
-    mp_wei_powder.start()
-
+#    mp_wei_powder.start()
     mp_gui.join()
     mp_wei_cup.join()
-    mp_wei_powder.join()
+#    mp_wei_powder.join()

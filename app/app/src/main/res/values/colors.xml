@@ -12,4 +12,9 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+    <!-- 실제로 많이 쓸 color -->
+    <color name="main_color">#FBCA53</color>
+    <color name="sub_color_light">#FEEBB6</color>
+    <color name="sub_color_dark">#FFCD4A</color>
 </resources>

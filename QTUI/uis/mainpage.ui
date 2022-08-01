@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>804</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(251,202,83)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="mainpage">
+     <widget class="QLabel" name="maintext">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>1280</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 40pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>개인맞춤 운동 보조제 자판기
+HY-PERSONAL  BOOSTER VENDER
+</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="picture">
+      <property name="geometry">
+       <rect>
+        <x>565</x>
+        <y>550</y>
+        <width>150</width>
+        <height>150</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_1">
+     <widget class="QLabel" name="page_1_image">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>700</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_1_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>텀블러를 투입구에 넣어 주세요</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <widget class="QLabel" name="page_2_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>QR코드를 카메라에 인식시켜 주세요</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_2_image">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>700</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <zorder>page_2_image</zorder>
+     <zorder>page_2_text</zorder>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QLabel" name="page_3_image">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>700</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_3_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>서버와 통신중입니다</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_4">
+     <widget class="QLabel" name="page_4_image">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>100</y>
+        <width>380</width>
+        <height>400</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_4_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>선택하신 보충제가 맞는지 확인해 주세요</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="yesbtn">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>650</y>
+        <width>75</width>
+        <height>75</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nobtn">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>650</y>
+        <width>75</width>
+        <height>75</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>520</y>
+        <width>380</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 15pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>투하정보</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_5">
+     <widget class="QLabel" name="page_5_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>버튼을 눌러 투하를 시작해 주세요</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_5_image">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>700</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <zorder>page_5_image</zorder>
+     <zorder>page_5_text</zorder>
+    </widget>
+    <widget class="QWidget" name="page_6">
+     <widget class="QLabel" name="page_6_image">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>700</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>사진</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="page_6_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>1280</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 30pt &quot;HY헤드라인M&quot;</string>
+      </property>
+      <property name="text">
+       <string>투하가 완료되었습니다 감사합니다</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

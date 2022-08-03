@@ -11,6 +11,13 @@ import multiprocessing
 import RPi.GPIO as GPIO
 import time
 import threading
+from imutils.video import VideoStream
+from pyzbar import pyzbar
+import argparse
+import datetime
+import imutils
+import time
+import cv2
 # endregion
 # region 모터설정
 GPIO.setmode(GPIO.BCM)
@@ -58,6 +65,50 @@ global moctrl
 global usernumber
 global gram
 global motime
+class qrscan(QThread):
+    def __init__(self):
+        self.ap = argparse.ArgumentParser()
+        self.ap.add_argument("-o", "--output", type=str, default="barcodes.csv",
+                        help="path to output CSV file containing barcodes")
+        self.args = vars(self.ap.parse_args())
+        print("[INFO] starting video stream...")
+        self.vs = VideoStream(src=0).start()  # USB 웹캠 카메라 사용시
+        self.sleep(2)
+        self.csv = open(self.args["output"], "w")
+        self.found = set()
+        self.barcodeData = 0
+    def run(self):
+        while True:
+            self.frame = self.vs.read()
+            self.frame = imutils.resize(self.frame, width=400)
+            self.barcodes = pyzbar.decode(self.frame)
+            for self.barcode in self.barcodes:
+                (x, y, w, h) = self.barcode.rect
+                cv2.rectangle(self.frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                self.barcodeData = self.barcode.data.decode("utf-8")
+                self.barcodeType = self.barcode.type
+                self.text = "{} ({})".format(self.barcodeData, self.barcodeType)
+                self.cv2.putText(self.frame, self.text, (x, y - 10),
+                            self.cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+                if self.barcodeData not in self.found:
+                    self.csv.write("{},{}\n".format(datetime.datetime.now(),
+                                               self.barcodeData))
+                    self.csv.flush()
+                    self.found.add(self.barcodeData)
+            cv2.imshow("Barcode Scanner", self.frame)
+            self.key = self.cv2.waitKey(1) & 0xFF
+            if self.barcodeData != 0:
+                time.sleep(1)
+                break
+        print("[INFO] cleaning up...")
+        print(self.barcodeData)
+        usernumber = int(self.barcodeData[0:3])
+        moctrl = int(self.barcodeData[3:5])
+        gram = int(self.barcodeData[5:])
+        motime = gram / 10
+        self.csv.close()
+        self.cv2.destroyAllWindows()
+        self.vs.stop()
 # endregion
 # region DC모터 제어식
 def whichmotor(motorcontrol,motortime):
@@ -122,6 +173,8 @@ class WindowClass(QMainWindow, form_class):
         elif self.page_number == 1:
             self.stackedWidget.setCurrentIndex(2)
             self.page_number += 1
+            self.camera = qrscan()
+            self.camera.start()
         elif self.page_number == 2:
             self.stackedWidget.setCurrentIndex(3)
             self.page_number += 1
@@ -140,6 +193,7 @@ class WindowClass(QMainWindow, form_class):
     def yesbuttonFunction(self):
         self.stackedWidget.setCurrentIndex(5)
         self.page_number = 5
+
     def nobuttonFunction(self):
         self.stackedWidget.setCurrentIndex(3)
         self.page_number = 3

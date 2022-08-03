@@ -10,7 +10,8 @@ win.geometry("1280x800")
 win.resizable(True, True)
 win['bg']='#FBCA53'
 
-#화면전환함수
+# region 화면전환함수
+def mousePressevent
 def change1to2():
     label_subtext.configure(text='인식시켰다면 화면을 클릭해 주세요')
     label_maintext.configure(text='카메라에 qr코드를 인식시켜 주세요')
@@ -43,7 +44,7 @@ def resetscreen():
     label_maintext.configure(text="투입구에 텀블러를 올려주세요")
     label_image.configure(image=image1,command=change1to2)
     label_subtext.configure(text="투입하셨다면 클릭해주세요")
-
+# endregion
 #이미지파일
 #image0 = tkinter.PhotoImage(file="test.svg")
 image1 = tkinter.PhotoImage(file="tumblr.png")

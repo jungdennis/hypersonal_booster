@@ -1,5 +1,6 @@
 package com.example.hypersonalbooster
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -44,6 +45,8 @@ class RegisterActivity2 : AppCompatActivity() {
             btn_confirm.setVisibility(View.VISIBLE)
         }
         btn_confirm.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -94,6 +94,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
+    <!-- 건들지 마세요 -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
@@ -103,6 +104,13 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="88dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -122,40 +130,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
-    <!-- 네비게이션 바
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_menu"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/font_light"
-        android:layout_gravity="bottom"
-        android:background="@drawable/back_bottombar"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="48dp" />
 
-    -->
-
-    <android.widget.Button
-        android:id="@+id/logout_temp"
+    <ImageView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/btn_main_color"
-        android:fontFamily="@font/font_medium"
-        android:text="로그아웃"
-        android:textColor="@color/black"
-        android:textSize="17sp"
+        android:layout_height="0dp"
+        android:src="@drawable/back_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        style="?android:attr/borderlessButtonStyle"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

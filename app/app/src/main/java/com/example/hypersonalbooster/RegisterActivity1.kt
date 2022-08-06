@@ -1,9 +1,9 @@
 package com.example.hypersonalbooster
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity1 : AppCompatActivity() {
 
@@ -19,5 +19,10 @@ class RegisterActivity1 : AppCompatActivity() {
             val intent_next = Intent(this, RegisterActivity2::class.java)
             startActivity(intent_next)
         }
+    }
+
+    // 뒤로가기 막기
+    override fun onBackPressed() {
+        // super.onBackPressed();
     }
 }

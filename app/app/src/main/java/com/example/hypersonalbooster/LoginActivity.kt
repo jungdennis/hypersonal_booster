@@ -3,22 +3,37 @@ package com.example.hypersonalbooster
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.hypersonalbooster.databinding.LayoutLoginBinding
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var btn_login : Button
+
+    private lateinit var binding : LayoutLoginBinding
+
+    private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_login)
 
-        btn_login = findViewById(R.id.login)
+        binding = LayoutLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_login.setOnClickListener {
+        binding.login.setOnClickListener {
             val intent = Intent(this, RegisterActivity1::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        // super.onBackPressed()
+
+        if (System.currentTimeMillis() - end_time >= 2000) {
+            end_time = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        } else if (System.currentTimeMillis() - end_time < 2000) {
+            finishAffinity()
         }
     }
 }

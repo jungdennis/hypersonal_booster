@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_top"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/health_info"
         android:layout_width="0dp"
         android:layout_height="150dp"
@@ -44,9 +44,61 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_message" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_message">
 
-    <FrameLayout
+        <TextView
+            android:id="@+id/weight_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/font_medium"
+            android:text="100.0"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="kg"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/weight_display"
+            app:layout_constraintStart_toEndOf="@+id/weight_display"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/height_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="160.0"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+            app:layout_constraintEnd_toStartOf="@+id/cm"
+            app:layout_constraintTop_toTopOf="@+id/weight_display"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/cm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="cm"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/height_display"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/supply_info"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -56,9 +108,62 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/health_info" >
+        app:layout_constraintTop_toBottomOf="@+id/health_info">
 
-    </FrameLayout>
+
+        <TextView
+            android:id="@+id/display_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:gravity="center"
+            android:text="99.9"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/display_muscle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="130dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="%"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/display_fat"
+            app:layout_constraintStart_toEndOf="@+id/display_fat"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/display_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:gravity="center"
+            android:text="99.9"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/display_fat"
+            android:layout_marginStart="130dp"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="kg"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/display_muscle"
+            app:layout_constraintStart_toEndOf="@+id/display_muscle"
+            android:layout_marginStart="5dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/user_name"

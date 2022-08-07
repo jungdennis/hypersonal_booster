@@ -1,28 +1,47 @@
 package com.example.hypersonalbooster
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.hypersonalbooster.databinding.LayoutRegisterHeightweightBinding
 
 class RegisterActivity1 : AppCompatActivity() {
 
-    private lateinit var btn_confirm : Button
+    private lateinit var binding : LayoutRegisterHeightweightBinding
+
+    lateinit var input_height : String
+    lateinit var input_weight : String
+
+    private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_register_heightweight)
 
-        btn_confirm = findViewById(R.id.confirm)
+        binding = LayoutRegisterHeightweightBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_confirm.setOnClickListener {
-            val intent_next = Intent(this, RegisterActivity2::class.java)
-            startActivity(intent_next)
+        binding.confirm.setOnClickListener {
+            input_height = binding.insertHeight.text.toString()
+            input_weight = binding.insertWeight.text.toString()
+
+            if(input_weight.isBlank() || input_height.isBlank()) {
+                Toast.makeText(this, "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val shared = getSharedPreferences("data_health", 0)
+                val editor = shared.edit()
+
+                editor.putFloat("height", input_height.toFloat())
+                editor.putFloat("weight", input_weight.toFloat())
+                editor.apply()
+
+                val intent_next = Intent(this, RegisterActivity2::class.java)
+                startActivity(intent_next)
+            }
         }
     }
-
-    private var end_time: Long = 0
 
     override fun onBackPressed() {
         // super.onBackPressed()

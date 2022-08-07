@@ -1,41 +1,40 @@
 package com.example.hypersonalbooster
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.hypersonalbooster.databinding.LayoutMainFrameBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btn_qr: Button
-    private lateinit var btn_supply : Button
-    private lateinit var btn_location : Button
+
+    private lateinit var binding : LayoutMainFrameBinding
+
+    val mainFragment : MainFragment = MainFragment();
+
+    private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_main_frame)
 
-        btn_qr = findViewById(R.id.qr)
-        btn_location = findViewById(R.id.location)
-        btn_supply = findViewById(R.id.supply)
+        binding = LayoutMainFrameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val main_fragmentTransaction = supportFragmentManager.beginTransaction()
-        main_fragmentTransaction.replace(R.id.main_frame, Fragment1())
+        main_fragmentTransaction.replace(R.id.main_frame, MainFragment())
         main_fragmentTransaction.commit()
 
-        btn_location.setOnClickListener {
+        binding.location.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.main_frame, Fragment2())
             fragmentTransaction.commit()
         }
-        btn_supply.setOnClickListener {
+        binding.supply.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.main_frame, Fragment3())
             fragmentTransaction.commit()
         }
     }
-
-    private var end_time: Long = 0
 
     override fun onBackPressed() {
         // super.onBackPressed()

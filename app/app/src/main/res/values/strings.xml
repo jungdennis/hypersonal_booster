@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Hypersonal\nBooster</string>
     <string name="back">Back</string>
+    <string name="button">Button</string>
+    <string name="bookmark_enter">즐겨찾기 등록</string>
+    <string name="bookmark_resign">즐겨찾기 해제</string>
+    <string name="Gym_Branch">코끼리 FIT - 동국대점</string>
+    <string name="booster_num1">신타6 오리지널 - 초코쉐이크</string>
+    <string name="booster_num2">마이프로틴 WPI - 스트로베리</string>
+    <string name="booster_num3">머슬킹콩 52 - 바나나맛</string>
+    <string name="booster_num4">뉴트리코스트 BCAA - 사과맛</string>
+    <string name="booster_num5">뉴트리원 비비랩 저분자 콜라겐</string>
+    <string name="booster_num6">비타민마을 아르기닌 10000</string>
 </resources>

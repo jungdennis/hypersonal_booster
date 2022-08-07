@@ -29,4 +29,7 @@
 
     <string name="recommended_boost_1">신타6 아이솔레이트</string>
     <string name="recommended_boost_2">옵티엄 뉴트리션 BCAA</string>
+    <string name="booster_name">뉴트리션 BCAA</string>
+    <string name="booster_maker">옵티멈</string>
+    <string name="booster_flavor">레몬</string>
 </resources>

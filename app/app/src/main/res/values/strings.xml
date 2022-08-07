@@ -2,13 +2,31 @@
     <string name="app_name">Hypersonal\nBooster</string>
     <string name="back">Back</string>
     <string name="button">Button</string>
+
     <string name="bookmark_enter">즐겨찾기 등록</string>
     <string name="bookmark_resign">즐겨찾기 해제</string>
     <string name="Gym_Branch">코끼리 FIT - 동국대점</string>
+
     <string name="booster_num1">신타6 오리지널 - 초코쉐이크</string>
     <string name="booster_num2">마이프로틴 WPI - 스트로베리</string>
     <string name="booster_num3">머슬킹콩 52 - 바나나맛</string>
     <string name="booster_num4">뉴트리코스트 BCAA - 사과맛</string>
     <string name="booster_num5">뉴트리원 비비랩 저분자 콜라겐</string>
     <string name="booster_num6">비타민마을 아르기닌 10000</string>
+
+    <string name="selected_booster">사용자 선택 보충제</string>
+    <string name="input_booster_text">입력</string>
+    <string name="input_booster_name">검색</string>
+    <string name="B_search_1">검색 1번</string>
+    <string name="B_search_2">검색 2번</string>
+    <string name="B_search_3">검색 3번</string>
+    <string name="B_search_4">검색 4번</string>
+    <string name="B_search_5">검색 5번</string>
+    <string name="B_search_6">검색 6번</string>
+    <string name="B_search_7">검색 7번</string>
+    <string name="B_search_8">검색 8번</string>
+    <string name="B_search_9">검색 9번</string>
+
+    <string name="recommended_boost_1">신타6 아이솔레이트</string>
+    <string name="recommended_boost_2">옵티엄 뉴트리션 BCAA</string>
 </resources>

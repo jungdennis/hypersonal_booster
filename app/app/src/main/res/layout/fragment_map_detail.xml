@@ -6,7 +6,11 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+<<<<<<< HEAD
         android:layout_width="360dp"
+=======
+        android:layout_width="412dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
         android:layout_height="380dp"
         android:background="@drawable/frame_main_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,7 +20,11 @@
 
         <Button
             android:id="@+id/button2"
+<<<<<<< HEAD
             android:layout_width="120dp"
+=======
+            android:layout_width="145dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
             android:layout_height="45dp"
             android:layout_marginStart="45dp"
             android:layout_marginBottom="20dp"
@@ -29,7 +37,11 @@
 
         <Button
             android:id="@+id/button6"
+<<<<<<< HEAD
             android:layout_width="120dp"
+=======
+            android:layout_width="145dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
             android:layout_height="45dp"
             android:layout_marginEnd="45dp"
             android:layout_marginBottom="20dp"
@@ -42,8 +54,13 @@
 
         <Button
             android:id="@+id/button8"
+<<<<<<< HEAD
             android:layout_width="30dp"
             android:layout_height="30dp"
+=======
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/icon_close"
@@ -53,7 +70,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
+<<<<<<< HEAD
             android:layout_width="340dp"
+=======
+            android:layout_width="380dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/frame_light_color"
@@ -86,7 +107,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+<<<<<<< HEAD
             android:layout_width="340dp"
+=======
+            android:layout_width="380dp"
+>>>>>>> 73cfae0 (지도 화면 layout 추가)
             android:layout_height="180dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/frame_light_color"

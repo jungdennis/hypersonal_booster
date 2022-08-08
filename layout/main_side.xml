@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -174,4 +175,182 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="288dp"
+    android:layout_height="800dp"
+    android:background="#FEEBB6">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FEEBB6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="254dp"
+            android:layout_height="68dp"
+            android:ems="30"
+            android:fontFamily="@font/font_medium"
+            android:inputType="textPersonName"
+            android:text="개인 설정"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="195dp"
+            android:layout_height="43dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="개인 목표설정"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="151dp" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="맛 선호도 변경"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="195dp" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="195"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="상세 신체정보 수정"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="헬스 디바이스 연동"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="283dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="254dp"
+            android:layout_height="68dp"
+            android:ems="30"
+            android:fontFamily="@font/font_medium"
+            android:inputType="textPersonName"
+            android:text="보충제"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="335dp" />
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="보충제 제공 이력"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="410dp" />
+
+        <Button
+            android:id="@+id/button14"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="즐겨찾는 보충제"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="455dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="254dp"
+            android:layout_height="68dp"
+            android:ems="30"
+            android:fontFamily="@font/font_medium"
+            android:inputType="textPersonName"
+            android:text="결제 및 포인트"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="534dp" />
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="결제내역 확인"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="646dp" />
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="쿠폰 및 리워드"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="690dp" />
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:backgroundTint="#FEEBB6"
+            android:fontFamily="@font/font_medium"
+            android:text="포인트"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="602dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/icon_close"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="13dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_setting"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="13dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

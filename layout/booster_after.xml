@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -156,4 +157,164 @@
         tools:layout_editor_absoluteX="573dp"
         tools:layout_editor_absoluteY="16dp" />
 
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="800dp">
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="320dp"
+        android:layout_height="119dp"
+        android:backgroundTint="#FFEB3B"
+        android:drawableLeft="@drawable/icon_supply"
+        android:fontFamily="@font/font_medium"
+        android:text="단백질 이름 \n 무슨 맛인지"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="320dp"
+        android:layout_height="119dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableLeft="@drawable/icon_supply"
+        android:fontFamily="@font/font_medium"
+        android:text="다음 단백질 \n 옆에 물병 사진은 단백질 사진"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="318dp" />
+
+    <Button
+        android:id="@+id/button24"
+        android:layout_width="320dp"
+        android:layout_height="119dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableLeft="@drawable/icon_supply"
+        android:fontFamily="@font/font_medium"
+        android:text="그 다음 단백질 \n 알고리즘 내놔라 유준상"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="460dp" />
+
+    <Button
+        android:id="@+id/button25"
+        android:layout_width="320dp"
+        android:layout_height="119dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableLeft="@drawable/icon_supply"
+        android:fontFamily="@font/font_medium"
+        android:text="4th 단백질 \n 스크롤 내리는건 어떻게 구현하지..?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="595dp" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="743dp" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="-12dp"
+        tools:layout_editor_absoluteY="743dp" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_circle_inner_circle"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="714dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#FEEBB6"
+        app:srcCompat="@drawable/icon_qr"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="734dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton11"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#FFCD4A"
+        android:rotationY="180"
+        app:srcCompat="@drawable/appicon_foreground"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="744dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFCD4A"
+        app:srcCompat="@drawable/ic_location"
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="739dp" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/ic___1"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="-131dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="운동 후"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="249dp"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="71dp"
+        android:layout_height="75dp"
+        app:srcCompat="@drawable/ic_running"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="58dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="167dp"
+        android:layout_height="23dp"
+        android:background="#FBDB8E"
+        android:fontFamily="@font/font_medium"
+        android:text="추천 보충제 리스트"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/ic___1"
+        tools:layout_editor_absoluteX="573dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

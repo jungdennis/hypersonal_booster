@@ -2,158 +2,190 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="360dp"
-    android:layout_height="800dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
-    <Button
-        android:id="@+id/button22"
-        android:layout_width="320dp"
-        android:layout_height="119dp"
-        android:backgroundTint="#FFEB3B"
-        android:drawableLeft="@drawable/icon_supply"
-        android:fontFamily="@font/font_medium"
-        android:text="단백질 이름 \n 무슨 맛인지"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="183dp" />
+    <!-- 건들지 마세요 -->
 
-    <Button
-        android:id="@+id/button23"
-        android:layout_width="320dp"
-        android:layout_height="119dp"
-        android:backgroundTint="#FFFFFF"
-        android:drawableLeft="@drawable/icon_supply"
-        android:fontFamily="@font/font_medium"
-        android:text="다음 단백질 \n 옆에 물병 사진은 단백질 사진"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="318dp" />
-
-    <Button
-        android:id="@+id/button24"
-        android:layout_width="320dp"
-        android:layout_height="119dp"
-        android:backgroundTint="#FFFFFF"
-        android:drawableLeft="@drawable/icon_supply"
-        android:fontFamily="@font/font_medium"
-        android:text="그 다음 단백질 \n 알고리즘 내놔라 유준상"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="460dp" />
-
-    <Button
-        android:id="@+id/button25"
-        android:layout_width="320dp"
-        android:layout_height="119dp"
-        android:backgroundTint="#FFFFFF"
-        android:drawableLeft="@drawable/icon_supply"
-        android:fontFamily="@font/font_medium"
-        android:text="4th 단백질 \n 스크롤 내리는건 어떻게 구현하지..?"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="595dp" />
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="162dp"
-        android:layout_height="56dp"
-        app:srcCompat="@drawable/back_bottom"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="743dp" />
-
-    <ImageView
-        android:id="@+id/imageView24"
-        android:layout_width="162dp"
-        android:layout_height="56dp"
-        app:srcCompat="@drawable/back_bottom"
-        tools:layout_editor_absoluteX="-12dp"
-        tools:layout_editor_absoluteY="743dp" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/ic_circle_inner_circle"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="714dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton10"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#FEEBB6"
-        app:srcCompat="@drawable/icon_qr"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="734dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton11"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="#FFCD4A"
-        android:rotationY="180"
-        app:srcCompat="@drawable/appicon_foreground"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="744dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton12"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFCD4A"
-        app:srcCompat="@drawable/ic_location"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="739dp" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="63dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="88dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="78dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="48dp" />
 
     <ImageView
-        android:id="@+id/imageView26"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/back_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+
+    <!-- 여기서부터 작업 -->
+
+    <!--
+    <ImageView
+        android:id="@+id/back_circle"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:srcCompat="@drawable/ic___1"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="-131dp" />
+        app:srcCompat="@drawable/back_circle_sub_color_light"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="-139dp" />
+    -->
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_after"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/info_2"
+        app:layout_constraintEnd_toStartOf="@+id/info_1"
+        app:layout_constraintTop_toTopOf="@+id/info_1"
+        app:srcCompat="@drawable/icon_running" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/info_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_medium"
+        android:text="추천 보충제"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+    <TextView
+        android:id="@+id/info_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:gravity="end"
         android:text="운동 후"
         android:textColor="@color/black"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="249dp"
-        tools:layout_editor_absoluteY="79dp" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/info_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <ImageView
-        android:id="@+id/imageView27"
-        android:layout_width="71dp"
-        android:layout_height="75dp"
-        app:srcCompat="@drawable/ic_running"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="58dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frame_booster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/info_2"
+        android:layout_marginTop="30dp">
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="167dp"
-        android:layout_height="23dp"
-        android:background="#FBDB8E"
-        android:fontFamily="@font/font_medium"
-        android:text="추천 보충제 리스트"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="27dp" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="320dp"
+            android:layout_height="119dp"
+            android:backgroundTint="#FFEB3B"
+            android:drawableLeft="@drawable/icon_supply"
+            android:fontFamily="@font/font_medium"
+            android:text="단백질 이름 \n 무슨 맛인지"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:srcCompat="@drawable/ic___1"
-        tools:layout_editor_absoluteX="573dp"
-        tools:layout_editor_absoluteY="16dp" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="320dp"
+            android:layout_height="119dp"
+            android:backgroundTint="#FFFFFF"
+            android:drawableLeft="@drawable/icon_supply"
+            android:fontFamily="@font/font_medium"
+            android:text="다음 단백질 \n 옆에 물병 사진은 단백질 사진"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="320dp"
+            android:layout_height="119dp"
+            android:backgroundTint="#FFFFFF"
+            android:drawableLeft="@drawable/icon_supply"
+            android:fontFamily="@font/font_medium"
+            android:text="그 다음 단백질 \n 알고리즘 내놔라 유준상"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="320dp"
+            android:layout_height="119dp"
+            android:backgroundTint="#FFFFFF"
+            android:drawableLeft="@drawable/icon_supply"
+            android:fontFamily="@font/font_medium"
+            android:text="4th 단백질 \n 스크롤 내리는건 어떻게 구현하지..?"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="595dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

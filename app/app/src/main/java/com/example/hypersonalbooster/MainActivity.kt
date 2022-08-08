@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutMainFrameBinding
-import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,12 +31,13 @@ class MainActivity : AppCompatActivity() {
         }
         binding.supply.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, SupplyFragment())
+            fragmentTransaction.replace(R.id.main_frame, BoosterFragment())
             fragmentTransaction.commit()
         }
         binding.qr.setOnClickListener {
-            FirebaseAuth.getInstance().getCurrentUser()?.delete()        // 회원 탈퇴
-            finishAffinity()
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.main_frame, QRFragment())
+            fragmentTransaction.commit()
         }
     }
 

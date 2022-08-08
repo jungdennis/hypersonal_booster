@@ -22,5 +22,7 @@ class RegisterActivity3 : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        // 안녕하세요 선생님
     }
 }

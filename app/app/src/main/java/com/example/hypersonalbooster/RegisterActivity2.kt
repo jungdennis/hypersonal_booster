@@ -26,7 +26,6 @@ class RegisterActivity2 : AppCompatActivity() {
         binding.back.setOnClickListener {
             finish()
         }
-
         binding.yes.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment2_1())
@@ -81,8 +80,9 @@ class RegisterActivity2 : AppCompatActivity() {
                 editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, RegisterActivity3::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

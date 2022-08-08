@@ -1,42 +1,49 @@
 package com.example.hypersonalbooster
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hypersonalbooster.databinding.LayoutMainFrameBinding
-
+import com.example.hypersonalbooster.databinding.LayoutMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : LayoutMainFrameBinding
-
-    val mainFragment : MainFragment = MainFragment();
+    private lateinit var binding : LayoutMainBinding
 
     private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LayoutMainFrameBinding.inflate(layoutInflater)
+        binding = LayoutMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val main_fragmentTransaction = supportFragmentManager.beginTransaction()
-        main_fragmentTransaction.replace(R.id.main_frame, MainFragment())
-        main_fragmentTransaction.commit()
+        val shared = getSharedPreferences("data_health", 0)
+        var height = shared.getFloat("height", 0F)
+        var weight = shared.getFloat("weight", 0F)
+        var fat = shared.getFloat("fat", 0F)
+        var muscle = shared.getFloat("muscle", 0F)
+        var nickname = shared.getString("nickname", "닉네임없음")
+
+        binding.heightDisplay.text = height.toString()
+        binding.weightDisplay.text = weight.toString()
+        binding.displayFat.text = fat.toString()
+        binding.displayMuscle.text = muscle.toString()
+        binding.userName.text = nickname
 
         binding.location.setOnClickListener {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, MapFragment())
-            fragmentTransaction.commit()
+            val map_intent = Intent(this, MapActivity::class.java)
+            startActivity(map_intent)
         }
         binding.supply.setOnClickListener {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, BoosterFragment())
-            fragmentTransaction.commit()
+            val supply_intent = Intent(this, BoosterActivity::class.java)
+            startActivity(supply_intent)
         }
         binding.qr.setOnClickListener {
+            binding.plusMenu.setVisibility(View.INVISIBLE)
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, QRFragment())
+            fragmentTransaction.replace(R.id.test, QRFragment())
             fragmentTransaction.commit()
         }
     }

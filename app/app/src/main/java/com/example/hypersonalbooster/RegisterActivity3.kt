@@ -5,24 +5,22 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.hypersonalbooster.databinding.LayoutRegisterNameBinding
 
 class RegisterActivity3 : AppCompatActivity() {
 
-    private lateinit var btn_confirm : Button
-    private lateinit var insert_nickname : EditText
+    private lateinit var binding : LayoutRegisterNameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_register_name)
 
-        btn_confirm = findViewById(R.id.confirm)
-        insert_nickname = findViewById(R.id.insert_nickname)
+        binding = LayoutRegisterNameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_confirm.setOnClickListener {
+
+        binding.confirm.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        // 안녕하세요 선생님
     }
 }

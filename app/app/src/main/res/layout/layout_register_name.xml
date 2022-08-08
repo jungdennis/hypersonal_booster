@@ -29,7 +29,7 @@
         android:layout_marginTop="43dp"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
-        android:text="마지막이예요!\n당신의 닉네임을 입력해주세요.\n(한글 6자 이내)"
+        android:text="마지막이예요!\n당신의 닉네임을 입력해주세요.\n(한글 8자 이내)"
         android:textColor="@color/black"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,38 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <TextView
-        android:id="@+id/your_name_is"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_medium"
-        android:text="당신의 이름은..."
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/confirm"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/info_nickname"
-        app:layout_constraintVertical_bias="0.415" />
-
     <EditText
         android:id="@+id/insert_nickname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:ems="10"
         android:fontFamily="@font/font_medium"
         android:gravity="center"
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/your_name_is" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/confirm"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"

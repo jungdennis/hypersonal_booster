@@ -18,10 +18,12 @@ class MainFragment : Fragment() {
         var weight = shared?.getFloat("weight", 0F)
         var fat = shared?.getFloat("fat", 0F)
         var muscle = shared?.getFloat("muscle", 0F)
+        var nickname = shared?.getString("nickname", "닉네임없음")
         binding.heightDisplay.text = height.toString()
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()
         binding.displayMuscle.text = muscle.toString()
+        binding.userName.text = nickname
 
         return binding.root
     }

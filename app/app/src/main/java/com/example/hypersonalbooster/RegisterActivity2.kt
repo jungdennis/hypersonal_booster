@@ -12,8 +12,8 @@ class RegisterActivity2 : AppCompatActivity() {
 
     private lateinit var binding: LayoutRegisterInbodyBinding
 
-    lateinit var input_fat: String
-    lateinit var input_muscle: String
+    lateinit var input_fat : String
+    lateinit var input_muscle : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,9 @@ class RegisterActivity2 : AppCompatActivity() {
             fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment2_1())
             fragmentTransaction.commit()
 
+            input_fat = "-1"
+            input_muscle = "-1"
+
             binding.confirm.setVisibility(View.VISIBLE)
             binding.yes.setBackgroundResource(R.drawable.btn_main_color)
             binding.no.setBackgroundResource(R.drawable.btn_sub_color_light)
@@ -41,29 +44,45 @@ class RegisterActivity2 : AppCompatActivity() {
             fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment2_2())
             fragmentTransaction.commit()
 
+            input_fat = "0"
+            input_muscle = "0"
+
             binding.confirm.setVisibility(View.VISIBLE)
             binding.yes.setBackgroundResource(R.drawable.btn_sub_color_light)
             binding.no.setBackgroundResource(R.drawable.btn_main_color)
         }
         binding.confirm.setOnClickListener {
-            val frag_yes : RegisterFragment2_1 =
-                supportFragmentManager.findFragmentById(R.id.fragment_frame) as RegisterFragment2_1
-            input_fat = frag_yes.binding.insertFat.text.toString()
-            input_muscle = frag_yes.binding.insertMuscle.text.toString()
+            if(input_fat != "0" && input_muscle != "0") {
+                val frag_yes : RegisterFragment2_1 =
+                    supportFragmentManager.findFragmentById(R.id.fragment_frame) as RegisterFragment2_1
 
+                val frag_fat = frag_yes.binding.insertFat.text.toString()
+                val frag_muscle = frag_yes.binding.insertMuscle.text.toString()
 
-            if(input_fat.isBlank() || input_muscle.isBlank()) {
+                if(frag_fat.isNotEmpty()) {
+                    input_fat = frag_fat
+                }
+                if(frag_muscle.isNotEmpty()) {
+                    input_muscle = frag_muscle
+                }
+            }
+
+            var check_fat = input_fat.toFloat()
+            var check_muscle = input_muscle.toFloat()
+
+            if((check_fat < 0) || (check_muscle < 0)) {
                 Toast.makeText(this, "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
                 val shared = getSharedPreferences("data_health", 0)
                 val editor = shared.edit()
-                editor.putFloat("fat", input_fat.toFloat())
-                editor.putFloat("muscle", input_muscle.toFloat())
+
+                editor.putFloat("fat", check_fat)
+                editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent_next = Intent(this, MainActivity::class.java)
-                startActivity(intent_next)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
         }
     }

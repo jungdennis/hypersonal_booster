@@ -27,12 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.location.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, Fragment2())
+            fragmentTransaction.replace(R.id.main_frame, MapFragment())
             fragmentTransaction.commit()
         }
         binding.supply.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, Fragment3())
+            fragmentTransaction.replace(R.id.main_frame, SupplyFragment())
             fragmentTransaction.commit()
         }
         binding.qr.setOnClickListener {

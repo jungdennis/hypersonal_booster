@@ -11,7 +11,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="33dp"
         android:background="@drawable/icon_back"
-        app:layout_constraintStart_toStartOf="@+id/yes"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -32,7 +32,7 @@
         android:gravity="center"
         android:text="혹시 본인의 \n체지방율이나 골격근량을\n 알고 계신가요?"
         android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/yes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

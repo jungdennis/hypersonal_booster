@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class Fragment3 : Fragment() {
+class SupplyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
-        return inflater.inflate(R.layout.layout_register_inbody, container, false)
+        return inflater.inflate(R.layout.layout_register_heightweight, container, false)
     }
 }

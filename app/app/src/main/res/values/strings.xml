@@ -32,4 +32,13 @@
     <string name="booster_name">뉴트리션 BCAA</string>
     <string name="booster_maker">옵티멈</string>
     <string name="booster_flavor">레몬</string>
+
+    <string name="target_bodytype">\"표준형\"</string>
+    <string name="body_fat_ratio">23</string>
+    <string name="skeletal_muscle_mass">35</string>
+    <string name="user_id">정승용</string>
+    <string name="weight_range">71kg ~ 73kg</string>
+    <string name="user_height">178</string>
+
+
 </resources>

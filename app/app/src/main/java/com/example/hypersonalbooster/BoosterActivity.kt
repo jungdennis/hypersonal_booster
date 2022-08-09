@@ -18,20 +18,23 @@ class BoosterActivity : AppCompatActivity() {
         val shared = getSharedPreferences("data_health", 0)
 
         var nickname = shared.getString("nickname", "닉네임없음")
-        binding.userName.text = nickname
+        binding.userName.text = nickname.toString()
 
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)
+            main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(main_intent)
         }
         binding.location.setOnClickListener {
             val map_intent = Intent(this, MapActivity::class.java)
+            map_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(map_intent)
         }
     }
 
     override fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
     }
 }

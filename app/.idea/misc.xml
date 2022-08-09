@@ -19,6 +19,7 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_fragment.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_popup_main_color.xml" value="0.235" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_popup_white.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_qr.xml" value="0.25" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/background.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_black.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_location.xml" value="0.2395" />
@@ -77,6 +78,8 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_register_inbody_yes.xml" value="0.29615384615384616" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_target_selection_detail.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/guide_layout.xml" value="0.32083333333333336" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_booster_before.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_booster_main.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_bottombar.xml" value="0.2" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_login.xml" value="0.5" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_main.xml" value="0.33" />

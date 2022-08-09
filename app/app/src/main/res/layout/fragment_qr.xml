@@ -3,24 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/btn_login">
+    android:layout_height="550dp"
+    android:background="@drawable/back_qr">
 
     <!-- 건들지 마세요 -->
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="63dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="88dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
@@ -36,55 +22,39 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottombar_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="78dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottombar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="48dp" />
-
     <!-- 여기서부터 작업 -->
 
     <Button
         android:id="@+id/close"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/icon_close"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/info_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/font_medium"
         android:gravity="center"
         android:text="화면의 QR을\n 키오스크에 인식시켜주세요."
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/image_qr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/close" />
 
-
     <ImageView
         android:id="@+id/image_qr"
         android:layout_width="213dp"
         android:layout_height="210dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/switch2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/info_qr"
         app:srcCompat="@drawable/icon_qr" />
@@ -99,17 +69,19 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/switch2"
         app:layout_constraintEnd_toStartOf="@+id/switch2"
-        app:layout_constraintTop_toTopOf="@+id/switch2" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toTopOf="@+id/switch2"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/info_after"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:layout_marginStart="5dp"
         android:fontFamily="@font/font_medium"
         android:text="운동후"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/switch2"
         app:layout_constraintStart_toEndOf="@+id/switch2"
         app:layout_constraintTop_toTopOf="@+id/switch2" />
@@ -119,13 +91,20 @@
         android:layout_width="70dp"
         android:layout_height="40sp"
         android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="60dp"
         android:switchMinWidth="60dp"
         android:thumbTint="@color/main_color"
         android:track="@drawable/btn_sub_color_light_no_stroke"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_bottombar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/image_qr" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_start" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="550dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

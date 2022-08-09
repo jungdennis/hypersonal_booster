@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutMainBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,21 +32,21 @@ class MainActivity : AppCompatActivity() {
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()
         binding.displayMuscle.text = muscle.toString()
-        binding.userName.text = nickname
+        binding.userName.text = nickname.toString()
 
         binding.location.setOnClickListener {
             val map_intent = Intent(this, MapActivity::class.java)
+            map_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(map_intent)
         }
         binding.supply.setOnClickListener {
             val supply_intent = Intent(this, BoosterActivity::class.java)
+            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(supply_intent)
         }
         binding.qr.setOnClickListener {
-            binding.plusMenu.setVisibility(View.INVISIBLE)
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.test, QRFragment())
-            fragmentTransaction.commit()
+            val qr_popup = QRFragment()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
     }
 
@@ -59,5 +61,4 @@ class MainActivity : AppCompatActivity() {
             finishAffinity()
         }
     }
-
 }

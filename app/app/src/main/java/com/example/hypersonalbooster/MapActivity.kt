@@ -17,16 +17,19 @@ class MapActivity : AppCompatActivity() {
 
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)
+            main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(main_intent)
         }
         binding.supply.setOnClickListener {
             val supply_intent = Intent(this, BoosterActivity::class.java)
+            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(supply_intent)
         }
     }
 
     override fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
     }
 }

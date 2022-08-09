@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/back_circle_main_color.xml" value="0.237" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/back_circle_sub_color_light.xml" value="0.235" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic___1.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_circle_inner_circle.xml" value="0.1" />
@@ -13,6 +14,7 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_setting.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/appicon_foreground.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom.xml" value="0.2395" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom_dialog_main_color.xml" value="0.237" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom_location.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom_supply.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottombar.xml" value="0.2595" />
@@ -22,6 +24,8 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_qr.xml" value="0.25" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/background.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_black.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_black_with_main.xml" value="0.237" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_black_with_sub.xml" value="0.237" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_location.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_qr.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_supply.xml" value="0.2395" />
@@ -33,6 +37,8 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_dark.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_light.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_light_no.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/frame_light_color.xml" value="0.237" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/frame_main_color.xml" value="0.237" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/frame_white_color.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.193" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/ic_setting.xml" value="0.309" />
@@ -70,7 +76,7 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_detail.xml" value="0.33" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_main.xml" value="0.33" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_request.xml" value="0.32175925925925924" />
-        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_request_search.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_request_search.xml" value="0.1" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr_after.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr_before.xml" value="0.33" />

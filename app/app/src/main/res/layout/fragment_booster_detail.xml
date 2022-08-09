@@ -190,7 +190,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:background="@drawable/btn_black"
+        android:background="@drawable/btn_black_with_main"
         android:fontFamily="@font/font_medium"
         android:text="구매하러 가기"
         android:textColor="@color/main_color"

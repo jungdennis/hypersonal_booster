@@ -29,11 +29,13 @@ class QRFragment() : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
+        // val dialog = super.onCreateDialog(savedInstanceState)
+        val dialog = BottomSheetDialog(requireContext(), R.style.bottom_dialog)
         dialog.setOnShowListener { dialogInterface ->
             val bottomSheetDialog = dialogInterface as BottomSheetDialog
             setupRatio(bottomSheetDialog)
         }
+
         return dialog
     }
 
@@ -49,8 +51,6 @@ class QRFragment() : BottomSheetDialogFragment() {
 
     private fun getBottomSheetDialogDefaultHeight(): Int {
         return getWindowHeight() * 70 / 100
-        // 기기 높이 대비 비율 설정 부분!!
-        // 위 수치는 기기 높이 대비 80%로 다이얼로그 높이를 설정
     }
 
     private fun getWindowHeight(): Int {

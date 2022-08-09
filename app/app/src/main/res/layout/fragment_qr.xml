@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="550dp"
-    android:background="@drawable/back_qr">
+    android:background="@drawable/back_bottom_dialog_white">
 
     <!-- 건들지 마세요 -->
 

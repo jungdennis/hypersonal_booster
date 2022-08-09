@@ -165,7 +165,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/health_info"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="186dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/back_fragment"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
@@ -174,54 +174,216 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome_message">
 
         <TextView
+            android:id="@+id/info_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/font_medium"
+            android:text="신체 정보"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/btn_main_color"
+            android:fontFamily="@font/font_medium"
+            android:text="수정"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/info_health"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/info_health" />
+
+        <TextView
+            android:id="@+id/info_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:layout_marginStart="20dp"
+            android:text="체중"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/weight_display" />
+
+        <TextView
             android:id="@+id/weight_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/font_medium"
             android:text="100.0"
             android:textColor="@color/black"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/info_weight"
+            app:layout_constraintTop_toBottomOf="@+id/info_health" />
 
         <TextView
             android:id="@+id/kg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/font_medium"
             android:text="kg"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="23sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/weight_display"
-            app:layout_constraintStart_toEndOf="@+id/weight_display"
-            android:layout_marginStart="5dp"/>
+            app:layout_constraintStart_toEndOf="@+id/weight_display" />
+
 
         <TextView
-            android:id="@+id/height_display"
+            android:id="@+id/info_bmi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
-            android:text="160.0"
+            android:layout_marginEnd="5dp"
+            android:text="(BMI "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/display_bmi"
+            app:layout_constraintEnd_toStartOf="@+id/display_bmi"
+            app:layout_constraintTop_toTopOf="@+id/display_bmi" />
+
+        <TextView
+            android:id="@+id/display_bmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/font_medium"
+            android:text="99.9"
             android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/weight_display"
-            app:layout_constraintEnd_toStartOf="@+id/cm"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/weight_display"
-            android:layout_marginEnd="5dp"/>
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/cm"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
-            android:text="cm"
+            android:layout_marginEnd="20dp"
+            android:text=")"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/height_display"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/display_bmi"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="30dp"/>
+            app:layout_constraintTop_toTopOf="@+id/display_bmi" />
+
+        <TextView
+            android:id="@+id/info_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="체지방율"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/info_muscle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weight_display" />
+
+        <TextView
+            android:id="@+id/info_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:layout_marginTop="15dp"
+            android:text="골격근량"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/info_fat"
+            app:layout_constraintTop_toBottomOf="@+id/display_bmi" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/info_fat"
+            app:layout_constraintStart_toStartOf="@+id/info_fat"
+            app:layout_constraintTop_toBottomOf="@+id/info_fat">
+
+            <TextView
+                android:id="@+id/display_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/font_medium"
+                android:gravity="center"
+                android:text="99.9"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/font_medium"
+                android:text="%"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/display_fat"
+                app:layout_constraintStart_toEndOf="@+id/display_fat" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/info_muscle"
+            app:layout_constraintStart_toStartOf="@+id/info_muscle"
+            app:layout_constraintTop_toBottomOf="@+id/info_muscle">
+
+            <TextView
+                android:id="@+id/display_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:gravity="center"
+                android:text="99.9"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="-1dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:text="kg"
+                android:textColor="@color/black"
+                android:textSize="23dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/display_muscle"
+                app:layout_constraintStart_toEndOf="@+id/display_muscle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/message_no_fat_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/font_medium"
+            android:gravity="center"
+            android:text="체지방율과 골격근량을 입력하시면\n더욱 정확한 추천을 받으실 수 있어요!"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -237,70 +399,58 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/health_info">
 
+        <TextView
+            android:id="@+id/info_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/font_medium"
+            android:text="오늘의 추천"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/display_fat"
+            android:id="@+id/info_before"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
-            android:gravity="center"
-            android:text="99.9"
+            android:text="운동전"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/display_muscle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="130dp" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/switch2"
+            app:layout_constraintEnd_toStartOf="@+id/switch2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="@+id/switch2"
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_medium"
-            android:text="%"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/display_fat"
-            app:layout_constraintStart_toEndOf="@+id/display_fat"
-            android:layout_marginStart="5dp"/>
-
-        <TextView
-            android:id="@+id/display_muscle"
+            android:id="@+id/info_after"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
-            android:gravity="center"
-            android:text="99.9"
+            android:layout_marginEnd="15dp"
+            android:text="운동후"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/display_fat"
-            android:layout_marginStart="130dp"/>
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/switch2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/switch2" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="40dp"
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_medium"
-            android:text="kg"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/display_muscle"
-            app:layout_constraintStart_toEndOf="@+id/display_muscle"
-            android:layout_marginStart="5dp" />
+            android:switchMinWidth="30dp"
+            android:thumbTint="@color/main_color"
+            android:track="@drawable/btn_sub_color_light_no_stroke"
+            app:layout_constraintBottom_toBottomOf="@+id/info_recommend"
+            app:layout_constraintEnd_toStartOf="@+id/info_after"
+            app:layout_constraintTop_toTopOf="@+id/info_recommend" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/test"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

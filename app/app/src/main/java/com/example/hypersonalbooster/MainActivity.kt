@@ -28,11 +28,28 @@ class MainActivity : AppCompatActivity() {
         var muscle = shared.getFloat("muscle", 0F)
         var nickname = shared.getString("nickname", "닉네임없음")
 
-        binding.heightDisplay.text = height.toString()
+        var bmi : Float = weight / ((height / 100) * (height / 100))
+
+        binding.displayBmi.text = "%.1f".format(bmi)
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()
         binding.displayMuscle.text = muscle.toString()
-        binding.userName.text = nickname.toString()
+        binding.userName.text = nickname
+
+        if(fat <= 0 || muscle <= 0) {
+            binding.frameFat.setVisibility(View.INVISIBLE)
+            binding.infoFat.setVisibility(View.INVISIBLE)
+            binding.frameMuscle.setVisibility(View.INVISIBLE)
+            binding.infoMuscle.setVisibility(View.INVISIBLE)
+            binding.messageNoFatMuscle.setVisibility(View.VISIBLE)
+        }
+        else {
+            binding.frameFat.setVisibility(View.VISIBLE)
+            binding.infoFat.setVisibility(View.VISIBLE)
+            binding.frameMuscle.setVisibility(View.VISIBLE)
+            binding.infoMuscle.setVisibility(View.VISIBLE)
+            binding.messageNoFatMuscle.setVisibility(View.INVISIBLE)
+        }
 
         binding.location.setOnClickListener {
             val map_intent = Intent(this, MapActivity::class.java)

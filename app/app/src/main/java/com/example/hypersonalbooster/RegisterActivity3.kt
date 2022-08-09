@@ -24,6 +24,7 @@ class RegisterActivity3 : AppCompatActivity() {
             val shared = getSharedPreferences("data_health", 0)
             val editor = shared.edit()
             editor.putString("nickname", input_nickmane)
+            editor.apply()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

@@ -30,6 +30,10 @@ class BoosterActivity : AppCompatActivity() {
             map_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(map_intent)
         }
+        binding.qr.setOnClickListener {
+            val qr_popup = QRFragment()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
+        }
     }
 
     override fun onBackPressed() {

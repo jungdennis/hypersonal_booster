@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import com.example.hypersonalbooster.databinding.FragmentMainNoSideBinding
 import com.example.hypersonalbooster.databinding.LayoutMainBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = LayoutMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         val shared = getSharedPreferences("data_health", 0)
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         var nickname = shared.getString("nickname", "닉네임없음")
 
         var bmi : Float = weight / ((height / 100) * (height / 100))
+
 
         binding.displayBmi.text = "%.1f".format(bmi)
         binding.weightDisplay.text = weight.toString()
@@ -64,6 +69,13 @@ class MainActivity : AppCompatActivity() {
         binding.qr.setOnClickListener {
             val qr_popup = QRFragment()
             qr_popup.show(supportFragmentManager, qr_popup.tag)
+        }
+        binding.plusMenu.setOnClickListener {
+            binding.mainDrawerLayout.openDrawer(GravityCompat.END)
+        }
+
+        binding.close.setOnClickListener {
+            binding.mainDrawerLayout.closeDrawer(GravityCompat.END)
         }
     }
 

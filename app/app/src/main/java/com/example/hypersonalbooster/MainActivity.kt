@@ -6,9 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
-import com.example.hypersonalbooster.databinding.FragmentMainNoSideBinding
 import com.example.hypersonalbooster.databinding.LayoutMainBinding
 
 
@@ -57,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.location.setOnClickListener {
-            val map_intent = Intent(this, MapActivity::class.java)
+            val map_intent = Intent(this, KioskActivity::class.java)
             map_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(map_intent)
         }
@@ -67,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(supply_intent)
         }
         binding.qr.setOnClickListener {
-            val qr_popup = QRFragment()
+            val qr_popup = MainFragment_QR()
             qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
         binding.plusMenu.setOnClickListener {

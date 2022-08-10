@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MapFragment_Detail() : BottomSheetDialogFragment() {
+class KioskFragment_Detail() : BottomSheetDialogFragment() {
 
     lateinit var binding : FragmentMapDetailBinding
     var star : Int = 0

@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterNameBinding
 
-class RegisterActivity3 : AppCompatActivity() {
+class RegisterActivity_Nickname : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterNameBinding
     private lateinit var input_nickmane : String

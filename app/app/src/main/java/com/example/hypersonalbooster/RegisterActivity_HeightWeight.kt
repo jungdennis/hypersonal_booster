@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterHeightweightBinding
 
-class RegisterActivity1 : AppCompatActivity() {
+class RegisterActivity_HeightWeight : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterHeightweightBinding
 
@@ -36,7 +36,7 @@ class RegisterActivity1 : AppCompatActivity() {
                 editor.putFloat("weight", input_weight.toFloat())
                 editor.apply()
 
-                val intent_next = Intent(this, RegisterActivity2::class.java)
+                val intent_next = Intent(this, RegisterActivity_Inbody::class.java)
                 startActivity(intent_next)
             }
         }

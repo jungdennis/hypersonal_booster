@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
 
-class MapActivity : AppCompatActivity() {
+class KioskActivity : AppCompatActivity() {
 
     lateinit var binding : LayoutMapMainBinding
 
@@ -16,7 +16,7 @@ class MapActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.kiosk.setOnClickListener {
-            val detail_popup = MapFragment_Detail()
+            val detail_popup = KioskFragment_Detail()
             detail_popup.show(supportFragmentManager, detail_popup.tag)
         }
         binding.back.setOnClickListener {
@@ -30,7 +30,7 @@ class MapActivity : AppCompatActivity() {
             startActivity(supply_intent)
         }
         binding.qr.setOnClickListener {
-            val qr_popup = QRFragment()
+            val qr_popup = MainFragment_QR()
             qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
     }

@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class QRFragment() : BottomSheetDialogFragment() {
+class MainFragment_QR() : BottomSheetDialogFragment() {
 
     lateinit var binding : FragmentQrBinding
 

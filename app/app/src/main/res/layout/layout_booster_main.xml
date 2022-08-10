@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 건들지 마세요 -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/back_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+    <android.widget.Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/qr"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:background="@drawable/btn_bottom_qr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar_top" />
+    <android.widget.Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/supply"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_bottom"
+        android:drawableTop="@drawable/icon_supply"
+        android:text="오늘의 추천"
+        android:fontFamily="@font/font_medium"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/qr"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
+        app:layout_constraintVertical_bias="1.0" />
+    <android.widget.Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/location"
+        android:layout_width="0dp"
+        android:layout_height="00dp"
+        android:background="@drawable/back_bottom"
+        android:drawableTop="@drawable/icon_location"
+        android:text="키오스크 위치"
+        android:fontFamily="@font/font_medium"
+        android:textSize="10sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/qr"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
+        app:layout_constraintVertical_bias="1.0" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="63dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="88dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="78dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="48dp" />
+
+    <!-- 여기서부터 작업 -->
+
+    <!--
+    <ImageView
+        android:id="@+id/circle_right"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/back_circle_main_color"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="-200dp" />
+
+    <ImageView
+        android:id="@+id/circle_left"
+        android:layout_width="394dp"
+        android:layout_height="330dp"
+        app:srcCompat="@drawable/back_circle_sub_color_light"
+        tools:layout_editor_absoluteX="-90dp"
+        tools:layout_editor_absoluteY="-175dp" />
+     -->
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_bold"
+        android:text="정승용"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toStartOf="@+id/info_recommend_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+    <TextView
+        android:id="@+id/info_recommend_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text=" 님에게"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/user_name"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+    <TextView
+        android:id="@+id/info_recommend_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="필요한 보충제를 추천합니다!"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+    <TextView
+        android:id="@+id/info_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/font_medium"
+        android:text="운동 전"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_before"
+        app:layout_constraintStart_toEndOf="@+id/icon_before" />
+
+    <ImageView
+        android:id="@+id/icon_before"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/info_recommend_2"
+        app:srcCompat="@drawable/icon_running"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/more_before"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/icon_plus"
+        android:fontFamily="@font/font_medium"
+        android:text="더보기"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/info_before"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frame_before"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/icon_before">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="#1A000000"
+            android:drawableLeft="@drawable/icon_supply"
+            android:text="운동 전 먹을 단백질 타입"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/info_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/font_medium"
+        android:text="운동 후"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_after"
+        app:layout_constraintStart_toEndOf="@+id/icon_after" />
+
+    <ImageView
+        android:id="@+id/icon_after"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/frame_after"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:srcCompat="@drawable/icon_running"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frame_after"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="#1A000000"
+            android:drawableLeft="@drawable/icon_supply"
+            android:text="운동 후 먹을 단백질 타입"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/more_after"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/icon_plus"
+        android:fontFamily="@font/font_medium"
+        android:text="더보기"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/info_after"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,12 @@
             android:name=".BoosterActivity"
             android:exported="false" />
         <activity
+            android:name=".BoosterActivity_Before"
+            android:exported="false" />
+        <activity
+            android:name=".BoosterActivity_After"
+            android:exported="false" />
+        <activity
             android:name=".KioskActivity"
             android:exported="false" />
     </application>

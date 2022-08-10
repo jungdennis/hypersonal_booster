@@ -1,4 +1,4 @@
 package com.example.hypersonalbooster
 
-class BoosterAfterActivity {
+class BoosterActivity_After {
 }

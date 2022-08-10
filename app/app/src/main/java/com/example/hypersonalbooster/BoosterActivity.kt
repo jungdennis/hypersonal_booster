@@ -2,6 +2,7 @@ package com.example.hypersonalbooster
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutBoosterMainBinding
 
@@ -19,6 +20,17 @@ class BoosterActivity : AppCompatActivity() {
 
         var nickname = shared.getString("nickname", "닉네임없음")
         binding.userName.text = nickname.toString()
+
+        binding.moreBefore.setOnClickListener{
+            val intent = Intent(this, BoosterActivity_Before::class.java)
+            startActivity(intent)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
+        binding.moreAfter.setOnClickListener{
+            val intent = Intent(this, BoosterActivity_After::class.java)
+            startActivity(intent)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
 
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)

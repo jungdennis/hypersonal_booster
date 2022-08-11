@@ -18,4 +18,5 @@
     <color name="main_color">#FBCA53</color>
     <color name="sub_color_light">#FEEBB6</color>
     <color name="sub_color_dark">#FFCD4A</color>
+    <color name="gray">#DADADA</color>
 </resources>

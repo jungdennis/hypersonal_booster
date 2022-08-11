@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.hypersonalbooster.databinding.FragmentRegisterInbodyYesBinding
 
 
-class RegisterFragment2_1 : Fragment() {
+class RegisterFragment_Inbody_Yes : Fragment() {
     lateinit var binding : FragmentRegisterInbodyYesBinding
 
     lateinit var fat : String

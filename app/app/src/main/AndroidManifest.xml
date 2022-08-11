@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity1"
+            android:name=".RegisterActivity_HeightWeight"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity2"
+            android:name=".RegisterActivity_Inbody"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity3"
+            android:name=".RegisterActivity_Nickname"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -41,7 +41,13 @@
             android:name=".BoosterActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
+            android:name=".BoosterActivity_Before"
+            android:exported="false" />
+        <activity
+            android:name=".BoosterActivity_After"
+            android:exported="false" />
+        <activity
+            android:name=".KioskActivity"
             android:exported="false" />
     </application>
 

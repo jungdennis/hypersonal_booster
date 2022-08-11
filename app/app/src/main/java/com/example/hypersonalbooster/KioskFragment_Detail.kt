@@ -7,22 +7,35 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.hypersonalbooster.databinding.FragmentMapDetailBinding
 import com.example.hypersonalbooster.databinding.FragmentQrBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+class KioskFragment_Detail() : BottomSheetDialogFragment() {
 
-class QRFragment() : BottomSheetDialogFragment() {
-
-    lateinit var binding : FragmentQrBinding
+    lateinit var binding : FragmentMapDetailBinding
+    var star : Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = FragmentQrBinding.inflate(inflater, container, false)
+        binding = FragmentMapDetailBinding.inflate(inflater, container, false)
 
         binding.close.setOnClickListener {
             dismiss()
+        }
+        binding.favorite.setOnClickListener{
+            if(star == 0){
+                binding.star.setImageResource(R.drawable.icon_star_main_color)
+                binding.favorite.text = "즐겨찾기 해제"
+                star = 1
+            }
+            else if(star == 1){
+                binding.star.setImageResource(R.drawable.icon_star_gray)
+                binding.favorite.text = "즐겨찾기 등록"
+                star = 0
+            }
         }
 
         return binding.root
@@ -50,7 +63,7 @@ class QRFragment() : BottomSheetDialogFragment() {
     }
 
     private fun getBottomSheetDialogDefaultHeight(): Int {
-        return getWindowHeight() * 70 / 100
+        return getWindowHeight() * 50 / 100
     }
 
     private fun getWindowHeight(): Int {

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterInbodyBinding
 
 
-class RegisterActivity2 : AppCompatActivity() {
+class RegisterActivity_Inbody : AppCompatActivity() {
 
     private lateinit var binding: LayoutRegisterInbodyBinding
 
@@ -28,7 +28,7 @@ class RegisterActivity2 : AppCompatActivity() {
         }
         binding.yes.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment2_1())
+            fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment_Inbody_Yes())
             fragmentTransaction.commit()
 
             input_fat = "-1"
@@ -40,7 +40,7 @@ class RegisterActivity2 : AppCompatActivity() {
         }
         binding.no.setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment2_2())
+            fragmentTransaction.replace(R.id.fragment_frame, RegisterFragment_Inbody_No())
             fragmentTransaction.commit()
 
             input_fat = "0"
@@ -52,8 +52,8 @@ class RegisterActivity2 : AppCompatActivity() {
         }
         binding.confirm.setOnClickListener {
             if(input_fat != "0" && input_muscle != "0") {
-                val frag_yes : RegisterFragment2_1 =
-                    supportFragmentManager.findFragmentById(R.id.fragment_frame) as RegisterFragment2_1
+                val frag_yes : RegisterFragment_Inbody_Yes =
+                    supportFragmentManager.findFragmentById(R.id.fragment_frame) as RegisterFragment_Inbody_Yes
 
                 val frag_fat = frag_yes.binding.insertFat.text.toString()
                 val frag_muscle = frag_yes.binding.insertMuscle.text.toString()
@@ -80,7 +80,7 @@ class RegisterActivity2 : AppCompatActivity() {
                 editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent = Intent(this, RegisterActivity3::class.java)
+                val intent = Intent(this, RegisterActivity_Nickname::class.java)
                 startActivity(intent)
                 finish()
             }

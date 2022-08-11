@@ -95,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            val intent = Intent(this, RegisterActivity1::class.java)
+            val intent = Intent(this, RegisterActivity_HeightWeight::class.java)
             startActivity(intent)
             finish()
         }

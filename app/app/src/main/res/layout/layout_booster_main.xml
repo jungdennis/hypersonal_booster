@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_bold"
         android:text="정승용"
-        android:textColor="@color/black"
+        android:textColor="@color/main_color"
         android:textSize="35sp"
         app:layout_constraintEnd_toStartOf="@+id/info_recommend_1"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_medium"
-        android:text=" 님에게"
+        android:text="님에게"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/user_name"

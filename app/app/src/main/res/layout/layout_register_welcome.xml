@@ -1,51 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <Button
-        android:id="@+id/close"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/icon_close"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/info_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:fontFamily="@font/font_bold"
+        android:fontFamily="@font/font_medium"
         android:gravity="center"
-        android:text="앱에서 사용할\n회원님의 닉네임을 입력해주세요.\n(한/영 8자 이내)"
+        android:text="Hypersonal Booster에\n오신것을 환영합니다!\n\n시작하기 전에\n몇가지 물어볼게있어요!\n"
         android:textColor="@color/black"
         android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <EditText
-        android:id="@+id/insert_nickname"
-        android:layout_width="300dp"
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/font_medium"
-        android:gravity="center"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/font_bold"
+        android:text="그럼, 시작해볼까요?"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+        app:layout_constraintBottom_toTopOf="@+id/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_nickname" />
 
     <Button
-        android:id="@+id/confirm"
+        android:id="@+id/start"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -53,7 +44,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/btn_main_color"
         android:fontFamily="@font/font_medium"
-        android:text="확인"
+        android:text="시작하기"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"

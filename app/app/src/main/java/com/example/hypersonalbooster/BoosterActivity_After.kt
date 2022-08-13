@@ -1,4 +1,6 @@
 package com.example.hypersonalbooster
 
-class BoosterActivity_After {
+import androidx.appcompat.app.AppCompatActivity
+
+class BoosterActivity_After : AppCompatActivity() {
 }

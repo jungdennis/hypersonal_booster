@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_drawer_layout"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <!-- 건들지 마세요 -->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/back_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+        <android.widget.Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/qr"
+            android:layout_width="78dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_bottom_qr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_bottombar_top" />
+        <android.widget.Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/supply"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/back_bottom"
+            android:drawableTop="@drawable/icon_supply"
+            android:text="오늘의 추천"
+            android:fontFamily="@font/font_medium"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/qr"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
+            app:layout_constraintVertical_bias="1.0" />
+        <android.widget.Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="00dp"
+            android:background="@drawable/back_bottom"
+            android:drawableTop="@drawable/icon_location"
+            android:text="키오스크 위치"
+            android:fontFamily="@font/font_medium"
+            android:textSize="10sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/qr"
+            app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
+            app:layout_constraintVertical_bias="1.0" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="63dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="88dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottombar_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="78dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottombar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="48dp" />
+
+        <!-- 작업 공간 -->
+
+        <ImageView
+            android:id="@+id/icon_main"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_main"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start" />
+
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_bold"
+            android:text="Hypersonal\nBooster"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/icon_main" />
+
+        <Button
+            android:id="@+id/plus_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/icon_list"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/font_bold"
+            android:text="정승용"
+            android:textColor="@color/sub_color_dark"
+            android:textSize="35sp"
+            app:layout_constraintStart_toEndOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="님,"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/user_name"
+            app:layout_constraintStart_toEndOf="@+id/user_name" />
+
+        <TextView
+            android:id="@+id/welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:textColor="@color/black"
+            android:text="오늘도 즐거운 운동 되세요!"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/health_info"
+            android:layout_width="0dp"
+            android:layout_height="186dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/back_fragment"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_message">
+
+            <TextView
+                android:id="@+id/info_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/font_medium"
+                android:text="신체 정보"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/btn_main_color"
+                android:fontFamily="@font/font_medium"
+                android:text="수정"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/info_health"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/info_health" />
+
+            <TextView
+                android:id="@+id/info_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:layout_marginStart="25dp"
+                android:text="체중"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/weight_display" />
+
+            <TextView
+                android:id="@+id/weight_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/font_medium"
+                android:text="100.0"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/info_weight"
+                app:layout_constraintTop_toBottomOf="@+id/info_health" />
+
+            <TextView
+                android:id="@+id/kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/font_medium"
+                android:text="kg"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/weight_display"
+                app:layout_constraintStart_toEndOf="@+id/weight_display" />
+
+
+            <TextView
+                android:id="@+id/info_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:layout_marginEnd="5dp"
+                android:text="BMI "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/display_bmi"
+                app:layout_constraintEnd_toStartOf="@+id/display_bmi"
+                app:layout_constraintTop_toTopOf="@+id/display_bmi" />
+
+            <TextView
+                android:id="@+id/display_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:text="99.9"
+                android:layout_marginEnd="25dp"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/weight_display"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/info_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:text="체지방율"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/info_muscle"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weight_display" />
+
+            <TextView
+                android:id="@+id/info_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:layout_marginTop="15dp"
+                android:text="골격근량"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/info_fat"
+                app:layout_constraintTop_toBottomOf="@+id/display_bmi" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/frame_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/info_fat"
+                app:layout_constraintStart_toStartOf="@+id/info_fat"
+                app:layout_constraintTop_toBottomOf="@+id/info_fat">
+
+                <TextView
+                    android:id="@+id/display_fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/font_medium"
+                    android:gravity="center"
+                    android:text="99.9"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/font_medium"
+                    android:text="%"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/display_fat"
+                    app:layout_constraintStart_toEndOf="@+id/display_fat" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/frame_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/info_muscle"
+                app:layout_constraintStart_toStartOf="@+id/info_muscle"
+                app:layout_constraintTop_toBottomOf="@+id/info_muscle">
+
+                <TextView
+                    android:id="@+id/display_muscle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_medium"
+                    android:gravity="center"
+                    android:text="99.9"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="-1dp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_medium"
+                    android:layout_marginStart="5dp"
+                    android:text="kg"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/display_muscle"
+                    app:layout_constraintStart_toEndOf="@+id/display_muscle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/message_no_fat_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/font_medium"
+                android:gravity="center"
+                android:text="체지방율과 골격근량을 입력하시면\n더욱 정확한 추천을 받으실 수 있어요!"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/booster_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/back_fragment"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/health_info">
+
+            <TextView
+                android:id="@+id/info_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/font_medium"
+                android:text="오늘의 추천"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/info_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:text="운동전"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/switch2"
+                app:layout_constraintEnd_toStartOf="@+id/switch2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintTop_toTopOf="@+id/switch2"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/info_after"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_medium"
+                android:layout_marginEnd="15dp"
+                android:text="운동후"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/switch2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/switch2" />
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="30dp"
+                android:thumbTint="@color/main_color"
+                android:track="@drawable/btn_sub_color_light_no_stroke"
+                app:layout_constraintBottom_toBottomOf="@+id/info_recommend"
+                app:layout_constraintEnd_toStartOf="@+id/info_after"
+                app:layout_constraintTop_toTopOf="@+id/info_recommend" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:layout_width="288dp"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="288dp"
+            android:layout_height="match_parent"
+            android:background="@color/sub_color_light"
+            android:id="@+id/side_menu"
+            android:fitsSystemWindows="true" >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="90dp" />
+
+            <Button
+                android:id="@+id/close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                android:background="@drawable/icon_close" />
+
+            <TextView
+                android:id="@+id/private_setting"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp"
+                android:gravity="start"
+                android:ems="30"
+                android:fontFamily="@font/font_medium"
+                android:text=" 개인 설정"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/close" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintTop_toBottomOf="@+id/private_setting" />
+
+            <Button
+                android:id="@+id/target_setting"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_marginTop="3dp"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
+                android:text="개인 목표설정"
+                android:textSize="15sp"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/private_setting"
+                app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+            <Button
+                android:id="@+id/flavor_setting"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:gravity="start"
+                style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="@font/font_medium"
+                android:text="맛 선호도 변경"
+                android:textSize="15sp"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/private_setting"
+                app:layout_constraintTop_toBottomOf="@+id/target_setting" />
+
+            <Button
+                android:id="@+id/health_setting"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:gravity="start"
+                style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="@font/font_medium"
+                android:text="상세 신체정보 수정"
+                android:textSize="15sp"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/private_setting"
+                app:layout_constraintTop_toBottomOf="@+id/flavor_setting" />
+
+            <Button
+                android:id="@+id/device_setting"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="195dp"
+                android:gravity="start"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                android:text="헬스 디바이스 연동"
+                android:textSize="15dp"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/private_setting"
+                app:layout_constraintTop_toBottomOf="@+id/health_setting" />
+
+            <TextView
+                android:id="@+id/booster"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/font_medium"
+                android:layout_marginStart="5dp"
+                android:text=" 보충제"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/device_setting" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintTop_toBottomOf="@+id/booster" />
+
+            <Button
+                android:id="@+id/booster_record"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
+                android:layout_marginTop="3dp"
+                android:text="보충제 제공 이력"
+                android:textSize="15sp"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/booster"
+                app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+            <Button
+                android:id="@+id/booster_favorite"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                android:text="즐겨찾는 보충제"
+                android:textSize="15sp"
+                android:gravity="start"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/booster_record"
+                app:layout_constraintTop_toBottomOf="@+id/booster_record" />
+
+            <TextView
+                android:id="@+id/payment"
+                android:layout_width="254dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="30"
+                android:fontFamily="@font/font_medium"
+                android:text=" 결제 및 포인트"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booster_favorite" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintTop_toBottomOf="@+id/payment" />
+
+            <Button
+                android:id="@+id/point"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="포인트"
+                android:textSize="15sp"
+                android:gravity="start"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/payment"
+                app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+            <Button
+                android:id="@+id/payment_record"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                android:text="결제내역 확인"
+                android:textSize="15sp"
+                android:gravity="start"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                style="?android:attr/borderlessButtonStyle"
+                app:layout_constraintStart_toStartOf="@+id/payment"
+                app:layout_constraintTop_toBottomOf="@+id/point" />
+
+            <Button
+                android:id="@+id/reward"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/font_medium"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="쿠폰 및 리워드"
+                android:textSize="15sp"
+                android:gravity="start"
+                android:background="@color/sub_color_light"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintStart_toStartOf="@+id/payment"
+                app:layout_constraintTop_toBottomOf="@+id/payment_record" />
+
+            <Button
+                android:id="@+id/log_out"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:text="로그아웃"
+                android:textColor="@color/black"
+                android:fontFamily="@font/font_medium"
+                android:textSize="17sp"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/back_fragment"
+                app:layout_constraintBottom_toTopOf="@+id/delete_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/delete_account"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:text="회원탈퇴"
+                android:textColor="@color/main_color"
+                android:fontFamily="@font/font_medium"
+                android:textSize="17sp"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/btn_black_with_main"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,41 +1,82 @@
 package com.example.hypersonalbooster
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.example.hypersonalbooster.databinding.LayoutMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btn_qr: Button
-    private lateinit var btn_supply : Button
-    private lateinit var btn_location : Button
+
+    private lateinit var binding : LayoutMainBinding
+
+    private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_main_frame)
 
-        btn_qr = findViewById(R.id.qr)
-        btn_location = findViewById(R.id.location)
-        btn_supply = findViewById(R.id.supply)
+        binding = LayoutMainBinding.inflate(layoutInflater)
 
-        val main_fragmentTransaction = supportFragmentManager.beginTransaction()
-        main_fragmentTransaction.replace(R.id.main_frame, Fragment1())
-        main_fragmentTransaction.commit()
+        setContentView(binding.root)
 
-        btn_location.setOnClickListener {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, Fragment2())
-            fragmentTransaction.commit()
+        val shared_health = getSharedPreferences("data_health", 0)
+        var height = shared_health.getFloat("height", 0F)
+        var weight = shared_health.getFloat("weight", 0F)
+        var fat = shared_health.getFloat("fat", 0F)
+        var muscle = shared_health.getFloat("muscle", 0F)
+
+        val shared_cloud = getSharedPreferences("data_cloud", 0)
+        var nickname = shared_cloud.getString("nickname", "닉네임없음")
+
+        var bmi : Float = weight / ((height / 100) * (height / 100))
+
+
+        binding.displayBmi.text = "%.1f".format(bmi)
+        binding.weightDisplay.text = weight.toString()
+        binding.displayFat.text = fat.toString()
+        binding.displayMuscle.text = muscle.toString()
+        binding.userName.text = nickname
+
+        if(fat <= 0 || muscle <= 0) {
+            binding.frameFat.setVisibility(View.INVISIBLE)
+            binding.infoFat.setVisibility(View.INVISIBLE)
+            binding.frameMuscle.setVisibility(View.INVISIBLE)
+            binding.infoMuscle.setVisibility(View.INVISIBLE)
+            binding.messageNoFatMuscle.setVisibility(View.VISIBLE)
         }
-        btn_supply.setOnClickListener {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame, Fragment3())
-            fragmentTransaction.commit()
+        else {
+            binding.frameFat.setVisibility(View.VISIBLE)
+            binding.infoFat.setVisibility(View.VISIBLE)
+            binding.frameMuscle.setVisibility(View.VISIBLE)
+            binding.infoMuscle.setVisibility(View.VISIBLE)
+            binding.messageNoFatMuscle.setVisibility(View.INVISIBLE)
+        }
+
+        binding.location.setOnClickListener {
+            val map_intent = Intent(this, KioskActivity::class.java)
+            map_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(map_intent)
+        }
+        binding.supply.setOnClickListener {
+            val supply_intent = Intent(this, BoosterActivity::class.java)
+            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(supply_intent)
+        }
+        binding.qr.setOnClickListener {
+            val qr_popup = MainFragment_QR()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
+        }
+        binding.plusMenu.setOnClickListener {
+            binding.mainDrawerLayout.openDrawer(GravityCompat.END)
+        }
+
+        binding.close.setOnClickListener {
+            binding.mainDrawerLayout.closeDrawer(GravityCompat.END)
         }
     }
-
-    private var end_time: Long = 0
 
     override fun onBackPressed() {
         // super.onBackPressed()
@@ -48,5 +89,4 @@ class MainActivity : AppCompatActivity() {
             finishAffinity()
         }
     }
-
 }

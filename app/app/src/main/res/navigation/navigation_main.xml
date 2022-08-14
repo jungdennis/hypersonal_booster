@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.hypersonalbooster.KioskActivity"
+        android:label="MapFragment" >
+        <action
+            android:id="@+id/action_mapFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/QRFragment"
+        android:name="com.example.hypersonalbooster.MainFragment_QR"
+        android:label="QRFragment" >
+        <action
+            android:id="@+id/action_QRFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boosterFragment"
+        android:name="com.example.hypersonalbooster.BoosterActivity"
+        android:label="BoosterFragment" >
+        <action
+            android:id="@+id/action_boosterFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.hypersonalbooster.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_boosterFragment"
+            app:destination="@id/boosterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_QRFragment"
+            app:destination="@id/QRFragment" />
+    </fragment>
+</navigation>

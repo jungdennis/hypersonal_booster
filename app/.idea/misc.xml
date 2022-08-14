@@ -3,14 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_booster_detail.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_map_detail.xml" value="0.33" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_map_request_recommend.xml" value="0.33" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_map_request_search.xml" value="0.25" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_qr.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_login.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_main.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_map_main.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_register_heightweight.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_register_inbody.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/layout_register_target.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/back_circle_sub_color_light.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic___1.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_circle_inner_circle.xml" value="0.1" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.193" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_light_yellow_circle.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_location.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_running.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable-v24/ic_setting.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/appicon_foreground.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom_location.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottom_supply.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_bottombar.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_fragment.xml" value="0.2595" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_popup_main_color.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_popup_white.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/back_qr.xml" value="0.25" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/background.xml" value="0.2595" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_black.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_location.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_qr.xml" value="0.2395" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_bottom_supply.xml" value="0.2395" />
@@ -21,46 +44,105 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_state.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_dark.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_light.xml" value="0.2595" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/btn_sub_color_light_no.xml" value="0.235" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/frame_white_color.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.193" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/ic_setting.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_back.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_close.xml" value="0.236" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_google.xml" value="0.2395" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_gps.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_height.xml" value="0.2395" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_list.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_location.xml" value="0.2595" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_main.xml" value="0.2595" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_man.xml" value="0.182" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_qr.xml" value="0.236" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_search.xml" value="0.2395" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_star-SY-Book.xml" value="0.309" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_star.xml" value="0.309" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_supply.xml" value="0.2395" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_test.xml" value="0.239" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_weight.xml" value="0.2595" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/drawable/icon_woman.xml" value="0.182" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/font/app_custom_font.xml" value="0.1" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/_guide_layout.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/activity_fullscreen.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/activity_register_height_weight.xml" value="0.270703125" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/booster_after.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/booster_before.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/booster_recommend.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/bottom_bar.xml" value="0.3609375" />
-        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_main.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_after.xml" value="0.33" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_before.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_detail.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_main.xml" value="0.33" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_request.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_booster_request_search.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_main.xml" value="0.25" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_detail.xml" value="0.33" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_main.xml" value="0.33" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_request.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_map_request_search.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr_after.xml" value="0.2574074074074074" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_qr_before.xml" value="0.33" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_register_inbody_no.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_register_inbody_yes.xml" value="0.29615384615384616" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_register_target_detail.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/fragment_target_selection_detail.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/guide_layout.xml" value="0.32083333333333336" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_booster_before.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_booster_main.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_bottombar.xml" value="0.2" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_login.xml" value="0.5" />
+<<<<<<< Updated upstream
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_main.xml" value="0.264" />
+=======
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_main.xml" value="0.33" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_main_frame.xml" value="0.33" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_map_main.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_heightweight.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_inbody.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_name.xml" value="0.32083333333333336" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_nickname.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_particular.xml" value="0.264" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_target.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_register_welcome.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_resister_sex.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/layout_target_selection.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/login.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/main_page.xml" value="0.32175925925925924" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/main_side.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/navi_bar_bottom.xml" value="0.9" />
+        <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/qr_recognition_after.xml" value="0.32175925925925924" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/register_heightweight.xml" value="0.33" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/register_inbody.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/menu/bottom_menu.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/menu/botton_menu_bar.xml" value="0.35520833333333335" />
+=======
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/_guide_layout.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_booster_detail.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_main_no_side.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_main_side.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_map_request_recommend.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_qr.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_register_inbody_no.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_after.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_before.xml" value="0.25" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_main_frame.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_map_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_heightweight.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_inbody.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_name.xml" value="0.3115942028985507" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

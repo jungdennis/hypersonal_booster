@@ -15,7 +15,7 @@ class BoosterActivity : AppCompatActivity() {
         binding = LayoutBoosterMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val shared = getSharedPreferences("data_health", 0)
+        val shared = getSharedPreferences("data_cloud", 0)
 
         var nickname = shared.getString("nickname", "닉네임없음")
         binding.userName.text = nickname.toString()

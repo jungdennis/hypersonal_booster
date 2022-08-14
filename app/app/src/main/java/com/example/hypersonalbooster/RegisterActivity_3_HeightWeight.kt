@@ -6,14 +6,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterHeightweightBinding
 
-class RegisterActivity_HeightWeight : AppCompatActivity() {
+class RegisterActivity_3_HeightWeight : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterHeightweightBinding
 
     lateinit var input_height : String
     lateinit var input_weight : String
-
-    private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,20 +34,9 @@ class RegisterActivity_HeightWeight : AppCompatActivity() {
                 editor.putFloat("weight", input_weight.toFloat())
                 editor.apply()
 
-                val intent_next = Intent(this, RegisterActivity_Inbody::class.java)
+                val intent_next = Intent(this, RegisterActivity_4_Inbody::class.java)
                 startActivity(intent_next)
             }
-        }
-    }
-
-    override fun onBackPressed() {
-        // super.onBackPressed()
-
-        if (System.currentTimeMillis() - end_time >= 2000) {
-            end_time = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        } else if (System.currentTimeMillis() - end_time < 2000) {
-            finishAffinity()
         }
     }
 }

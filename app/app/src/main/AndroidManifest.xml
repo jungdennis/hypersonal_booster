@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hypersonalbooster">
 
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +16,9 @@
         android:theme="@style/Theme.HyperBooster"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterActivity_Particular"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -26,13 +28,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity_HeightWeight"
+            android:name=".RegisterActivity_0_Welcome"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_Inbody"
+            android:name=".RegisterActivity_1_Nickname"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_Nickname"
+            android:name=".RegisterActivity_2_Sex"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_3_HeightWeight"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_4_Inbody"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_Particular"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

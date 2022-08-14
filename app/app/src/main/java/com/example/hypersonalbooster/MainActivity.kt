@@ -22,12 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val shared = getSharedPreferences("data_health", 0)
-        var height = shared.getFloat("height", 0F)
-        var weight = shared.getFloat("weight", 0F)
-        var fat = shared.getFloat("fat", 0F)
-        var muscle = shared.getFloat("muscle", 0F)
-        var nickname = shared.getString("nickname", "닉네임없음")
+        val shared_health = getSharedPreferences("data_health", 0)
+        var height = shared_health.getFloat("height", 0F)
+        var weight = shared_health.getFloat("weight", 0F)
+        var fat = shared_health.getFloat("fat", 0F)
+        var muscle = shared_health.getFloat("muscle", 0F)
+
+        val shared_cloud = getSharedPreferences("data_cloud", 0)
+        var nickname = shared_cloud.getString("nickname", "닉네임없음")
 
         var bmi : Float = weight / ((height / 100) * (height / 100))
 

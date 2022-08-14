@@ -39,6 +39,7 @@
     <string name="user_id">정승용</string>
     <string name="weight_range">71kg ~ 73kg</string>
     <string name="user_height">178</string>
+    <string name="title_activity_google_maps">GoogleMapsActivity</string>
 
 
 </resources>

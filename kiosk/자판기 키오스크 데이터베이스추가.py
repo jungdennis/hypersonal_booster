@@ -38,10 +38,10 @@ global val_6
 global moctrl
 global usernumber
 global gram
-global motime
 global count
 count = 0
-# global before_or_after
+global before_or_after
+global check
 # endregion
 # region 모터설정
 # region 모터 핀 설정
@@ -283,7 +283,6 @@ class Weightsensor():
             print("원료통5 측정값: %f" % val_5)
             print("원료통6 측정값: %f" % val_6)
 # endregion
-
 # region 창설정
 win = tk.Tk()
 win.title("Hy-personal Booster Vender")
@@ -301,7 +300,7 @@ def clickMouse(event):
     global val_cup
     global first_weight
     global second_weight
-    # global before_or_after
+    global before_or_after
     # 메인페이지에서 넘어가기
     if count == 0:
         maintext.pack_forget()
@@ -343,22 +342,16 @@ def clickMouse(event):
         count += 1
         print(count)
         win.after(3000,next)
-    # 투하 완료에서 다시 메인페이지로 넘어가기
+    # 투하 완료에서 다시 메인페이지로 넘어가기 (next함수로 넘어감)
     elif count == 6:
-        maintext.pack()
-        logo_image.pack()
-        subtext.pack()
-        label_maintext.pack_forget()
-        label_image.pack_forget()
-        label_subtext.pack_forget()
-        count = 0
-        print(count)
+        pass
 def next():
     global count
     global moctrl
     global usernumber
     global gram
-    #global before_or_after
+    global before_or_after
+    global check
     if count == 2:
         # region qr센서
         ap = argparse.ArgumentParser()
@@ -396,13 +389,10 @@ def next():
 
         print("[INFO] cleaning up...")
         print(barcodeData)
-        usernumber = int(barcodeData[0:3])
-        moctrl = int(barcodeData[3:5])
-        gram = int(barcodeData[5:])
-        # int before_or_after = barcodeData[-1]
+        usernumber = barcodeData[:-1]
+        before_or_after = int(barcodeData[-1])
         print("회원번호 : %d" %usernumber)
-        print("선택원료 : %d번" %moctrl)
-        print("용량 : %dg" % gram)
+        print("0이면 전, 1이면 후 : %d" %before_or_after)
         csv.close()
         cv2.destroyAllWindows()
         vs.stop()
@@ -416,16 +406,15 @@ def next():
         win.after(1000,next)
         print(count)
     elif count == 3:
-        '''
-        text = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/" + str(usernumber)
-        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members"
+        text = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/" + usernumber
+        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/" + usernumber
         booster_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster"
         before_powder = [""]
         after_powder = [""]
         check_number = 0
         if before_or_after == 0:
             for i in range(1,6):
-                before_powder.append(db.reference(text + "/bp_" + str(i)).get())
+                before_powder.append(db.reference(member_db + "/bp_" + str(i)).get())
                 pow_number = 0
                 for powders in vender_powder:
                     if powders == before_powder[i]:
@@ -436,10 +425,25 @@ def next():
                     break
             if check == 1:
                 gram = db.reference(text + "/bp_" + check_number + "gram" ).get()
-                label_powtext_1.configure(text = powtext[0] + powtext[pow_number])
+                label_powtext_1.configure(text=powtext[0] + powtext[pow_number])
+                recommend_booster = vender_powder[pow_number]
             else:
-                gram = db.reference(text + "/bp_" + check_number + "gram" )
-                label_powtext_1.configure(text = powtext[pow_number])
+                gram = db.reference(text + "/bp_" + check_number + "gram" ).get()
+                recommend_booster = before_powder[check_number]
+                booster_name = db.reference(booster_db + "/" + recommend_booster + "/name").get()
+                booster_brand = db.reference(booster_db + "/" + recommend_booster + "/brand").get()
+                booster_oneamount = db.reference(booster_db + "/" + recommend_booster + "/amount").get()
+                booster_calories = db.reference(booster_db + "/" + recommend_booster + "/calories(kcal)").get()
+                booster_carb = db.reference(booster_db + "/" + recommend_booster + "/carb(g)").get()
+                booster_sort = db.reference(booster_db + "/" + recommend_booster + "/sort").get()
+                booster_fat = db.reference(booster_db + "/" + recommend_booster + "/fat(g)").get()
+                booster_protein = db.reference(booster_db + "/" + recommend_booster + "/protein(g)").get()
+                booster_taste = db.reference(booster_db + "/" + recommend_booster + "/taste2").get()
+                powtext_example = "\n제품 : %s\n보충제 종류 : %s\n브랜드 : %s\n맛 : %s\n추천제공량 : %s\n1회 제공량 %s당 칼로리%skcal,탄수화물 %sg," \
+                                  " 지방 %sg, 단백질 %sg 함유" % (
+                                      booster_name, booster_sort, booster_brand, booster_taste, gram,
+                                      booster_oneamount, booster_calories, booster_carb, booster_fat, booster_protein)
+                label_powtext_1.configure(text=powtext_example)
         else:
             for i in range(1,6):
                 after_powder[i] = db.reference(text + "/ap_" + str(i))
@@ -448,66 +452,48 @@ def next():
                     if powders == after_powder[i]:
                         check += 1
                     pow_number += 1
+                check_number += 1
                 if check == 1:
                     break
             if check == 1:
                 gram = db.reference(text + "/bp_" + check_number + "gram" )
-                label_powtext_1.configure(text = powtext[0] + powtext[pow_number])
+                label_powtext_1.configure(text=powtext[0] + powtext[pow_number])
+                recommend_booster = vender_powder[pow_number]
             else:
                 gram = db.reference(text + "/bp_" + check_number + "gram" )
-                label_powtext_1.configure(text = powtext[pow_number])
-        booster_name = db.reference(booster_db + "/" + recommend_booster[1] + "/name").get()
-        booster_brand = db.reference(booster_db + "/" + recommend_booster[1] + "/brand").get()
-        booster_oneamount = db.reference(booster_db + "/" + recommend_booster[1] + "/amount").get()
-        booster_calories = db.reference(booster_db + "/" + recommend_booster[1] + "/calories(kcal)").get()
-        booster_carb = db.reference(booster_db + "/" + recommend_booster[1] + "/carb(g)").get()
-        booster_sugar = db.reference(booster_db + "/" + recommend_booster[1] + "/sugars(g)").get()
-        booster_fat = db.reference(booster_db + "/" + recommend_booster[1] + "/fat(g)").get()
-        booster_protein = db.reference(booster_db + "/" + recommend_booster[1] + "/protein(g)").get()
-        booster_taste = db.reference(booster_db + "/" + recommend_booster[1] + "/taste2").get()
-        powtext_example = "\n제품 : %s\n보충제 종류 : %s\n브랜드 : %s\n맛 : %s\n추천제공량 : %s\n1회 제공량 %s당 칼로리%skcal,탄수화물 %sg, 지방 %sg, 단백질 %sg 함유"
-        %(booster_name,booster_sort,booster_brand,booster_taste,booster_oneamount,booster_calories,booster_carb,booster_fat,booster_protein)
-        '''
+                recommend_booster = after_powder[check_number]
+                booster_name = db.reference(booster_db + "/" + recommend_booster + "/name").get()
+                booster_brand = db.reference(booster_db + "/" + recommend_booster + "/brand").get()
+                booster_oneamount = db.reference(booster_db + "/" + recommend_booster + "/amount").get()
+                booster_calories = db.reference(booster_db + "/" + recommend_booster + "/calories(kcal)").get()
+                booster_carb = db.reference(booster_db + "/" + recommend_booster + "/carb(g)").get()
+                booster_sort = db.reference(booster_db + "/" + recommend_booster + "/sort").get()
+                booster_fat = db.reference(booster_db + "/" + recommend_booster + "/fat(g)").get()
+                booster_protein = db.reference(booster_db + "/" + recommend_booster + "/protein(g)").get()
+                booster_taste = db.reference(booster_db + "/" + recommend_booster + "/taste2").get()
+                powtext_example = "\n제품 : %s\n보충제 종류 : %s\n브랜드 : %s\n맛 : %s\n추천제공량 : %s\n1회 제공량 %s당 칼로리%skcal,탄수화물 %sg," \
+                                  " 지방 %sg, 단백질 %sg 함유" % (
+                                  booster_name, booster_sort, booster_brand, booster_taste, gram,
+                                  booster_oneamount, booster_calories, booster_carb, booster_fat, booster_protein)
+                label_powtext_1.configure(text=powtext_example)
+
         label_maintext.configure(text='선택하신 프로틴이 맞는지 확인해 주세요')
         label_subtext.pack_forget()
-        #label_subtext.configure(text='버튼을 클릭해주세요')
-        #label_powtext_2.configure(text="용량 : %dg" % gram)
-        # region qr코드 분해후 상세 설명 변경란
-        if moctrl == 1:
-            label_powimage.configure(image=image4_1)
-            label_powtext_1.configure(text="\n제품 : WPI\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-        elif moctrl == 2:
-            label_powimage.configure(image=image4_2)
-            label_powtext_1.configure(text="\n제품 : WPC\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-        elif moctrl == 3:
-            label_powimage.configure(image=image4_3)
-            label_powtext_1.configure(text="제품 : CASEIN\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-        elif moctrl == 4:
-            label_powtext_1.configure(text="제품 : VEG\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-            label_powimage.configure(image=image4_4)
-        elif moctrl == 5:
-            label_powimage.configure(image=image4_5)
-            label_powtext_1.configure(text="제품 : GAINER\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-        elif moctrl == 6:
-            label_powimage.configure(image=image4_6)
-            label_powtext_1.configure(text="제품 : BCAA\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" %gram)
-        # endregion
         label_image.pack_forget()
         label_powimage.pack(side="left",ipadx=100,anchor='nw')
+
         label_powtext_1.pack(side="left")
-#        label_powtext_2.pack(side="left",anchor='nw')
         label_yesbutton.place(x=475,y=550)
         label_nobutton.place(x=730,y=550)
         count += 1
         print(count)        
     elif count == 6:
-        '''
         if (val_1 < "weight"):
             num_1 = "1"
-        else: catch_1 = ""
+        else: num_1 = ""
         if (val_2 < "weight"):
             num_2 = "2"
-        else: catch_2 = ""
+        else: num_2 = ""
         if (val_3 < "weight"):
             num_3 = "3"
         else: num_3 = ""
@@ -520,12 +506,11 @@ def next():
         if (val_6 < "weight"):
             num_6 = "6"
         else: num_6 = ""
-        if (num_1) || (num_2) || (num_3) || (num_4) || (num_5) ||(num_6):
+        if (num_1 | num_2 | num_3 | num_4 | num_5 | num_6):
             change_text = "원료통" + num_1 + num_2 + num_3 + num_4 + num_5 + num_6 + "이 부족합니다"
             maintext.configure(text = change_text)
         else:
-            maintext.configure(text = "개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER")            
-        '''
+            maintext.configure(text = "개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER")
         maintext.pack()
         logo_image.pack()
         subtext.pack()

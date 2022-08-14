@@ -8,4 +8,5 @@ import androidx.fragment.app.Fragment
 
 class BoosterFragment_Before : Fragment() {
 
+
 }

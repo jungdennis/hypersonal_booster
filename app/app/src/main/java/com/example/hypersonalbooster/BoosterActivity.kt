@@ -9,33 +9,24 @@ import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutBoosterAfterBinding
 import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
 
-private var end_time: Long = 0
+
 
 class BoosterActivity : AppCompatActivity() {
+
+    private var end_time: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_booster_main)
-        settingButon()
+        settingButton()
         settingButton2()
     }
 
-<<<<<<< Updated upstream
-        binding = LayoutBoosterMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val shared = getSharedPreferences("data_cloud", 0)
-
-        var nickname = shared.getString("nickname", "닉네임없음")
-        binding.userName.text = nickname.toString()
-
-        binding.moreBefore.setOnClickListener{
-            val intent = Intent(this, BoosterActivity_Before::class.java)
-=======
-    fun settingButon(){
+    fun settingButton(){
         val button = findViewById<Button>(R.id.more_before)
         button.setOnClickListener{
             val intent = Intent(this, LayoutBoosterBeforeBinding :: class.java)
->>>>>>> Stashed changes
             startActivity(intent)
         }
     }

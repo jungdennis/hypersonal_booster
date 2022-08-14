@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
         <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_booster_detail.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_map_detail.xml" value="0.33" />
         <entry key="..\:/Users/HJ/Documents/GitHub/hypersonal_booster/app/app/src/main/res/layout/fragment_map_request_recommend.xml" value="0.33" />
@@ -121,13 +122,27 @@
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/layout/register_inbody.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/menu/bottom_menu.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/SY_develop/OneDrive - dongguk.edu/General/code/app/app/src/main/res/menu/botton_menu_bar.xml" value="0.35520833333333335" />
+=======
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/_guide_layout.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_booster_detail.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_main_no_side.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_main_side.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_map_request_recommend.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_qr.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/fragment_register_inbody_no.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_after.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_before.xml" value="0.25" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_booster_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_main_frame.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_map_main.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_heightweight.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_inbody.xml" value="0.3115942028985507" />
+        <entry key="..\:/hypersonal_booster/app/app/src/main/res/layout/layout_register_name.xml" value="0.3115942028985507" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

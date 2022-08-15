@@ -9,44 +9,41 @@ import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutBoosterAfterBinding
 import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
 
-
-
 class BoosterActivity : AppCompatActivity() {
+
+    private lateinit var binding : LayoutBoosterMainBinding
 
     private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_booster_main)
-        settingButton()
-        settingButton2()
-    }
+        binding = LayoutBoosterMainBinding.inflate(layoutInflater)
 
 
-    fun settingButton(){
-        val button = findViewById<Button>(R.id.more_before)
-        button.setOnClickListener{
+        setContentView(binding.root)
+
+        binding.moreBefore.setOnClickListener {
             val intent = Intent(this, LayoutBoosterBeforeBinding :: class.java)
             startActivity(intent)
         }
-    }
-    fun settingButton2(){
-        val button = findViewById<Button>(R.id.more_after)
-        button.setOnClickListener{
+        binding.moreAfter.setOnClickListener {
             val intent = Intent(this, LayoutBoosterAfterBinding :: class.java)
             startActivity(intent)
         }
-    }
 
-    override fun onBackPressed() {
-        // super.onBackPressed()
-
-        if (System.currentTimeMillis() - end_time >= 2000) {
-            end_time = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        binding.back.setOnClickListener {
+            val main_intent = Intent(this, MainActivity::class.java)
+            main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(main_intent)
         }
-        else if (System.currentTimeMillis() - end_time < 2000) {
-            finishAffinity()
+        binding.location.setOnClickListener {
+            val location_intent = Intent(this, KioskActivity::class.java)
+            location_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(location_intent)
+        }
+        binding.qr.setOnClickListener {
+            val qr_popup = MainFragment_QR()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
     }
 }

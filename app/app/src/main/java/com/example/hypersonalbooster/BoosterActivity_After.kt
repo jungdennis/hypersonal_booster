@@ -1,15 +1,9 @@
 package com.example.hypersonalbooster
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.hypersonalbooster.databinding.LayoutBoosterMainBinding
 import android.widget.Button
-import android.widget.Toast
-import com.example.hypersonalbooster.databinding.LayoutBoosterAfterBinding
-import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
 
 
 class BoosterActivity_After : AppCompatActivity() {
@@ -24,45 +18,52 @@ class BoosterActivity_After : AppCompatActivity() {
         settingButton2()
         settingButton3()
         settingButton4()
+
+        /*
+        binding.back.setOnClickListener {
+            val main_intent = Intent(this, MainActivity::class.java)
+            main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(main_intent)
+        }
+        binding.location.setOnClickListener {
+            val location_intent = Intent(this, KioskActivity::class.java)
+            location_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(location_intent)
+        }
+        binding.qr.setOnClickListener {
+            val qr_popup = MainFragment_QR()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
+        }
+
+         */
 }
 
     fun settingButton(){
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener{
-            val intent = Intent(this, LayoutBoosterBeforeBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_Before :: class.java)
             startActivity(intent)
         }
     }
     fun settingButton2(){
         val button = findViewById<Button>(R.id.button2)
         button.setOnClickListener{
-            val intent = Intent(this, LayoutBoosterAfterBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_After :: class.java)
             startActivity(intent)
         }
     }
     fun settingButton3(){
         val button = findViewById<Button>(R.id.button3)
         button.setOnClickListener{
-            val intent = Intent(this, LayoutBoosterAfterBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_After :: class.java)
             startActivity(intent)
         }
     }
     fun settingButton4(){
         val button = findViewById<Button>(R.id.button4)
         button.setOnClickListener{
-            val intent = Intent(this, LayoutBoosterAfterBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_After :: class.java)
             startActivity(intent)
-        }
-    }
-    override fun onBackPressed() {
-        // super.onBackPressed()
-
-        if (System.currentTimeMillis() - end_time >= 2000) {
-            end_time = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        }
-        else if (System.currentTimeMillis() - end_time < 2000) {
-            finishAffinity()
         }
     }
 }

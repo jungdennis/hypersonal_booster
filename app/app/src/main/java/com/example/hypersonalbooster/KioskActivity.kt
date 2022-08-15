@@ -2,8 +2,11 @@ package com.example.hypersonalbooster
 
 
 import android.content.Intent
+import android.location.Location
+import android.location.LocationRequest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,6 +19,7 @@ import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
 import com.example.hypersonalbooster.RecommendClass
 
 class KioskActivity : AppCompatActivity(), OnMapReadyCallback {
+
 
     private lateinit var mMap: GoogleMap
     lateinit var binding : LayoutMapMainBinding
@@ -51,14 +55,11 @@ class KioskActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.uiSettings.isMyLocationButtonEnabled = true;
+        mMap.uiSettings.isZoomControlsEnabled = true;
+
         val marker = LatLng(35.241615, 128.695587)
         mMap.addMarker(MarkerOptions().position(marker).title("마커 제목"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
-    }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        startActivity(intent)
     }
 }

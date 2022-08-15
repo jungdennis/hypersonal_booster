@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterInbodyBinding
 
 
-class RegisterActivity_4_Inbody : AppCompatActivity() {
+class RegisterActivity_3_Inbody : AppCompatActivity() {
 
     private lateinit var binding: LayoutRegisterInbodyBinding
 
@@ -70,7 +70,7 @@ class RegisterActivity_4_Inbody : AppCompatActivity() {
             var check_muscle = input_muscle.toFloat()
 
             if((check_fat < 0) || (check_muscle < 0)) {
-                Toast.makeText(this, "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
                 val shared = getSharedPreferences("data_health", 0)
@@ -80,7 +80,7 @@ class RegisterActivity_4_Inbody : AppCompatActivity() {
                 editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent = Intent(this, RegisterActivity_5_Target::class.java)
+                val intent = Intent(this, RegisterActivity_4_Target::class.java)
                 startActivity(intent)
                 finish()
             }

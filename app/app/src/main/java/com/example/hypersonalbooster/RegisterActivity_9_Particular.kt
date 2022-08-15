@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutRegisterParticularBinding
 
-class RegisterActivity_Particular : AppCompatActivity() {
+class RegisterActivity_9_Particular : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterParticularBinding
 
@@ -24,6 +24,10 @@ class RegisterActivity_Particular : AppCompatActivity() {
 
         binding = LayoutRegisterParticularBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.back.setOnClickListener {
+            finish()
+        }
 
         binding.veganYes.setOnClickListener {
             binding.veganYes.setBackgroundResource(R.drawable.btn_main_color)

@@ -1,9 +1,11 @@
 package com.example.hypersonalbooster
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
+import com.example.hypersonalbooster.RecommendClass
 
 class KioskActivity : AppCompatActivity() {
 

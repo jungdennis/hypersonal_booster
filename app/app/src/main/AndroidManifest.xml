@@ -43,6 +43,9 @@
             android:name=".RegisterActivity_4_Inbody"
             android:exported="false" />
         <activity
+            android:name=".RegisterActivity_5_Target"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity_Particular"
             android:exported="false" />
         <activity

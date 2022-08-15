@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding : LayoutLoginBinding

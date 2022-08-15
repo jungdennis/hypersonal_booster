@@ -281,10 +281,10 @@ def actmotor():
 
 # endregion
 # region 이미지파일 및 초기설정
-image1 = tkinter.PhotoImage(file="tumblr.png")
-image2 = tkinter.PhotoImage(file="qrcode.png")
-image3 = tkinter.PhotoImage(file="server.png")
-image4 = tkinter.PhotoImage(file="protein.png")
+image1 = tkinter.PhotoImage(file="../tumblr.png")
+image2 = tkinter.PhotoImage(file="../qrcode.png")
+image3 = tkinter.PhotoImage(file="../server.png")
+image4 = tkinter.PhotoImage(file="../protein.png")
 #image5 = tkinter.PhotoImage(file="tumblrwithscoop.png")
 
 # 초기화면

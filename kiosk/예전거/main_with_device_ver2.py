@@ -258,11 +258,11 @@ def actmotor():
     change5to6()
 #endregion
 #region 이미지파일 및 초기설정
-image1 = tkinter.PhotoImage(file="tumblr.png")
-image2 = tkinter.PhotoImage(file="qrcode.png")
-image3 = tkinter.PhotoImage(file="server.png")
-image4 = tkinter.PhotoImage(file="protein.png")
-image5 = tkinter.PhotoImage(file="tumblrwithscoop.png")
+image1 = tkinter.PhotoImage(file="../tumblr.png")
+image2 = tkinter.PhotoImage(file="../qrcode.png")
+image3 = tkinter.PhotoImage(file="../server.png")
+image4 = tkinter.PhotoImage(file="../protein.png")
+image5 = tkinter.PhotoImage(file="../tumblrwithscoop.png")
 
 # 초기화면
 label_maintext = tkinter.Label(win, text="투입구에 텀블러를 올려주세요", font=("나눔고딕", 40))

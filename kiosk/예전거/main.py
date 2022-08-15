@@ -47,11 +47,11 @@ def resetscreen():
 # endregion
 #이미지파일
 #image0 = tkinter.PhotoImage(file="test.svg")
-image1 = tkinter.PhotoImage(file="tumblr.png")
-image2 = tkinter.PhotoImage(file="qrcode.png")
-image3 = tkinter.PhotoImage(file="server.png")
-image4 = tkinter.PhotoImage(file="protein.png")
-image5 = tkinter.PhotoImage(file="tumblrwithscoop.png")
+image1 = tkinter.PhotoImage(file="../tumblr.png")
+image2 = tkinter.PhotoImage(file="../qrcode.png")
+image3 = tkinter.PhotoImage(file="../server.png")
+image4 = tkinter.PhotoImage(file="../protein.png")
+image5 = tkinter.PhotoImage(file="../tumblrwithscoop.png")
 
 #label_mainpage = tkinter.Label(win, text="개인맞춤 운동 보조제 자판기\nHY-PERSONAL  BOOSTER VENDER\n", font=("HY헤드라인M",40))
 #초기화면

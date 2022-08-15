@@ -405,15 +405,15 @@ def nobtn():
 # endregion
 
 # region 이미지파일
-image0 = tkinter.PhotoImage(file="images/logo.png")
-image1 = tkinter.PhotoImage(file="images/cup.png")
-image2 = tkinter.PhotoImage(file="images/qr.png")
-image3 = tkinter.PhotoImage(file="images/server.png")
-image4 = tkinter.PhotoImage(file="images/protein_resize.png")
-image5 = tkinter.PhotoImage(file="images/scoop.png")
-image6 = tkinter.PhotoImage(file="images/done.png")
-yesimg = tkinter.PhotoImage(file="images/ybtn_resize.png")
-noimg = tkinter.PhotoImage(file="images/nbtn_resize.png")
+image0 = tkinter.PhotoImage(file="../images/logo.png")
+image1 = tkinter.PhotoImage(file="../images/cup.png")
+image2 = tkinter.PhotoImage(file="../images/qr.png")
+image3 = tkinter.PhotoImage(file="../images/server.png")
+image4 = tkinter.PhotoImage(file="../images/protein_resize.png")
+image5 = tkinter.PhotoImage(file="../images/scoop.png")
+image6 = tkinter.PhotoImage(file="../images/done.png")
+yesimg = tkinter.PhotoImage(file="../images/ybtn_resize.png")
+noimg = tkinter.PhotoImage(file="../images/nbtn_resize.png")
 # endregion
 #초기화면
 maintext = tkinter.Label(win, text="개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER", font=("HY헤드라인M",40),bg='#FBCA53', width=100, height=7)

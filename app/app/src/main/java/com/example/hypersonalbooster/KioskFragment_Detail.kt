@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.hypersonalbooster.databinding.FragmentMapDetailBinding
-import com.example.hypersonalbooster.databinding.FragmentQrBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,6 +24,12 @@ class KioskFragment_Detail() : BottomSheetDialogFragment() {
         binding.close.setOnClickListener {
             dismiss()
         }
+
+        binding.request.setOnClickListener{
+            val detailSearchDialog = KioskFragment_Detail_Search()
+            detailSearchDialog.show(parentFragmentManager, detailSearchDialog.tag)
+        }
+
         binding.favorite.setOnClickListener{
             if(star == 0){
                 binding.star.setImageResource(R.drawable.icon_star_main_color)
@@ -74,3 +79,4 @@ class KioskFragment_Detail() : BottomSheetDialogFragment() {
     }
 
 }
+

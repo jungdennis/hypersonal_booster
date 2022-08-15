@@ -80,7 +80,7 @@ class RegisterActivity_4_Inbody : AppCompatActivity() {
                 editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent = Intent(this, RegisterActivity_Particular::class.java)
+                val intent = Intent(this, RegisterActivity_5_Target::class.java)
                 startActivity(intent)
                 finish()
             }

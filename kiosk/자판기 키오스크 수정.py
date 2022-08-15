@@ -20,6 +20,7 @@ from threading import Thread
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import string
 # endregion
 # region firebase설정
 cred = credentials.Certificate("hypersonal-booster-firebase-adminsdk-ikwz1-f2efb4d5f9.json")
@@ -98,7 +99,7 @@ def clickMouse(event):
         label_image.configure(image=image6)
         count += 1
         print(count)
-        win.after(3000,next)
+        win.after(3000, next)
     # 투하 완료에서 다시 메인페이지로 넘어가기 (next함수로 넘어감)
     elif count == 6:
         pass
@@ -149,7 +150,11 @@ def next():
             # 자판기 안에 있음
             if check == 1:
                 required_gram = int(db.reference(member_db + usernumber + "/bp_" + str(check_number) + "gram").get())
-
+                brand = "마이프로틴"
+                name = "프로틴 테스트"
+                amount = 35
+                fat = 7
+                carl = 107
                 # region 텍스트 설정
                 if check_number == 1:
                     sort = "WPI"
@@ -182,26 +187,39 @@ def next():
                     carb = 12
                     label_powimage.configure(image=image4_6)
                 # endregion
-                powtext = "\n제품 : %s\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 %dg 탄수화물 %dg" % (sort, required_gram,protein,carb)
+                powtext = "\n제품 : %s\n브랜드: %s\n주요 성분: %s\n용량 : %.1fg\n" \
+                          "상세성분: 1회분 %dg당 %dkcal 단백질 %dg 탄수화물 %dg 지방%dg" %(name,
+                            brand, sort, required_gram,carl, amount, protein, carb, fat)
                 label_powtext_1.configure(text=powtext)
             # 자판기 안에 없음 비슷한거 찾음
             else:
-                required_gram = int(db.reference(member_db + usernumber + "/bp_1gram").get())
-                amount_gram = int(db.reference(booster_db + str(before_powder[1]) + "/amount").get())
-                db_protein = int(db.reference(booster_db + str(before_powder[1]) + "/protein").get())
-                required_protein = required_gram / amount_gram * db_protein
-                print("요구용량:%d,단백질:%d\n해당제품 1회용량:%d 단백질:%dg" % (required_gram, required_protein, amount_gram, db_protein))
-                a = str(before_powder[1])[0:3]
-                print(a)
-                for i in range(1, 7):
-                    b = str(vender_powder[i][0:3])
-                    if a == b:
-                        check_number = i
+                brand = "마이프로틴"
+                name = "프로틴 테스트"
+                amount = 35
+                fat = 11
+                carl = 103
+                check_number = 0
+                for i in range(1, 4):
+                    a = str(before_powder[i])[0:3]
+                    for j in range(1, 7):
+                        b = str(vender_powder[j][0:3])
+                        if a == b:
+                            check_number = i
+                            break
+                    if check_number != 0:
                         break
+                required_gram = float(db.reference(member_db + usernumber + "/bp_"+str(check_number)+"gram").get())
+                amount_gram = float(db.reference(booster_db + str(before_powder[check_number]) + "/amount").get())
+                db_protein = float(db.reference(booster_db + str(before_powder[check_number]) + "/protein").get())
+                required_protein = required_gram / amount_gram * db_protein
+                print(
+                    "요구용량:%.1fg,단백질:%.1fg\n해당제품 1회용량:%.1fg 단백질:%.1fg" % (required_gram, required_protein, amount_gram, db_protein))
+
+                print(a)
                 # region 텍스트 설정
                 if check_number == 1:
                     sort = "WPI"
-                    protein = 9
+                    protein = 11
                     carb = 7
                     label_powimage.configure(image=image4_1)
                 elif check_number == 2:
@@ -231,18 +249,150 @@ def next():
                     label_powimage.configure(image=image4_6)
                 # endregion
                 changed_gram = required_protein / protein * 30
-                powtext = "\n제품 : %s\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 %dg 탄수화물 %dg" % (sort, changed_gram, protein, carb)
+                powtext = "\n제품 : %s\n브랜드: %s\n주요 성분: %s\n용량 : %.1fg\n" \
+                          "상세성분: 1회분 %dg당 %dkcal 단백질 %dg 탄수화물 %dg 지방%dg" % (name,
+                                                                            brand, sort, changed_gram, amount, carl,
+                                                                            protein, carb, fat)
+                powtext = "\n회원님의 추천 보조제는 이 자판기에 존재하지 않습니다\n" \
+                          "비슷한 종류의 보조제를 추천드립니다. 드시겠습니까?\n" + powtext
+                label_powtext_1.configure(text=powtext)
+        else:
+            for i in range(1, 4):
+                after_powder.append(db.reference(member_db + usernumber + "/ap_" + str(i)).get())
+                pow_number = 0
+                print("db : %s" %after_powder[i])
+                a = after_powder[i]
+                for j in range(1, 7):
+                    pow_number += 1
+                    b = vender_powder[j]
+                    print("vender : %s" %vender_powder[j])
+                    if str(a) == str(b):
+                        check = 1
+                        print("check : %d" % check)
+                        break
+                check_number = i
+                print(check_number)
+                if check == 1:
+                    break
+            # 자판기 안에 있음
+            if check == 1:
+                required_gram = int(db.reference(member_db + usernumber + "/ap_" + str(check_number) + "gram").get())
+                brand = "마이프로틴"
+                name = "프로틴 테스트"
+                amount = 35
+                fat = 7
+                carl = 107
+                # region 텍스트 설정
+                if check_number == 1:
+                    sort = "WPI"
+                    protein = 11
+                    carb = 7
+                    label_powimage.configure(image=image4_1)
+                elif check_number == 2:
+                    sort = "WPC"
+                    protein = 12
+                    carb = 8
+                    label_powimage.configure(image=image4_2)
+                elif check_number == 3:
+                    sort = "카제인"
+                    protein = 13
+                    carb = 9
+                    label_powimage.configure(image=image4_3)
+                elif check_number == 4:
+                    sort = "비건"
+                    protein = 14
+                    carb = 10
+                    label_powimage.configure(image=image4_4)
+                elif check_number == 5:
+                    sort = "게이너"
+                    protein = 15
+                    carb = 11
+                    label_powimage.configure(image=image4_5)
+                elif check_number == 6:
+                    sort = "부스터"
+                    protein = 16
+                    carb = 12
+                    label_powimage.configure(image=image4_6)
+                # endregion
+                powtext = "\n제품 : %s\n브랜드: %s\n주요 성분: %s\n용량 : %.1fg\n" \
+                          "상세성분: 1회분 %dg당 %dkcal 단백질 %dg 탄수화물 %dg 지방%dg" %(name,
+                            brand, sort, required_gram,carl, amount, protein, carb, fat)
+                label_powtext_1.configure(text=powtext)
+            # 자판기 안에 없음 비슷한거 찾음
+            else:
+                brand = "마이프로틴"
+                name = "프로틴 테스트"
+                amount = 35
+                fat = 11
+                carl = 103
+                check_number = 0
+                for i in range(1, 4):
+                    a = str(before_powder[i])[0:3]
+                    for j in range(1, 7):
+                        b = str(vender_powder[j][0:3])
+                        if a == b:
+                            check_number = i
+                            break
+                    if check_number != 0:
+                        break
+                required_gram = float(db.reference(member_db + usernumber + "/ap_"+str(check_number)+"gram").get())
+                amount_gram = float(db.reference(booster_db + str(before_powder[check_number]) + "/amount").get())
+                db_protein = float(db.reference(booster_db + str(before_powder[check_number]) + "/protein").get())
+                required_protein = required_gram / amount_gram * db_protein
+                print(
+                    "요구용량:%.1fg,단백질:%.1fg\n해당제품 1회용량:%.1fg 단백질:%.1fg" % (required_gram, required_protein, amount_gram, db_protein))
+
+                print(a)
+                # region 텍스트 설정
+                if check_number == 1:
+                    sort = "WPI"
+                    protein = 11
+                    carb = 7
+                    label_powimage.configure(image=image4_1)
+                elif check_number == 2:
+                    sort = "WPC"
+                    protein = 12
+                    carb = 8
+                    label_powimage.configure(image=image4_2)
+                elif check_number == 3:
+                    sort = "카제인"
+                    protein = 13
+                    carb = 9
+                    label_powimage.configure(image=image4_3)
+                elif check_number == 4:
+                    sort = "비건"
+                    protein = 14
+                    carb = 10
+                    label_powimage.configure(image=image4_4)
+                elif check_number == 5:
+                    sort = "게이너"
+                    protein = 15
+                    carb = 11
+                    label_powimage.configure(image=image4_5)
+                elif check_number == 6:
+                    sort = "부스터"
+                    protein = 16
+                    carb = 12
+                    label_powimage.configure(image=image4_6)
+                # endregion
+                changed_gram = required_protein / protein * 30
+                powtext = "\n제품 : %s\n브랜드: %s\n주요 성분: %s\n용량 : %.1fg\n" \
+                          "상세성분: 1회분 %dg당 %dkcal 단백질 %dg 탄수화물 %dg 지방%dg" % (name,
+                                                                            brand, sort, changed_gram, amount, carl,
+                                                                            protein, carb, fat)
+                powtext = "\n회원님의 추천 보조제는 이 자판기에 존재하지 않습니다\n" \
+                          "비슷한 종류의 보조제를 추천드립니다. 드시겠습니까?\n" + powtext
                 label_powtext_1.configure(text=powtext)
         label_maintext.configure(text='선택하신 프로틴이 맞는지 확인해 주세요')
         label_subtext.pack_forget()
         label_image.pack_forget()
-        label_powimage.pack(side="left",ipadx=100,anchor='nw')
-
+        label_powimage.pack(side="left",ipadx=70,anchor='nw')
         label_powtext_1.pack(side="left")
         label_yesbutton.place(x=475,y=550)
         label_nobutton.place(x=730,y=550)
         count += 1
-        print(count)        
+        print(count)
+
     elif count == 6:
         maintext.pack()
         logo_image.pack()
@@ -266,14 +416,17 @@ def yesbtn():
     label_subtext.pack()
 def nobtn():
     global count
-    label_subtext.configure(text='서버와 연동중입니다')
-    label_maintext.configure(text='서버와 연동중입니다')
-    label_image.configure(image=image3)
+    maintext.pack()
+    logo_image.pack()
+    subtext.pack()
+    label_maintext.pack_forget()
+    label_image.pack_forget()
+    label_subtext.pack_forget()
+    label_powimage.pack_forget()
+    label_powtext_1.pack_forget()
     label_yesbutton.place_forget()
     label_nobutton.place_forget()
-    count = 3
-    win.after(1000, next)
-    print(count)
+    count = 0
 # endregion
 
 # region 이미지파일
@@ -307,7 +460,7 @@ powtext.append("\n제품 : BCAA\n용량 : %dg\n상세성분: 1회분(30g)당 단
 '''
 # endregion
 # region 자판기내 프로틴 고유번호 및 1회 제공량 별 탄 단 지 수치
-vender_powder = ["", "1000", "1021", "1031", "1041", "1051", "1061"]
+vender_powder = ["", "1011", "1021", "1031", "1041", "1051", "1061"]
 vender_amount = ["",31,32,33,34,35,36]
 vender_prot = ["",31,32,33,34,35,36]
 vender_carb = ["",31,32,33,34,35,36]
@@ -325,8 +478,9 @@ subtext.pack(side='bottom',ipady=100)
 label_maintext = tkinter.Label(win, text="투입구에 텀블러를 올려주세요", font=("G마켓 산스 TTF Medium", 35), bg='#FBCA53')
 label_image = tkinter.Label(win, image=image1,bg='#FBCA53')
 label_subtext = tkinter.Label(win, text="투입하셨다면 클릭해주세요", font=("G마켓 산스 TTF Medium",35),bg='#FBCA53')
-label_powtext_1 = tkinter.Label(win, text="WHI", font=("G마켓 산스 TTF Medium",20),bg='#FBCA53',height=400,anchor='nw')
-label_powimage = tkinter.Label(win, image=image4_1, bg='#FBCA53')
+label_powtext_1 = tkinter.Label(win, text="WHI", font=("G마켓 산스 TTF Medium",20),
+                                bg='#FBCA53',height=400,width=300,anchor='nw',justify=LEFT)
+label_powimage = tkinter.Label(win, image=image4_1, bg='#FBCA53', width=300, height=400)
 label_yesbutton = tkinter.Button(win, image=yesimg,command=yesbtn, width=70,height=70, anchor="center",bg='#FBCA53')
 label_nobutton = tkinter.Button(win, image=noimg, command=nobtn, width=70,height=70, anchor="center",bg='#FBCA53')
 

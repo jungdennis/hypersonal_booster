@@ -19,7 +19,7 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.start.setOnClickListener {
-            val intent = Intent(this, RegisterActivity_1_Nickname::class.java)
+            val intent = Intent(this, RegisterActivity_1_Basic::class.java)
             startActivity(intent)
         }
     }

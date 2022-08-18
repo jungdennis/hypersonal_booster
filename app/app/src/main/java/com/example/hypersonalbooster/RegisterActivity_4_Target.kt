@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterTargetBinding
 
-class RegisterActivity_5_Target : AppCompatActivity() {
+class RegisterActivity_4_Target : AppCompatActivity() {
 
         private lateinit var binding : LayoutRegisterTargetBinding
 
@@ -24,14 +24,19 @@ class RegisterActivity_5_Target : AppCompatActivity() {
             binding = LayoutRegisterTargetBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
+            binding.back.setOnClickListener {
+                finish()
+            }
+
             val shared_health = getSharedPreferences("data_health", 0)
             val shared_cloud = getSharedPreferences("data_cloud", 0)
 
-            var now_weight = shared_health.getFloat("wegiht", 0F)
+            var now_weight = shared_health.getFloat("weight", 0F)
             var now_fat = shared_health.getFloat("fat", 0F)
             var now_muscle = shared_health.getFloat("muscle", 0F)
             var now_height = shared_health.getFloat("height", 0F)
             val sex = shared_cloud.getString("sex", "man")
+
 
             binding.nowWeight.text = now_weight.toString()
             binding.nowFat.text = now_fat.toString()
@@ -66,7 +71,7 @@ class RegisterActivity_5_Target : AppCompatActivity() {
 
                 Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, RegisterActivity_Particular::class.java)
+                val intent = Intent(this, RegisterActivity_9_Particular::class.java)
                 startActivity(intent)
             }
             binding.confirm.setOnClickListener {
@@ -92,7 +97,7 @@ class RegisterActivity_5_Target : AppCompatActivity() {
 
                 Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, RegisterActivity_Particular::class.java)
+                val intent = Intent(this, RegisterActivity_6_Feeling::class.java)
                 startActivity(intent)
 
             }

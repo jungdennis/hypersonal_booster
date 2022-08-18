@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/close"
@@ -14,13 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/info_nickname"
+        android:id="@+id/info_feeling"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
-        android:text="앱에서 사용할\n회원님의 닉네임을 입력해주세요.\n(한/영 8자 이내)"
+        android:text="선호하는 느낌을 선택해주세요."
         android:textColor="@color/black"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,21 +38,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <EditText
-        android:id="@+id/insert_nickname"
-        android:layout_width="300dp"
+    <Button
+        android:id="@+id/milky"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/btn_sub_color_light"
         android:fontFamily="@font/font_medium"
-        android:gravity="center"
-        android:inputType="textPersonName"
+        android:text="마실 때 꾸덕꾸덕한 느낌이 좋습니다"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/clean"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+        app:layout_constraintTop_toBottomOf="@+id/info_feeling" />
+
+    <Button
+        android:id="@+id/clean"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/btn_sub_color_light"
+        android:fontFamily="@font/font_medium"
+        android:text="마실 때 깔끔한 느낌이 좋습니다"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/anything"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/milky" />
+
+    <Button
+        android:id="@+id/anything"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/btn_sub_color_light"
+        android:fontFamily="@font/font_medium"
+        android:text="아무거나 상관없습니다"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/clean" />
 
     <Button
         android:id="@+id/confirm"

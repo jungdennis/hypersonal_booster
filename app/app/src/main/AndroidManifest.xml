@@ -4,9 +4,13 @@
     package="com.example.hypersonalbooster">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -54,22 +58,28 @@
             android:name=".RegisterActivity_0_Welcome"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_1_Nickname"
+            android:name=".RegisterActivity_1_Basic"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_2_Sex"
+            android:name=".RegisterActivity_2_HeightWeight"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_3_HeightWeight"
+            android:name=".RegisterActivity_3_Inbody"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_4_Inbody"
+            android:name=".RegisterActivity_4_Target"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_5_Target"
+            android:name=".RegisterActivity_6_Feeling"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity_Particular"
+            android:name=".RegisterActivity_7_Taste"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_8_Company"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_9_Particular"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

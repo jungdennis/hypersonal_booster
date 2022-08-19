@@ -23,15 +23,9 @@ global first_weight
 global second_weight
 global val_cup
 global val_1
-global val_2
-global val_3
-global val_4
-global val_5
-global val_6
 global moctrl
 global usernumber
 global gram
-global motime
 global count
 count = 0
 # endregion
@@ -39,24 +33,12 @@ count = 0
 # region 모터 핀 설정
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-motor1 = 21
+motor1 = 20
 GPIO.setup(motor1, GPIO.OUT, initial=GPIO.LOW)
 p1 = GPIO.PWM(motor1, 10)
-motor2 = 20
+motor2 = 21
 GPIO.setup(motor2, GPIO.OUT, initial=GPIO.LOW)
 p2 = GPIO.PWM(motor2, 10)
-motor3 = 16
-GPIO.setup(motor3, GPIO.OUT, initial=GPIO.LOW)
-p3 = GPIO.PWM(motor3, 10)
-motor4 = 12
-GPIO.setup(motor4, GPIO.OUT, initial=GPIO.LOW)
-p4 = GPIO.PWM(motor4, 10)
-motor5 = 7
-GPIO.setup(motor5, GPIO.OUT, initial=GPIO.LOW)
-p5 = GPIO.PWM(motor5, 10)
-motor6 = 8
-GPIO.setup(motor6, GPIO.OUT, initial=GPIO.LOW)
-p6 = GPIO.PWM(motor6, 10)
 # endregion
 # region 모터제어함수(번호,시간)
 def whichmotor(motorcontrol,getgram):
@@ -64,100 +46,22 @@ def whichmotor(motorcontrol,getgram):
     global first_weight
     global second_weight
     second_weight = val_cup
-    if motorcontrol == 1:
-        p1.start(0)
-        p1.ChangeDutyCycle(100)
-        time.sleep(6)
-        p1.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
+    if motorcontrol % 2 == 1:
         while (second_weight - first_weight) < getgram:
                 p1.start(0)
                 p1.ChangeDutyCycle(100)
-                time.sleep(1.5)
+                time.sleep(3)
                 p1.stop()
-                time.sleep(2)
+                time.sleep(3)
                 second_weight = val_cup
                 print("second: %d" %second_weight)
-    elif motorcontrol == 2:
-        p2.start(0)
-        p2.ChangeDutyCycle(100)
-        time.sleep(6)
-        p2.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
+    elif motorcontrol % 2 == 0:
         while (second_weight - first_weight) < getgram:
                 p2.start(0)
                 p2.ChangeDutyCycle(100)
-                time.sleep(1.5)
+                time.sleep(3)
                 p2.stop()
-                time.sleep(2)
-                second_weight = val_cup
-                print("second: %d" % second_weight)
-    elif motorcontrol == 3:
-        p3.start(0)
-        p3.ChangeDutyCycle(100)
-        time.sleep(6)
-        p3.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
-        while (second_weight - first_weight) < getgram:
-                p3.start(0)
-                p3.ChangeDutyCycle(100)
-                time.sleep(1)
-                p3.stop()
-                time.sleep(2.5)
-                second_weight = val_cup
-                print("second: %d" % second_weight)
-    elif motorcontrol == 4:
-        p4.start(0)
-        p4.ChangeDutyCycle(100)
-        time.sleep(6)
-        p4.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
-        while (second_weight - first_weight) < getgram:
-                p4.start(0)
-                p4.ChangeDutyCycle(100)
-                time.sleep(1)
-                p4.stop()
-                time.sleep(2.5)
-                second_weight = val_cup
-                print("second: %d" % second_weight)
-    elif motorcontrol == 5:
-        p5.start(0)
-        p5.ChangeDutyCycle(100)
-        time.sleep(6)
-        p5.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
-        while (second_weight - first_weight) < getgram:
-                p5.start(0)
-                p5.ChangeDutyCycle(100)
-                time.sleep(1.5)
-                p5.stop()
-                time.sleep(2)
-                second_weight = val_cup
-                print("second: %d" % second_weight)
-    elif motorcontrol == 6:
-        p6.start(0)
-        p6.ChangeDutyCycle(100)
-        time.sleep(6)
-        p6.stop()
-        time.sleep(3)
-        second_weight = val_cup
-        print("second: %d" % second_weight)
-        while (second_weight - first_weight) < getgram:
-                p6.start(0)
-                p6.ChangeDutyCycle(100)
-                time.sleep(1.5)
-                p6.stop()
-                time.sleep(2)
+                time.sleep(3)
                 second_weight = val_cup
                 print("second: %d" % second_weight)
 # endregion
@@ -185,39 +89,13 @@ hx_main.set_reference_unit(399)
 
 hx_1 = HX711(13, 6)
 hx_1.set_reading_format("MSB", "MSB")
-hx_1.set_reference_unit(423)
-#403
-hx_2 = HX711(5, 11)
-hx_2.set_reading_format("MSB", "MSB")
-hx_2.set_reference_unit(406)
-#398
-hx_3 = HX711(9, 10)
-hx_3.set_reading_format("MSB", "MSB")
-hx_3.set_reference_unit(414)
-#423
-hx_4 = HX711(22, 27)
-hx_4.set_reading_format("MSB", "MSB")
-hx_4.set_reference_unit(401)
-#423
-
-hx_5 = HX711(17, 4)
-hx_5.set_reading_format("MSB", "MSB")
-hx_5.set_reference_unit(399)
-
-hx_6 = HX711(3, 2)
-hx_6.set_reading_format("MSB", "MSB")
-hx_6.set_reference_unit(412)
+hx_1.set_reference_unit(403)
 # endregion
 # 무게센서 함수
 class Weightsensor():
     def __init__(self):
         global val_cup
         global val_1
-        global val_2
-        global val_3
-        global val_4
-        global val_5
-        global val_6
     def weight_cup(self):
         hx_main.reset()
         hx_main.tare()
@@ -232,49 +110,18 @@ class Weightsensor():
     def weight_powder(self):
         # region reset&tare
         hx_1.reset()
-        hx_2.reset()
-        hx_3.reset()
-        hx_4.reset()
-        hx_5.reset()
-        hx_6.reset()
         hx_1.tare()
-        hx_2.tare()
-        hx_3.tare()
-        hx_4.tare()
-        hx_5.tare()
-        hx_6.tare()
         # endregion
         while True:
             # region getweight
             val_1 = round(hx_1.get_weight(5), 1)
-            val_2 = round(hx_2.get_weight(5), 1)
-            val_3 = round(hx_3.get_weight(5), 1)
-            val_4 = round(hx_4.get_weight(5), 1)
-            val_5 = round(hx_5.get_weight(5), 1)
-            val_6 = round(hx_6.get_weight(5), 1)
             # endregion
             # region power_down_up
             hx_1.power_down()
-            hx_2.power_down()
-            hx_3.power_down()
-            hx_4.power_down()
-            hx_5.power_down()
-            hx_6.power_down()
-
             hx_1.power_up()
-            hx_2.power_up()
-            hx_3.power_up()
-            hx_4.power_up()
-            hx_5.power_up()
-            hx_6.power_up()
             # endregion
             time.sleep(10)
             print("원료통1 측정값: %f" % val_1)
-            print("원료통2 측정값: %f" % val_2)
-            print("원료통3 측정값: %f" % val_3)
-            print("원료통4 측정값: %f" % val_4)
-            print("원료통5 측정값: %f" % val_5)
-            print("원료통6 측정값: %f" % val_6)
 # endregion
 
 # region 창설정
@@ -290,7 +137,6 @@ def clickMouse(event):
     global moctrl
     global usernumber
     global gram
-    global motime
     global val_cup
     global first_weight
     global second_weight
@@ -407,8 +253,6 @@ def next():
     elif count == 3:
         label_maintext.configure(text='선택하신 프로틴이 맞는지 확인해 주세요')
         label_subtext.pack_forget()
-        #label_subtext.configure(text='버튼을 클릭해주세요')
-        #label_powtext_2.configure(text="용량 : %dg" % gram)
         # region qr코드 분해후 상세 설명 변경란
         if moctrl == 1:
             label_powimage.configure(image=image4_1)
@@ -472,22 +316,22 @@ def nobtn():
 # endregion
 
 # region 이미지파일
-image0 = tkinter.PhotoImage(file="images/logo.png")
-image1 = tkinter.PhotoImage(file="images/cup.png")
-image2 = tkinter.PhotoImage(file="images/qr.png")
-image3 = tkinter.PhotoImage(file="images/server.png")
+image0 = tkinter.PhotoImage(file="../images/logo.png")
+image1 = tkinter.PhotoImage(file="../images/cup.png")
+image2 = tkinter.PhotoImage(file="../images/qr.png")
+image3 = tkinter.PhotoImage(file="../images/server.png")
 
-image4_1 = tkinter.PhotoImage(file="images/protein_1_WPI_resize.png")
-image4_2 = tkinter.PhotoImage(file="images/protein_2_WPC_resize.png")
-image4_3 = tkinter.PhotoImage(file="images/protein_3_CAS_resize.png")
-image4_4 = tkinter.PhotoImage(file="images/protein_4_VEG_resize.png")
-image4_5 = tkinter.PhotoImage(file="images/protein_5_GAI_resize.png")
-image4_6 = tkinter.PhotoImage(file="images/protein_6_BCAA_resize.png")
+image4_1 = tkinter.PhotoImage(file="../images/protein_1_WPI_resize.png")
+image4_2 = tkinter.PhotoImage(file="../images/protein_2_WPC_resize.png")
+image4_3 = tkinter.PhotoImage(file="../images/protein_3_CAS_resize.png")
+image4_4 = tkinter.PhotoImage(file="../images/protein_4_VEG_resize.png")
+image4_5 = tkinter.PhotoImage(file="../images/protein_5_GAI_resize.png")
+image4_6 = tkinter.PhotoImage(file="../images/protein_6_BCAA_resize.png")
 
-image5 = tkinter.PhotoImage(file="images/scoop.png")
-image6 = tkinter.PhotoImage(file="images/done.png")
-yesimg = tkinter.PhotoImage(file="images/ybtn_resize.png")
-noimg = tkinter.PhotoImage(file="images/nbtn_resize.png")
+image5 = tkinter.PhotoImage(file="../images/scoop.png")
+image6 = tkinter.PhotoImage(file="../images/done.png")
+yesimg = tkinter.PhotoImage(file="../images/ybtn_resize.png")
+noimg = tkinter.PhotoImage(file="../images/nbtn_resize.png")
 # endregion
 #초기화면
 maintext = tkinter.Label(win, text="개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER", font=("G마켓 산스 TTF Bold",40),bg='#FBCA53', width=100, height=7)

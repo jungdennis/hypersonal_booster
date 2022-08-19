@@ -544,22 +544,22 @@ def nobtn():
 # endregion
 
 # region 이미지파일
-image0 = tkinter.PhotoImage(file="images/logo.png")
-image1 = tkinter.PhotoImage(file="images/cup.png")
-image2 = tkinter.PhotoImage(file="images/qr.png")
-image3 = tkinter.PhotoImage(file="images/server.png")
+image0 = tkinter.PhotoImage(file="../images/logo.png")
+image1 = tkinter.PhotoImage(file="../images/cup.png")
+image2 = tkinter.PhotoImage(file="../images/qr.png")
+image3 = tkinter.PhotoImage(file="../images/server.png")
 
-image4_1 = tkinter.PhotoImage(file="images/protein_1_WPI_resize.png")
-image4_2 = tkinter.PhotoImage(file="images/protein_2_WPC_resize.png")
-image4_3 = tkinter.PhotoImage(file="images/protein_3_CAS_resize.png")
-image4_4 = tkinter.PhotoImage(file="images/protein_4_VEG_resize.png")
-image4_5 = tkinter.PhotoImage(file="images/protein_5_GAI_resize.png")
-image4_6 = tkinter.PhotoImage(file="images/protein_6_BCAA_resize.png")
+image4_1 = tkinter.PhotoImage(file="../images/protein_1_WPI_resize.png")
+image4_2 = tkinter.PhotoImage(file="../images/protein_2_WPC_resize.png")
+image4_3 = tkinter.PhotoImage(file="../images/protein_3_CAS_resize.png")
+image4_4 = tkinter.PhotoImage(file="../images/protein_4_VEG_resize.png")
+image4_5 = tkinter.PhotoImage(file="../images/protein_5_GAI_resize.png")
+image4_6 = tkinter.PhotoImage(file="../images/protein_6_BCAA_resize.png")
 
-image5 = tkinter.PhotoImage(file="images/scoop.png")
-image6 = tkinter.PhotoImage(file="images/done.png")
-yesimg = tkinter.PhotoImage(file="images/ybtn_resize.png")
-noimg = tkinter.PhotoImage(file="images/nbtn_resize.png")
+image5 = tkinter.PhotoImage(file="../images/scoop.png")
+image6 = tkinter.PhotoImage(file="../images/done.png")
+yesimg = tkinter.PhotoImage(file="../images/ybtn_resize.png")
+noimg = tkinter.PhotoImage(file="../images/nbtn_resize.png")
 # endregion
 # region 파우더 설명 텍스트
 powtext = []

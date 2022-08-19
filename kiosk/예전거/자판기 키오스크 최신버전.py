@@ -17,28 +17,54 @@ import imutils
 import time
 import cv2
 from threading import Thread
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+# endregion
+# region firebase설정
+cred = credentials.Certificate("hypersonal-booster-firebase-adminsdk-ikwz1-f2efb4d5f9.json")
+firebase_admin.initialize_app(cred,{'databaseURL': 'https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app/1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members'})
 # endregion
 # region 전역변수 선언
 global first_weight
 global second_weight
 global val_cup
 global val_1
+global val_2
+global val_3
+global val_4
+global val_5
+global val_6
 global moctrl
 global usernumber
 global gram
+global motime
 global count
 count = 0
+# global before_or_after
 # endregion
 # region 모터설정
 # region 모터 핀 설정
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-motor1 = 20
+motor1 = 21
 GPIO.setup(motor1, GPIO.OUT, initial=GPIO.LOW)
 p1 = GPIO.PWM(motor1, 10)
-motor2 = 21
+motor2 = 20
 GPIO.setup(motor2, GPIO.OUT, initial=GPIO.LOW)
 p2 = GPIO.PWM(motor2, 10)
+motor3 = 16
+GPIO.setup(motor3, GPIO.OUT, initial=GPIO.LOW)
+p3 = GPIO.PWM(motor3, 10)
+motor4 = 12
+GPIO.setup(motor4, GPIO.OUT, initial=GPIO.LOW)
+p4 = GPIO.PWM(motor4, 10)
+motor5 = 7
+GPIO.setup(motor5, GPIO.OUT, initial=GPIO.LOW)
+p5 = GPIO.PWM(motor5, 10)
+motor6 = 8
+GPIO.setup(motor6, GPIO.OUT, initial=GPIO.LOW)
+p6 = GPIO.PWM(motor6, 10)
 # endregion
 # region 모터제어함수(번호,시간)
 def whichmotor(motorcontrol,getgram):
@@ -46,22 +72,100 @@ def whichmotor(motorcontrol,getgram):
     global first_weight
     global second_weight
     second_weight = val_cup
-    if motorcontrol % 2 == 1:
+    if motorcontrol == 1:
+        p1.start(0)
+        p1.ChangeDutyCycle(100)
+        time.sleep(8)
+        p1.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
         while (second_weight - first_weight) < getgram:
                 p1.start(0)
                 p1.ChangeDutyCycle(100)
-                time.sleep(3)
+                time.sleep(1)
                 p1.stop()
-                time.sleep(3)
+                time.sleep(2)
                 second_weight = val_cup
                 print("second: %d" %second_weight)
-    elif motorcontrol % 2 == 0:
+    elif motorcontrol == 2:
+        p2.start(0)
+        p2.ChangeDutyCycle(100)
+        time.sleep(8)
+        p2.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
         while (second_weight - first_weight) < getgram:
                 p2.start(0)
                 p2.ChangeDutyCycle(100)
-                time.sleep(3)
+                time.sleep(1)
                 p2.stop()
-                time.sleep(3)
+                time.sleep(2)
+                second_weight = val_cup
+                print("second: %d" % second_weight)
+    elif motorcontrol == 3:
+        p3.start(0)
+        p3.ChangeDutyCycle(100)
+        time.sleep(8)
+        p3.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
+        while (second_weight - first_weight) < getgram:
+                p3.start(0)
+                p3.ChangeDutyCycle(100)
+                time.sleep(1)
+                p3.stop()
+                time.sleep(2)
+                second_weight = val_cup
+                print("second: %d" % second_weight)
+    elif motorcontrol == 4:
+        p4.start(0)
+        p4.ChangeDutyCycle(100)
+        time.sleep(8)
+        p4.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
+        while (second_weight - first_weight) < getgram:
+                p4.start(0)
+                p4.ChangeDutyCycle(100)
+                time.sleep(1)
+                p4.stop()
+                time.sleep(2)
+                second_weight = val_cup
+                print("second: %d" % second_weight)
+    elif motorcontrol == 5:
+        p5.start(0)
+        p5.ChangeDutyCycle(100)
+        time.sleep(8)
+        p5.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
+        while (second_weight - first_weight) < getgram:
+                p5.start(0)
+                p5.ChangeDutyCycle(100)
+                time.sleep(1)
+                p5.stop()
+                time.sleep(2)
+                second_weight = val_cup
+                print("second: %d" % second_weight)
+    elif motorcontrol == 6:
+        p6.start(0)
+        p6.ChangeDutyCycle(100)
+        time.sleep(8)
+        p6.stop()
+        time.sleep(2)
+        second_weight = val_cup
+        print("second: %d" % second_weight)
+        while (second_weight - first_weight) < getgram:
+                p6.start(0)
+                p6.ChangeDutyCycle(100)
+                time.sleep(1)
+                p6.stop()
+                time.sleep(2)
                 second_weight = val_cup
                 print("second: %d" % second_weight)
 # endregion
@@ -89,13 +193,38 @@ hx_main.set_reference_unit(399)
 
 hx_1 = HX711(13, 6)
 hx_1.set_reading_format("MSB", "MSB")
-hx_1.set_reference_unit(403)
+hx_1.set_reference_unit(423)
+
+hx_2 = HX711(5, 11)
+hx_2.set_reading_format("MSB", "MSB")
+hx_2.set_reference_unit(406)
+
+hx_3 = HX711(9, 10)
+hx_3.set_reading_format("MSB", "MSB")
+hx_3.set_reference_unit(414)
+
+hx_4 = HX711(22, 27)
+hx_4.set_reading_format("MSB", "MSB")
+hx_4.set_reference_unit(401)
+
+hx_5 = HX711(17, 4)
+hx_5.set_reading_format("MSB", "MSB")
+hx_5.set_reference_unit(399)
+
+hx_6 = HX711(3, 2)
+hx_6.set_reading_format("MSB", "MSB")
+hx_6.set_reference_unit(412)
 # endregion
 # 무게센서 함수
 class Weightsensor():
     def __init__(self):
         global val_cup
         global val_1
+        global val_2
+        global val_3
+        global val_4
+        global val_5
+        global val_6
     def weight_cup(self):
         hx_main.reset()
         hx_main.tare()
@@ -110,18 +239,49 @@ class Weightsensor():
     def weight_powder(self):
         # region reset&tare
         hx_1.reset()
+        hx_2.reset()
+        hx_3.reset()
+        hx_4.reset()
+        hx_5.reset()
+        hx_6.reset()
         hx_1.tare()
+        hx_2.tare()
+        hx_3.tare()
+        hx_4.tare()
+        hx_5.tare()
+        hx_6.tare()
         # endregion
         while True:
             # region getweight
             val_1 = round(hx_1.get_weight(5), 1)
+            val_2 = round(hx_2.get_weight(5), 1)
+            val_3 = round(hx_3.get_weight(5), 1)
+            val_4 = round(hx_4.get_weight(5), 1)
+            val_5 = round(hx_5.get_weight(5), 1)
+            val_6 = round(hx_6.get_weight(5), 1)
             # endregion
             # region power_down_up
             hx_1.power_down()
+            hx_2.power_down()
+            hx_3.power_down()
+            hx_4.power_down()
+            hx_5.power_down()
+            hx_6.power_down()
+
             hx_1.power_up()
+            hx_2.power_up()
+            hx_3.power_up()
+            hx_4.power_up()
+            hx_5.power_up()
+            hx_6.power_up()
             # endregion
-            time.sleep(10)
+            time.sleep(5)
             print("원료통1 측정값: %f" % val_1)
+            print("원료통2 측정값: %f" % val_2)
+            print("원료통3 측정값: %f" % val_3)
+            print("원료통4 측정값: %f" % val_4)
+            print("원료통5 측정값: %f" % val_5)
+            print("원료통6 측정값: %f" % val_6)
 # endregion
 
 # region 창설정
@@ -137,9 +297,11 @@ def clickMouse(event):
     global moctrl
     global usernumber
     global gram
+    global motime
     global val_cup
     global first_weight
     global second_weight
+    # global before_or_after
     # 메인페이지에서 넘어가기
     if count == 0:
         maintext.pack_forget()
@@ -196,7 +358,9 @@ def next():
     global moctrl
     global usernumber
     global gram
+    #global before_or_after
     if count == 2:
+        # region qr센서
         ap = argparse.ArgumentParser()
         ap.add_argument("-o", "--output", type=str, default="barcodes.csv",
                         help="path to output CSV file containing barcodes")
@@ -235,6 +399,7 @@ def next():
         usernumber = int(barcodeData[0:3])
         moctrl = int(barcodeData[3:5])
         gram = int(barcodeData[5:])
+        # int before_or_after = barcodeData[-1]
         print("회원번호 : %d" %usernumber)
         print("선택원료 : %d번" %moctrl)
         print("용량 : %dg" % gram)
@@ -251,8 +416,62 @@ def next():
         win.after(1000,next)
         print(count)
     elif count == 3:
+        '''
+        text = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/" + str(usernumber)
+        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members"
+        booster_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster"
+        before_powder = [""]
+        after_powder = [""]
+        check_number = 0
+        if before_or_after == 0:
+            for i in range(1,6):
+                before_powder.append(db.reference(text + "/bp_" + str(i)).get())
+                pow_number = 0
+                for powders in vender_powder:
+                    if powders == before_powder[i]:
+                        check += 1
+                    pow_number += 1
+                check_number += 1
+                if check == 1:
+                    break
+            if check == 1:
+                gram = db.reference(text + "/bp_" + check_number + "gram" ).get()
+                label_powtext_1.configure(text = powtext[0] + powtext[pow_number])
+            else:
+                gram = db.reference(text + "/bp_" + check_number + "gram" )
+                label_powtext_1.configure(text = powtext[pow_number])
+        else:
+            for i in range(1,6):
+                after_powder[i] = db.reference(text + "/ap_" + str(i))
+                pow_number = 0
+                for powders in vender_powder:
+                    if powders == after_powder[i]:
+                        check += 1
+                    pow_number += 1
+                if check == 1:
+                    break
+            if check == 1:
+                gram = db.reference(text + "/bp_" + check_number + "gram" )
+                label_powtext_1.configure(text = powtext[0] + powtext[pow_number])
+            else:
+                gram = db.reference(text + "/bp_" + check_number + "gram" )
+                label_powtext_1.configure(text = powtext[pow_number])
+        booster_name = db.reference(booster_db + "/" + recommend_booster[1] + "/name").get()
+        booster_brand = db.reference(booster_db + "/" + recommend_booster[1] + "/brand").get()
+        booster_oneamount = db.reference(booster_db + "/" + recommend_booster[1] + "/amount").get()
+        booster_calories = db.reference(booster_db + "/" + recommend_booster[1] + "/calories(kcal)").get()
+        booster_carb = db.reference(booster_db + "/" + recommend_booster[1] + "/carb(g)").get()
+        booster_sugar = db.reference(booster_db + "/" + recommend_booster[1] + "/sugars(g)").get()
+        booster_fat = db.reference(booster_db + "/" + recommend_booster[1] + "/fat(g)").get()
+        booster_protein = db.reference(booster_db + "/" + recommend_booster[1] + "/protein(g)").get()
+        booster_taste = db.reference(booster_db + "/" + recommend_booster[1] + "/taste2").get()
+        powtext_example = "\n제품 : %s\n보충제 종류 : %s\n브랜드 : %s\n맛 : %s\n추천제공량 : %s\n1회 제공량 %s당 칼로리%skcal,탄수화물 %sg, 지방 %sg, 단백질 %sg 함유"
+        %(booster_name,booster_sort,booster_brand,booster_taste,booster_oneamount,booster_calories,booster_carb,booster_fat,booster_protein)
+        '''
         label_maintext.configure(text='선택하신 프로틴이 맞는지 확인해 주세요')
         label_subtext.pack_forget()
+        #label_subtext.configure(text='버튼을 클릭해주세요')
+        #label_powtext_2.configure(text="용량 : %dg" % gram)
         # region qr코드 분해후 상세 설명 변경란
         if moctrl == 1:
             label_powimage.configure(image=image4_1)
@@ -282,6 +501,31 @@ def next():
         count += 1
         print(count)        
     elif count == 6:
+        '''
+        if (val_1 < "weight"):
+            num_1 = "1"
+        else: catch_1 = ""
+        if (val_2 < "weight"):
+            num_2 = "2"
+        else: catch_2 = ""
+        if (val_3 < "weight"):
+            num_3 = "3"
+        else: num_3 = ""
+        if (val_4 < "weight"):
+            num_4 = "4"
+        else: num_4 = ""
+        if (val_5 < "weight"):
+            num_5 = "5"
+        else: num_5 = ""
+        if (val_6 < "weight"):
+            num_6 = "6"
+        else: num_6 = ""
+        if (num_1) || (num_2) || (num_3) || (num_4) || (num_5) ||(num_6):
+            change_text = "원료통" + num_1 + num_2 + num_3 + num_4 + num_5 + num_6 + "이 부족합니다"
+            maintext.configure(text = change_text)
+        else:
+            maintext.configure(text = "개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER")            
+        '''
         maintext.pack()
         logo_image.pack()
         subtext.pack()
@@ -297,7 +541,6 @@ def yesbtn():
     label_maintext.configure(text='버튼을 눌러 투하를 시작해 주세요')
     label_image.configure(image=image5)
     label_powtext_1.pack_forget()
-    label_powtext_2.pack_forget()
     label_powimage.pack_forget()
     label_yesbutton.place_forget()
     label_nobutton.place_forget()
@@ -316,22 +559,35 @@ def nobtn():
 # endregion
 
 # region 이미지파일
-image0 = tkinter.PhotoImage(file="images/logo.png")
-image1 = tkinter.PhotoImage(file="images/cup.png")
-image2 = tkinter.PhotoImage(file="images/qr.png")
-image3 = tkinter.PhotoImage(file="images/server.png")
+image0 = tkinter.PhotoImage(file="../images/logo.png")
+image1 = tkinter.PhotoImage(file="../images/cup.png")
+image2 = tkinter.PhotoImage(file="../images/qr.png")
+image3 = tkinter.PhotoImage(file="../images/server.png")
 
-image4_1 = tkinter.PhotoImage(file="images/protein_1_WPI_resize.png")
-image4_2 = tkinter.PhotoImage(file="images/protein_2_WPC_resize.png")
-image4_3 = tkinter.PhotoImage(file="images/protein_3_CAS_resize.png")
-image4_4 = tkinter.PhotoImage(file="images/protein_4_VEG_resize.png")
-image4_5 = tkinter.PhotoImage(file="images/protein_5_GAI_resize.png")
-image4_6 = tkinter.PhotoImage(file="images/protein_6_BCAA_resize.png")
+image4_1 = tkinter.PhotoImage(file="../images/protein_1_WPI_resize.png")
+image4_2 = tkinter.PhotoImage(file="../images/protein_2_WPC_resize.png")
+image4_3 = tkinter.PhotoImage(file="../images/protein_3_CAS_resize.png")
+image4_4 = tkinter.PhotoImage(file="../images/protein_4_VEG_resize.png")
+image4_5 = tkinter.PhotoImage(file="../images/protein_5_GAI_resize.png")
+image4_6 = tkinter.PhotoImage(file="../images/protein_6_BCAA_resize.png")
 
-image5 = tkinter.PhotoImage(file="images/scoop.png")
-image6 = tkinter.PhotoImage(file="images/done.png")
-yesimg = tkinter.PhotoImage(file="images/ybtn_resize.png")
-noimg = tkinter.PhotoImage(file="images/nbtn_resize.png")
+image5 = tkinter.PhotoImage(file="../images/scoop.png")
+image6 = tkinter.PhotoImage(file="../images/done.png")
+yesimg = tkinter.PhotoImage(file="../images/ybtn_resize.png")
+noimg = tkinter.PhotoImage(file="../images/nbtn_resize.png")
+# endregion
+# region 파우더 설명 텍스트
+powtext = []
+powtext.append("\n회원님의 추천 보조제는 이 자판기에 존재하지 않습니다\n비슷한 종류의 보조제를 추천드립니다.\n드시겠습니까?\n")
+powtext.append("\n제품 : WPI\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+powtext.append("\n제품 : WPC\n\n용량 : %dg\n\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+powtext.append("\n제품 : CASEIN\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+powtext.append("\n제품 : VEG\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+powtext.append("\n제품 : GAINER\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+powtext.append("\n제품 : BCAA\n용량 : %dg\n상세성분: 1회분(30g)당 단백질 20g 탄수화물 10g" % gram)
+# endregion
+# region 자판기내 프로틴 고유번호
+vender_powder = ["","1234","1234","1234","1234","1234","1234",]
 # endregion
 #초기화면
 maintext = tkinter.Label(win, text="개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER", font=("G마켓 산스 TTF Bold",40),bg='#FBCA53', width=100, height=7)
@@ -345,7 +601,6 @@ label_maintext = tkinter.Label(win, text="투입구에 텀블러를 올려주세
 label_image = tkinter.Label(win, image=image1,bg='#FBCA53')
 label_subtext = tkinter.Label(win, text="투입하셨다면 클릭해주세요", font=("G마켓 산스 TTF Medium",35),bg='#FBCA53')
 label_powtext_1 = tkinter.Label(win, text="WHI", font=("G마켓 산스 TTF Medium",20),bg='#FBCA53',height=400,anchor='nw')
-label_powtext_2 = tkinter.Label(win, text="40g", font=("G마켓 산스 TTF Medium",20),bg='#FBCA53')
 label_powimage = tkinter.Label(win, image=image4_1, bg='#FBCA53')
 label_yesbutton = tkinter.Button(win, image=yesimg,command=yesbtn, width=70,height=70, anchor="center",bg='#FBCA53')
 label_nobutton = tkinter.Button(win, image=noimg, command=nobtn, width=70,height=70, anchor="center",bg='#FBCA53')

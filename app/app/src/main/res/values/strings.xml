@@ -41,5 +41,7 @@
     <string name="user_height">178</string>
     <string name="title_activity_google_maps">GoogleMapsActivity</string>
 
+    <string name="database_path_members">1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY</string>
+
 
 </resources>

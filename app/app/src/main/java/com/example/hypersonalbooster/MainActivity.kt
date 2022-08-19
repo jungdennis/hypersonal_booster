@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         var muscle = shared_health.getFloat("muscle", 0F)
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
-        var nickname = shared_cloud.getString("nickname", "닉네임없음")
+        var name = shared_cloud.getString("name", "닉네임없음")
 
         var bmi : Float = weight / ((height / 100) * (height / 100))
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()
         binding.displayMuscle.text = muscle.toString()
-        binding.userName.text = nickname
+        binding.userName.text = name
 
         if(fat <= 0 || muscle <= 0) {
             binding.frameFat.setVisibility(View.INVISIBLE)

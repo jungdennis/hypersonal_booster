@@ -14,6 +14,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -79,9 +83,14 @@ class LoginActivity : AppCompatActivity() {
         mAuth!!.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val user = mAuth!!.currentUser
+                    val uid = user!!.uid.toString()
+
+                    val ref = Firebase.database.getReference()
+                    ref.child("test").child(uid).child("UID").setValue(uid)
+
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT)
                         .show()
-                    val user = mAuth!!.currentUser
                     updateUI(user)
                 }
                 else {

@@ -27,7 +27,21 @@ class RegisterActivity_8_Company : AppCompatActivity() {
         binding = LayoutRegisterCompanyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        seek_brand()
+        val shared = getSharedPreferences("data_booster", 0)
+        val company_string = shared.getString("company", "failed")
+        val company_list = company_string!!.split(",")
+        Toast.makeText(this, "$company_list", Toast.LENGTH_SHORT).show()
+
+        val len = company_list.size
+        for(i in 0 until len) {
+            when (i) {
+                0 -> binding.booster1.text = company_list[0].toString()
+                1 -> binding.booster2.text = company_list[1].toString()
+                2 -> binding.booster3.text = company_list[2].toString()
+                3 -> binding.booster4.text = company_list[3].toString()
+                4 -> binding.booster5.text = company_list[4].toString()
+            }
+        }
 
         binding.back.setOnClickListener {
             finish()
@@ -78,22 +92,4 @@ class RegisterActivity_8_Company : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    fun seek_brand() {
-        val booster_database = ref.child("booster")
-        booster_database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (snapshot in dataSnapshot.children) {
-                    val brand = snapshot.child("brand").toString()
-                    if(brand.isNotEmpty()) {
-                        company_list.add(brand)
-                    }
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {} })
-
-        val length = company_list.size
-        Toast.makeText(this, "$length", Toast.LENGTH_SHORT).show()
-    }
-
 }

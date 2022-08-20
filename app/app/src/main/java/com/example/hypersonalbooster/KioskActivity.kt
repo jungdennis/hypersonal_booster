@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,6 +26,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
@@ -34,11 +39,19 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     private lateinit var Map: GoogleMap
     lateinit var binding : LayoutMapMainBinding
 
+    lateinit var database_data : String
+
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("kiosk")
+
     //private val oneHeung = LatLng(37.558941,126.998959)
     //private var markeroneHeung: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val shared = getSharedPreferences("data_kiosk", 0)
+        database_data = shared.getString("kiosk", "failed").toString()
 
         binding = LayoutMapMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -73,9 +86,13 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
 
-        val marker = LatLng(37.558941,126.998959)
-        Map.addMarker(MarkerOptions().position(marker).title("코끼리 FIT"))
-        Map.moveCamera(CameraUpdateFactory.newLatLng(marker))
+        val marker1 = LatLng(37.558941,126.998959)
+        Map.addMarker(MarkerOptions().position(marker1).title("코끼리 FIT"))
+        Map.moveCamera(CameraUpdateFactory.newLatLng(marker1))
+
+        val marker2 = LatLng(37.561228,126.995587)
+        Map.addMarker(MarkerOptions().position(marker2).title("충무로 FIT"))
+        Map.moveCamera(CameraUpdateFactory.newLatLng(marker2))
 
         /*
         markeroneHeung = Map.addMarker(
@@ -144,7 +161,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     }
 
     override fun onMyLocationClick(location: Location) {
-        Toast.makeText(this, "Current location:\n$location", Toast.LENGTH_LONG)
+        Toast.makeText(this, "here:\n$location", Toast.LENGTH_LONG)
             .show()
     }
 
@@ -209,14 +226,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
     /** Called when the user clicks a marker.  */
     override fun onMarkerClick(marker: Marker): Boolean {
-
-        // Retrieve the data from the marker.
-
-        Toast.makeText(
-            this,
-            "${marker.title} has been clicked",
-            Toast.LENGTH_SHORT
-        ).show()
 
         val detail_popup = KioskFragment_Detail()
         detail_popup.show(supportFragmentManager, detail_popup.tag)

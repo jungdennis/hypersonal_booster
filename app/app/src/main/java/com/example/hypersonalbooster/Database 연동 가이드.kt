@@ -16,8 +16,20 @@ class Database 연동 가이드 {
     3. 데이터 찾기 :
     override fun onCreate() {
 
+            ref.child("kiosk").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                for (snapshot in dataSnapshot.getChildren()) {
+                    val brand = snapshot.getValue()
+                    }
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}})
 
     }
 }
 */
+
+// ${it.value}

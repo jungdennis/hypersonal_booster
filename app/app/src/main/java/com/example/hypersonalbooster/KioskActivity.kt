@@ -23,14 +23,19 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
 
 class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
-    ActivityCompat.OnRequestPermissionsResultCallback {
+    ActivityCompat.OnRequestPermissionsResultCallback, GoogleMap.OnMarkerClickListener {
 
     private var permissionDenied = false
     private lateinit var Map: GoogleMap
     lateinit var binding : LayoutMapMainBinding
+
+    //private val oneHeung = LatLng(37.558941,126.998959)
+    //private var markeroneHeung: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +51,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             onMyLocationButtonClick()
         }
 
-        binding.kiosk.setOnClickListener {
-            val detail_popup = KioskFragment_Detail()
-            detail_popup.show(supportFragmentManager, detail_popup.tag)
-        }
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)
             main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -72,9 +73,22 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
 
-        val marker = LatLng(35.241615, 128.695587)
-        Map.addMarker(MarkerOptions().position(marker).title("마커 제목"))
+        val marker = LatLng(37.558941,126.998959)
+        Map.addMarker(MarkerOptions().position(marker).title("코끼리 FIT"))
         Map.moveCamera(CameraUpdateFactory.newLatLng(marker))
+
+        /*
+        markeroneHeung = Map.addMarker(
+            MarkerOptions()
+                .position(oneHeung)
+                .title("oneHeung")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location))
+        )
+        markeroneHeung?.tag = 0
+        */
+
+
+        googleMap.setOnMarkerClickListener(this)
     }
 
     /**
@@ -192,4 +206,28 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
+
+    /** Called when the user clicks a marker.  */
+    override fun onMarkerClick(marker: Marker): Boolean {
+
+        // Retrieve the data from the marker.
+
+        Toast.makeText(
+            this,
+            "${marker.title} has been clicked",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        val detail_popup = KioskFragment_Detail()
+        detail_popup.show(supportFragmentManager, detail_popup.tag)
+
+        // Return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false
+    }
+
 }
+
+
+

@@ -5,26 +5,24 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hypersonalbooster.databinding.LayoutRegisterCompanyBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import com.example.hypersonalbooster.databinding.LayoutRegisterCompanyRecyclerBinding
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 
 class RegisterActivity_8_Company : AppCompatActivity() {
 
-    private lateinit var binding : LayoutRegisterCompanyBinding
-
-    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    private lateinit var binding : LayoutRegisterCompanyRecyclerBinding
 
     var company_list = ArrayList<String>()
+
+    private lateinit var adapter : CompanyRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LayoutRegisterCompanyBinding.inflate(layoutInflater)
+        binding = LayoutRegisterCompanyRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val shared = getSharedPreferences("data_booster", 0)
@@ -32,6 +30,20 @@ class RegisterActivity_8_Company : AppCompatActivity() {
         val company_list = company_string!!.split(",")
         Toast.makeText(this, "$company_list", Toast.LENGTH_SHORT).show()
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
+        binding.noCompany.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_9_Particular::class.java)
+            startActivity(intent)
+        }
+        binding.confirm.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_9_Particular::class.java)
+            startActivity(intent)
+        }
+
+        /*
         val len = company_list.size
         for(i in 0 until len) {
             when (i) {
@@ -43,9 +55,6 @@ class RegisterActivity_8_Company : AppCompatActivity() {
             }
         }
 
-        binding.back.setOnClickListener {
-            finish()
-        }
 
         binding.booster1.setOnClickListener {
             binding.booster1.setBackgroundResource(R.drawable.btn_main_color)
@@ -82,14 +91,12 @@ class RegisterActivity_8_Company : AppCompatActivity() {
             binding.booster4.setBackgroundResource(R.drawable.btn_sub_color_light)
             binding.booster5.setBackgroundResource(R.drawable.btn_main_color)
         }
+        */
 
-        binding.noCompany.setOnClickListener {
-            val intent = Intent(this, RegisterActivity_9_Particular::class.java)
-            startActivity(intent)
-        }
-        binding.confirm.setOnClickListener {
-            val intent = Intent(this, RegisterActivity_9_Particular::class.java)
-            startActivity(intent)
-        }
+        adapter = CompanyRecyclerViewAdapter(company_list as ArrayList<String>)
+        binding.companySelect.adapter = adapter
+        binding.companySelect.layoutManager = LinearLayoutManager(this)
+
+
     }
 }

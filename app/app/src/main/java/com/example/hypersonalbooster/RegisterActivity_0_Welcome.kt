@@ -10,7 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlin.properties.Delegates
+import kotlinx.coroutines.*
 
 class RegisterActivity_0_Welcome : AppCompatActivity() {
 
@@ -21,53 +21,59 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
 
     private var end_time: Long = 0
 
-    var company_list = ArrayList<String>()
-
+    var company_list = ""
+    var data_length : Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val shared = getSharedPreferences("data_booster", 0)
+        val editor = shared.edit()
+
         binding = LayoutRegisterWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                data_length = dataSnapshot.childrenCount
+                var temp = ""
+                for (snapshot in dataSnapshot.getChildren()) {
+                    val brand = snapshot.child("brand").getValue().toString()
+                    if(brand.isNotEmpty()) {
+                        if(temp != brand){
+                            if(company_list.isEmpty()){
+                                company_list = company_list + brand
+                            }
+                            else{
+                                company_list = company_list + "," + brand
+                            }
+                        }
+                        temp = brand
+                    }
+                }
+                editor.putString("company", company_list)
+                editor.apply()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}})
+
+        Log.d("RegisterActiviy_0_Welcome", "Finished Seek : $company_list")
 
         binding.start.setOnClickListener {
             val intent = Intent(this, RegisterActivity_1_Basic::class.java)
             startActivity(intent)
         }
-
-        Thread{
-            var data_length : Long = 0
-
-            ref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    data_length = dataSnapshot.childrenCount
-                    for (snapshot in dataSnapshot.getChildren()) {
-                        val brand = snapshot.child("brand").getValue().toString()
-                        if(brand.isNotEmpty()) {
-                            company_list.add(brand)
-                            Log.d("RegisterActiviy_0_Welcome", "found : " + snapshot.child("brand").getValue() + " / brand : " + brand)
-                        }
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {}
-            })
-        }.run()
-
-        // do{ } while(company_list.size.toLong() != data_length)
-
-        val print = company_list.size
-        Log.d("RegisterActiviy_0_Welcome", "length : $print")
     }
 
     override fun onBackPressed() {
         // super.onBackPressed()
 
+        val test = getSharedPreferences("data_booster", 0).getString("company", "failed")
+        Log.d("RegisterActiviy_0_Welcome", "Finished Seek : $test")
+
         if (System.currentTimeMillis() - end_time >= 2000) {
             end_time = System.currentTimeMillis()
             Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-            val print = company_list.size
-            Log.d("RegisterActiviy_0_Welcome", "length : $print")
         } else if (System.currentTimeMillis() - end_time < 2000) {
             finishAffinity()
         }

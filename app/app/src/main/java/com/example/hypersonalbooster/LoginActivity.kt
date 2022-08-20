@@ -27,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private val RC_SIGN_IN = 9001
 
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+
     private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,8 +89,13 @@ class LoginActivity : AppCompatActivity() {
                     val user = mAuth!!.currentUser
                     val uid = user!!.uid.toString()
 
-                    val ref = Firebase.database.getReference()
-                    ref.child("test").child(uid).child("UID").setValue(uid)
+                    ref.child("apptest").child(uid).child("UID").setValue(uid)
+
+                    val shared = getSharedPreferences("data_cloud", 0)
+                    val editor = shared.edit()
+
+                    editor.putString("uid", uid)
+                    editor.apply()
 
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT)
                         .show()

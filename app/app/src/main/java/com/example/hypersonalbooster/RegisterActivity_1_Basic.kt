@@ -6,6 +6,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterBasicBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class RegisterActivity_1_Basic : AppCompatActivity() {
 
@@ -19,6 +23,9 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
     var check_age : Int = 0
     var check_sex : Int = 0
     var check_pragent : Int = 0
+
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
     private var end_time: Long = 0
 
@@ -94,10 +101,28 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 editor.putBoolean("pragent", input_pragent)
                 editor.apply()
 
-                Toast.makeText(this, "$input_name / $input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
+                val uid = shared.getString("uid", "NoUid")
+                var uid_check : Boolean = false
+                if(uid == "NoUid") {
+                    Toast.makeText(this, "에러가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    uid_check = false
+                }
+                else {
+                    ref.child("apptest").child(uid!!).child("name").setValue(input_name)
+                    val save = ref.child("apptest").child(uid).child("Info_Basic")
+                    save.child("age").setValue(input_age.toInt())
+                    save.child("sex").setValue(input_sex)
+                    save.child("pragent").setValue(input_pragent)
 
-                val intent = Intent(this, RegisterActivity_2_HeightWeight::class.java)
-                startActivity(intent)
+                    uid_check = true
+                }
+
+                if(uid_check) {
+                    Toast.makeText(this, "$input_name / $input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this, RegisterActivity_2_HeightWeight::class.java)
+                    startActivity(intent)
+                }
             }
 
         }

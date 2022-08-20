@@ -40,6 +40,32 @@ class MainFragment_QR() : BottomSheetDialogFragment() {
         return dialog
     }
 
+    /*
+    private fun createQRCode(){
+        val qrCode = QRCodeWriter()
+        val bitMtx = qrCode.encode(
+            intent.getStringExtra("id"),
+            BarcodeFormat.QR_CODE,
+            350,
+            350
+        )
+        val bitmap: Bitmap = Bitmap.createBitmap(bitMtx.width, bitMtx.height, Bitmap.Config.RGB_565)
+        for(i in 0 .. bitMtx.width-1){
+            for(j in 0 .. bitMtx.height-1){
+                var color = 0
+                if(bitMtx.get(i, j)){
+                    color = Color.BLACK
+                }else{
+                    color = Color.WHITE
+                }
+                bitmap.setPixel(i, j, color)
+            }
+        }
+        binding.qrImage.setImageBitmap(bitmap)
+    }
+
+     */
+
     private fun setupRatio(bottomSheetDialog: BottomSheetDialog){
         val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as View
         val behavior = BottomSheetBehavior.from(bottomSheet)

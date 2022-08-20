@@ -33,8 +33,6 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         binding = LayoutRegisterBasicBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

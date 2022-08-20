@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/image_qr"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         app:layout_constraintBottom_toTopOf="@+id/qr_switch"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"

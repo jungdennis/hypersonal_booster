@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <!-- 건들지 마세요 -->
     <androidx.constraintlayout.widget.Guideline
@@ -167,7 +168,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/info_nutrition"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_nutrition" />
 
     <android.widget.Button
         android:id="@+id/find_vendor"

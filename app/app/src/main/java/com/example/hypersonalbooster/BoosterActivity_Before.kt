@@ -22,8 +22,8 @@ class BoosterActivity_Before : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            val intent = Intent(this, BoosterActivity_Before::class.java)
-            startActivity(intent)
+            val Booster_popup = BoosterFragment_Before()
+            Booster_popup.show(supportFragmentManager, Booster_popup.tag)
         }
 
         binding.back.setOnClickListener {

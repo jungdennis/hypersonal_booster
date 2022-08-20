@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "507869787311",
+    "firebase_url": "https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "hypersonal-booster",
     "storage_bucket": "hypersonal-booster.appspot.com"
   },
@@ -19,6 +20,30 @@
           "android_info": {
             "package_name": "com.example.hypersonalbooster",
             "certificate_hash": "8c7dfb40651ecc4d60033f6aec1d54c4c3f45729"
+          }
+        },
+        {
+          "client_id": "507869787311-lo5t5s7vjrkhs5lmefposc2fk4nssj6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hypersonalbooster",
+            "certificate_hash": "516ba9c422692fdca6c3da03bcec7d1a3119e6a4"
+          }
+        },
+        {
+          "client_id": "507869787311-ogs0tulmvkuejf8p8mafklgje9cuqlpv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hypersonalbooster",
+            "certificate_hash": "6f77fac3459b35a7fad615b325d9a4a0d95526a4"
+          }
+        },
+        {
+          "client_id": "507869787311-qncuecapmsm4slon3ira424prgda2nff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hypersonalbooster",
+            "certificate_hash": "bef68c89730a320cfa2105646b4b5293ef1357b5"
           }
         },
         {

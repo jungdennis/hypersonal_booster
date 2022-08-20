@@ -51,9 +51,9 @@
 
     <ImageView
         android:id="@+id/image_qr"
-        android:layout_width="213dp"
-        android:layout_height="210dp"
-        app:layout_constraintBottom_toTopOf="@+id/switch2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/qr_switch"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/info_qr"
@@ -67,10 +67,10 @@
         android:text="운동전"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/switch2"
-        app:layout_constraintEnd_toStartOf="@+id/switch2"
+        app:layout_constraintBottom_toBottomOf="@+id/qr_switch"
+        app:layout_constraintEnd_toStartOf="@+id/qr_switch"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toTopOf="@+id/switch2"
+        app:layout_constraintTop_toTopOf="@+id/qr_switch"
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
@@ -82,12 +82,12 @@
         android:text="운동후"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/switch2"
-        app:layout_constraintStart_toEndOf="@+id/switch2"
-        app:layout_constraintTop_toTopOf="@+id/switch2" />
+        app:layout_constraintBottom_toBottomOf="@+id/qr_switch"
+        app:layout_constraintStart_toEndOf="@+id/qr_switch"
+        app:layout_constraintTop_toTopOf="@+id/qr_switch" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/qr_switch"
         android:layout_width="70dp"
         android:layout_height="40sp"
         android:layout_marginHorizontal="5dp"

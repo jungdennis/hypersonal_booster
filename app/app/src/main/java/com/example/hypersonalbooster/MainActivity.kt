@@ -7,11 +7,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.hypersonalbooster.databinding.LayoutMainBinding
+import com.google.firebase.database.FirebaseDatabase
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : LayoutMainBinding
+
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
     private var end_time: Long = 0
 
@@ -29,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         var muscle = shared_health.getFloat("muscle", 0F)
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
-        var nickname = shared_cloud.getString("nickname", "닉네임없음")
+        var uid = shared_cloud.getString("uid", "NoUid")
+        var name = shared_cloud.getString("name", "닉네임없음")
 
         var bmi : Float = weight / ((height / 100) * (height / 100))
 
@@ -38,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()
         binding.displayMuscle.text = muscle.toString()
-        binding.userName.text = nickname
+        binding.userName.text = name
 
         if(fat <= 0 || muscle <= 0) {
             binding.frameFat.setVisibility(View.INVISIBLE)
@@ -75,6 +80,22 @@ class MainActivity : AppCompatActivity() {
 
         binding.close.setOnClickListener {
             binding.mainDrawerLayout.closeDrawer(GravityCompat.END)
+        }
+
+        // 키오스크 테스트용 코드 (나중에 지울 것!)
+        if(uid == "NoUid") {
+            Toast.makeText(this, "에러가 발생했습니다.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            val save_before = ref.child("apptest").child(uid!!).child("Booster_before")
+            save_before.child("bp1").setValue("CLB0111-04,20")
+            save_before.child("bp2").setValue("CLB0111-03,32")
+            save_before.child("bp3").setValue("CLB0111-03,33")
+
+            val save_after = ref.child("apptest").child(uid).child("Booster_after")
+            save_after.child("ap1").setValue("CLB0111-04,41")
+            save_after.child("ap2").setValue("CLB0111-03,50")
+            save_after.child("ap3").setValue("CLB0111-03,60")
         }
     }
 

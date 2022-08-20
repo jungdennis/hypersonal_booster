@@ -41,6 +41,11 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         val mapFragment: SupportMapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.findMyLocation.setOnClickListener{
+            // 이러니깐 알림만 뜸;; 수정필요
+            onMyLocationButtonClick()
+        }
+
         binding.kiosk.setOnClickListener {
             val detail_popup = KioskFragment_Detail()
             detail_popup.show(supportFragmentManager, detail_popup.tag)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutRegisterParticularBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity_9_Particular : AppCompatActivity() {
 
@@ -18,6 +19,10 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
     private var check_vegan : Int = 0
     private var check_milk : Int = 0
     private var check_caffeine : Int = 0
+
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,9 +93,27 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
                 editor.putBoolean("caffeine", input_caffeine)
                 editor.apply()
 
-                Toast.makeText(this, "$input_vegan / $input_milk / $input_caffeine", Toast.LENGTH_SHORT).show()
-                val intent_next = Intent(this, MainActivity::class.java)
-                startActivity(intent_next)
+                val uid = shared.getString("uid", "NoUid")
+                var uid_check : Boolean = false
+                if(uid == "NoUid") {
+                    Toast.makeText(this, "에러가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    uid_check = false
+                }
+                else {
+                    val save = ref.child("apptest").child(uid!!).child("Info_Particular")
+                    save.child("vegan").setValue(input_vegan)
+                    save.child("milk").setValue(input_milk)
+                    save.child("caffeine").setValue(input_caffeine)
+
+                    uid_check = true
+                }
+
+                if(uid_check) {
+                    Toast.makeText(this, "$input_vegan / $input_milk / $input_caffeine", Toast.LENGTH_SHORT).show()
+
+                    val intent_next = Intent(this, MainActivity::class.java)
+                    startActivity(intent_next)
+                }
             }
         }
     }

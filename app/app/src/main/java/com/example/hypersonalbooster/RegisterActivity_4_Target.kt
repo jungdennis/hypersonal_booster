@@ -71,7 +71,7 @@ class RegisterActivity_4_Target : AppCompatActivity() {
 
                 Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, RegisterActivity_9_Particular::class.java)
+                val intent = Intent(this, RegisterActivity_6_Feeling::class.java)
                 startActivity(intent)
             }
             binding.confirm.setOnClickListener {

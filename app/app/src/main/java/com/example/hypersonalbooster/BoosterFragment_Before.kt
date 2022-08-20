@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Button
 import androidx.core.content.ContextCompat.startActivity
 import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
-
+/*
 class BoosterFragment_Before : Fragment() {
 
     override fun onCreateView(
@@ -30,4 +30,4 @@ class BoosterFragment_Before : Fragment() {
             startActivity(intent)
         }
 }
-
+*/

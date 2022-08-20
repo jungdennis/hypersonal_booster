@@ -50,13 +50,21 @@ global protein
 global carb
 global carl
 global amount
+val_1 = 1000
+val_2 = 1000
+val_3 = 100
+val_4 = 1000
+val_5 = 1000
+val_6 = 1000
+global clock
+clock = 0
 # endregion
 # 코드 나누기
 def changeqrcode(barcodeqr):
     global userid
     global before_or_after
-    userid = str(barcodeqr[:-1])
-    before_or_after = int(barcodeqr[-1])
+    userid = barcodeqr.split(',')[0]
+    before_or_after = int(barcodeqr.split(',')[1])
 def decodeboosterdb(boostercode):
     global brand
     global sort
@@ -244,9 +252,17 @@ def next():
     global fat
     global protein
     global check_number
+    global val_cup
+    global val_1
+    global val_2
+    global val_3
+    global val_4
+    global val_5
+    global val_6
+    global clock
     # endregion
     if count == 2:
-        barcode = "alscksrb0"
+        barcode = "o0Molbhzmqf1GZJAnJYQxDWQ0Mi2,1"
         changeqrcode(barcode)
         print(userid)
         print(before_or_after)
@@ -260,7 +276,7 @@ def next():
         win.after(1000, next)
     elif count == 3:
         # region db링크 및 초기설정
-        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/"
+        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/apptest/"
         booster_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster/"
         before_powder = [""]
         after_powder = [""]
@@ -271,7 +287,9 @@ def next():
         if before_or_after == 0:
             # region 데이터베이스로부터 추천 보충제 코드 받고 자판기에 있는 보충제코드와 비교
             for i in range(1, 4):
-                before_powder.append(db.reference(member_db + userid + "/bp_" + str(i)).get())
+                getdata = db.reference(member_db + userid + "/Booster_before" + "/bp" + str(i)).get()
+                print(getdata)
+                before_powder.append(getdata.split(",")[0])
                 pow_number = 0
                 print("db : %s" %before_powder[i])
                 a = before_powder[i]
@@ -291,7 +309,7 @@ def next():
             # endregion
             # 자판기 안에 있음, 그램 정보 받고 텍스트 설정
             if check != 0:
-                required_gram = int(db.reference(member_db + userid + "/bp_" + str(check) + "gram").get())
+                required_gram = int((db.reference(member_db + userid + "/Booster_before" + "/bp" + str(check)).get()).split(',')[1])
                 what_protein()
                 gram = required_gram
                 rate = float(gram/amount)
@@ -317,7 +335,7 @@ def next():
                         break
                 # endregion
                 # 데이터베이스 그램으로부터 필요 단백질 그램 계산
-                required_gram = float(db.reference(member_db + userid + "/bp_"+ str(find) +"gram").get())
+                required_gram = float((db.reference(member_db + userid + "/Booster_before" + "/bp" + str(find)).get()).split(',')[1])
                 amount_gram = float(db.reference(booster_db + str(before_powder[find]) + "/amount(1회제공량(가루g액체ml))").get())
                 db_protein = float(db.reference(booster_db + str(before_powder[find]) + "/protein(g)").get())
                 required_protein = required_gram / amount_gram * db_protein
@@ -341,7 +359,8 @@ def next():
         else:
             # region 데이터베이스로부터 추천 보충제 코드 받고 자판기에 있는 보충제코드와 비교
             for i in range(1, 4):
-                after_powder.append(db.reference(member_db + userid + "/ap_" + str(i)).get())
+                getdata = db.reference(member_db + userid + "/Booster_after" + "/ap" + str(i)).get()
+                after_powder.append(getdata.split(",")[0])
                 pow_number = 0
                 print("db : %s" %after_powder[i])
                 a = after_powder[i]
@@ -359,7 +378,7 @@ def next():
             # endregion
             # 자판기 안에 있음, 그램 정보 받고 텍스트 설정
             if check != 0:
-                required_gram = int(db.reference(member_db + userid + "/ap_" + str(check) + "gram").get())
+                required_gram = int((db.reference(member_db + userid + "/Booster_after" + "/ap" + str(check)).get()).split(',')[1])
                 what_protein()
                 gram = required_gram
                 rate = float(gram / amount)
@@ -385,7 +404,7 @@ def next():
                         find = i
                         break
                 # 데이터베이스 그램으로부터 필요 단백질 그램 계산
-                required_gram = float(db.reference(member_db + userid + "/ap_"+str(find)+"gram").get())
+                required_gram = float((db.reference(member_db + userid + "/Booster_after" + "/ap" + str(find)).get()).split(',')[1])
                 amount_gram = float(db.reference(booster_db + str(after_powder[find]) + "/amount(1회제공량(가루g액체ml))").get())
                 db_protein = float(db.reference(booster_db + str(after_powder[find]) + "/protein(g)").get())
                 required_protein = required_gram / amount_gram * db_protein
@@ -419,12 +438,7 @@ def next():
         print("%d번 페이지" %count)
         # endregion
     elif count == 6:
-        val_1 = 1000
-        val_2 = 1000
-        val_3 = 100
-        val_4 = 1000
-        val_5 = 100
-        val_6 = 100
+        print(val_3)
         if (val_1 < 110): num_1 = "1번"
         else: num_1 = ""
         if (val_2 < 120): num_2 = "2번"
@@ -440,19 +454,36 @@ def next():
         lackpow = (num_1) or (num_2) or (num_3) or (num_4) or (num_5) or (num_6)
         if lackpow:
             change_text = "원료통" + num_1 + num_2 + num_3 + num_4 + num_5 + num_6 + "이 부족합니다"
+            change_text2 = "이용하실 수 없습니다 관리자에게 연락하십시오"
             print(change_text)
             maintext.configure(text=change_text)
+            subtext.configure(text=change_text2)
+            maintext.pack(side='top')
+            logo_image.pack(side='top')
+            subtext.pack(side='bottom', ipady=100)
+            label_maintext.pack_forget()
+            label_image.pack_forget()
+            label_subtext.pack_forget()
+            count = 6
+            print("%d번 페이지" % count)
+            clock += 1
+            print(clock)
+            if clock == 3:
+                val_3 = 1000
+                print("원료채워짐")
+            win.after(1000, next)
         else:
             maintext.configure(text="개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER")
+            subtext.configure(text="이용하시려면 화면을 터치해 주세요")
+            maintext.pack(side='top')
+            logo_image.pack(side='top')
+            subtext.pack(side='bottom', ipady=100)
+            label_maintext.pack_forget()
+            label_image.pack_forget()
+            label_subtext.pack_forget()
+            count = 0
+            print("%d번 페이지" % count)
 
-        maintext.pack(side='top')
-        logo_image.pack(side='top')
-        subtext.pack(side='bottom', ipady=100)
-        label_maintext.pack_forget()
-        label_image.pack_forget()
-        label_subtext.pack_forget()
-        count = 0
-        print("%d번 페이지" %count)
 def yesbtn():
     global count
     count = 5

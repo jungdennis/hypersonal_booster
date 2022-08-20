@@ -55,8 +55,8 @@ global amount
 def changeqrcode(barcodeqr):
     global userid
     global before_or_after
-    userid = str(barcodeqr[:-1])
-    before_or_after = int(barcodeqr[-1])
+    userid = barcodeqr.split(',')[0]
+    before_or_after = int(barcodeqr.split(',')[1])
 def decodeboosterdb(boostercode):
     global brand
     global sort
@@ -504,6 +504,12 @@ def next():
     global fat
     global protein
     global check_number
+    global val_1
+    global val_2
+    global val_3
+    global val_4
+    global val_5
+    global val_6
     # endregion
     if count == 2:
         # region QR 코드 인식
@@ -558,7 +564,7 @@ def next():
         win.after(1000, next)
     elif count == 3:
         # region db링크 및 초기설정
-        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/"
+        member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/apptest/"
         booster_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster/"
         before_powder = [""]
         after_powder = [""]
@@ -569,7 +575,9 @@ def next():
         if before_or_after == 0:
             # region 데이터베이스로부터 추천 보충제 코드 받고 자판기에 있는 보충제코드와 비교
             for i in range(1, 4):
-                before_powder.append(db.reference(member_db + userid + "/bp_" + str(i)).get())
+                getdata = db.reference(member_db + userid + "/Booster_before" + "/bp" + str(i)).get()
+                print(getdata)
+                before_powder.append(getdata.split(",")[0])
                 pow_number = 0
                 print("db : %s" % before_powder[i])
                 a = before_powder[i]
@@ -589,7 +597,7 @@ def next():
             # endregion
             # region 자판기 안에 있음, 그램 정보 받고 텍스트 설정
             if check != 0:
-                required_gram = int(db.reference(member_db + userid + "/bp_" + str(check) + "gram").get())
+                required_gram = int((db.reference(member_db + userid + "/Booster_before" + "/bp" + str(check)).get()).split(',')[1])
                 what_protein()
                 gram = required_gram
                 rate = float(gram / amount)
@@ -600,7 +608,7 @@ def next():
                                                                        protein * rate, carb * rate, fat * rate)
                 label_powtext_1.configure(text=powtext)
             # endregion
-            # region 자판기 안에 없음 비슷한거 찾음
+            # 자판기 안에 없음 비슷한거 찾음
             else:
                 # region 보충제 종류 코드와 자판기에 있는 보충제 종류 코드 비교
                 check = 0
@@ -613,11 +621,11 @@ def next():
                             check_number = j
                             break
                     if check_number != 0:
-                        check = i
+                        find = i
                         break
                 # endregion
                 # region 데이터베이스 그램으로부터 필요 단백질 그램 계산
-                required_gram = float(db.reference(member_db + userid + "/bp_" + str(check) + "gram").get())
+                required_gram = float((db.reference(member_db + userid + "/Booster_before" + "/bp" + str(find)).get()).split(',')[1])
                 amount_gram = float(db.reference(booster_db + str(before_powder[check]) + "/amount(1회제공량(가루g액체ml))").get())
                 db_protein = float(db.reference(booster_db + str(before_powder[check]) + "/protein(g)").get())
                 required_protein = required_gram / amount_gram * db_protein
@@ -643,7 +651,8 @@ def next():
         else:
             # region 데이터베이스로부터 추천 보충제 코드 받고 자판기에 있는 보충제코드와 비교
             for i in range(1, 4):
-                after_powder.append(db.reference(member_db + userid + "/ap_" + str(i)).get())
+                getdata = db.reference(member_db + userid + "/Booster_after" + "/ap" + str(i)).get()
+                after_powder.append(getdata.split(",")[0])
                 pow_number = 0
                 print("db : %s" % after_powder[i])
                 a = after_powder[i]
@@ -661,7 +670,7 @@ def next():
             # endregion
             # region 자판기 안에 있음, 그램 정보 받고 텍스트 설정
             if check != 0:
-                required_gram = int(db.reference(member_db + userid + "/ap_" + str(check) + "gram").get())
+                required_gram = int((db.reference(member_db + userid + "/Booster_after" + "/ap" + str(check)).get()).split(',')[1])
                 what_protein()
                 gram = required_gram
                 rate = float(gram / amount)
@@ -685,11 +694,11 @@ def next():
                             check_number = j
                             break
                     if check_number != 0:
-                        check = i
+                        find = i
                         break
                 # endregion
                 # region 데이터베이스 그램으로부터 필요 단백질 그램 계산
-                required_gram = float(db.reference(member_db + userid + "/ap_" + str(check) + "gram").get())
+                required_gram = float((db.reference(member_db + userid + "/Booster_after" + "/ap" + str(find)).get()).split(',')[1])
                 amount_gram = float(db.reference(booster_db + str(after_powder[check]) + "/amount(1회제공량(가루g액체ml))").get())
                 db_protein = float(db.reference(booster_db + str(after_powder[check]) + "/protein(g)").get())
                 required_protein = required_gram / amount_gram * db_protein
@@ -725,14 +734,64 @@ def next():
         print("%d번 페이지" % count)
         # endregion
     elif count == 6:
-        maintext.pack(side='top')
-        logo_image.pack(side='top')
-        subtext.pack(side='bottom', ipady=100)
-        label_maintext.pack_forget()
-        label_image.pack_forget()
-        label_subtext.pack_forget()
-        count = 0
-        print("%d번 페이지" % count)
+        # region 원료통 부족 확인
+        pow1 = val_1
+        pow2 = val_2
+        pow3 = val_3
+        pow4 = val_4
+        pow5 = val_5
+        pow6 = val_6
+        if pow1 < 60:
+            num_1 = "1번"
+        else:
+            num_1 = ""
+        if pow2 < 60:
+            num_2 = "2번"
+        else:
+            num_2 = ""
+        if pow3 < 60:
+            num_3 = "3번"
+        else:
+            num_3 = ""
+        if pow4 < 60:
+            num_4 = "4번"
+        else:
+            num_4 = ""
+        if pow5 < 60:
+            num_5 = "5번"
+        else:
+            num_5 = ""
+        if pow6 < 60:
+            num_6 = "6번"
+        else:
+            num_6 = ""
+        lackpow = num_1 or num_2 or num_3 or num_4 or num_5 or num_6
+        if lackpow:
+            change_text = "원료통" + num_1 + num_2 + num_3 + num_4 + num_5 + num_6 + "이 부족합니다"
+            change_text2 = "이용하실 수 없습니다 관리자에게 연락하십시오"
+            print(change_text)
+            maintext.configure(text=change_text)
+            subtext.configure(text=change_text2)
+            maintext.pack(side='top')
+            logo_image.pack(side='top')
+            subtext.pack(side='bottom', ipady=100)
+            label_maintext.pack_forget()
+            label_image.pack_forget()
+            label_subtext.pack_forget()
+            count = 6
+            print("%d번 페이지" % count)
+            win.after(5000, next)
+        else:
+            maintext.configure(text="개인맞춤 운동 보조제 자판기\n""HY-PERSONAL BOOSTER VENDER")
+            subtext.configure(text="이용하시려면 화면을 터치해 주세요")
+            maintext.pack(side='top')
+            logo_image.pack(side='top')
+            subtext.pack(side='bottom', ipady=100)
+            label_maintext.pack_forget()
+            label_image.pack_forget()
+            label_subtext.pack_forget()
+            count = 0
+            print("%d번 페이지" % count)
 def yesbtn():
     global count
     count = 5
@@ -782,7 +841,7 @@ def morebtn():
               "총 %.1fkcal 단백질 %.1fg 탄수화물 %.1fg 지방%.1fg" % (name, brand, sort, gram,
                                                            amount, carl, protein, carb, fat, carl * rate,
                                                            protein * rate, carb * rate, fat * rate)
-    if check != 0:
+    if check == 0:
         powtext = "\n회원님의 추천 보조제는 이 자판기에 존재하지 않습니다\n" \
                           "비슷한 종류의 보조제를 추천드립니다. 드시겠습니까?\n" + powtext
     label_powtext_1.configure(text=powtext)
@@ -806,7 +865,7 @@ def lessbtn():
               "총 %.1fkcal 단백질 %.1fg 탄수화물 %.1fg 지방%.1fg" % (name, brand, sort, gram,
                                                            amount, carl, protein, carb, fat, carl * rate,
                                                            protein * rate, carb * rate, fat * rate)
-    if check != 0:
+    if check == 0:
         powtext = "\n회원님의 추천 보조제는 이 자판기에 존재하지 않습니다\n" \
                           "비슷한 종류의 보조제를 추천드립니다. 드시겠습니까?\n" + powtext
     label_powtext_1.configure(text=powtext)

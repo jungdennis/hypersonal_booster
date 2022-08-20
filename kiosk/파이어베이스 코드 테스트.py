@@ -15,14 +15,20 @@ print(doc)
 '''
 number = 0
 userid = "test"
-member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/members/"
+member_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/apptest/"
+
 booster_db = "1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster/"
-barcodetest = "alscksrb0"
-userid = barcodetest[:-1]
-powdercode = "testcode123"
-eat_powder = db.reference(member_db + userid)
-eat_powder.update({
-    u'eat_powder' : powdercode
-})
-a = barcodetest[:-1]
-print(a)
+barcode = "o0Molbhzmqf1GZJAnJYQxDWQ0Mi2,0"
+userid = barcode.split(",")[0]
+bora = barcode.split(",")[1]
+bp = [""]
+bpgram = [0]
+if bora == "0":
+    recommend_db = member_db + userid + "/Booster_before"
+    for i in range(1, 4):
+        getdata = db.reference(recommend_db + "/bp" + str(i)).get()
+        bp.append(getdata.split(',')[0])
+        bpgram.append(int(getdata.split(',')[1]))
+
+for i in range(1, 4):
+    print("bp%d : %s, bp%d gram : %d" % (i, bp[i], i, bpgram[i]))

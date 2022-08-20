@@ -3,7 +3,6 @@ package com.example.hypersonalbooster
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import com.example.hypersonalbooster.databinding.FragmentQrBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog

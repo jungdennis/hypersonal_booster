@@ -23,11 +23,13 @@ class BoosterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.moreBefore.setOnClickListener {
-            val intent = Intent(this, LayoutBoosterBeforeBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_Before :: class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.moreAfter.setOnClickListener {
-            val intent = Intent(this, LayoutBoosterAfterBinding :: class.java)
+            val intent = Intent(this, BoosterActivity_After :: class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
 

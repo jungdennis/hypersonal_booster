@@ -1,41 +1,51 @@
 package com.example.hypersonalbooster
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hypersonalbooster.databinding.LayoutRegisterCompanyRecyclerBinding
+import com.example.hypersonalbooster.databinding.LayoutRegisterCompanyBinding
 import com.google.firebase.database.FirebaseDatabase
 
 
 class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
 
-    private lateinit var binding : LayoutRegisterCompanyRecyclerBinding
+    private lateinit var binding : LayoutRegisterCompanyBinding
 
     var company_list = ArrayList<String>()
 
-    private lateinit var adapter : CompanyRecyclerViewAdapter
+    private lateinit var adapter : RecyclerViewAdapter_Company
 
     var check_company = ArrayList<String>()
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LayoutRegisterCompanyRecyclerBinding.inflate(layoutInflater)
+        binding = LayoutRegisterCompanyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val company_string = getSharedPreferences("data_booster", 0).getString("company", "failed")
-        val company_list = company_string!!.split(",")
+        company_list = company_string!!.split(",") as ArrayList<String>
 
         val editor = getSharedPreferences("data_cloud", 0).edit()
 
         binding.back.setOnClickListener {
             finish()
         }
+
+        binding.companySearch.setOnQueryTextListener(searchViewTextListener)
+
+        binding.companySelect.layoutManager = LinearLayoutManager(this)
+        adapter = RecyclerViewAdapter_Company(company_list, this)
+        binding.companySelect.setAdapter(adapter)
 
         binding.noCompany.setOnClickListener {
             var input_company = "Nothing"
@@ -97,13 +107,23 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
                     startActivity(intent)
                 }
             }
-
         }
-
-        adapter = CompanyRecyclerViewAdapter(company_list as ArrayList<String>, this)
-        binding.companySelect.adapter = adapter
-        binding.companySelect.layoutManager = LinearLayoutManager(this)
     }
+
+    var searchViewTextListener: SearchView.OnQueryTextListener =
+        object : SearchView.OnQueryTextListener {
+            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
+            override fun onQueryTextSubmit(s: String): Boolean {
+                return false
+            }
+
+            //텍스트 입력/수정시에 호출
+            override fun onQueryTextChange(s: String): Boolean {
+                adapter.filter.filter(s)
+                Log.d("RegisterActivity_8_Company", "SearchView Text is Changed : $s")
+                return false
+            }
+        }
 
     override fun onCompanyClickAdd(company_name : String) {
         check_company.add(company_name)

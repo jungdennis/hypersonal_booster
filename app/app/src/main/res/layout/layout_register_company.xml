@@ -38,90 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <Button
-        android:id="@+id/booster_1"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:text="서범기 프로틴"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/booster_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/info_company" />
-
-    <Button
-        android:id="@+id/booster_2"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:text="김호준 부스터"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/booster_3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/booster_1" />
-
-    <Button
-        android:id="@+id/booster_3"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:text="유준상 게이너"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/booster_4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/booster_2" />
-
-    <Button
-        android:id="@+id/booster_4"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:text="민찬규 보충제"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/booster_5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/booster_3" />
-
-    <Button
-        android:id="@+id/booster_5"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:text="정승용 존나 멋있음"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/booster_4" />
 
     <Button
         android:id="@+id/no_company"
@@ -131,7 +47,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/back_fragment"
         android:fontFamily="@font/font_medium"
-        android:text="선호 회사 없음"
+        android:text="잘 모르겠어요"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -185,5 +101,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
+
+    <SearchView
+        android:id="@+id/company_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/info_company" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/company_select"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/company_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

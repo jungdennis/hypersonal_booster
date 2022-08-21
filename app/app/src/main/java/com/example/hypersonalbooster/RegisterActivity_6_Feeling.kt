@@ -72,7 +72,7 @@ class RegisterActivity_6_Feeling : AppCompatActivity() {
                 }
 
                 if(uid_check) {
-                    val intent = Intent(this, RegisterActivity_8_Company::class.java)
+                    val intent = Intent(this, RegisterActivity_7_Taste::class.java)
                     startActivity(intent)
                 }
             }

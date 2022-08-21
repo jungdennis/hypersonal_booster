@@ -16,14 +16,12 @@ import androidx.core.content.ContextCompat
 import com.example.hypersonalbooster.PermissionUtils.PermissionDeniedDialog.Companion.newInstance
 import com.example.hypersonalbooster.PermissionUtils.isPermissionGranted
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.*
 
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
+
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.database.DataSnapshot
@@ -84,6 +82,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         Map = googleMap
         googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.setOnMyLocationClickListener(this)
+        googleMap.uiSettings.isMyLocationButtonEnabled = false
         enableMyLocation()
 
         val marker1 = LatLng(37.558941,126.998959)

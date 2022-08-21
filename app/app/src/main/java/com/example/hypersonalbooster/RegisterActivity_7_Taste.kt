@@ -33,7 +33,7 @@ class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
         setContentView(binding.root)
 
         val taste_string = getSharedPreferences("data_booster", 0).getString("taste", "failed")
-        taste_list = taste_string!!.split(",") as ArrayList<String>
+        taste_list = taste_string!!.split(",").distinct() as ArrayList<String>
 
         val editor = getSharedPreferences("data_cloud", 0).edit()
 
@@ -121,6 +121,9 @@ class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
             override fun onQueryTextChange(s: String): Boolean {
                 adapter.filter.filter(s)
                 Log.d("RegisterActivity_8_Taste", "SearchView Text is Changed : $s")
+                runOnUiThread {
+                    adapter.notifyDataSetChanged()
+                }
                 return false
             }
         }

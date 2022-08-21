@@ -79,10 +79,10 @@ class RecyclerViewAdapter_Taste(private val taste_list : ArrayList<String>, priv
                         filteredList.add(taste)
                     }
                 }
-            }
 
-            results.values = filteredList
-            results.count = filteredList.size
+                results.values = filteredList
+                results.count = filteredList.size
+            }
 
             return results
         }

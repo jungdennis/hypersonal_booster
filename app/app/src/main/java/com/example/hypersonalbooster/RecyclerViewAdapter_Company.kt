@@ -92,6 +92,7 @@ class RecyclerViewAdapter_Company(private val company_list : ArrayList<String>, 
             filteredCompany.clear()
             filteredCompany.addAll(p1.values as ArrayList<String>)
             Log.d(TAG, "$filteredCompany")
+            listener.onFiltered(p1.values as ArrayList<String>)
             notifyDataSetChanged()
         }
     }

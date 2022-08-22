@@ -15,6 +15,8 @@ class RegisterActivity_3_Inbody : AppCompatActivity() {
     lateinit var input_fat : String
     lateinit var input_muscle : String
 
+    var intent_flag : Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +35,7 @@ class RegisterActivity_3_Inbody : AppCompatActivity() {
 
             input_fat = "-1"
             input_muscle = "-1"
+            intent_flag = true
 
             binding.confirm.setVisibility(View.VISIBLE)
             binding.yes.setBackgroundResource(R.drawable.btn_main_color)
@@ -45,6 +48,7 @@ class RegisterActivity_3_Inbody : AppCompatActivity() {
 
             input_fat = "0"
             input_muscle = "0"
+            intent_flag = false
 
             binding.confirm.setVisibility(View.VISIBLE)
             binding.yes.setBackgroundResource(R.drawable.btn_sub_color_light)
@@ -80,9 +84,16 @@ class RegisterActivity_3_Inbody : AppCompatActivity() {
                 editor.putFloat("muscle", check_muscle)
                 editor.apply()
 
-                val intent = Intent(this, RegisterActivity_4_Target::class.java)
-                startActivity(intent)
-                finish()
+                if(intent_flag){
+                    val intent = Intent(this, RegisterActivity_4_Target::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else{
+                    val intent = Intent(this, RegisterActivity_4_Target_NoInbody::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }

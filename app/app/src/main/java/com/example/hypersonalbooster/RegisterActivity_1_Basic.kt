@@ -15,12 +15,10 @@ import com.google.firebase.database.ValueEventListener
 class RegisterActivity_1_Basic : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterBasicBinding
-    private lateinit var input_name : String
     private lateinit var input_age : String
     private lateinit var input_sex : String
     private var input_pragent : Boolean = false
 
-    var check_name : Int = 0
     var check_age : Int = 0
     var check_sex : Int = 0
     var check_pragent : Int = 0
@@ -80,23 +78,17 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
         }
 
         binding.confirm.setOnClickListener {
-            if(binding.insertName.text.isNotEmpty()) {
-                input_name = binding.insertName.text.toString()
-                check_name = 1
-            }
-
             if(binding.insertAge.text.isNotEmpty()) {
                 input_age = binding.insertAge.text.toString()
                 check_age = 1
             }
 
-            if(check_age * check_pragent * check_sex * check_name != 1) {
+            if(check_age * check_pragent * check_sex != 1) {
                 Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
                 val shared = getSharedPreferences("data_cloud", 0)
                 val editor = shared.edit()
-                editor.putString("name", input_name)
                 editor.putInt("age", input_age.toInt())
                 editor.putString("sex", input_sex)
                 editor.putBoolean("pragent", input_pragent)
@@ -109,8 +101,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                     uid_check = false
                 }
                 else {
-                    ref.child("apptest").child(uid!!).child("name").setValue(input_name)
-                    val save = ref.child("apptest").child(uid).child("Info_Basic")
+                    val save = ref.child("apptest").child(uid!!).child("Info_Basic")
                     save.child("age").setValue(input_age.toInt())
                     save.child("sex").setValue(input_sex)
                     save.child("pragent").setValue(input_pragent)
@@ -119,7 +110,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 }
 
                 if(uid_check) {
-                    Toast.makeText(this, "$input_name / $input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "$input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this, RegisterActivity_2_HeightWeight::class.java)
                     startActivity(intent)

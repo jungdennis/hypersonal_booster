@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 class RegisterActivity_6_Feeling : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterFeelingBinding
-    private lateinit var input_feeling : String
+    private var input_feeling : String = ""
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")

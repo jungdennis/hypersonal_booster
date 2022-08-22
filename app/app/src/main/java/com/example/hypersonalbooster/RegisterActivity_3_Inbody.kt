@@ -87,12 +87,10 @@ class RegisterActivity_3_Inbody : AppCompatActivity() {
                 if(intent_flag){
                     val intent = Intent(this, RegisterActivity_4_Target::class.java)
                     startActivity(intent)
-                    finish()
                 }
                 else{
                     val intent = Intent(this, RegisterActivity_4_Target_NoInbody::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
         }

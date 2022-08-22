@@ -2,7 +2,9 @@ package com.example.hypersonalbooster
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -12,9 +14,37 @@ import com.example.hypersonalbooster.databinding.FragmentRegisterTasteAdapterBin
 
 class RecyclerViewAdapter_Taste(private val taste_list : ArrayList<String>, private val listener : OnTasteClickListener)
     : RecyclerView.Adapter<RecyclerViewAdapter_Taste.MyViewHolder>(), Filterable {
+
+    private var  mSelectedItems : SparseBooleanArray = SparseBooleanArray(0)
+
     inner class MyViewHolder(binding : FragmentRegisterTasteAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
+        var binding: FragmentRegisterTasteAdapterBinding
+
         val btn = binding.btn
         val root = binding.root
+
+        val length = taste_list.size
+        var check = Array<Boolean>(length) {
+            false
+        }
+
+        init {
+            this.binding = binding
+
+            this.binding.btn.setOnClickListener(View.OnClickListener {
+                val position = adapterPosition
+                if (check[position] == false) {
+                    binding.btn.setBackgroundResource(R.drawable.btn_main_color)
+                    listener.onTasteClickAdd(taste_list[position])
+                    check[position] = true
+                }
+                else {
+                    binding.btn.setBackgroundResource(R.drawable.btn_sub_color_light)
+                    listener.onTasteClickRemove(taste_list[position])
+                    check[position] = false
+                }
+            })
+        }
     }
 
     var TAG = "TasteRecyclerViewAdapter"
@@ -26,8 +56,6 @@ class RecyclerViewAdapter_Taste(private val taste_list : ArrayList<String>, priv
     }
 
 
-    var check : Boolean = false
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding : FragmentRegisterTasteAdapterBinding =
             FragmentRegisterTasteAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -37,21 +65,8 @@ class RecyclerViewAdapter_Taste(private val taste_list : ArrayList<String>, priv
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val taste_name = taste_list[position].toString()
-
         holder.btn.text = taste_name
-
-        holder.btn.setOnClickListener {
-            if(check == false) {
-                holder.btn.setBackgroundResource(R.drawable.btn_main_color)
-                listener.onTasteClickAdd(taste_name)
-                check = true
-            }
-            else {
-                holder.btn.setBackgroundResource(R.drawable.btn_sub_color_light)
-                listener.onTasteClickRemove(taste_name)
-                check = false
-            }
-        }
+        Log.d("Taste Adapter", "$taste_name")
     }
 
     override fun getItemCount(): Int {

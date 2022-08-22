@@ -25,6 +25,10 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
     var taste_list = ""
     var kiosk_list = ""
 
+    // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
+    var booster_before = ""
+    var booster_after = ""
+
     private var end_time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,9 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
         val shared_kiosk = getSharedPreferences("data_kiosk", 0)
         val editor_kiosk = shared_kiosk.edit()
 
+        // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
+        val shared_cloud = getSharedPreferences("data_cloud", 0)
+        val editor_cloud = shared_cloud.edit()
 
         // 브랜드 정보 받기
         ref_booster.child("booster").addValueEventListener(object : ValueEventListener {
@@ -114,6 +121,49 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {}})
 
+        // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
+        val uid = shared_cloud.getString("uid", "NoUid")
+
+        ref_booster.child("apptest").child(uid!!).child("Booster_before").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.getChildren()) {
+                    val booster = data.getValue().toString().split(",")[0].toString()
+                    if(booster.isNotEmpty()) {
+                        if(booster_before.isEmpty()){
+                            booster_before = booster_before + booster
+                        }
+                        else{
+                            booster_before = booster_before + "," + booster
+                        }
+                    }
+                }
+                editor_cloud.putString("booster_before", booster_before)
+                editor_cloud.apply()
+            }
+
+            override fun onCancelled(error: DatabaseError) { } })
+
+        ref_booster.child("apptest").child(uid).child("Booster_after").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.getChildren()) {
+                    val booster = data.getValue().toString().split(",")[0].toString()
+                    if(booster.isNotEmpty()) {
+                        if(booster_after.isEmpty()){
+                            booster_after = booster_after + booster
+                        }
+                        else{
+                            booster_after = booster_after + "," + booster
+                        }
+                    }
+                }
+                editor_cloud.putString("booster_after", booster_after)
+                editor_cloud.apply()
+            }
+
+            override fun onCancelled(error: DatabaseError) { } })
+
         binding.start.setOnClickListener {
             val intent = Intent(this, RegisterActivity_1_Basic::class.java)
             startActivity(intent)
@@ -131,6 +181,10 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
         Log.d("RegisterActiviy_0_Welcome", "Taste : $test")
         test = getSharedPreferences("data_kiosk", 0).getString("kiosk", "failed")
         Log.d("RegisterActiviy_0_Welcome", "Kiosk : $test")
+        test = getSharedPreferences("data_cloud", 0).getString("booster_before", "failed")
+        Log.d("Set Booster Before", "$test")
+        test = getSharedPreferences("data_cloud", 0).getString("booster_after", "failed")
+        Log.d("Set Booster After", "$test")
 
 
         if (System.currentTimeMillis() - end_time >= 2000) {

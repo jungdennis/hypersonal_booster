@@ -103,6 +103,17 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("name", name)
                     editor.apply()
 
+                    // 키오스크 테스트용 코드 (나중에 지울 것!)
+                    val save_before = ref_booster.child("apptest").child(uid!!).child("Booster_before")
+                    save_before.child("bp1").setValue("CLB0111-04,20")
+                    save_before.child("bp2").setValue("CLB0111-03,32")
+                    save_before.child("bp3").setValue("CLB0111-05,33")
+
+                    val save_after = ref_booster.child("apptest").child(uid).child("Booster_after")
+                    save_after.child("ap1").setValue("CLB0111-05,41")
+                    save_after.child("ap2").setValue("CLB0111-04,50")
+                    save_after.child("ap3").setValue("CLB0111-03,60")
+
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT)
                         .show()
                     updateUI(user)

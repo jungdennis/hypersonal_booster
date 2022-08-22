@@ -10,7 +10,10 @@ import com.example.hypersonalbooster.databinding.LayoutMainBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     private var end_time: Long = 0
 
+    var booster_before = ArrayList<Booster>()
+    var booster_after = ArrayList<Booster>()
+    var booster_init = ArrayList<Booster>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +45,20 @@ class MainActivity : AppCompatActivity() {
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val uid = shared_cloud.getString("uid", "NoUid")
         val name = shared_cloud.getString("name", "닉네임없음")
+        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",")
+        val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",")
+
+        for(boosterID in before) {
+            booster_before.add(Booster(boosterID))
+        }
+        for(boosterID in after) {
+            booster_after.add(Booster(boosterID))
+        }
+        for(boosterID in before) {
+            booster_init.add(Booster(boosterID))
+        }
 
         val bmi : Float = weight / ((height / 100) * (height / 100))
-
 
         binding.displayBmi.text = "%.1f".format(bmi)
         binding.weightDisplay.text = weight.toString()
@@ -62,6 +79,20 @@ class MainActivity : AppCompatActivity() {
             binding.frameMuscle.setVisibility(View.VISIBLE)
             binding.infoMuscle.setVisibility(View.VISIBLE)
             binding.messageNoFatMuscle.setVisibility(View.INVISIBLE)
+        }
+
+        val mlAdapter = ListViewAdapter_Main(this, booster_init)
+        binding.boosterList.adapter = mlAdapter
+
+        binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
+            if (isChecked) {
+                val mlAdapter = ListViewAdapter_Main(this, booster_after)
+                binding.boosterList.adapter = mlAdapter
+            }
+            else {
+                val mlAdapter = ListViewAdapter_Main(this, booster_before)
+                binding.boosterList.adapter = mlAdapter
+            }
         }
 
         binding.location.setOnClickListener {
@@ -124,22 +155,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.close.setOnClickListener {
             binding.mainDrawerLayout.closeDrawer(GravityCompat.END)
-        }
-
-        // 키오스크 테스트용 코드 (나중에 지울 것!)
-        if(uid == "NoUid") {
-            Toast.makeText(this, "에러가 발생했습니다.", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            val save_before = ref.child("apptest").child(uid!!).child("Booster_before")
-            save_before.child("bp1").setValue("CLB0111-04,20")
-            save_before.child("bp2").setValue("CLB0111-03,32")
-            save_before.child("bp3").setValue("CLB0111-03,33")
-
-            val save_after = ref.child("apptest").child(uid).child("Booster_after")
-            save_after.child("ap1").setValue("CLB0111-04,41")
-            save_after.child("ap2").setValue("CLB0111-03,50")
-            save_after.child("ap3").setValue("CLB0111-03,60")
         }
     }
 

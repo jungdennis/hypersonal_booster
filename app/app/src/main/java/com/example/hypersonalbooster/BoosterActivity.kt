@@ -34,9 +34,8 @@ class BoosterActivity : AppCompatActivity() {
         }
 
         binding.back.setOnClickListener {
-            val main_intent = Intent(this, MainActivity::class.java)
-            main_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(main_intent)
+            overridePendingTransition(0, 0)
+            finish()
         }
         binding.location.setOnClickListener {
             val location_intent = Intent(this, KioskActivity::class.java)
@@ -47,5 +46,12 @@ class BoosterActivity : AppCompatActivity() {
             val qr_popup = MainFragment_QR()
             qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        overridePendingTransition(0, 0)
+        finish()
     }
 }

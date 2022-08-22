@@ -6,8 +6,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+
 import android.os.Bundle
-import android.util.Log
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -21,13 +22,14 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.*
 
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+
 
 class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
@@ -36,6 +38,11 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     private var permissionDenied = false
     private lateinit var Map: GoogleMap
     lateinit var binding : LayoutMapMainBinding
+
+    private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
+    lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
+    internal lateinit var mLocationRequest: com.google.android.gms.location.LocationRequest
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     lateinit var database_data : String
 
@@ -57,9 +64,34 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         val mapFragment: SupportMapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+
         binding.findMyLocation.setOnClickListener{
-            // 이러니깐 알림만 뜸;; 수정필요
+
+            /*
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return@setOnClickListener
+            }
+            var mlastloc = fusedLocationClient.lastLocation
+*/
+            Map.moveCamera(CameraUpdateFactory.newLatLngZoom((LatLng(37.558941,126.998959)), 17f))
             onMyLocationButtonClick()
+            // Map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(mLastLocation.latitude, mLastLocation.longitude),17f))
         }
 
         binding.back.setOnClickListener {
@@ -107,6 +139,34 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         googleMap.setOnMarkerClickListener(this)
     }
 
+    private fun startLocationUpdates() {
+
+        //FusedLocationProviderClient의 인스턴스를 생성.
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+        // 기기의 위치에 관한 정기 업데이트를 요청하는 메서드 실행
+        // 지정한 루퍼 스레드(Looper.myLooper())에서 콜백(mLocationCallback)으로 위치 업데이트를 요청
+        mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+    }
+
+    // 시스템으로 부터 위치 정보를 콜백으로 받음
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            // 시스템에서 받은 location 정보를 onLocationChanged()에 전달
+            locationResult.lastLocation
+            onLocationChanged(locationResult.lastLocation)
+        }
+    }
+
+    fun onLocationChanged(location: Location) {
+        mLastLocation = location
+        // var latlat = mLastLocation.latitude // 갱신 된 위도
+        // var longlong = mLastLocation.longitude // 갱신 된 경도
+        // var latlnglat = LatLng(latlat,longlong)
+    }
     /**
      * Enables the My Location layer if the fine location permission has been granted.
      */
@@ -151,6 +211,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
     }
 
+
     override fun onMyLocationButtonClick(): Boolean {
         Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT)
             .show()
@@ -163,6 +224,8 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         Toast.makeText(this, "here:\n$location", Toast.LENGTH_LONG)
             .show()
     }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -236,6 +299,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     }
 
 }
+
 
 
 

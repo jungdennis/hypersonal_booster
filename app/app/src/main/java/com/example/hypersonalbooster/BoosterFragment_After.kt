@@ -3,6 +3,7 @@ package com.example.hypersonalbooster
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -24,12 +25,18 @@ class BoosterFragment_After() : BottomSheetDialogFragment() {
         val shared = context.getSharedPreferences("data_cloud", 0)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = FragmentBoosterDetailBinding.inflate(inflater, container, false)
 
         binding.close.setOnClickListener {
             dismiss()
+        }
+
+        binding.findVendor.setOnClickListener{
+            val intent = Intent(getActivity(), KioskActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

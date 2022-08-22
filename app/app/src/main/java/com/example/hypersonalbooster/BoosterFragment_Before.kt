@@ -3,6 +3,7 @@ package com.example.hypersonalbooster
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -30,6 +31,11 @@ class BoosterFragment_Before() : BottomSheetDialogFragment() {
 
         binding.close.setOnClickListener {
             dismiss()
+        }
+
+        binding.findVendor.setOnClickListener{
+            val intent = Intent(getActivity(), KioskActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

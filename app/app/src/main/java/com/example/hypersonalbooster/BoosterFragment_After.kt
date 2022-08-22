@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -36,6 +37,10 @@ class BoosterFragment_After() : BottomSheetDialogFragment() {
 
         binding.findVendor.setOnClickListener{
             val intent = Intent(getActivity(), KioskActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buyBooster.setOnClickListener{
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.naver.com"))
             startActivity(intent)
         }
 

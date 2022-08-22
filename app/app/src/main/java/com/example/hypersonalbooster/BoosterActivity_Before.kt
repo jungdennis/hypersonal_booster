@@ -48,4 +48,11 @@ class BoosterActivity_Before : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        overridePendingTransition(0, 0)
+        finish()
+    }
 }

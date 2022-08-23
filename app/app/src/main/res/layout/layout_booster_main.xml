@@ -105,7 +105,6 @@
         app:srcCompat="@drawable/back_circle_main_color"
         tools:layout_editor_absoluteX="193dp"
         tools:layout_editor_absoluteY="-200dp" />
-
     <ImageView
         android:id="@+id/circle_left"
         android:layout_width="394dp"
@@ -190,72 +189,156 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/info_before"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_before"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/icon_before">
+        app:layout_constraintTop_toBottomOf="@+id/icon_before" >
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:backgroundTint="#1A000000"
-            android:drawableLeft="@drawable/icon_supply"
-            android:text="운동 전 먹을 단백질 타입"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+        <ScrollView
+            android:id="@+id/scroll_before"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:backgroundTint="@color/gray"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:id="@+id/before_button1"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:id="@+id/before_button2"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+
+                    <Button
+                        android:id="@+id/before_button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/info_after"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+
         android:fontFamily="@font/font_medium"
         android:text="운동 후"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_after"
-        app:layout_constraintStart_toEndOf="@+id/icon_after" />
+        app:layout_constraintLeft_toLeftOf="@id/info_before"
+
+        app:layout_constraintStart_toEndOf="@+id/icon_after"
+        app:layout_constraintTop_toBottomOf="@+id/frame_before" />
 
     <ImageView
         android:id="@+id/icon_after"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/frame_after"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:srcCompat="@drawable/icon_running"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginStart="32dp"
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_before"
+        app:srcCompat="@drawable/icon_running" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_after"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        android:layout_width="446dp"
+        android:layout_height="265dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start" >
+        app:layout_constraintTop_toBottomOf="@id/icon_after">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:backgroundTint="#1A000000"
-            android:drawableLeft="@drawable/icon_supply"
-            android:text="운동 후 먹을 단백질 타입"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+        <ScrollView
+            android:id="@+id/scroll_after"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:backgroundTint="@color/gray"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/icon_after">
+
+                    <Button
+                        android:id="@+id/after_button1"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/after_button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/after_button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:fontFamily="@font/font_medium"
+                        android:text="1000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -77,7 +77,9 @@ class Booster(id : String) {
                 carb = snapshot.child("carb(g)").getValue().toString().toFloat()
                 sugar = snapshot.child("sugars(g)").getValue().toString().toFloat()
                 fat = snapshot.child("fat(g)").getValue().toString().toFloat()
-                sat_fat = snapshot.child("sat fat(g)").getValue().toString().toFloat()
+                sat_fat = snapshot.child("sat fat(g)").getValue().toString().toFloat(
+
+                )
                 protein = snapshot.child("protein(g)").getValue().toString().toFloat()
 
                 Log.d("Booster Init", "Nutruent : $calories, $carb, $sugar, $fat, $sat_fat, $protein")

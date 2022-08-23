@@ -106,6 +106,13 @@
             android:name=".BoosterActivity_After"
             android:screenOrientation="portrait"
             android:exported="false" />
+        <activity
+            android:name=".KioskRequestRecommand"
+            android:exported="false" />
+        <activity
+            android:name=".KioskFragmentDetailSearch"
+            android:exported="false" />
+
     </application>
 
 </manifest>

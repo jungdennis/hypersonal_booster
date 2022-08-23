@@ -2,6 +2,7 @@ package com.example.hypersonalbooster
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -26,9 +27,12 @@ class KioskFragment_Detail() : BottomSheetDialogFragment() {
         }
 
         binding.request.setOnClickListener{
-            val detailSearchDialog = KioskFragment_Detail_Search()
-            detailSearchDialog.show(parentFragmentManager, detailSearchDialog.tag)
+            activity?.let{
+                val intent = Intent (it, KioskRequestRecommand::class.java)
+                it.startActivity(intent)
+            }
         }
+
 
         binding.favorite.setOnClickListener{
             if(star == 0){

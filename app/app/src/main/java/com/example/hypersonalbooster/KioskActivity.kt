@@ -67,33 +67,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
-        binding.findMyLocation.setOnClickListener{
-
-            /*
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return@setOnClickListener
-            }
-            var mlastloc = fusedLocationClient.lastLocation
-*/
-            Map.moveCamera(CameraUpdateFactory.newLatLngZoom((LatLng(37.558941,126.998959)), 17f))
-            onMyLocationButtonClick()
-            // Map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(mLastLocation.latitude, mLastLocation.longitude),17f))
-        }
-
         binding.back.setOnClickListener {
             finish()
         }
@@ -112,7 +85,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         Map = googleMap
         googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.setOnMyLocationClickListener(this)
-        googleMap.uiSettings.isMyLocationButtonEnabled = false
+        googleMap.uiSettings.isMyLocationButtonEnabled = true
         enableMyLocation()
 
         val marker1 = LatLng(37.558941,126.998959)

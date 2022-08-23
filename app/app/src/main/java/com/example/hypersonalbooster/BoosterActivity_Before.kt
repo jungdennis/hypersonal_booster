@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
+import com.google.firebase.database.FirebaseDatabase
 
 
 class BoosterActivity_Before : AppCompatActivity() {
@@ -14,10 +15,15 @@ class BoosterActivity_Before : AppCompatActivity() {
 
     private var end_time: Long = 0
 
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = LayoutBoosterBeforeBinding.inflate(layoutInflater)
+
 
         setContentView(binding.root)
 

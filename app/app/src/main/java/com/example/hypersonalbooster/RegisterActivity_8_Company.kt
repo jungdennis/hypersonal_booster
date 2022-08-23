@@ -16,11 +16,10 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
 
     private lateinit var binding : LayoutRegisterCompanyBinding
 
-    var company_list = ArrayList<String>()
-    var filtered_list = ArrayList<String>()
+    var company_list = ArrayList<Company>()
+    var list = ArrayList<Company>()
 
-
-    private lateinit var adapter : RecyclerViewAdapter_Company
+    private lateinit var adapter : ListViewAdapter_Company
 
     var check_company = ArrayList<String>()
 
@@ -35,8 +34,12 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
         setContentView(binding.root)
 
         val company_string = getSharedPreferences("data_booster", 0).getString("company", "failed")
-        company_list = company_string!!.split(",").distinct() as ArrayList<String>
-        filtered_list = company_list
+        val company_temp = company_string!!.split(",").distinct() as ArrayList<String>
+        for(company in company_temp) {
+            company_list.add(Company(company))
+        }
+
+        list.addAll(company_list)
 
         val editor = getSharedPreferences("data_cloud", 0).edit()
 
@@ -46,8 +49,7 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
 
         binding.companySearch.setOnQueryTextListener(searchViewTextListener)
 
-        binding.companySelect.layoutManager = LinearLayoutManager(this)
-        adapter = RecyclerViewAdapter_Company(filtered_list, this)
+        adapter = ListViewAdapter_Company(this, list, this)
         binding.companySelect.setAdapter(adapter)
 
         binding.noCompany.setOnClickListener {
@@ -122,20 +124,31 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
 
             //텍스트 입력/수정시에 호출
             override fun onQueryTextChange(s: String): Boolean {
-                adapter.getFilter().filter(s)
-                Log.d("RegisterActivity_8_Company", "SearchView Text is Changed : $s")
-                adapter.notifyDataSetChanged()
+                search(s)
                 return false
             }
         }
+
+    private fun search(charText: String) {
+        list.clear()
+
+        if (charText.length == 0) {
+            list.addAll(company_list)
+        } else {
+            for (i in 0 until company_list.size) {
+                if (company_list.get(i).name.toLowerCase().contains(charText)) {
+                    list.add(company_list.get(i))
+                }
+            }
+        }
+
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onCompanyClickAdd(company_name : String) {
         check_company.add(company_name)
     }
     override fun onCompanyClickRemove(company_name: String) {
         check_company.remove(company_name)
-    }
-    override fun onFiltered(filtered_result: ArrayList<String>) {
-        filtered_list = filtered_result
     }
 }

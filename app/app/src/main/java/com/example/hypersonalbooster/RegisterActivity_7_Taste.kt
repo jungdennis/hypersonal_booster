@@ -3,22 +3,20 @@ package com.example.hypersonalbooster
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hypersonalbooster.databinding.LayoutRegisterTasteBinding
 import com.google.firebase.database.FirebaseDatabase
-
 
 class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
 
     private lateinit var binding : LayoutRegisterTasteBinding
 
-    var taste_list = ArrayList<String>()
+    var taste_list = ArrayList<Taste>()
+    var list = ArrayList<Taste>()
 
-    private lateinit var adapter : RecyclerViewAdapter_Taste
+    private lateinit var adapter : ListViewAdapter_Taste
 
     var check_taste = ArrayList<String>()
 
@@ -33,7 +31,12 @@ class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
         setContentView(binding.root)
 
         val taste_string = getSharedPreferences("data_booster", 0).getString("taste", "failed")
-        taste_list = taste_string!!.split(",").distinct() as ArrayList<String>
+        val taste_temp = taste_string!!.split(",").distinct() as ArrayList<String>
+        for(taste in taste_temp) {
+            taste_list.add(Taste(taste))
+        }
+
+        list.addAll(taste_list)
 
         val editor = getSharedPreferences("data_cloud", 0).edit()
 
@@ -43,8 +46,7 @@ class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
 
         binding.tasteSearch.setOnQueryTextListener(searchViewTextListener)
 
-        binding.tasteSelect.layoutManager = LinearLayoutManager(this)
-        adapter = RecyclerViewAdapter_Taste(taste_list, this)
+        adapter = ListViewAdapter_Taste(this, list, this)
         binding.tasteSelect.setAdapter(adapter)
 
         binding.noTaste.setOnClickListener {
@@ -119,14 +121,26 @@ class RegisterActivity_7_Taste : AppCompatActivity(), OnTasteClickListener {
 
             //텍스트 입력/수정시에 호출
             override fun onQueryTextChange(s: String): Boolean {
-                adapter.filter.filter(s)
-                Log.d("RegisterActivity_8_Taste", "SearchView Text is Changed : $s")
-                runOnUiThread {
-                    adapter.notifyDataSetChanged()
-                }
+                search(s)
                 return false
             }
         }
+
+    private fun search(charText: String) {
+        list.clear()
+
+        if (charText.length == 0) {
+            list.addAll(taste_list)
+        } else {
+            for (i in 0 until taste_list.size) {
+                if (taste_list.get(i).name.toLowerCase().contains(charText)) {
+                    list.add(taste_list.get(i))
+                }
+            }
+        }
+
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onTasteClickAdd(taste_name : String) {
         check_taste.add(taste_name)

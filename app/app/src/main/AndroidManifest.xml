@@ -20,9 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HyperBooster"
         tools:targetApi="31">
-        <activity
-            android:name=".RegisterActivity_4_Target_NoInbody"
-            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -40,13 +37,12 @@
 
         <activity
             android:name=".KioskActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_activity_google_maps" />
         <activity
-            android:name=".RegisterActivity_Particular"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,42 +52,59 @@
         </activity>
         <activity
             android:name=".RegisterActivity_0_Welcome"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_1_Basic"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_2_HeightWeight"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_3_Inbody"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_4_Target"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity_4_Target_NoInbody"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_6_Feeling"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_7_Taste"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_8_Company"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity_9_Particular"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".BoosterActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".BoosterActivity_Before"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".BoosterActivity_After"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 

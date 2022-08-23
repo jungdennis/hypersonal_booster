@@ -112,9 +112,11 @@
             android:exported="false" />
         <activity
             android:name=".KioskRequestRecommand"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".KioskFragmentDetailSearch"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
     </application>

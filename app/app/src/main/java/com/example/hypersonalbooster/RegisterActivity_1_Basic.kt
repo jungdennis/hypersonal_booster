@@ -112,7 +112,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 if(uid_check) {
                     Toast.makeText(this, "$input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(this, RegisterActivity_2_HeightWeight::class.java)
+                    val intent = Intent(this, RegisterActivity_2_Health::class.java)
                     startActivity(intent)
                 }
             }

@@ -54,6 +54,8 @@
 
     <android.widget.Button
         style="?android:attr/borderlessButtonStyle"
+        android:drawableStart="@drawable/icon_google"
+        android:paddingStart="15dp"
         android:id="@+id/login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -62,7 +64,7 @@
         android:background="@drawable/btn_login"
         android:fontFamily="@font/font_medium"
         android:textAllCaps="false"
-        android:text="Google 계정으로 로그인"
+        android:text="Google ID로 로그인"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"

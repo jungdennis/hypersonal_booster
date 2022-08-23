@@ -59,6 +59,10 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
+            android:name=".RegisterActivity_2_Health"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity_2_HeightWeight"
             android:screenOrientation="portrait"
             android:exported="false" />

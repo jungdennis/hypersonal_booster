@@ -15,13 +15,9 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterParticularBinding
 
-    private var input_vegan : Boolean = false
-    private var input_milk : Boolean = false
-    private var input_caffeine : Boolean = false
-
-    private var check_vegan : Int = 0
-    private var check_milk : Int = 0
-    private var check_caffeine : Int = 0
+    private var input_vegan : String = ""
+    private var input_milk : String = ""
+    private var input_caffeine : String = ""
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
@@ -40,59 +36,52 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
             binding.veganYes.setBackgroundResource(R.drawable.btn_main_color)
             binding.veganNo.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_vegan = true
-            check_vegan = 1
+            input_vegan = "true"
         }
         binding.veganNo.setOnClickListener {
             binding.veganNo.setBackgroundResource(R.drawable.btn_main_color)
             binding.veganYes.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_vegan = false
-            check_vegan = 1
+            input_vegan = "false"
         }
 
         binding.milkYes.setOnClickListener {
             binding.milkYes.setBackgroundResource(R.drawable.btn_main_color)
             binding.milkNo.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_milk = true
-            check_milk = 1
+            input_milk = "true"
         }
         binding.milkNo.setOnClickListener {
             binding.milkNo.setBackgroundResource(R.drawable.btn_main_color)
             binding.milkYes.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_milk = false
-            check_milk = 1
+            input_milk = "false"
         }
 
         binding.caffeineYes.setOnClickListener {
             binding.caffeineYes.setBackgroundResource(R.drawable.btn_main_color)
             binding.caffeineNo.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_caffeine = true
-            check_caffeine = 1
+            input_caffeine = "true"
         }
         binding.caffeineNo.setOnClickListener {
             binding.caffeineNo.setBackgroundResource(R.drawable.btn_main_color)
             binding.caffeineYes.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_caffeine = false
-            check_caffeine = 1
+            input_caffeine = "false"
         }
 
         binding.confirm.setOnClickListener {
-            val check = check_vegan * check_milk * check_caffeine
-            if(check == 0) {
+            if(input_vegan.isEmpty() || input_caffeine.isEmpty() || input_milk.isEmpty()) {
                 Toast.makeText(this, "모든 질문에 답해주세요.", Toast.LENGTH_SHORT).show()
             }
-            else if (check == 1){
+            else {
                 val shared = getSharedPreferences("data_cloud", 0)
                 val editor = shared.edit()
 
-                editor.putBoolean("vegan", input_vegan)
-                editor.putBoolean("milk", input_milk)
-                editor.putBoolean("caffeine", input_caffeine)
+                editor.putString("vegan", input_vegan)
+                editor.putString("milk", input_milk)
+                editor.putString("caffeine", input_caffeine)
                 editor.apply()
 
                 val uid = shared.getString("uid", "NoUid")
@@ -102,10 +91,12 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
                     uid_check = false
                 }
                 else {
-                    val save = ref.child("apptest").child(uid!!).child("Info_Particular")
-                    save.child("vegan").setValue(input_vegan)
-                    save.child("milk").setValue(input_milk)
-                    save.child("caffeine").setValue(input_caffeine)
+                    val save = ref.child("apptest").child(uid!!)
+                    save.child("Info_Particular").child("vegan").setValue(input_vegan)
+                    save.child("Info_Particular").child("milk").setValue(input_milk)
+                    save.child("Info_Particular").child("caffeine").setValue(input_caffeine)
+
+                    save.child("cloud_check").setValue("true")
 
                     uid_check = true
                 }

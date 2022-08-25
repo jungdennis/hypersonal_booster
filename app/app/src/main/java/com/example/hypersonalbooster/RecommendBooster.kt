@@ -1,6 +1,6 @@
 package com.example.hypersonalbooster
 
-class RecommendBooster() {
+class RecommendBooster(uid : String) {
     // basic information
     var age : Int = 0
     var sex : String = ""
@@ -23,6 +23,10 @@ class RecommendBooster() {
     var milk : Boolean = false
     var vegan : Boolean = false
     var caffeine : Boolean = false
+
+    init {
+
+    }
 
     // setter
     fun set_basic(Age : Int, Sex: String, Pragent : Boolean) {

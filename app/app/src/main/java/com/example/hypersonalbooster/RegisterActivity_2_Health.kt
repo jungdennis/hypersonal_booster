@@ -14,8 +14,8 @@ class RegisterActivity_2_Health : AppCompatActivity() {
 
     lateinit var input_height : String
     lateinit var input_weight : String
-    lateinit var input_fat : String
-    lateinit var input_muscle : String
+    var input_fat : String = "-1"
+    var input_muscle : String = "-1"
 
     var intent_flag : Boolean = false
 
@@ -24,6 +24,8 @@ class RegisterActivity_2_Health : AppCompatActivity() {
 
         binding = LayoutRegisterHealthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.confirm.setVisibility(View.INVISIBLE)
 
         binding.back.setOnClickListener {
             finish()
@@ -65,6 +67,7 @@ class RegisterActivity_2_Health : AppCompatActivity() {
 
                 val frag_fat = frag_yes.binding.insertFat.text.toString()
                 val frag_muscle = frag_yes.binding.insertMuscle.text.toString()
+
 
                 if(frag_fat.isNotEmpty()) {
                     input_fat = frag_fat

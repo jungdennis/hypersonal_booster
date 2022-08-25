@@ -20,7 +20,7 @@ class ListViewAdapter_Main(private val context: Context, private val booster_lis
 
         val booster = booster_list[position]
 
-        val booster_image = context.resources.getIdentifier("icon_google", "drawable", context.packageName)
+        val booster_image = context.resources.getIdentifier("img_main", "drawable", context.packageName)
 
         binding.boosterImage.setImageResource(booster_image)
         binding.boosterKind.text = booster.class_2

@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.delay
 
 
 class LoginActivity : AppCompatActivity() {
@@ -93,6 +94,9 @@ class LoginActivity : AppCompatActivity() {
                     val uid = user!!.uid.toString()
                     val name = user!!.displayName
 
+                    val cloud = cloud_check(uid)
+                    val health = health_check()
+
                     ref_booster.child("apptest").child(uid).child("UID").setValue(uid)
                     ref_booster.child("apptest").child(uid).child("name").setValue(name)
 
@@ -103,34 +107,70 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("name", name)
                     editor.apply()
 
-                    // 키오스크 테스트용 코드 (나중에 지울 것!)
-                    val save_before = ref_booster.child("apptest").child(uid!!).child("Booster_before")
-                    save_before.child("bp1").setValue("CLB0111-04,20")
-                    save_before.child("bp2").setValue("CLB0111-03,32")
-                    save_before.child("bp3").setValue("CLB0111-05,33")
-
-                    val save_after = ref_booster.child("apptest").child(uid).child("Booster_after")
-                    save_after.child("ap1").setValue("CLB0111-05,41")
-                    save_after.child("ap2").setValue("CLB0111-04,50")
-                    save_after.child("ap3").setValue("CLB0111-03,60")
 
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT)
                         .show()
-                    updateUI(user)
+
+                    if(cloud) {
+                        if(health) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        else {
+                            val intent = Intent(this, RegisterActivity_0_Welcome::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                    else{
+                        val intent = Intent(this, RegisterActivity_0_Welcome::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
                 else {
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT)
                         .show()
-                    updateUI(null)
                 }
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null) {
-            val intent = Intent(this, RegisterActivity_0_Welcome::class.java)
-            startActivity(intent)
-            finish()
+    private fun health_check() : Boolean {
+        val check = getSharedPreferences("data_health", 0)
+        val editor = check.edit()
+
+        val height = check.getFloat("height", 0.0F)
+        val weight = check.getFloat("weight", 0.0F)
+
+        if(height == 0.0F || weight == 0.0F) {
+            Log.d("health_check", "false")
+            return false
+        }
+        else {
+            Log.d("health_check", "true")
+            editor.putString("health_check", "true")
+            editor.apply()
+            return true
+        }
+    }
+
+    fun cloud_check(uid : String) : Boolean {
+        var flag : String? = null
+
+        ref_booster.child(uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                flag = dataSnapshot.child("cloud_flag").getValue().toString()
+            }
+            override fun onCancelled(databaseError: DatabaseError) {}})
+
+        if(flag == null) {
+            Log.d("cloud_check", "false")
+            return false
+        }
+        else{
+            Log.d("cloud_check", "true")
+            return true
         }
     }
 }

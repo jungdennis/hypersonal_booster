@@ -49,6 +49,15 @@ class BoosterActivity : AppCompatActivity() {
             booster_init.add(Booster(boosterID))
         }
 
+        val mlAdapter = ListViewAdapter_Main(this, booster_before)
+
+        binding.boosterListBefore.adapter = mlAdapter
+
+        val mlAdapter2 = ListViewAdapter_Main(this, booster_after)
+
+        binding.boosterListAfter.adapter = mlAdapter2
+
+
         binding.moreBefore.setOnClickListener {
             val intent = Intent(this, BoosterActivity_Before :: class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

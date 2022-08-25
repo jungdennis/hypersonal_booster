@@ -192,8 +192,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/info_before"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:id="@+id/frame_before"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -201,66 +201,23 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:layout_constraintHorizontal_bias="1.0"
+        android:background="@drawable/back_fragment"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/icon_before" >
-
-        <ScrollView
-            android:id="@+id/scroll_before"
+        <ListView
+            android:id="@+id/booster_list_before"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/appicon_background"
-            android:backgroundTint="@color/gray"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.448" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/before_button1"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="보충제 이름: 퍼펙트 파워쉐이크\n맛:딸기\t\t\t\t\t\t\t\n제조사: 칼로바이 \t\t\t\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <Button
-                        android:id="@+id/before_button2"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="보충제 이름: 프로틴 스파클링\n맛:자몽\t\t\t\t\n제조사: 칼로바이\t\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <Button
-                        android:id="@+id/before_button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="\n보충제 이름: 클리어웨이 게이너\n맛:파인애플\t\n제조사: 마이프로틴\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -286,74 +243,32 @@
         app:srcCompat="@drawable/icon_running" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:id="@+id/frame_after"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/back_fragment"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintBottom_toTopOf="@id/guideline_bottombar_top"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@id/icon_after">
-
-        <ScrollView
-            android:id="@+id/scroll_after"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/icon_after"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        >
+        <ListView
+            android:id="@+id/booster_list_after"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray"
-            android:backgroundTint="@color/gray"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/icon_after">
-
-                    <Button
-                        android:id="@+id/after_button1"
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="보충제 이름: 퍼펙트 파워쉐이크\n맛:초콜릿\t\t\t\t\n제조사: 칼로바이 \t\t\t\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <Button
-                        android:id="@+id/after_button2"
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="보충제 이름: 프로틴 스파클링\n맛:딸기\t\t\t\t\n제조사: 칼로바이\t\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <Button
-                        android:id="@+id/after_button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="@color/sub_color_light"
-                        android:fontFamily="@font/font_medium"
-                        android:text="\n보충제 이름: 클리어웨이 게이너\n맛:파인애플\t\n제조사: 마이프로틴\t\t\t\n"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.448" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -369,7 +284,5 @@
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/info_after"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

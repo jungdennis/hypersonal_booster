@@ -19,6 +19,7 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref_booster = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
     val ref_kiosk = database.getReference("kiosk")
+    val ref_members = database.getReference("members")
 
 
     var company_list = ""
@@ -124,7 +125,7 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
         // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
         val uid = shared_cloud.getString("uid", "NoUid")
 
-        ref_booster.child("apptest").child(uid!!).child("Booster_before").addValueEventListener(object :
+        ref_members.child(uid!!).child("Booster_before").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.getChildren()) {
@@ -144,7 +145,7 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) { } })
 
-        ref_booster.child("apptest").child(uid).child("Booster_after").addValueEventListener(object :
+        ref_members.child(uid).child("Booster_after").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.getChildren()) {
@@ -165,12 +166,12 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) { } })
 
         // 키오스크 테스트용 코드 (나중에 지울 것!)
-        val save_before = ref_booster.child("apptest").child(uid!!).child("Booster_before")
+        val save_before = ref_members.child(uid!!).child("Booster_before")
         save_before.child("bp1").setValue("CLB0111-04,20")
         save_before.child("bp2").setValue("CLB0111-03,32")
         save_before.child("bp3").setValue("CLB0111-05,33")
 
-        val save_after = ref_booster.child("apptest").child(uid).child("Booster_after")
+        val save_after = ref_members.child(uid).child("Booster_after")
         save_after.child("ap1").setValue("CLB0111-05,41")
         save_after.child("ap2").setValue("CLB0111-04,50")
         save_after.child("ap3").setValue("CLB0111-03,60")

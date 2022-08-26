@@ -13,7 +13,7 @@ class RegisterActivity_6_Feeling : AppCompatActivity() {
     private var input_feeling : String = ""
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("members")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class RegisterActivity_6_Feeling : AppCompatActivity() {
                     uid_check = false
                 }
                 else {
-                    val save = ref.child("apptest").child(uid!!).child("Info_Favorite")
+                    val save = ref.child(uid!!).child("Info_Favorite")
                     save.child("feeling").setValue(input_feeling)
 
                     uid_check = true

@@ -20,7 +20,7 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
     private var input_caffeine : String = ""
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("members")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +91,7 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
                     uid_check = false
                 }
                 else {
-                    val save = ref.child("apptest").child(uid!!)
+                    val save = ref.child(uid!!)
                     save.child("Info_Particular").child("vegan").setValue(input_vegan)
                     save.child("Info_Particular").child("milk").setValue(input_milk)
                     save.child("Info_Particular").child("caffeine").setValue(input_caffeine)

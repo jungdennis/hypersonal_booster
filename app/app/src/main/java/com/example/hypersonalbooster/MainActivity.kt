@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : LayoutMainBinding
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
     private var end_time: Long = 0
 
@@ -131,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             shared_health.edit().clear().apply()
 
             // database 데이터 삭제
-            val delete_ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY" + "/apptest/" + uid)
+            val delete_ref = database.getReference("members/" + uid)
             delete_ref.removeValue()
 
             FirebaseAuth.getInstance().currentUser!!.delete().addOnCompleteListener { task ->

@@ -1,5 +1,0 @@
-package com.example.hypersonalbooster
-
-interface RecommendInterface {
-
-}

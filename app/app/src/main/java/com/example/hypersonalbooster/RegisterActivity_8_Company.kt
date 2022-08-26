@@ -24,7 +24,7 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
     var check_company = ArrayList<String>()
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("members")
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +65,7 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
                 uid_check = false
             }
             else {
-                val save = ref.child("apptest").child(uid!!).child("Info_Favorite")
+                val save = ref.child(uid!!).child("Info_Favorite")
                 save.child("company").setValue(input_company)
 
                 uid_check = true
@@ -101,7 +101,7 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
                     uid_check = false
                 }
                 else {
-                    val save = ref.child("apptest").child(uid!!).child("Info_Favorite")
+                    val save = ref.child(uid!!).child("Info_Favorite")
                     save.child("company").setValue(input_company)
 
                     uid_check = true

@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 9001
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref_booster = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("members")
 
     private var end_time: Long = 0
 
@@ -97,8 +97,8 @@ class LoginActivity : AppCompatActivity() {
                     val cloud = cloud_check(uid)
                     val health = health_check()
 
-                    ref_booster.child("apptest").child(uid).child("UID").setValue(uid)
-                    ref_booster.child("apptest").child(uid).child("name").setValue(name)
+                    ref.child(uid).child("UID").setValue(uid)
+                    ref.child(uid).child("name").setValue(name)
 
                     val shared = getSharedPreferences("data_cloud", 0)
                     val editor = shared.edit()
@@ -158,7 +158,7 @@ class LoginActivity : AppCompatActivity() {
     fun cloud_check(uid : String) : Boolean {
         var flag : String? = null
 
-        ref_booster.child(uid).addValueEventListener(object : ValueEventListener {
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 flag = dataSnapshot.child("cloud_flag").getValue().toString()
             }

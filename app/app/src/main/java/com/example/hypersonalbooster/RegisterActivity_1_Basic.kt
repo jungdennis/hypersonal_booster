@@ -17,14 +17,14 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
     private lateinit var binding : LayoutRegisterBasicBinding
     private lateinit var input_age : String
     private lateinit var input_sex : String
-    private var input_pragent : Boolean = false
+    private var input_pragent : String = ""
 
     var check_age : Int = 0
     var check_sex : Int = 0
     var check_pragent : Int = 0
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("members")
 
     private var end_time: Long = 0
 
@@ -41,7 +41,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
             binding.sexWoman.setBackgroundResource(R.drawable.btn_sub_color_light)
 
             input_sex = "man"
-            input_pragent = false
+            input_pragent = "false"
 
             check_sex = 1
             check_pragent = 1
@@ -64,7 +64,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
             binding.pragentYes.setBackgroundResource(R.drawable.btn_main_color)
             binding.pragentNo.setBackgroundResource(R.drawable.btn_sub_color_light)
 
-            input_pragent = true
+            input_pragent = "true"
 
             check_pragent = 1
         }
@@ -72,7 +72,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
             binding.pragentYes.setBackgroundResource(R.drawable.btn_sub_color_light)
             binding.pragentNo.setBackgroundResource(R.drawable.btn_main_color)
 
-            input_pragent = false
+            input_pragent = "false"
 
             check_pragent = 1
         }
@@ -91,7 +91,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 val editor = shared.edit()
                 editor.putInt("age", input_age.toInt())
                 editor.putString("sex", input_sex)
-                editor.putBoolean("pragent", input_pragent)
+                editor.putString("pragent", input_pragent)
                 editor.apply()
 
                 val uid = shared.getString("uid", "NoUid")
@@ -101,7 +101,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                     uid_check = false
                 }
                 else {
-                    val save = ref.child("apptest").child(uid!!).child("Info_Basic")
+                    val save = ref.child(uid!!).child("Info_Basic")
                     save.child("age").setValue(input_age.toInt())
                     save.child("sex").setValue(input_sex)
                     save.child("pragent").setValue(input_pragent)

@@ -22,6 +22,8 @@ class Booster(id : String) {
     var fat : Float = 0.0F              // 지방
     var sat_fat : Float = 0.0F          // 포화지방
     var protein : Float = 0.0F          // 단백질
+    var link : String = ""              // 구매링크
+    var etc : String = ""               // 특이사항
 
     init {
         ref.child(id).addValueEventListener(object : ValueEventListener {
@@ -83,6 +85,9 @@ class Booster(id : String) {
                 protein = snapshot.child("protein(g)").getValue().toString().toFloat()
 
                 Log.d("Booster Init", "Nutruent : $calories, $carb, $sugar, $fat, $sat_fat, $protein")
+
+                link = snapshot.child("link").getValue().toString()
+                etc = snapshot.child("비고").getValue().toString()
             }
 
             override fun onCancelled(error: DatabaseError) { } })

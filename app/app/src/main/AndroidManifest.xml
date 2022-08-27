@@ -66,14 +66,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegisterActivity_2_HeightWeight"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".RegisterActivity_3_Inbody"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".RegisterActivity_3_Target"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -95,6 +87,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity_7_Particular"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecommendActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

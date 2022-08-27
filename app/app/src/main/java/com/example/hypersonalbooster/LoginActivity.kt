@@ -108,8 +108,7 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
                     editor_cloud.putString("name", name)
                     editor_cloud.apply()
 
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT)
-                        .show()
+                    //Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
                     health_check()
                     cloud_check(uid, this)
@@ -169,7 +168,7 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
         if(check_cloud == "true") {
             getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "true").apply()
             if(check_health == "true") {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, RecommendActivity::class.java)
                 startActivity(intent)
                 finish()
             }

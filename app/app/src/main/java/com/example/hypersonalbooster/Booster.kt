@@ -15,7 +15,7 @@ class Booster(id : String) {
     var class_0 : String = ""           // 분류0 : 가루, 액체, 그외
     var class_1 : String = ""           // 분류1 : 운동 전/후
     var class_2 : String = ""           // 분류2 : 상세분류
-    var amount : Int = 0                // 1회 제공량
+    var amount : Float = 0.0F           // 1회 제공량
     var amount_string : String = ""     // 1회 제공량 단위까지 붙여서 표시
     var calories : Int = 0              // 칼로리
     var carb : Float = 0.0F             // 탄수화물
@@ -105,7 +105,7 @@ class Booster(id : String) {
                 }
                 Log.d("Booster Init", "Sort Complete : $class_0, $class_1, $class_2")
 
-                amount = snapshot.child("amount(1회제공량(가루g액체ml))").getValue().toString().toInt()
+                amount = snapshot.child("amount(1회제공량(가루g액체ml))").getValue().toString().toFloat()
                 if(class_0 == "liquid") {
                     amount_string += (amount.toString() + "ml")
                 }

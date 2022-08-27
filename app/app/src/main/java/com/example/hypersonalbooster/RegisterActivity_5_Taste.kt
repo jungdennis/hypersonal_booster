@@ -77,7 +77,7 @@ class RegisterActivity_5_Taste : AppCompatActivity(), OnTasteClickListener {
                 uid_check = false
             }
             else {
-                val save = ref.child("apptest").child(uid!!).child("Info_Favorite")
+                val save = ref.child(uid!!).child("Info_Favorite")
                 save.child("taste").setValue(input_taste)
 
                 uid_check = true

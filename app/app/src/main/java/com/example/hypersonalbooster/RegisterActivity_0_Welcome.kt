@@ -10,7 +10,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.*
 
 class RegisterActivity_0_Welcome : AppCompatActivity() {
 
@@ -60,7 +59,7 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
             Log.d("RegisterActivity_0", "health_check, cloud_check : $health_check, $cloud_check")
 
             if(health_check == "true" && cloud_check == "true") {
-                val intent = Intent(this, RecommendActivity::class.java)
+                val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -28,7 +28,7 @@ class RegisterActivity_0_Return : AppCompatActivity() {
             Log.d("RegisterActivity_0", "health_check, cloud_check : $health_check, $cloud_check")
 
             if(health_check == "true" && cloud_check == "true") {
-                val intent = Intent(this, RecommendActivity::class.java)
+                val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()
             }

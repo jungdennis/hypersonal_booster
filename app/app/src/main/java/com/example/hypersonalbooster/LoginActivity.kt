@@ -2,7 +2,6 @@ package com.example.hypersonalbooster
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,13 +13,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.*
 
 
 class LoginActivity : AppCompatActivity(), CloudCallbackListener {
@@ -155,7 +152,7 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
                             check_cloud = "false"
                         }
 
-                        callback.onFlag()
+                        callback.onCallback()
                     }
                 }
 
@@ -163,12 +160,12 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
             })
     }
 
-    override fun onFlag() {
+    override fun onCallback() {
         check_health = getSharedPreferences("data_health", 0).getString("health_check", "false").toString()
         if(check_cloud == "true") {
             getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "true").apply()
             if(check_health == "true") {
-                val intent = Intent(this, RecommendActivity::class.java)
+                val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()
             }

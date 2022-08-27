@@ -4,11 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hypersonalbooster.databinding.LayoutRecommendBinding
+import com.example.hypersonalbooster.databinding.LayoutRecommendAfterBinding
+import com.google.firebase.database.*
 
-class RecommendActivity() : AppCompatActivity() {
+class RecommendActivity_After() : AppCompatActivity() {
 
-    private lateinit var binding : LayoutRecommendBinding
+    private lateinit var binding : LayoutRecommendAfterBinding
+
+    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
+    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster")
 
     // basic information
     var age : Int = 0
@@ -49,7 +53,7 @@ class RecommendActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LayoutRecommendBinding.inflate(layoutInflater)
+        binding = LayoutRecommendAfterBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
@@ -148,14 +152,6 @@ class RecommendActivity() : AppCompatActivity() {
         caffeine = shared_cloud.getString("caffeine", "NoData").toString()
         vegan = shared_cloud.getString("vegan", "NoData").toString()
 
-        // 운동 전 종류 지정
-        if(pragent == "true" || caffeine == "true") {
-            kind_before = "caffeine_no"
-        }
-        else {
-            kind_before = "caffeine_ok"
-        }
-
         // 운동 후 종류 지정
         if(now_weight < target_weight) {
             kind_after = "gainer"
@@ -171,7 +167,29 @@ class RecommendActivity() : AppCompatActivity() {
                 kind_after = "normal"
             }
         }
-        Toast.makeText(this, "Before : $kind_before / After : $kind_after",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "After : $kind_after",Toast.LENGTH_SHORT).show()
+
+        var query_1 : Query = ref
+
+        if(feeling == "clean") {
+            query_1 = ref.orderByChild("texture").equalTo("clear")
+        }
+        else if(feeling == "milky") {
+            query_1 = ref.orderByChild("texture").equalTo("thick")
+        }
+
+        /*
+        query_1.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for (snapshot in dataSnapshot) {
+
+                }
+            }
+
+                override fun onCancelled(databaseError: DatabaseError) {}})
+
+         */
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

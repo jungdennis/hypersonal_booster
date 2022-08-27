@@ -21,6 +21,9 @@
         android:theme="@style/Theme.HyperBooster"
         tools:targetApi="31">
         <activity
+            android:name=".RecommendActivity_Before"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity_0_Return"
             android:exported="false" />
         <!--
@@ -90,7 +93,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RecommendActivity"
+            android:name=".RecommendActivity_After"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

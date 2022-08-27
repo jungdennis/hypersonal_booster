@@ -2,6 +2,7 @@ package com.example.hypersonalbooster
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterFeelingBinding
@@ -21,6 +22,23 @@ class RegisterActivity_4_Feeling : AppCompatActivity() {
         binding = LayoutRegisterFeelingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val shared = getSharedPreferences("data_cloud", 0)
+        val editor = shared.edit()
+
+
+        val cloud_check = shared.getString("cloud_check", "Nothing")
+        if(cloud_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+            binding.back.setVisibility(View.INVISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
+        }
+
+        binding.close.setOnClickListener {
+            finish()
+        }
         binding.back.setOnClickListener {
             finish()
         }
@@ -52,9 +70,6 @@ class RegisterActivity_4_Feeling : AppCompatActivity() {
                 Toast.makeText(this, "원하시는 느낌을 하나 선택해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
-                val shared = getSharedPreferences("data_cloud", 0)
-                val editor = shared.edit()
-
                 editor.putString("Feeling", input_feeling)
                 editor.apply()
 

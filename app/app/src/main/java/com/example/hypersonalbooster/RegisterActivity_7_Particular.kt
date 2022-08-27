@@ -28,7 +28,20 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
         binding = LayoutRegisterParticularBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.back.setOnClickListener {
+        val shared = getSharedPreferences("data_cloud", 0)
+        val editor = shared.edit()
+
+        val cloud_check = shared.getString("cloud_check", "Nothing")
+        if(cloud_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+            binding.back.setVisibility(View.INVISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
+        }
+
+        binding.close.setOnClickListener {
             finish()
         }
 
@@ -76,9 +89,6 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
                 Toast.makeText(this, "모든 질문에 답해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
-                val shared = getSharedPreferences("data_cloud", 0)
-                val editor = shared.edit()
-
                 editor.putString("vegan", input_vegan)
                 editor.putString("milk", input_milk)
                 editor.putString("caffeine", input_caffeine)

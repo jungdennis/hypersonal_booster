@@ -26,6 +26,23 @@ class RegisterActivity_2_Health : AppCompatActivity() {
 
         binding.confirm.setVisibility(View.INVISIBLE)
 
+        val shared = getSharedPreferences("data_health", 0)
+        val editor = shared.edit()
+
+        val health_check = shared.getString("health_check", "Nothing")
+
+        if(health_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+            binding.back.setVisibility(View.INVISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
+        }
+
+        binding.close.setOnClickListener {
+            finish()
+        }
         binding.back.setOnClickListener {
             finish()
         }
@@ -83,9 +100,6 @@ class RegisterActivity_2_Health : AppCompatActivity() {
                 Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
-                val shared = getSharedPreferences("data_health", 0)
-                val editor = shared.edit()
-
                 editor.putFloat("height", input_height.toFloat())
                 editor.putFloat("weight", input_weight.toFloat())
                 editor.putFloat("fat", check_fat)

@@ -3,6 +3,7 @@ package com.example.hypersonalbooster
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -38,8 +39,22 @@ class RegisterActivity_5_Taste : AppCompatActivity(), OnTasteClickListener {
 
         list.addAll(taste_list)
 
-        val editor = getSharedPreferences("data_cloud", 0).edit()
+        val shared = getSharedPreferences("data_cloud", 0)
+        val editor = shared.edit()
 
+        val cloud_check = shared.getString("cloud_check", "Nothing")
+        if(cloud_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+            binding.back.setVisibility(View.INVISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
+        }
+
+        binding.close.setOnClickListener {
+            finish()
+        }
         binding.back.setOnClickListener {
             finish()
         }

@@ -2,6 +2,7 @@ package com.example.hypersonalbooster
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterTargetBinding
@@ -24,10 +25,6 @@ class RegisterActivity_3_Target : AppCompatActivity() {
         binding = LayoutRegisterTargetBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.back.setOnClickListener {
-            finish()
-        }
-
         val shared_health = getSharedPreferences("data_health", 0)
         val shared_cloud = getSharedPreferences("data_cloud", 0)
 
@@ -40,6 +37,21 @@ class RegisterActivity_3_Target : AppCompatActivity() {
         val health_check = shared_health.getString("health_check", "Nothing")
         val cloud_check = shared_cloud.getString("cloud_check", "Nothing")
 
+        if(health_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+            binding.back.setVisibility(View.INVISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
+        }
+
+        binding.close.setOnClickListener {
+            finish()
+        }
+        binding.back.setOnClickListener {
+            finish()
+        }
 
         binding.nowWeight.text = now_weight.toString()
         binding.nowFat.text = now_fat.toString()

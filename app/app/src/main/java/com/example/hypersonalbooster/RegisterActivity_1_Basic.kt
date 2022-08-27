@@ -34,6 +34,21 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
         binding = LayoutRegisterBasicBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val shared = getSharedPreferences("data_cloud", 0)
+        val editor = shared.edit()
+
+        val cloud_check = shared.getString("cloud_check", "Nothing")
+        if(cloud_check =="true") {
+            binding.close.setVisibility(View.VISIBLE)
+        }
+        else {
+            binding.close.setVisibility(View.INVISIBLE)
+        }
+
+        binding.close.setOnClickListener {
+            finish()
+        }
+
         binding.framePragent.setVisibility(View.INVISIBLE)
 
         binding.sexMan.setOnClickListener {
@@ -87,8 +102,6 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
-                val shared = getSharedPreferences("data_cloud", 0)
-                val editor = shared.edit()
                 editor.putInt("age", input_age.toInt())
                 editor.putString("sex", input_sex)
                 editor.putString("pragent", input_pragent)

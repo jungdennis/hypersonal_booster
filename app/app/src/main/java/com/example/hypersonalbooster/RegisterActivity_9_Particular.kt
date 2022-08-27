@@ -98,6 +98,7 @@ class RegisterActivity_9_Particular : AppCompatActivity() {
 
                     save.child("cloud_check").setValue("true")
 
+                    getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "true").apply()
                     uid_check = true
                 }
 

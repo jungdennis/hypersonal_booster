@@ -165,6 +165,7 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
     }
 
     override fun onFlag() {
+        check_health = getSharedPreferences("data_health", 0).getString("health_check", "false").toString()
         if(check_cloud == "true") {
             getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "true").apply()
             if(check_health == "true") {

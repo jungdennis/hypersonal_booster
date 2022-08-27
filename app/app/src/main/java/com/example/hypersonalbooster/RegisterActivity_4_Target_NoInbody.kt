@@ -49,6 +49,7 @@ class RegisterActivity_4_Target_NoInbody : AppCompatActivity() {
             editor.putFloat("target_weight", input_target_weight.toFloat())
             editor.putFloat("target_fat", 0.0F)
             editor.putFloat("target_muscle", 0.0F)
+            editor.putString("health_check", "true")
             editor.apply()
 
             Toast.makeText(this, "$input_target_weight", Toast.LENGTH_SHORT).show()
@@ -67,6 +68,7 @@ class RegisterActivity_4_Target_NoInbody : AppCompatActivity() {
             editor.putFloat("target_weight", input_target_weight.toFloat())
             editor.putFloat("target_fat", 0.0F)
             editor.putFloat("target_muscle", 0.0F)
+            editor.putString("health_check", "true")
             editor.apply()
 
             Toast.makeText(this, "$input_target_weight", Toast.LENGTH_SHORT).show()

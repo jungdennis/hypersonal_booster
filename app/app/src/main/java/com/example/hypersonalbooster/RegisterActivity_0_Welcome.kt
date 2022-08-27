@@ -44,9 +44,27 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
         val shared_kiosk = getSharedPreferences("data_kiosk", 0)
         val editor_kiosk = shared_kiosk.edit()
 
-        // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val editor_cloud = shared_cloud.edit()
+
+        val uid = shared_cloud.getString("uid", "Nouid")
+        Log.d("RegisterActivity_0", "uid : $uid")
+        if(uid == "Nouid") {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        else {
+            val health_check = getSharedPreferences("data_health", 0).getString("health_check", "Nothing")
+            val cloud_check = shared_cloud.getString("cloud_check", "Nothing")
+            Log.d("RegisterActivity_0", "health_check, cloud_check : $health_check, $cloud_check")
+
+            if(health_check == "true" && cloud_check == "true") {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
 
         // 브랜드 정보 받기
         ref_booster.child("booster").addValueEventListener(object : ValueEventListener {
@@ -123,58 +141,59 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {}})
 
         // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
-        val uid = shared_cloud.getString("uid", "NoUid")
-
-        ref_members.child(uid!!).child("Booster_before").addValueEventListener(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (data in snapshot.getChildren()) {
-                    val booster = data.getValue().toString().split(",")[0].toString()
-                    if(booster.isNotEmpty()) {
-                        if(booster_before.isEmpty()){
-                            booster_before = booster_before + booster
-                        }
-                        else{
-                            booster_before = booster_before + "," + booster
-                        }
-                    }
-                }
-                editor_cloud.putString("booster_before", booster_before)
-                editor_cloud.apply()
-            }
-
-            override fun onCancelled(error: DatabaseError) { } })
-
-        ref_members.child(uid).child("Booster_after").addValueEventListener(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (data in snapshot.getChildren()) {
-                    val booster = data.getValue().toString().split(",")[0].toString()
-                    if(booster.isNotEmpty()) {
-                        if(booster_after.isEmpty()){
-                            booster_after = booster_after + booster
-                        }
-                        else{
-                            booster_after = booster_after + "," + booster
+        if(uid != "Nouid"){
+            ref_members.child(uid!!).child("Booster_before").addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.getChildren()) {
+                        val booster = data.getValue().toString().split(",")[0].toString()
+                        if(booster.isNotEmpty()) {
+                            if(booster_before.isEmpty()){
+                                booster_before = booster_before + booster
+                            }
+                            else{
+                                booster_before = booster_before + "," + booster
+                            }
                         }
                     }
+                    editor_cloud.putString("booster_before", booster_before)
+                    editor_cloud.apply()
                 }
-                editor_cloud.putString("booster_after", booster_after)
-                editor_cloud.apply()
-            }
 
-            override fun onCancelled(error: DatabaseError) { } })
+                override fun onCancelled(error: DatabaseError) { } })
 
-        // 키오스크 테스트용 코드 (나중에 지울 것!)
-        val save_before = ref_members.child(uid!!).child("Booster_before")
-        save_before.child("bp1").setValue("CLB0111-04,20")
-        save_before.child("bp2").setValue("CLB0111-03,32")
-        save_before.child("bp3").setValue("CLB0111-05,33")
+            ref_members.child(uid).child("Booster_after").addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.getChildren()) {
+                        val booster = data.getValue().toString().split(",")[0].toString()
+                        if(booster.isNotEmpty()) {
+                            if(booster_after.isEmpty()){
+                                booster_after = booster_after + booster
+                            }
+                            else{
+                                booster_after = booster_after + "," + booster
+                            }
+                        }
+                    }
+                    editor_cloud.putString("booster_after", booster_after)
+                    editor_cloud.apply()
+                }
 
-        val save_after = ref_members.child(uid).child("Booster_after")
-        save_after.child("ap1").setValue("CLB0111-05,41")
-        save_after.child("ap2").setValue("CLB0111-04,50")
-        save_after.child("ap3").setValue("CLB0111-03,60")
+                override fun onCancelled(error: DatabaseError) { } })
+
+            // 키오스크 테스트용 코드 (나중에 지울 것!)
+            val save_before = ref_members.child(uid).child("Booster_before")
+            save_before.child("bp1").setValue("CLB0111-04,20")
+            save_before.child("bp2").setValue("CLB0111-03,32")
+            save_before.child("bp3").setValue("CLB0111-05,33")
+
+            val save_after = ref_members.child(uid).child("Booster_after")
+            save_after.child("ap1").setValue("CLB0111-05,41")
+            save_after.child("ap2").setValue("CLB0111-04,50")
+            save_after.child("ap3").setValue("CLB0111-03,60")
+        }
+
 
         binding.start.setOnClickListener {
             val intent = Intent(this, RegisterActivity_1_Basic::class.java)

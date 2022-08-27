@@ -67,6 +67,7 @@ class RegisterActivity_4_Target : AppCompatActivity() {
             editor.putFloat("target_weight", input_target_weight.toFloat())
             editor.putFloat("target_fat", input_target_fat.toFloat())
             editor.putFloat("target_muscle", input_target_muscle.toFloat())
+            editor.putString("health_check", "true")
             editor.apply()
 
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
@@ -93,6 +94,7 @@ class RegisterActivity_4_Target : AppCompatActivity() {
             editor.putFloat("target_weight", input_target_weight.toFloat())
             editor.putFloat("target_fat", input_target_fat.toFloat())
             editor.putFloat("target_muscle", input_target_muscle.toFloat())
+            editor.putString("health_check", "true")
             editor.apply()
 
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()

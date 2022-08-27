@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class RegisterActivity_9_Particular : AppCompatActivity() {
+class RegisterActivity_7_Particular : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterParticularBinding
 

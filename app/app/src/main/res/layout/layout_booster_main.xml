@@ -15,9 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/qr"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="78dp"
         android:layout_height="0dp"
         android:background="@drawable/btn_bottom_qr"
@@ -25,15 +26,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar_top" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/supply"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_bottom"
         android:drawableTop="@drawable/icon_supply"
-        android:text="오늘의 추천"
         android:fontFamily="@font/font_medium"
+        android:text="오늘의 추천"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/qr"
@@ -41,17 +43,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
         app:layout_constraintVertical_bias="1.0" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/location"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="00dp"
         android:background="@drawable/back_bottom"
         android:drawableTop="@drawable/icon_location"
-        android:text="키오스크 위치"
         android:fontFamily="@font/font_medium"
-        android:textSize="10sp"
         android:gravity="center"
+        android:text="키오스크 위치"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -65,30 +68,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="668dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="88dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottombar_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="78dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_end="19dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottombar"
         android:layout_width="wrap_content"
@@ -131,10 +139,9 @@
         android:fontFamily="@font/font_bold"
         android:text="정승용"
         android:textColor="@color/main_color"
-        app:layout_constraintTop_toBottomOf="@+id/back"
         android:textSize="35sp"
         app:layout_constraintEnd_toStartOf="@+id/info_recommend_1"
-/>
+        app:layout_constraintTop_toBottomOf="@+id/back" />
 
     <TextView
         android:id="@+id/info_recommend_1"
@@ -163,22 +170,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/font_medium"
         android:text="운동 전"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/info_recommend_2"
         app:layout_constraintStart_toEndOf="@+id/icon_before"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/info_recommend_2" />
 
     <ImageView
         android:id="@+id/icon_before"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/info_recommend_2"
-        app:srcCompat="@drawable/icon_running"
-        android:layout_marginTop="10dp"/>
+        app:srcCompat="@drawable/icon_running" />
 
     <Button
         android:id="@+id/more_before"
@@ -195,15 +202,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/frame_before"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/back_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/icon_before" >
+        app:layout_constraintTop_toBottomOf="@+id/icon_before">
+
         <ListView
             android:id="@+id/booster_list_before"
             android:layout_width="match_parent"
@@ -216,6 +225,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.448" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -225,37 +235,35 @@
         android:id="@+id/info_after"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/font_medium"
         android:text="운동 후"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="@id/info_before"
         app:layout_constraintBottom_toBottomOf="@id/icon_after"
-        android:layout_marginBottom="5dp"/>
+        app:layout_constraintLeft_toLeftOf="@id/info_before" />
 
     <ImageView
         android:id="@+id/icon_after"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/frame_before"
-        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@drawable/icon_running" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/frame_after"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/back_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/icon_after"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/icon_after">
+
         <ListView
             android:id="@+id/booster_list_after"
             android:layout_width="match_parent"
@@ -268,6 +276,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.448" />
 
 
@@ -284,5 +293,19 @@
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/info_after"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

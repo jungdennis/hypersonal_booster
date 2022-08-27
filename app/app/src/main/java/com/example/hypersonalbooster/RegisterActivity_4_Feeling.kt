@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterFeelingBinding
 import com.google.firebase.database.FirebaseDatabase
 
-class RegisterActivity_6_Feeling : AppCompatActivity() {
+class RegisterActivity_4_Feeling : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterFeelingBinding
     private var input_feeling : String = ""
@@ -72,7 +72,7 @@ class RegisterActivity_6_Feeling : AppCompatActivity() {
                 }
 
                 if(uid_check) {
-                    val intent = Intent(this, RegisterActivity_7_Taste::class.java)
+                    val intent = Intent(this, RegisterActivity_5_Taste::class.java)
                     startActivity(intent)
                 }
             }

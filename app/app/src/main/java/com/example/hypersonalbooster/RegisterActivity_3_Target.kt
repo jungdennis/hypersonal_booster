@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRegisterTargetBinding
 
-class RegisterActivity_4_Target : AppCompatActivity() {
+class RegisterActivity_3_Target : AppCompatActivity() {
 
     private lateinit var binding : LayoutRegisterTargetBinding
 
@@ -36,6 +36,9 @@ class RegisterActivity_4_Target : AppCompatActivity() {
         var now_muscle = shared_health.getFloat("muscle", 0F)
         var now_height = shared_health.getFloat("height", 0F)
         val sex = shared_cloud.getString("sex", "man")
+
+        val health_check = shared_health.getString("health_check", "Nothing")
+        val cloud_check = shared_cloud.getString("cloud_check", "Nothing")
 
 
         binding.nowWeight.text = now_weight.toString()
@@ -72,8 +75,16 @@ class RegisterActivity_4_Target : AppCompatActivity() {
 
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, RegisterActivity_6_Feeling::class.java)
-            startActivity(intent)
+            if(cloud_check == "true") {
+                if(health_check == "false") {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            else {
+                val intent = Intent(this, RegisterActivity_4_Feeling::class.java)
+                startActivity(intent)
+            }
         }
         binding.confirm.setOnClickListener {
             input_target_weight = binding.targetWeight.text.toString()
@@ -99,8 +110,16 @@ class RegisterActivity_4_Target : AppCompatActivity() {
 
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, RegisterActivity_6_Feeling::class.java)
-            startActivity(intent)
+            if(cloud_check == "true") {
+                if(health_check == "false") {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            else {
+                val intent = Intent(this, RegisterActivity_4_Feeling::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

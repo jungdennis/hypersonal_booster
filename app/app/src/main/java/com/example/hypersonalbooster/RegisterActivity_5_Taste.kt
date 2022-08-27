@@ -3,25 +3,22 @@ package com.example.hypersonalbooster
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hypersonalbooster.databinding.LayoutRegisterCompanyBinding
+import com.example.hypersonalbooster.databinding.LayoutRegisterTasteBinding
 import com.google.firebase.database.FirebaseDatabase
 
+class RegisterActivity_5_Taste : AppCompatActivity(), OnTasteClickListener {
 
-class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
+    private lateinit var binding : LayoutRegisterTasteBinding
 
-    private lateinit var binding : LayoutRegisterCompanyBinding
+    var taste_list = ArrayList<Taste>()
+    var list = ArrayList<Taste>()
 
-    var company_list = ArrayList<Company>()
-    var list = ArrayList<Company>()
+    private lateinit var adapter : ListViewAdapter_Taste
 
-    private lateinit var adapter : ListViewAdapter_Company
-
-    var check_company = ArrayList<String>()
+    var check_taste = ArrayList<String>()
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("members")
@@ -30,16 +27,16 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LayoutRegisterCompanyBinding.inflate(layoutInflater)
+        binding = LayoutRegisterTasteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val company_string = getSharedPreferences("data_booster", 0).getString("company", "failed")
-        val company_temp = company_string!!.split(",").distinct() as ArrayList<String>
-        for(company in company_temp) {
-            company_list.add(Company(company))
+        val taste_string = getSharedPreferences("data_booster", 0).getString("taste", "failed")
+        val taste_temp = taste_string!!.split(",").distinct() as ArrayList<String>
+        for(taste in taste_temp) {
+            taste_list.add(Taste(taste))
         }
 
-        list.addAll(company_list)
+        list.addAll(taste_list)
 
         val editor = getSharedPreferences("data_cloud", 0).edit()
 
@@ -47,15 +44,15 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
             finish()
         }
 
-        binding.companySearch.setOnQueryTextListener(searchViewTextListener)
+        binding.tasteSearch.setOnQueryTextListener(searchViewTextListener)
 
-        adapter = ListViewAdapter_Company(this, list, this)
-        binding.companySelect.setAdapter(adapter)
+        adapter = ListViewAdapter_Taste(this, list, this)
+        binding.tasteSelect.setAdapter(adapter)
 
-        binding.noCompany.setOnClickListener {
-            var input_company = "Nothing"
+        binding.noTaste.setOnClickListener {
+            var input_taste = "Nothing"
 
-            editor.putString("company", input_company)
+            editor.putString("taste", input_taste)
             editor.apply()
 
             val uid = getSharedPreferences("data_cloud", 0).getString("uid", "NoUid")
@@ -65,33 +62,33 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
                 uid_check = false
             }
             else {
-                val save = ref.child(uid!!).child("Info_Favorite")
-                save.child("company").setValue(input_company)
+                val save = ref.child("apptest").child(uid!!).child("Info_Favorite")
+                save.child("taste").setValue(input_taste)
 
                 uid_check = true
             }
 
             if(uid_check){
-                val intent = Intent(this, RegisterActivity_9_Particular::class.java)
+                val intent = Intent(this, RegisterActivity_6_Company::class.java)
                 startActivity(intent)
             }
         }
         binding.confirm.setOnClickListener {
-            if(check_company.isEmpty()){
+            if(check_taste.isEmpty()){
                 Toast.makeText(this, "하나 이상 선택해주세요.", Toast.LENGTH_SHORT).show()
             }
             else{
-                var input_company : String = ""
-                for(company in check_company) {
-                    if(input_company.isEmpty()) {
-                        input_company = input_company + company
+                var input_taste : String = ""
+                for(taste in check_taste) {
+                    if(input_taste.isEmpty()) {
+                        input_taste = input_taste + taste
                     }
                     else {
-                        input_company = input_company + "," + company
+                        input_taste = input_taste + "," + taste
                     }
                 }
 
-                editor.putString("company", input_company)
+                editor.putString("taste", input_taste)
                 editor.apply()
 
                 val uid = getSharedPreferences("data_cloud", 0).getString("uid", "NoUid")
@@ -102,13 +99,13 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
                 }
                 else {
                     val save = ref.child(uid!!).child("Info_Favorite")
-                    save.child("company").setValue(input_company)
+                    save.child("taste").setValue(input_taste)
 
                     uid_check = true
                 }
 
                 if(uid_check){
-                    val intent = Intent(this, RegisterActivity_9_Particular::class.java)
+                    val intent = Intent(this, RegisterActivity_6_Company::class.java)
                     startActivity(intent)
                 }
             }
@@ -133,11 +130,11 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
         list.clear()
 
         if (charText.length == 0) {
-            list.addAll(company_list)
+            list.addAll(taste_list)
         } else {
-            for (i in 0 until company_list.size) {
-                if (company_list.get(i).name.toLowerCase().contains(charText)) {
-                    list.add(company_list.get(i))
+            for (i in 0 until taste_list.size) {
+                if (taste_list.get(i).name.toLowerCase().contains(charText)) {
+                    list.add(taste_list.get(i))
                 }
             }
         }
@@ -145,10 +142,10 @@ class RegisterActivity_8_Company : AppCompatActivity(), OnCompanyClickListener {
         adapter.notifyDataSetChanged()
     }
 
-    override fun onCompanyClickAdd(company_name : String) {
-        check_company.add(company_name)
+    override fun onTasteClickAdd(taste_name : String) {
+        check_taste.add(taste_name)
     }
-    override fun onCompanyClickRemove(company_name: String) {
-        check_company.remove(company_name)
+    override fun onTasteClickRemove(taste_name: String) {
+        check_taste.remove(taste_name)
     }
 }

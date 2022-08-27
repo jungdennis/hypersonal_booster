@@ -174,7 +174,7 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
                 finish()
             }
             else {
-                val intent = Intent(this, RegisterActivity_0_Welcome::class.java)
+                val intent = Intent(this, RegisterActivity_0_Return::class.java)
                 startActivity(intent)
                 finish()
             }

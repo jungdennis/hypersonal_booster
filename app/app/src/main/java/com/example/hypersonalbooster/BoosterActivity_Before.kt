@@ -1,7 +1,9 @@
 package com.example.hypersonalbooster
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -13,24 +15,31 @@ class BoosterActivity_Before : AppCompatActivity() {
 
     private lateinit var binding : LayoutBoosterBeforeBinding
 
-    private var end_time: Long = 0
+
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
+    var booster_before = ArrayList<Booster>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = LayoutBoosterBeforeBinding.inflate(layoutInflater)
 
 
-        setContentView(binding.root)
+        val shared_cloud = getSharedPreferences("data_cloud", 0)
+        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",")
 
-        binding.button.setOnClickListener {
-            val Booster_popup = BoosterFragment_Before()
-            Booster_popup.show(supportFragmentManager, Booster_popup.tag)
+        for(boosterID in before) {
+            booster_before.add(Booster(boosterID))
         }
+
+        val mlAdapter = LIstViewAdapter_BoosterMain(this, booster_before)
+
+        binding.boosterList.adapter = mlAdapter
+
+        setContentView(binding.root)
 
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)

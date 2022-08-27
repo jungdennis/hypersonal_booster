@@ -125,7 +125,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/info_2"
         app:layout_constraintEnd_toStartOf="@+id/info_1"
         app:layout_constraintTop_toTopOf="@+id/info_1"
-        app:srcCompat="@drawable/icon_running" />
+        app:srcCompat="@drawable/ic_health" />
 
     <TextView
         android:id="@+id/info_1"

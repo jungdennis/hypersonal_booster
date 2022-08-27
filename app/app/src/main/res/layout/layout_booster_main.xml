@@ -249,7 +249,7 @@
         android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@drawable/icon_running" />
+        app:srcCompat="@drawable/ic_health" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 

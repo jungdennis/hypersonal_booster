@@ -242,8 +242,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     }
 
     override fun onMyLocationClick(location: Location) {
-        Toast.makeText(this, "here:\n$location", Toast.LENGTH_LONG)
-            .show()
+
     }
 
 

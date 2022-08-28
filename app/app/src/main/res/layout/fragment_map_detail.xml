@@ -52,7 +52,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/star"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/star" />
 
         <ImageView

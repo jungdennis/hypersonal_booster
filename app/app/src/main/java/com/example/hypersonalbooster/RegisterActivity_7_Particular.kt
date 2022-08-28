@@ -41,7 +41,15 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
             binding.back.setVisibility(View.VISIBLE)
         }
 
+        binding.back.setOnClickListener {
+            finish()
+        }
         binding.close.setOnClickListener {
+            val intent = Intent(this, RecommendActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
 
@@ -115,8 +123,10 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
                 if(uid_check) {
                     Toast.makeText(this, "$input_vegan / $input_milk / $input_caffeine", Toast.LENGTH_SHORT).show()
 
-                    val intent_next = Intent(this, MainActivity::class.java)
-                    startActivity(intent_next)
+                    val intent = Intent(this, RecommendActivity_Before::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }

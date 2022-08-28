@@ -38,6 +38,7 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
         val editor = shared.edit()
 
         val cloud_check = shared.getString("cloud_check", "Nothing")
+
         if(cloud_check =="true") {
             binding.close.setVisibility(View.VISIBLE)
         }
@@ -46,6 +47,11 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
         }
 
         binding.close.setOnClickListener {
+            val intent = Intent(this, RecommendActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
 
@@ -123,10 +129,18 @@ class RegisterActivity_1_Basic : AppCompatActivity() {
                 }
 
                 if(uid_check) {
-                    Toast.makeText(this, "$input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(this, "$input_age / $input_sex / $input_pragent", Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(this, RegisterActivity_2_Health::class.java)
-                    startActivity(intent)
+                    if(cloud_check == "true") {
+                        val intent = Intent(this, RecommendActivity_Before::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else{
+                        val intent = Intent(this, RegisterActivity_2_Health::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
 

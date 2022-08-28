@@ -29,7 +29,7 @@ class BoosterActivity_Before : AppCompatActivity() {
 
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
-        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",")
+        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",").distinct()
 
         for(boosterID in before) {
             booster_before.add(Booster(boosterID))

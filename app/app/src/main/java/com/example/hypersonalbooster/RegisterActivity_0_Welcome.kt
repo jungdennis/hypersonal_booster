@@ -17,13 +17,11 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref_booster = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
-    val ref_kiosk = database.getReference("kiosk")
     val ref_members = database.getReference("members")
 
 
     var company_list = ""
     var taste_list = ""
-    var kiosk_list = ""
 
     // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
     var booster_before = ""
@@ -39,9 +37,6 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
 
         val shared_booster = getSharedPreferences("data_booster", 0)
         val editor_booster = shared_booster.edit()
-
-        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
-        val editor_kiosk = shared_kiosk.edit()
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val editor_cloud = shared_cloud.edit()
@@ -109,32 +104,6 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
                 }
                 editor_booster.putString("taste", taste_list)
                 editor_booster.apply()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}})
-
-        // 키오스크 정보 받기
-        ref_kiosk.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var temp = ArrayList<String>()
-                for (snapshot in dataSnapshot.getChildren()) {
-                    val name = snapshot.child("name").getValue().toString()
-                    val location = snapshot.child("location").getValue().toString()
-                    val kiosk = name + "," + location
-                    if(kiosk.isNotEmpty()) {
-                        if(kiosk !in temp){
-                            if(kiosk_list.isEmpty()){
-                                kiosk_list = kiosk_list + kiosk
-                            }
-                            else{
-                                kiosk_list = kiosk_list + "/" + kiosk
-                            }
-                        }
-                        temp.add(kiosk)
-                    }
-                }
-                editor_kiosk.putString("kiosk", kiosk_list)
-                editor_kiosk.apply()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}})

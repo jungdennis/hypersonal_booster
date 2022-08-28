@@ -28,11 +28,10 @@
         android:id="@+id/private_setting"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="5dp"
         android:gravity="start"
         android:ems="30"
-        android:fontFamily="@font/font_medium"
+        android:fontFamily="@font/font_bold"
         android:text=" 개인 설정"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -51,14 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/private_setting" />
 
     <Button
-        android:id="@+id/target_setting"
+        android:id="@+id/basic_setting"
         style="?android:attr/borderlessButtonStyle"
         android:layout_marginTop="3dp"
         android:layout_width="195dp"
         android:layout_height="35dp"
         android:fontFamily="@font/font_medium"
         android:gravity="start"
-        android:text="개인 목표설정"
+        android:text="개인정보 수정"
         android:textSize="15sp"
         android:background="@color/sub_color_light"
         android:paddingVertical="10dp"
@@ -67,62 +66,92 @@
         app:layout_constraintTop_toBottomOf="@+id/line1" />
 
     <Button
-        android:id="@+id/flavor_setting"
-        android:layout_width="195dp"
-        android:layout_height="35dp"
-        android:gravity="start"
-        style="?android:attr/borderlessButtonStyle"
-        android:fontFamily="@font/font_medium"
-        android:text="맛 선호도 변경"
-        android:textSize="15sp"
-        android:background="@color/sub_color_light"
-        android:paddingVertical="10dp"
-        android:paddingStart="10dp"
-        app:layout_constraintStart_toStartOf="@+id/private_setting"
-        app:layout_constraintTop_toBottomOf="@+id/target_setting" />
-
-    <Button
         android:id="@+id/health_setting"
         android:layout_width="195dp"
         android:layout_height="35dp"
         android:gravity="start"
         style="?android:attr/borderlessButtonStyle"
         android:fontFamily="@font/font_medium"
-        android:text="상세 신체정보 수정"
+        android:text="신체정보 및 개인목표 수정"
         android:textSize="15sp"
         android:background="@color/sub_color_light"
         android:paddingVertical="10dp"
         android:paddingStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/private_setting"
-        app:layout_constraintTop_toBottomOf="@+id/flavor_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/basic_setting" />
 
     <Button
-        android:id="@+id/device_setting"
-        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/feeling_setting"
         android:layout_width="195dp"
-        android:gravity="start"
         android:layout_height="35dp"
+        android:gravity="start"
+        style="?android:attr/borderlessButtonStyle"
         android:fontFamily="@font/font_medium"
-        android:text="헬스 디바이스 연동"
-        android:textSize="15dp"
+        android:text="선호 느낌 수정"
+        android:textSize="15sp"
         android:background="@color/sub_color_light"
         android:paddingVertical="10dp"
         android:paddingStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/private_setting"
         app:layout_constraintTop_toBottomOf="@+id/health_setting" />
 
+    <Button
+        android:id="@+id/taste_setting"
+        android:layout_width="195dp"
+        android:layout_height="35dp"
+        android:gravity="start"
+        style="?android:attr/borderlessButtonStyle"
+        android:fontFamily="@font/font_medium"
+        android:text="선호 맛 수정"
+        android:textSize="15sp"
+        android:background="@color/sub_color_light"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/private_setting"
+        app:layout_constraintTop_toBottomOf="@+id/feeling_setting" />
+
+    <Button
+        android:id="@+id/company_setting"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="195dp"
+        android:gravity="start"
+        android:layout_height="35dp"
+        android:fontFamily="@font/font_medium"
+        android:text="선호 브랜드 수정"
+        android:textSize="15dp"
+        android:background="@color/sub_color_light"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/private_setting"
+        app:layout_constraintTop_toBottomOf="@+id/taste_setting" />
+
+    <Button
+        android:id="@+id/particular_setting"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="195dp"
+        android:gravity="start"
+        android:layout_height="35dp"
+        android:fontFamily="@font/font_medium"
+        android:text="개인 특이사항 수정"
+        android:textSize="15dp"
+        android:background="@color/sub_color_light"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/private_setting"
+        app:layout_constraintTop_toBottomOf="@+id/company_setting" />
+
     <TextView
         android:id="@+id/booster_detail"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/font_medium"
+        android:fontFamily="@font/font_bold"
         android:layout_marginStart="5dp"
         android:text=" 보충제"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/device_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/particular_setting" />
 
     <View
         android:id="@+id/line2"
@@ -172,7 +201,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="30"
-        android:fontFamily="@font/font_medium"
+        android:fontFamily="@font/font_bold"
         android:text=" 결제 및 포인트"
         android:layout_marginStart="5dp"
         android:textColor="@color/black"
@@ -192,21 +221,6 @@
         app:layout_constraintTop_toBottomOf="@+id/payment" />
 
     <Button
-        android:id="@+id/point"
-        android:layout_width="195dp"
-        android:layout_height="35dp"
-        android:fontFamily="@font/font_medium"
-        style="?android:attr/borderlessButtonStyle"
-        android:text="포인트"
-        android:textSize="15sp"
-        android:gravity="start"
-        android:background="@color/sub_color_light"
-        android:paddingVertical="10dp"
-        android:paddingStart="10dp"
-        app:layout_constraintStart_toStartOf="@+id/payment"
-        app:layout_constraintTop_toBottomOf="@+id/line3" />
-
-    <Button
         android:id="@+id/payment_record"
         android:layout_width="195dp"
         android:layout_height="35dp"
@@ -219,7 +233,7 @@
         android:paddingStart="10dp"
         style="?android:attr/borderlessButtonStyle"
         app:layout_constraintStart_toStartOf="@+id/payment"
-        app:layout_constraintTop_toBottomOf="@+id/point" />
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
 
     <Button
         android:id="@+id/reward"
@@ -227,7 +241,7 @@
         android:layout_height="35dp"
         android:fontFamily="@font/font_medium"
         style="?android:attr/borderlessButtonStyle"
-        android:text="쿠폰 및 리워드"
+        android:text="쿠폰 및 포인트"
         android:textSize="15sp"
         android:gravity="start"
         android:background="@color/sub_color_light"
@@ -256,7 +270,7 @@
         android:id="@+id/delete_account"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginHorizontal="10dp"
         android:text="회원탈퇴"
         android:textColor="@color/main_color"

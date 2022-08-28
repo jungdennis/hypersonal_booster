@@ -30,6 +30,9 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("members")
+    val ref_kiosk = database.getReference("kiosk")
+
+    var kiosk_list = ""
 
     private var end_time: Long = 0
 
@@ -49,6 +52,35 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
+        val editor_kiosk = shared_kiosk.edit()
+
+        // 키오스크 정보 받기
+        ref_kiosk.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var temp = ArrayList<String>()
+                for (snapshot in dataSnapshot.getChildren()) {
+                    val name = snapshot.child("name").getValue().toString()
+                    val location = snapshot.child("location").getValue().toString()
+                    val kiosk = name + "," + location
+                    if(kiosk.isNotEmpty()) {
+                        if(kiosk !in temp){
+                            if(kiosk_list.isEmpty()){
+                                kiosk_list = kiosk_list + kiosk
+                            }
+                            else{
+                                kiosk_list = kiosk_list + "/" + kiosk
+                            }
+                        }
+                        temp.add(kiosk)
+                    }
+                }
+                editor_kiosk.putString("kiosk", kiosk_list)
+                editor_kiosk.apply()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}})
 
         binding.login.setOnClickListener {
             signIn()

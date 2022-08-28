@@ -223,8 +223,10 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                         for (snapshot in dataSnapshot.getChildren()) {
                             if(snapshot.child("class1(전0후1)").getValue().toString() == "0") {
                                 if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "0") {
+                                    val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
                                     for (taste in list_taste1!!) {
-                                        if (snapshot.child("taste2").value.toString().contains(taste)) {
+                                        if (taste in taste1) {
                                             sort_taste1.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
@@ -265,6 +267,8 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                         }
                     }
 
+                    result.distinct()
+
                     var booster_before = ""
                     for(id in result) {
                         if(booster_before.isEmpty()){
@@ -276,6 +280,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
                     Log.d("RecommendActivity_Before", "Recommend Result (Before) : $result")
 
+                    shared_cloud.edit().remove("booster_before").apply()
                     shared_cloud.edit().putString("booster_before", booster_before).apply()
                     val uid = shared_cloud.getString("uid", "NoUid")
                     if(uid != "NoUid") {
@@ -300,7 +305,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
 
                     for(snapshot in dataSnapshot.getChildren()) {
                         val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                        val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                        val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                         for(fav_taste in taste_list!!) {
                             if(fav_taste in taste2) {
@@ -344,9 +349,11 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
 
                     if(result.size < 3) {
                         for (snapshot in dataSnapshot.getChildren()) {
+                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
                             if(snapshot.child("class1(전0후1)").getValue().toString() == "0") {
                                 for (taste in list_taste1!!) {
-                                    if (snapshot.child("taste2").value.toString().contains(taste)) {
+                                    if (taste in taste1) {
                                         sort_taste1.add(snapshot.child("ID").getValue().toString())
                                     }
                                 }
@@ -386,6 +393,8 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                         }
                     }
 
+                    result.distinct()
+
                     var booster_before = ""
                     for(id in result) {
                         if(booster_before.isEmpty()){
@@ -397,6 +406,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
                     Log.d("RecommendActivity_Before", "Recommend Result (Before) : $result")
 
+                    shared_cloud.edit().remove("booster_before").apply()
                     shared_cloud.edit().putString("booster_before", booster_before).apply()
                     val uid = shared_cloud.getString("uid", "NoUid")
                     if(uid != "NoUid") {
@@ -415,6 +425,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
 
     override fun onCallback() {
         val intent = Intent(this, RecommendActivity_After::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
         finish()
     }

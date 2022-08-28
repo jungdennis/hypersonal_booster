@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val uid = shared_cloud.getString("uid", "NoUid")
         val name = shared_cloud.getString("name", "닉네임없음")
-        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",")
-        val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",")
+        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",").distinct()
+        val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",").distinct()
 
         for(boosterID in before) {
             booster_before.add(Booster(boosterID))
@@ -78,6 +78,12 @@ class MainActivity : AppCompatActivity() {
             binding.frameMuscle.setVisibility(View.VISIBLE)
             binding.infoMuscle.setVisibility(View.VISIBLE)
             binding.messageNoFatMuscle.setVisibility(View.INVISIBLE)
+        }
+
+        binding.editHealth.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_2_Health::class.java)
+            startActivity(intent)
+            finish()
         }
 
         val mlAdapter = ListViewAdapter_Main(this, booster_init)
@@ -113,6 +119,36 @@ class MainActivity : AppCompatActivity() {
             binding.mainDrawerLayout.openDrawer(GravityCompat.END)
         }
 
+        binding.basicSetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_1_Basic::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.healthSetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_2_Health::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.feelingSetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_4_Feeling::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.tasteSetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_5_Taste::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.companySetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_6_Company::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.particularSetting.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_7_Particular::class.java)
+            startActivity(intent)
+            finish()
+        }
         binding.logOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 

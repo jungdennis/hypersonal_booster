@@ -39,7 +39,7 @@ class RegisterActivity_3_Target : AppCompatActivity() {
 
         if(health_check =="true") {
             binding.close.setVisibility(View.VISIBLE)
-            binding.back.setVisibility(View.INVISIBLE)
+            binding.back.setVisibility(View.VISIBLE)
         }
         else {
             binding.close.setVisibility(View.INVISIBLE)
@@ -47,6 +47,11 @@ class RegisterActivity_3_Target : AppCompatActivity() {
         }
 
         binding.close.setOnClickListener {
+            val intent = Intent(this, RecommendActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener {
@@ -123,10 +128,10 @@ class RegisterActivity_3_Target : AppCompatActivity() {
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
             if(cloud_check == "true") {
-                if(health_check == "false") {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+                val intent = Intent(this, RecommendActivity_Before::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
+                finish()
             }
             else {
                 val intent = Intent(this, RegisterActivity_4_Feeling::class.java)

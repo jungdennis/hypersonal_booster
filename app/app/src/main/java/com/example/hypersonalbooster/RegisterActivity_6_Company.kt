@@ -52,8 +52,15 @@ class RegisterActivity_6_Company : AppCompatActivity(), OnCompanyClickListener {
             binding.close.setVisibility(View.INVISIBLE)
             binding.back.setVisibility(View.VISIBLE)
         }
-
+        binding.back.setOnClickListener {
+            finish()
+        }
         binding.close.setOnClickListener {
+            val intent = Intent(this, RecommendActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
 
@@ -118,8 +125,16 @@ class RegisterActivity_6_Company : AppCompatActivity(), OnCompanyClickListener {
                 }
 
                 if(uid_check){
-                    val intent = Intent(this, RegisterActivity_7_Particular::class.java)
-                    startActivity(intent)
+                    if(cloud_check == "true") {
+                        val intent = Intent(this, RecommendActivity_Before::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else {
+                        val intent = Intent(this, RegisterActivity_7_Particular::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
         }

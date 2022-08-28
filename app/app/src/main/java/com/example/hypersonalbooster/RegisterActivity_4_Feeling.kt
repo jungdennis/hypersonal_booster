@@ -37,6 +37,11 @@ class RegisterActivity_4_Feeling : AppCompatActivity() {
         }
 
         binding.close.setOnClickListener {
+            val intent = Intent(this, RecommendActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener {
@@ -87,8 +92,16 @@ class RegisterActivity_4_Feeling : AppCompatActivity() {
                 }
 
                 if(uid_check) {
-                    val intent = Intent(this, RegisterActivity_5_Taste::class.java)
-                    startActivity(intent)
+                    if(cloud_check == "true") {
+                        val intent = Intent(this, RecommendActivity_Before::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else {
+                        val intent = Intent(this, RegisterActivity_5_Taste::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
         }

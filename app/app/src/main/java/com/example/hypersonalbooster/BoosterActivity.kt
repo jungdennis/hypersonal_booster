@@ -31,8 +31,8 @@ class BoosterActivity : AppCompatActivity() {
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val name = shared_cloud.getString("name", "닉네임없음")
-        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",")
-        val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",")
+        val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",").distinct()
+        val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",").distinct()
         val uid = shared_cloud.getString("uid", "NoUid")
 
         binding.userName.text = name

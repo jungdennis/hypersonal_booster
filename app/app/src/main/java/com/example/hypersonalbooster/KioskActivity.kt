@@ -37,7 +37,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     private var permissionDenied = false
     private lateinit var Map: GoogleMap
     lateinit var binding : LayoutMapMainBinding
-    var kioskNamesArr = arrayOfNulls<String>(3)
     var globalKioskArr = Array(3) { arrayOfNulls<String>(3) }
 
     lateinit var database_data : String
@@ -197,8 +196,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
                 }
             }
             kioskArr[m][n] = kioskName
-
-
+            
             kioskName = ""
             mKioskArr = kioskArr
             globalKioskArr = mKioskArr
@@ -212,7 +210,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[i][1]!!.toDouble(),
                 mKioskArr[i][2]!!.toDouble())))
 
-            kioskNamesArr[i] = mKioskArr[i][0]
             kiosks_listSt.add(mKioskArr[i][0].toString())
 
         }

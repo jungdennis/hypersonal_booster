@@ -166,7 +166,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
+    <Switch
+        android:id="@+id/switch2"
+        android:textColor="@color/black"
+        android:fontFamily="@font/font_medium"
+        android:track="@drawable/btn_sub_color_light_no_stroke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="새로 고침"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="74dp"
+        app:layout_constraintBottom_toTopOf="@id/booster_list"
+        app:layout_constraintLeft_toRightOf="@id/guideline_start"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

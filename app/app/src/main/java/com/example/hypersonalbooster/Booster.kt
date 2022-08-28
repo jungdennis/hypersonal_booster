@@ -32,6 +32,7 @@ class Booster(id : String) {
     // 엥간하면 사용할 일 없는 변수들
     var company : String = ""           // 회사
     //var taste_1 = ArrayList<String>()   // 맛1 : 대분류
+    var taste1 : String = ""
     //var taste_2 : ArrayList<String>()   // 맛2 : 상세분류
     var texture : String = ""           // 느낌
 
@@ -43,6 +44,7 @@ class Booster(id : String) {
 
                 texture = snapshot.child("texture").getValue().toString()
                 company = snapshot.child("brand").getValue().toString()
+                taste1 = snapshot.child("taste2").getValue().toString()
                 Log.d("Booster Init", "Texture : $texture")
 
                 var temp_0 = snapshot.child("class0(가루0액체1그외2)").getValue()

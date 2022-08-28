@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.Toast
+import com.example.hypersonalbooster.databinding.FragmentBoosterButtonAdapterBinding
 import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
 import com.google.firebase.database.FirebaseDatabase
 
@@ -15,10 +18,10 @@ class BoosterActivity_Before : AppCompatActivity() {
 
     private lateinit var binding : LayoutBoosterBeforeBinding
 
-
-
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+
+
 
     var booster_before = ArrayList<Booster>()
 
@@ -27,6 +30,7 @@ class BoosterActivity_Before : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = LayoutBoosterBeforeBinding.inflate(layoutInflater)
 
+        setContentView(binding.root)
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
         val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",").distinct()
@@ -35,11 +39,26 @@ class BoosterActivity_Before : AppCompatActivity() {
             booster_before.add(Booster(boosterID))
         }
 
-        val mlAdapter = LIstViewAdapter_BoosterMain(this, booster_before)
+        setContentView(binding.root)
 
+        val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
         binding.boosterList.adapter = mlAdapter
 
-        setContentView(binding.root)
+        binding.boosterList.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
+            val Booster_popup = BoosterFragment_After()
+            Booster_popup.show(supportFragmentManager, Booster_popup.tag)
+        }
+
+        binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
+            if (isChecked) {
+                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
+                binding.boosterList.adapter = mlAdapter
+            }
+            else {
+                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
+                binding.boosterList.adapter = mlAdapter
+            }
+        }
 
         binding.back.setOnClickListener {
             val main_intent = Intent(this, MainActivity::class.java)

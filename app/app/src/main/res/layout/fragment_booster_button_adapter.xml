@@ -6,8 +6,9 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id = "@+id/booster_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,11 +18,11 @@
 
         <ImageView
             android:id="@+id/booster_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/icon_google" />
 
@@ -29,40 +30,36 @@
             android:id="@+id/booster_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/font_medium"
+            android:layout_marginTop="5dp"
             android:text="단백질"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/booster_image"
-            app:layout_constraintTop_toTopOf="@+id/booster_image" />
+            app:layout_constraintTop_toBottomOf="@id/booster_image"/>
 
         <TextView
             android:id="@+id/booster_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/font_medium"
             android:text="프로틴회사"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintLeft_toRightOf="@+id/booster_image"
-            app:layout_constraintTop_toBottomOf="@+id/booster_name" />
+            app:layout_constraintTop_toBottomOf="@id/booster_name"
+ />
 
         <TextView
             android:id="@+id/booster_flavor"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
-            android:text="프로틴 맛"
+            android:text="프로틴 종류"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintLeft_toRightOf="@+id/booster_image"
-            app:layout_constraintTop_toBottomOf="@+id/booster_info" />
+            app:layout_constraintTop_toBottomOf="@id/booster_info"
+ />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

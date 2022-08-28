@@ -3,12 +3,13 @@ package com.example.hypersonalbooster
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRecommendAfterBinding
 import com.google.firebase.database.*
 
-class RecommendActivity_After() : AppCompatActivity() {
+class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
     private lateinit var binding : LayoutRecommendAfterBinding
 
@@ -146,61 +147,368 @@ class RecommendActivity_After() : AppCompatActivity() {
         }
 
         feeling = shared_cloud.getString("feeling", "NoData").toString()
-        val taste = shared_cloud.getString("taste", "NoData")?.split(",")?.distinct()
-        val company = shared_cloud.getString("comapny", "NoData")?.toString()?.split(",")
+        val taste_list = shared_cloud.getString("taste", "NoData")?.split(",")?.distinct()
+        val company_list = shared_cloud.getString("company", "NoData")?.toString()?.split(",")
+        Log.d("RecommendActivity_After", "taste_list : $taste_list / company_list : $company_list")
 
         milk = shared_cloud.getString("milk", "NoData").toString()
         caffeine = shared_cloud.getString("caffeine", "NoData").toString()
         vegan = shared_cloud.getString("vegan", "NoData").toString()
 
         // 운동 후 종류 지정
-        if(now_weight < target_weight) {
+        if(now_weight < (normal_weight * 0.9) && now_weight < target_weight) {
             kind_after = "gainer"
         }
         else {
             if(vegan == "true") {
-                kind_after = "vegan"
+                kind_after = "vegan_protein"
             }
             else if(milk == "true") {
-                kind_after = "anti_milk"
+                kind_after = "anti_milk_protein"
             }
             else {
-                kind_after = "normal"
+                kind_after = "normal_protein"
             }
         }
         Toast.makeText(this, "After : $kind_after",Toast.LENGTH_SHORT).show()
 
-        var query_1 : Query = ref
 
-        if(feeling == "clean") {
-            query_1 = ref.orderByChild("texture").equalTo("clear")
-        }
-        else if(feeling == "milky") {
-            query_1 = ref.orderByChild("texture").equalTo("thick")
-        }
+        if(kind_after == "gainer") {      // 게이너 추천
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var list_taste1 = ArrayList<String>()
+                    var sort_taste2 = ArrayList<String>()
+                    var sort_taste1 = ArrayList<String>()
+                    var sort_company = ArrayList<String>()
+                    var result = ArrayList<String>()
 
-        /*
-        query_1.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // Texture로 1차 sort
+                    if(feeling == "clean") {
+                        for (snapshot in dataSnapshot.getChildren()) {
+                            val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                            val taste1 = snapshot.child("taste2").getValue().toString().split(",")
 
-                for (snapshot in dataSnapshot) {
+                            for (fav_taste in taste_list!!) {
+                                if (fav_taste in taste2) {
+                                    for (taste in taste1) {
+                                        list_taste1.add(taste)
+                                    }
+                                    list_taste1.distinct()
+                                }
+                            }
 
+                            if (snapshot.child("class1(전0후1)").getValue()
+                                    .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
+                                    .getValue().toString() == "0"
+                            ) {
+                                if (snapshot.child("texture").getValue().toString() == "clear") {
+                                    for (taste in taste_list!!) {
+                                        if (taste == "Nothing") {
+                                            sort_taste2.add(
+                                                snapshot.child("ID").getValue().toString()
+                                            )
+                                            list_taste1.add(
+                                                snapshot.child("taste1").getValue().toString()
+                                            )
+                                            list_taste1.distinct()
+                                        } else if (taste in taste2) {
+                                            sort_taste2.add(
+                                                snapshot.child("ID").getValue().toString()
+                                            )
+                                        }
+                                    }
+
+                                    for (company in company_list!!) {
+                                        if (company == "Nothing") {
+                                            sort_company.add(
+                                                snapshot.child("ID").getValue().toString()
+                                            )
+                                        } else if (snapshot.child("brand").value.toString()
+                                                .contains(company)
+                                        ) {
+                                            sort_company.add(
+                                                snapshot.child("ID").getValue().toString()
+                                            )
+                                        }
+                                    }
+
+                                    for (taste in sort_taste2) {
+                                        for (company in sort_company) {
+                                            if (taste == company) {
+                                                result.add(taste)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(snapshot in dataSnapshot.getChildren()) {
+                                if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
+                                    if(snapshot.child("texture").getValue().toString() == "clear"){
+                                        val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                        for (taste in list_taste1!!) {
+                                            if (taste in taste1) {
+                                                sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                            }
+                                        }
+
+                                        for (taste in sort_taste1) {
+                                            for (company in sort_company) {
+                                                if ((taste == company) && (taste !in result)) {
+                                                    result.add(taste)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(taste in sort_taste2) {
+                                if(taste !in result) {
+                                    result.add(taste)
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(taste in sort_taste1) {
+                                if(taste !in result) {
+                                    result.add(taste)
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        for (snapshot in dataSnapshot.getChildren()) {
+                            val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                            val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                            for (fav_taste in taste_list!!) {
+                                if (fav_taste in taste2) {
+                                    for (taste in taste1) {
+                                        list_taste1.add(taste)
+                                    }
+                                    list_taste1.distinct()
+                                }
+                            }
+
+                            if (snapshot.child("class1(전0후1)").getValue()
+                                    .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
+                                    .getValue().toString() == "0"
+                            ) {
+                                for (taste in taste_list!!) {
+                                    if (taste == "Nothing") {
+                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                        list_taste1.add(
+                                            snapshot.child("taste1").getValue().toString()
+                                        )
+                                        list_taste1.distinct()
+                                    } else if (taste in taste2) {
+                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                    }
+                                }
+
+                                for (company in company_list!!) {
+                                    if (company == "Nothing") {
+                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                    } else if (snapshot.child("brand").value.toString()
+                                            .contains(company)
+                                    ) {
+                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                    }
+                                }
+
+                                for (taste in sort_taste2) {
+                                    for (company in sort_company) {
+                                        if (taste == company) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(snapshot in dataSnapshot.getChildren()) {
+                                if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
+                                    val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                    for (taste in list_taste1!!) {
+                                        if (taste in taste1) {
+                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                        }
+                                    }
+
+                                    for (taste in sort_taste1) {
+                                        for (company in sort_company) {
+                                            if ((taste == company) && (taste !in result)) {
+                                                result.add(taste)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(taste in sort_taste2) {
+                                if(taste !in result) {
+                                    result.add(taste)
+                                }
+                            }
+                        }
+
+                        if(result.size < 3) {
+                            for(taste in sort_taste1) {
+                                if(taste !in result) {
+                                    result.add(taste)
+                                }
+                            }
+                        }
+                    }
+
+                    result.distinct()
+
+                    var booster_after = ""
+                    for(id in result) {
+                        if(booster_after.isEmpty()){
+                            booster_after = booster_after + id
+                        }
+                        else{
+                            booster_after = booster_after + "," + id
+                        }
+                    }
+                    Log.d("RecommendActivity_After", "Recommend Result (After) : $result")
+
+                    shared_cloud.edit().remove("booster_after").apply()
+                    shared_cloud.edit().putString("booster_after", booster_after).apply()
+                    val uid = shared_cloud.getString("uid", "NoUid")
+                    if(uid != "NoUid") {
+                        database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
+                    }
+
+                    onCallback()
                 }
-            }
+
+                override fun onCancelled(databaseError: DatabaseError) {}})
+        }
+        else {                      // 프로틴 추천
+            /*
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (snapshot in dataSnapshot.getChildren()) {
+                        val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                        val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                        for (fav_taste in taste_list!!) {
+                            if (fav_taste in taste2) {
+                                for (taste in taste1) {
+                                    list_taste1.add(taste)
+                                }
+                                list_taste1.distinct()
+                            }
+                        }
+
+                        if()
+
+                        if (snapshot.child("class1(전0후1)").getValue()
+                                .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
+                                .getValue().toString() == "0") {
+                            for (taste in taste_list!!) {
+                                if (taste == "Nothing") {
+                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                    list_taste1.add(
+                                        snapshot.child("taste1").getValue().toString()
+                                    )
+                                    list_taste1.distinct()
+                                } else if (taste in taste2) {
+                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                }
+                            }
+
+                            for (company in company_list!!) {
+                                if (company == "Nothing") {
+                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                } else if (snapshot.child("brand").value.toString()
+                                        .contains(company)
+                                ) {
+                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                }
+                            }
+
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(result.size < 3) {
+                        for(snapshot in dataSnapshot.getChildren()) {
+                            if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                for (taste in list_taste1!!) {
+                                    if (taste in taste1) {
+                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                    }
+                                }
+
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(result.size < 3) {
+                        for(taste in sort_taste2) {
+                            if(taste !in result) {
+                                result.add(taste)
+                            }
+                        }
+                    }
+
+                    if(result.size < 3) {
+                        for(taste in sort_taste1) {
+                            if(taste !in result) {
+                                result.add(taste)
+                            }
+                        }
+                    }
+                }
+                }
 
                 override fun onCancelled(databaseError: DatabaseError) {}})
 
-         */
+             */
+                onCallback()
+        }
+    }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+    }
+
+    override fun onCallback() {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
         finish()
-    }
-
-    override fun onBackPressed() {
-        // super.onBackPressed()
+        overridePendingTransition(0, 0)
     }
 }

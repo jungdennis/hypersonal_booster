@@ -85,23 +85,34 @@ class Booster(id : String) {
                     class_1 += "after"
 
                     if(temp_2 == 0L) {
-                        class_2 += "게이너"
+                        if(texture == "thick") {
+                            class_2 += "게이너"
+                        }
+                        else if(texture =="clear") {
+                            class_2 +="클리어웨이 게이너"
+                        }
                     }
                     else if(temp_2 == 1L) {
                         if(texture == "thick") {
                             if(temp_3 == 1L || temp_3 == 2L) {
                                 class_2 += "분리 유청 프로틴"
                             }
-                            else if(temp_3 == 0L || temp_3 == 3L) {
+                            else if(temp_3 == 0L || temp_3 == 4L) {
                                 class_2 += "프로틴"
+                            }
+                            else if(temp_3 == 3L) {
+                                class_2 += "비건 프로틴"
                             }
                         }
                         else if(texture == "clear") {
                             if(temp_3 == 1L || temp_3 == 2L) {
-                                class_2 += "분리 유청 클리어웨이"
+                                class_2 += "분리 유청 클리어웨이 프로틴"
                             }
-                            else if(temp_3 == 0L || temp_3 == 3L) {
-                                class_2 += "클리어웨이"
+                            else if(temp_3 == 0L || temp_3 == 4L) {
+                                class_2 += "클리어웨이 프로틴"
+                            }
+                            else if(temp_3 == 3L) {
+                                class_2 += "비건 클리어웨이 프로틴"
                             }
                         }
                     }

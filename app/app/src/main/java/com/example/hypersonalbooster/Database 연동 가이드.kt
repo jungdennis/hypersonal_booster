@@ -21,7 +21,6 @@ class Database 연동 가이드 {
 
                 for (snapshot in dataSnapshot.getChildren()) {
                     val brand = snapshot.getValue()
-                    }
                 }
 
             }

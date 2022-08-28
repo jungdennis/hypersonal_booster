@@ -295,7 +295,6 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
         else {
             ref.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    var temp = ArrayList<DataSnapshot>()
                     var list_taste1 = ArrayList<String>()
                     var sort_taste2 = ArrayList<String>()
                     var sort_taste1 = ArrayList<String>()
@@ -428,5 +427,6 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
         finish()
+        overridePendingTransition(0, 0)
     }
 }

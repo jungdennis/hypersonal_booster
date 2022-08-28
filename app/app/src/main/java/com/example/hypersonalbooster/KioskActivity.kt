@@ -29,7 +29,10 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.model.Marker
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickListener,
@@ -39,18 +42,16 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     private var permissionDenied = false
     private lateinit var Map: GoogleMap
     lateinit var binding : LayoutMapMainBinding
-
-    private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
-    lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
-    internal lateinit var mLocationRequest: com.google.android.gms.location.LocationRequest
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    var kioskNamesArr = arrayOfNulls<String>(3)
+    var globalKioskArr = Array(3) { arrayOfNulls<String>(3) }
 
     lateinit var database_data : String
-
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("kiosk")
     var kioskData_list = ""
     var kioskName = ""
+    var cMarkerPos = ""
+    var mm : Int = 0
 
     //private val oneHeung = LatLng(37.558941,126.998959)
     //private var markeroneHeung: Marker? = null
@@ -70,53 +71,19 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
         val shared_kioskData = getSharedPreferences("data_kioskData", 0)
         val editor_kioskData = shared_kioskData.edit()
-    /*
-        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
-        var cnt=0
-        var kioskNum = 0
-        val kiosk = shared_kiosk.getString("kiosk","NoKiosk")
-        if (kiosk != null) {
-            for (i in 0 until kiosk.length-1){
-                if (kiosk[i].equals("/")){
-                    cnt++
-                }
-                kioskNum = cnt + 1
-
-            }
-
-            val kioskArr = Array(kioskNum) { arrayOfNulls<String>(3) }
-            var n = 0
-            var m = 0
-            for (i in 0 until kiosk.length-1){
-                if(kiosk[i].equals(",")){
-                    kioskArr[m][n] = kioskName
-                    n++
-                    kioskName = ""
-                }
-                else if(kiosk[i].equals("/")){
-                    kioskArr[m][n] = kioskName
-                    n = 0
-                    m++
-                    kioskName = ""
-                }
-                else{
-                    kioskName += kiosk[i]
-                }
-            }
-        }
-    */
-            /**
+    
+            // kiosk 별 보충제 정보 받아오기
             ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
             var temp = ArrayList<String>()
             for (snapshot in dataSnapshot.getChildren()) {
             val name = snapshot.child("name").getValue().toString()
-            val b1 = snapshot.child("1").getValue().toString()
-            val b2 = snapshot.child("2").getValue().toString()
-            val b3 = snapshot.child("3").getValue().toString()
-            val b4 = snapshot.child("4").getValue().toString()
-            val b5 = snapshot.child("5").getValue().toString()
-            val b6 = snapshot.child("6").getValue().toString()
+            val b1 = snapshot.child("보충제").child("1").getValue().toString()
+            val b2 = snapshot.child("보충제").child("2").getValue().toString()
+            val b3 = snapshot.child("보충제").child("3").getValue().toString()
+            val b4 = snapshot.child("보충제").child("4").getValue().toString()
+            val b5 = snapshot.child("보충제").child("5").getValue().toString()
+            val b6 = snapshot.child("보충제").child("6").getValue().toString()
             val kioskDB = "$name,$b1,$b2,$b3,$b4,$b5,$b6"
             if(kioskDB.isNotEmpty()) {
             if(kioskDB !in temp){
@@ -136,21 +103,39 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
             override fun onCancelled(databaseError: DatabaseError) {}})
 
-             */
 
 
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
+        binding.supply.setOnClickListener {
+            val supply_intent = Intent(this, BoosterActivity::class.java)
+            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(supply_intent)
+        }
+        binding.qr.setOnClickListener {
+            val qr_popup = MainFragment_QR()
+            qr_popup.show(supportFragmentManager, qr_popup.tag)
+        }
+    }
 
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        Map = googleMap
+        googleMap.setOnMyLocationButtonClickListener(this)
+        googleMap.setOnMyLocationClickListener(this)
+        googleMap.uiSettings.isMyLocationButtonEnabled = true
+        enableMyLocation()
 
-        // 테스트 -- 성공함 이거 쓰면 댐
-            val shared_kiosk = getSharedPreferences("data_kiosk", 0)
+        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
         var cnt = 0
         var kioskNum:Int = 0
         val kiosk = shared_kiosk.getString("kiosk", "NoKiosk")
         val stKiosk: String = kiosk.toString()
-        var mKioskArr = Array(2) { arrayOfNulls<String>(3) }
-        var mm : String = "실패 씨발"
+        var mKioskArr = Array(3) { arrayOfNulls<String>(3) }
+
         if (stKiosk != null) {
             for (i in 0 until stKiosk.length - 2) {
                 if (kiosk!![i].toString() == "/") {
@@ -177,172 +162,33 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
                 }
             }
             kioskArr[m][n] = kioskName
-            if(kiosk!![0].toString() == "충"){
-                mm = "씨발 성공"
-            }
+
 
             kioskName = ""
             mKioskArr = kioskArr
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        binding.back.setOnClickListener {
-            finish()
-        }
-        
-        // kiosk string 테스트 코드
-        binding.kioskTestB.setOnClickListener {
-            binding.kioskTest.text = mKioskArr[0][0]
-        //    binding.kioskTest2.text = kiosk!![0].toString()
-        //    binding.kioskTest5.text = stKiosk.length.toString()
-        //    binding.kioskTest4.text = mm
-            binding.kioskTest2.text = mKioskArr[0][1]
-            binding.kioskTest3.text = mKioskArr[0][2]
-            binding.kioskTest4.text = mKioskArr[1][0]
-            binding.kioskTest5.text = mKioskArr[1][1]
-            binding.kioskTest6.text = mKioskArr[1][2]
-        }
-
-        binding.supply.setOnClickListener {
-            val supply_intent = Intent(this, BoosterActivity::class.java)
-            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(supply_intent)
-        }
-        binding.qr.setOnClickListener {
-            val qr_popup = MainFragment_QR()
-            qr_popup.show(supportFragmentManager, qr_popup.tag)
-        }
-    }
-
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        Map = googleMap
-        googleMap.setOnMyLocationButtonClickListener(this)
-        googleMap.setOnMyLocationClickListener(this)
-        googleMap.uiSettings.isMyLocationButtonEnabled = true
-        enableMyLocation()
-
-        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
-        var cnt = 0
-        var kioskNum = 0
-        val kiosk = shared_kiosk.getString("kiosk", "NoKiosk")
-        var mKioskArr = Array(kioskNum) { arrayOfNulls<String>(3) }
-        var mm : Int = 0
-        if (kiosk != null) {
-            for (i in 0 until kiosk.length - 1) {
-                if (kiosk[i].equals("/")) {
-                    cnt++
-                }
-                kioskNum = cnt + 1
-
-            }
-            var kioskArr = Array(kioskNum) { arrayOfNulls<String>(3) }
-            var n = 0
-            var m = 0
-            for (i in 0 until kiosk.length - 1) {
-                if (kiosk[i].equals(",")) {
-                    kioskArr[m][n] = kioskName
-                    n++
-                    kioskName = ""
-                } else if (kiosk[i].equals("/")) {
-                    kioskArr[m][n] = kioskName
-                    n = 0
-                    m++
-                    kioskName = ""
-                } else {
-                    kioskName += kiosk[i]
-                }
-            }
-            mKioskArr = kioskArr
+            globalKioskArr = mKioskArr
             mm = m
+
         }
-/*
+
         for(i in 0..mm){
             Map.addMarker(MarkerOptions().position(LatLng(mKioskArr[i][1]!!.toDouble(),
                 mKioskArr[i][2]!!.toDouble())).title(mKioskArr[i][0]))
             Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[i][1]!!.toDouble(),
                 mKioskArr[i][2]!!.toDouble())))
+
+            kioskNamesArr = mKioskArr[i]
         }
-
-        Map.addMarker(MarkerOptions().position(LatLng(mKioskArr[0][1]!!.toDouble(),
-            mKioskArr[0][2]!!.toDouble())).title(mKioskArr[0][0]))
-        Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[0][1]!!.toDouble(),
-            mKioskArr[0][2]!!.toDouble())))
-
-        Map.addMarker(MarkerOptions().position(LatLng(mKioskArr[1][1]!!.toDouble(),
-            mKioskArr[1][2]!!.toDouble())).title(mKioskArr[1][0]))
-        Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[1][1]!!.toDouble(),
-            mKioskArr[1][2]!!.toDouble())))
-        */
-
-
-        val marker1 = LatLng(37.558941,126.998959)
-        Map.addMarker(MarkerOptions().position(marker1).title("코끼리 FIT"))
-        Map.moveCamera(CameraUpdateFactory.newLatLng(marker1))
-
-        val marker2 = LatLng(37.561228,126.995587)
-        Map.addMarker(MarkerOptions().position(marker2).title("충무로 FIT"))
-        Map.moveCamera(CameraUpdateFactory.newLatLng(marker2))
-
-
-        /*
-        markeroneHeung = Map.addMarker(
-            MarkerOptions()
-                .position(oneHeung)
-                .title("oneHeung")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location))
-        )
-        markeroneHeung?.tag = 0
-        */
 
 
         googleMap.setOnMarkerClickListener(this)
     }
 
-    private fun startLocationUpdates() {
 
-        //FusedLocationProviderClient의 인스턴스를 생성.
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return
-        }
-        // 기기의 위치에 관한 정기 업데이트를 요청하는 메서드 실행
-        // 지정한 루퍼 스레드(Looper.myLooper())에서 콜백(mLocationCallback)으로 위치 업데이트를 요청
-        mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
-    }
 
-    // 시스템으로 부터 위치 정보를 콜백으로 받음
-    private val mLocationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            // 시스템에서 받은 location 정보를 onLocationChanged()에 전달
-            locationResult.lastLocation
-            onLocationChanged(locationResult.lastLocation)
-        }
-    }
 
-    fun onLocationChanged(location: Location) {
-        mLastLocation = location
-        // var latlat = mLastLocation.latitude // 갱신 된 위도
-        // var longlong = mLastLocation.longitude // 갱신 된 경도
-        // var latlnglat = LatLng(latlat,longlong)
-    }
+
+
     /**
      * Enables the My Location layer if the fine location permission has been granted.
      */
@@ -464,7 +310,44 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     /** Called when the user clicks a marker.  */
     override fun onMarkerClick(marker: Marker): Boolean {
 
+        var x : Int = 0
+        var kioskPos = ""
+        var selKioskName = ""
+        var mKioskPosArr = arrayOfNulls<String>(2)
 
+        val shared_markerPos = getSharedPreferences("data_markerPos", 0)
+        val editor_markerPos = shared_markerPos.edit()
+
+        cMarkerPos = marker.position.toString()
+
+        for (i in cMarkerPos.indices){
+            if (cMarkerPos!![i].toString() == "("){
+                kioskPos = ""
+            }
+            else if(cMarkerPos!![i].toString() == ","){
+                mKioskPosArr[x] = kioskPos
+                kioskPos = ""
+                x++
+            }
+            else if(cMarkerPos!![i].toString() == ")"){
+                mKioskPosArr[x] = kioskPos
+                kioskPos = ""
+                x = 0
+            }
+            else{
+                kioskPos += cMarkerPos!![i].toString()
+            }
+        }
+        for(i in 0..mm){
+            if(globalKioskArr[i][1] == mKioskPosArr[0]){
+                if(globalKioskArr[i][2] == mKioskPosArr[1]){
+                    selKioskName = globalKioskArr[i][0].toString()
+                }
+            }
+        }
+
+        editor_markerPos.putString("markerPos", selKioskName)
+        editor_markerPos.apply()
 
         val detail_popup = KioskFragment_Detail()
         detail_popup.show(supportFragmentManager, detail_popup.tag)

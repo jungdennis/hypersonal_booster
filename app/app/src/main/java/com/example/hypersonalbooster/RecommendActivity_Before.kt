@@ -207,14 +207,13 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                                         sort_company.add(snapshot.child("ID").getValue().toString())
                                     }
                                 }
-
-                                for(taste in sort_taste2) {
-                                    for(company in sort_company) {
-                                        if(taste == company) {
-                                            result.add(taste)
-                                        }
-                                    }
-                                }
+                            }
+                        }
+                    }
+                    for(taste in sort_taste2) {
+                        for(company in sort_company) {
+                            if(taste == company) {
+                                result.add(taste)
                             }
                         }
                     }
@@ -230,14 +229,13 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                                             sort_taste1.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
-
-                                    for (taste in sort_taste1) {
-                                        for (company in sort_company) {
-                                            if ((taste == company) && (taste !in result)) {
-                                                result.add(taste)
-                                            }
-                                        }
-                                    }
+                                }
+                            }
+                        }
+                        for (taste in sort_taste1) {
+                            for (company in sort_company) {
+                                if ((taste == company) && (taste !in result)) {
+                                    result.add(taste)
                                 }
                             }
                         }
@@ -335,13 +333,12 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                                     sort_company.add(snapshot.child("ID").getValue().toString())
                                 }
                             }
-
-                            for(taste in sort_taste2) {
-                                for(company in sort_company) {
-                                    if(taste == company) {
-                                        result.add(taste)
-                                    }
-                                }
+                        }
+                    }
+                    for(taste in sort_taste2) {
+                        for(company in sort_company) {
+                            if(taste == company) {
+                                result.add(taste)
                             }
                         }
                     }
@@ -356,13 +353,12 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                                         sort_taste1.add(snapshot.child("ID").getValue().toString())
                                     }
                                 }
-
-                                for (taste in sort_taste1) {
-                                    for (company in sort_company) {
-                                        if ((taste == company) && (taste !in result)) {
-                                            result.add(taste)
-                                        }
-                                    }
+                            }
+                        }
+                        for (taste in sort_taste1) {
+                            for (company in sort_company) {
+                                if ((taste == company) && (taste !in result)) {
+                                    result.add(taste)
                                 }
                             }
                         }

@@ -161,13 +161,13 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
         }
         else {
             if(vegan == "true") {
-                kind_after = "vegan_protein"
+                kind_after = "vegan_protein"            // 비건 제공
             }
             else if(milk == "true") {
-                kind_after = "anti_milk_protein"
+                kind_after = "anti_milk_protein"        // 유청분리, 비건 제공
             }
             else {
-                kind_after = "normal_protein"
+                kind_after = "normal_protein"           // 모든 종류 제공
             }
         }
         Toast.makeText(this, "After : $kind_after",Toast.LENGTH_SHORT).show()
@@ -197,48 +197,34 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                 }
                             }
 
-                            if (snapshot.child("class1(전0후1)").getValue()
-                                    .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
-                                    .getValue().toString() == "0"
-                            ) {
+                            if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
                                 if (snapshot.child("texture").getValue().toString() == "clear") {
                                     for (taste in taste_list!!) {
                                         if (taste == "Nothing") {
-                                            sort_taste2.add(
-                                                snapshot.child("ID").getValue().toString()
-                                            )
-                                            list_taste1.add(
-                                                snapshot.child("taste1").getValue().toString()
-                                            )
+                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                            list_taste1.add(snapshot.child("taste1").getValue().toString())
                                             list_taste1.distinct()
-                                        } else if (taste in taste2) {
-                                            sort_taste2.add(
-                                                snapshot.child("ID").getValue().toString()
-                                            )
+                                        }
+                                        else if (taste in taste2) {
+                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
 
                                     for (company in company_list!!) {
                                         if (company == "Nothing") {
-                                            sort_company.add(
-                                                snapshot.child("ID").getValue().toString()
-                                            )
-                                        } else if (snapshot.child("brand").value.toString()
-                                                .contains(company)
-                                        ) {
-                                            sort_company.add(
-                                                snapshot.child("ID").getValue().toString()
-                                            )
+                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                        }
+                                        else if (snapshot.child("brand").value.toString().contains(company)) {
+                                            sort_company.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
-
-                                    for (taste in sort_taste2) {
-                                        for (company in sort_company) {
-                                            if (taste == company) {
-                                                result.add(taste)
-                                            }
-                                        }
-                                    }
+                                }
+                            }
+                        }
+                        for (taste in sort_taste2) {
+                            for (company in sort_company) {
+                                if (taste == company) {
+                                    result.add(taste)
                                 }
                             }
                         }
@@ -254,14 +240,13 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                 sort_taste1.add(snapshot.child("ID").getValue().toString())
                                             }
                                         }
-
-                                        for (taste in sort_taste1) {
-                                            for (company in sort_company) {
-                                                if ((taste == company) && (taste !in result)) {
-                                                    result.add(taste)
-                                                }
-                                            }
-                                        }
+                                    }
+                                }
+                            }
+                            for (taste in sort_taste1) {
+                                for (company in sort_company) {
+                                    if ((taste == company) && (taste !in result)) {
+                                        result.add(taste)
                                     }
                                 }
                             }
@@ -297,10 +282,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                 }
                             }
 
-                            if (snapshot.child("class1(전0후1)").getValue()
-                                    .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
-                                    .getValue().toString() == "0"
-                            ) {
+                            if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
                                 for (taste in taste_list!!) {
                                     if (taste == "Nothing") {
                                         sort_taste2.add(snapshot.child("ID").getValue().toString())
@@ -322,13 +304,12 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         sort_company.add(snapshot.child("ID").getValue().toString())
                                     }
                                 }
-
-                                for (taste in sort_taste2) {
-                                    for (company in sort_company) {
-                                        if (taste == company) {
-                                            result.add(taste)
-                                        }
-                                    }
+                            }
+                        }
+                        for (taste in sort_taste2) {
+                            for (company in sort_company) {
+                                if (taste == company) {
+                                    result.add(taste)
                                 }
                             }
                         }
@@ -343,13 +324,12 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             sort_taste1.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
-
-                                    for (taste in sort_taste1) {
-                                        for (company in sort_company) {
-                                            if ((taste == company) && (taste !in result)) {
-                                                result.add(taste)
-                                            }
-                                        }
+                                }
+                            }
+                            for (taste in sort_taste1) {
+                                for (company in sort_company) {
+                                    if ((taste == company) && (taste !in result)) {
+                                        result.add(taste)
                                     }
                                 }
                             }
@@ -398,49 +378,105 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                 override fun onCancelled(databaseError: DatabaseError) {}})
         }
         else {                      // 프로틴 추천
-            /*
-            ref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    for (snapshot in dataSnapshot.getChildren()) {
-                        val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                        val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+            if(now_fat > target_fat) {
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        var list_taste1 = ArrayList<String>()
+                        var sort_taste2 = ArrayList<String>()
+                        var sort_taste1 = ArrayList<String>()
+                        var sort_company = ArrayList<String>()
+                        var result = ArrayList<String>()
 
-                        for (fav_taste in taste_list!!) {
-                            if (fav_taste in taste2) {
-                                for (taste in taste1) {
-                                    list_taste1.add(taste)
+                        // Texture로 1차 sort
+                        if(feeling == "clean") {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
                                 }
-                                list_taste1.distinct()
-                            }
-                        }
 
-                        if()
+                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        if (snapshot.child("texture").getValue().toString() == "clear") {
+                                            if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in taste_list!!) {
+                                                        if (taste == "Nothing") {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                            list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                            list_taste1.distinct()
+                                                        }
+                                                        else if (taste in taste2) {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
 
-                        if (snapshot.child("class1(전0후1)").getValue()
-                                .toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)")
-                                .getValue().toString() == "0") {
-                            for (taste in taste_list!!) {
-                                if (taste == "Nothing") {
-                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
-                                    list_taste1.add(
-                                        snapshot.child("taste1").getValue().toString()
-                                    )
-                                    list_taste1.distinct()
-                                } else if (taste in taste2) {
-                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    for (company in company_list!!) {
+                                                        if (company == "Nothing") {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                        else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in taste_list!!) {
+                                                        if (taste == "Nothing") {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                            list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                            list_taste1.distinct()
+                                                        }
+                                                        else if (taste in taste2) {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+
+                                                    for (company in company_list!!) {
+                                                        if (company == "Nothing") {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                        else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                            else{
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
-
-                            for (company in company_list!!) {
-                                if (company == "Nothing") {
-                                    sort_company.add(snapshot.child("ID").getValue().toString())
-                                } else if (snapshot.child("brand").value.toString()
-                                        .contains(company)
-                                ) {
-                                    sort_company.add(snapshot.child("ID").getValue().toString())
-                                }
-                            }
-
                             for (taste in sort_taste2) {
                                 for (company in sort_company) {
                                     if (taste == company) {
@@ -448,20 +484,43 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
                             }
-                        }
-                    }
 
-                    if(result.size < 3) {
-                        for(snapshot in dataSnapshot.getChildren()) {
-                            if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
-                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                            if(snapshot.child("texture").getValue().toString() == "clear"){
+                                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
-                                for (taste in list_taste1!!) {
-                                    if (taste in taste1) {
-                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                if(kind_after == "vegan_protein") {
+                                                    if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                        for (taste in list_taste1!!) {
+                                                            if (taste in taste1) {
+                                                                sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if(kind_after == "anti_milk_protein"){
+                                                    if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                        for (taste in list_taste1!!) {
+                                                            if (taste in taste1) {
+                                                                sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-
                                 for (taste in sort_taste1) {
                                     for (company in sort_company) {
                                         if ((taste == company) && (taste !in result)) {
@@ -470,31 +529,899 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
                             }
-                        }
-                    }
 
-                    if(result.size < 3) {
-                        for(taste in sort_taste2) {
-                            if(taste !in result) {
-                                result.add(taste)
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
                             }
                         }
-                    }
+                        else {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
 
-                    if(result.size < 3) {
-                        for(taste in sort_taste1) {
-                            if(taste !in result) {
-                                result.add(taste)
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
+                                }
+
+                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        if(kind_after == "vegan_protein") {
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if(kind_after == "anti_milk_protein"){
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else{
+                                            for (taste in taste_list!!) {
+                                                if (taste == "Nothing") {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                    list_taste1.distinct()
+                                                }
+                                                else if (taste in taste2) {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+
+                                            for (company in company_list!!) {
+                                                if (company == "Nothing") {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                                else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            }
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                            if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                for (taste in list_taste1!!) {
+                                                    if (taste in taste1) {
+                                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
                             }
                         }
+
+                        result.distinct()
+
+                        var booster_after = ""
+                        for(id in result) {
+                            if(booster_after.isEmpty()){
+                                booster_after = booster_after + id
+                            }
+                            else{
+                                booster_after = booster_after + "," + id
+                            }
+                        }
+                        Log.d("RecommendActivity_After", "Recommend Result (After) : $result")
+
+                        shared_cloud.edit().remove("booster_after").apply()
+                        shared_cloud.edit().putString("booster_after", booster_after).apply()
+                        val uid = shared_cloud.getString("uid", "NoUid")
+                        if(uid != "NoUid") {
+                            database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
+                        }
+
+                        onCallback()
                     }
-                }
-                }
 
-                override fun onCancelled(databaseError: DatabaseError) {}})
+                    override fun onCancelled(databaseError: DatabaseError) {}})
+            }
+            else if(now_muscle > target_muscle) {
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        var list_taste1 = ArrayList<String>()
+                        var sort_taste2 = ArrayList<String>()
+                        var sort_taste1 = ArrayList<String>()
+                        var sort_company = ArrayList<String>()
+                        var result = ArrayList<String>()
 
-             */
-                onCallback()
+                        // Texture로 1차 sort
+                        if(feeling == "clean") {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
+                                }
+
+                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        if (snapshot.child("texture").getValue().toString() == "clear") {
+                                            if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in taste_list!!) {
+                                                        if (taste == "Nothing") {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                            list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                            list_taste1.distinct()
+                                                        }
+                                                        else if (taste in taste2) {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+
+                                                    for (company in company_list!!) {
+                                                        if (company == "Nothing") {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                        else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in taste_list!!) {
+                                                        if (taste == "Nothing") {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                            list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                            list_taste1.distinct()
+                                                        }
+                                                        else if (taste in taste2) {
+                                                            sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+
+                                                    for (company in company_list!!) {
+                                                        if (company == "Nothing") {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                        else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                            sort_company.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                            else{
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            }
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                            if(snapshot.child("texture").getValue().toString() == "clear"){
+                                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                                if(kind_after == "vegan_protein") {
+                                                    if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                        for (taste in list_taste1!!) {
+                                                            if (taste in taste1) {
+                                                                sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if(kind_after == "anti_milk_protein"){
+                                                    if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                        for (taste in list_taste1!!) {
+                                                            if (taste in taste1) {
+                                                                sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
+                                }
+
+                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        if(kind_after == "vegan_protein") {
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if(kind_after == "anti_milk_protein"){
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else{
+                                            for (taste in taste_list!!) {
+                                                if (taste == "Nothing") {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                    list_taste1.distinct()
+                                                }
+                                                else if (taste in taste2) {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+
+                                            for (company in company_list!!) {
+                                                if (company == "Nothing") {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                                else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                            if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                for (taste in list_taste1!!) {
+                                                    if (taste in taste1) {
+                                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+
+                                }
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+                        }
+
+                        result.distinct()
+
+                        var booster_after = ""
+                        for(id in result) {
+                            if(booster_after.isEmpty()){
+                                booster_after = booster_after + id
+                            }
+                            else{
+                                booster_after = booster_after + "," + id
+                            }
+                        }
+                        Log.d("RecommendActivity_After", "Recommend Result (After) : $result")
+
+                        shared_cloud.edit().remove("booster_after").apply()
+                        shared_cloud.edit().putString("booster_after", booster_after).apply()
+                        val uid = shared_cloud.getString("uid", "NoUid")
+                        if(uid != "NoUid") {
+                            database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
+                        }
+
+                        onCallback()
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {}})
+            }
+            else {
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        var list_taste1 = ArrayList<String>()
+                        var sort_taste2 = ArrayList<String>()
+                        var sort_taste1 = ArrayList<String>()
+                        var sort_company = ArrayList<String>()
+                        var result = ArrayList<String>()
+
+                        // Texture로 1차 sort
+                        if(feeling == "clean") {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
+                                }
+
+                                if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                    if (snapshot.child("texture").getValue().toString() == "clear") {
+                                        if(kind_after == "vegan_protein") {
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if(kind_after == "anti_milk_protein"){
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else{
+                                            for (taste in taste_list!!) {
+                                                if (taste == "Nothing") {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                    list_taste1.distinct()
+                                                }
+                                                else if (taste in taste2) {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+
+                                            for (company in company_list!!) {
+                                                if (company == "Nothing") {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                                else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        if(snapshot.child("texture").getValue().toString() == "clear"){
+                                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                            if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                for (taste in list_taste1!!) {
+                                                    if (taste in taste1) {
+                                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            for (snapshot in dataSnapshot.getChildren()) {
+                                val taste2 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+
+                                for (fav_taste in taste_list!!) {
+                                    if (fav_taste in taste2) {
+                                        for (taste in taste1) {
+                                            list_taste1.add(taste)
+                                        }
+                                        list_taste1.distinct()
+                                    }
+                                }
+
+                                if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                    if(kind_after == "vegan_protein") {
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    else if(kind_after == "anti_milk_protein"){
+                                            if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                for (taste in taste_list!!) {
+                                                    if (taste == "Nothing") {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                        list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                        list_taste1.distinct()
+                                                    }
+                                                    else if (taste in taste2) {
+                                                        sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+
+                                                for (company in company_list!!) {
+                                                    if (company == "Nothing") {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                    else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                        sort_company.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    else{
+                                            for (taste in taste_list!!) {
+                                                if (taste == "Nothing") {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                    list_taste1.add(snapshot.child("taste1").getValue().toString())
+                                                    list_taste1.distinct()
+                                                }
+                                                else if (taste in taste2) {
+                                                    sort_taste2.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+
+                                            for (company in company_list!!) {
+                                                if (company == "Nothing") {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                                else if (snapshot.child("brand").value.toString().contains(company)) {
+                                                    sort_company.add(snapshot.child("ID").getValue().toString())
+                                                }
+                                            }
+                                        }
+                                }
+                            }
+                            for (taste in sort_taste2) {
+                                for (company in sort_company) {
+                                    if (taste == company) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(snapshot in dataSnapshot.getChildren()) {
+                                    if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
+                                        val taste1 = snapshot.child("taste1").getValue().toString().split(",")
+
+                                        if(kind_after == "vegan_protein") {
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        else if(kind_after == "anti_milk_protein"){
+                                                if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "0" && snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() != "4") {
+                                                    for (taste in list_taste1!!) {
+                                                        if (taste in taste1) {
+                                                            sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        else{
+                                                for (taste in list_taste1!!) {
+                                                    if (taste in taste1) {
+                                                        sort_taste1.add(snapshot.child("ID").getValue().toString())
+                                                    }
+                                                }
+                                            }
+
+                                    }
+                                }
+                                for (taste in sort_taste1) {
+                                    for (company in sort_company) {
+                                        if ((taste == company) && (taste !in result)) {
+                                            result.add(taste)
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste2) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+
+                            if(result.size < 3) {
+                                for(taste in sort_taste1) {
+                                    if(taste !in result) {
+                                        result.add(taste)
+                                    }
+                                }
+                            }
+                        }
+
+                        result.distinct()
+
+                        var booster_after = ""
+                        for(id in result) {
+                            if(booster_after.isEmpty()){
+                                booster_after = booster_after + id
+                            }
+                            else{
+                                booster_after = booster_after + "," + id
+                            }
+                        }
+                        Log.d("RecommendActivity_After", "Recommend Result (After) : $result")
+
+                        shared_cloud.edit().remove("booster_after").apply()
+                        shared_cloud.edit().putString("booster_after", booster_after).apply()
+                        val uid = shared_cloud.getString("uid", "NoUid")
+                        if(uid != "NoUid") {
+                            database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
+                        }
+
+                        onCallback()
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {}})
+            }
         }
     }
 

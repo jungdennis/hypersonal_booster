@@ -3,6 +3,8 @@ package com.example.hypersonalbooster
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutMapRequestRecommandBinding
 
@@ -35,9 +37,12 @@ class KioskRequestRecommand : AppCompatActivity() {
             booster_init.add(Booster(boosterID))
         }
 
+
         val mlAdapter = ListViewAdapter_Main(this, booster_init)
         binding.boosterList.adapter = mlAdapter
 
+        binding.boosterList.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id -> Long
+            Toast.makeText(getApplicationContext(),"클릭했어영", Toast.LENGTH_SHORT).show()}
         binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
             if (isChecked) {
                 val mlAdapter = ListViewAdapter_Main(this, booster_after)

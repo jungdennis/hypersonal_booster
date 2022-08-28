@@ -4,13 +4,12 @@ package com.example.hypersonalbooster
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 
 import android.os.Bundle
-import android.os.Looper
-import android.widget.Toast
+import android.util.Log
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -23,10 +22,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.*
 
 import com.example.hypersonalbooster.databinding.LayoutMapMainBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.database.DataSnapshot
@@ -52,9 +47,12 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     var kioskName = ""
     var cMarkerPos = ""
     var mm : Int = 0
+    var kiosks_string = ""
 
-    //private val oneHeung = LatLng(37.558941,126.998959)
-    //private var markeroneHeung: Marker? = null
+    var kiosks_listSt = ArrayList<String>()
+    var listSt = ArrayList<String>()
+    var kiosks_list = ArrayList<Kiosks>()
+    var list = ArrayList<Kiosks>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +60,16 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         val shared = getSharedPreferences("data_kiosk", 0)
         database_data = shared.getString("kiosk", "failed").toString()
 
+
         binding = LayoutMapMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        for(kiosks in kiosks_listSt) {
+            kiosks_list.add(Kiosks(kiosks))
+        }
+
+        list.addAll(kiosks_list)
+
 
         val mapFragment: SupportMapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -104,7 +110,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             override fun onCancelled(databaseError: DatabaseError) {}})
 
 
-
+        binding.mapSearch.setOnQueryTextListener(searchViewTextListener)
 
         binding.back.setOnClickListener {
             finish()
@@ -120,6 +126,35 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
     }
+
+    var searchViewTextListener: SearchView.OnQueryTextListener =
+        object : SearchView.OnQueryTextListener {
+            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
+            override fun onQueryTextSubmit(s: String): Boolean {
+                return false
+            }
+
+            //텍스트 입력/수정시에 호출
+            override fun onQueryTextChange(s: String): Boolean {
+                search(s)
+                return false
+            }
+        }
+    private fun search(charText: String) {
+        listSt.clear()
+
+        if (charText.length == 0) {
+            listSt.addAll(kiosks_listSt)
+        } else {
+            for (i in 0 until kiosks_listSt.size) {
+                if (kiosks_listSt.get(i).toLowerCase().contains(charText)) {
+                    listSt.add(kiosks_listSt.get(i))
+                }
+            }
+        }
+
+    }
+
 
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -177,9 +212,10 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[i][1]!!.toDouble(),
                 mKioskArr[i][2]!!.toDouble())))
 
-            kioskNamesArr = mKioskArr[i]
-        }
+            kioskNamesArr[i] = mKioskArr[i][0]
+            kiosks_listSt.add(mKioskArr[i][0].toString())
 
+        }
 
         googleMap.setOnMarkerClickListener(this)
     }
@@ -360,6 +396,8 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     }
 
 }
+
+
 
 
 

@@ -63,8 +63,10 @@
             android:id="@+id/booster_search"
             android:layout_width="0dp"
             android:layout_height="30dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_main_color"
             android:fontFamily="@font/font_medium"
             android:iconifiedByDefault="false"
             android:queryBackground="@null"
@@ -73,6 +75,19 @@
             app:layout_constraintTop_toBottomOf="@+id/info_search"
             app:queryHint="주소 검색"
             app:searchIcon="@drawable/icon_search" />
+
+        <ListView
+            android:id="@+id/req_search_select"
+            android:layout_width="321dp"
+            android:layout_height="310dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/booster_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

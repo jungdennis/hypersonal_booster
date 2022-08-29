@@ -144,7 +144,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
             }
         }
 
-        feeling = shared_cloud.getString("feeling", "NoData").toString()
+        feeling = shared_cloud.getString("Feeling", "NoData").toString()
 
         val taste_list = shared_cloud.getString("taste", "NoData")?.split(",")?.distinct()
         val company_list = shared_cloud.getString("company", "NoData")?.toString()?.split(",")
@@ -175,7 +175,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
 
                     for(snapshot in dataSnapshot.getChildren()) {
                         val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                        val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                        val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                         for(fav_taste in taste_list!!) {
                             if(fav_taste in taste2) {
@@ -266,6 +266,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_before = ""
                     for(id in result) {
@@ -389,6 +390,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_before = ""
                     for(id in result) {

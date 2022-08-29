@@ -93,10 +93,10 @@ class RegisterActivity_3_Target : AppCompatActivity() {
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
             if(cloud_check == "true") {
-                if(health_check == "false") {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+                val intent = Intent(this, RecommendActivity_Before::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
+                finish()
             }
             else {
                 val intent = Intent(this, RegisterActivity_4_Feeling::class.java)

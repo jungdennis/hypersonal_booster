@@ -20,12 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HyperBooster"
         tools:targetApi="31">
-        <activity
-            android:name=".RecommendActivity_Before"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity_0_Return"
-            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -46,7 +40,8 @@
             android:exported="false"
             android:label="@string/title_activity_google_maps"
             android:screenOrientation="portrait" />
-        <!-- booster database 복구용
+        <!--
+ booster database 복구용
         <activity
             android:name=".RepairActivity"
             android:exported="true"
@@ -74,9 +69,25 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".CloudLoadingActivity_Booster"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CloudLoadingActivity_Kiosk"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CloudLoadingActivity_Members"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".RegisterActivity_0_Welcome"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity_0_Return"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterActivity_1_Basic"
             android:exported="false"
@@ -109,6 +120,10 @@
             android:name=".RegisterActivity_7_Particular"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecommendActivity_Before"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RecommendActivity_After"
             android:exported="false"

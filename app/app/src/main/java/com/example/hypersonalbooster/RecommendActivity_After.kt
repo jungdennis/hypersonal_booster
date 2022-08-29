@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRecommendAfterBinding
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
@@ -146,7 +147,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
             }
         }
 
-        feeling = shared_cloud.getString("feeling", "NoData").toString()
+        feeling = shared_cloud.getString("Feeling", "NoData").toString()
         val taste_list = shared_cloud.getString("taste", "NoData")?.split(",")?.distinct()
         val company_list = shared_cloud.getString("company", "NoData")?.toString()?.split(",")
         Log.d("RecommendActivity_After", "taste_list : $taste_list / company_list : $company_list")
@@ -186,7 +187,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                     if(feeling == "clean") {
                         for (snapshot in dataSnapshot.getChildren()) {
                             val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                            val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                             for (fav_taste in taste_list!!) {
                                 if (fav_taste in taste2) {
@@ -196,9 +197,10 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     list_taste1.distinct()
                                 }
                             }
+                            list_taste1.distinct()
+                            Log.d("list_taste1", "$list_taste1")
 
-                            if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
-                                if (snapshot.child("texture").getValue().toString() == "clear") {
+                            if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0" && snapshot.child("texture").getValue().toString() == "clear") {
                                     for (taste in taste_list!!) {
                                         if (taste == "Nothing") {
                                             sort_taste2.add(snapshot.child("ID").getValue().toString())
@@ -218,7 +220,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             sort_company.add(snapshot.child("ID").getValue().toString())
                                         }
                                     }
-                                }
                             }
                         }
                         for (taste in sort_taste2) {
@@ -231,8 +232,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                         if(result.size < 3) {
                             for(snapshot in dataSnapshot.getChildren()) {
-                                if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
-                                    if(snapshot.child("texture").getValue().toString() == "clear"){
+                                if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0" && snapshot.child("texture").getValue().toString() == "clear") {
                                         val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                         for (taste in list_taste1!!) {
@@ -240,7 +240,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                 sort_taste1.add(snapshot.child("ID").getValue().toString())
                                             }
                                         }
-                                    }
                                 }
                             }
                             for (taste in sort_taste1) {
@@ -271,7 +270,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                     else {
                         for (snapshot in dataSnapshot.getChildren()) {
                             val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                            val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                            val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                             for (fav_taste in taste_list!!) {
                                 if (fav_taste in taste2) {
@@ -281,6 +280,8 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     list_taste1.distinct()
                                 }
                             }
+                            list_taste1.distinct()
+                            Log.d("list_taste1", "$list_taste1")
 
                             if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "0") {
                                 for (taste in taste_list!!) {
@@ -353,6 +354,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_after = ""
                     for(id in result) {
@@ -391,7 +393,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         if(feeling == "clean") {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -401,10 +403,12 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
-                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
-                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                        if (snapshot.child("texture").getValue().toString() == "clear") {
+                                val booster_fat = snapshot.child("fat(g)").getValue().toString().toFloat()
+                                if(booster_fat <= 1.6F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                             if(kind_after == "vegan_protein") {
                                                 if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
                                                     for (taste in taste_list!!) {
@@ -473,7 +477,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                     }
                                                 }
                                             }
-                                        }
                                     }
                                 }
                             }
@@ -487,9 +490,9 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
-                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                            if(snapshot.child("texture").getValue().toString() == "clear"){
+                                    val booster_fat = snapshot.child("fat(g)").getValue().toString().toFloat()
+                                    if(booster_fat <= 1.6F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                                 val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                                 if(kind_after == "vegan_protein") {
@@ -517,7 +520,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                         }
                                                     }
                                                 }
-                                            }
                                         }
                                     }
                                 }
@@ -549,7 +551,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         else {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -559,8 +561,11 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
-                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                val booster_fat = snapshot.child("fat(g)").getValue().toString().toFloat()
+                                if(booster_fat <= 1.6F) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if(kind_after == "vegan_protein") {
                                             if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
@@ -645,7 +650,8 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                    val booster_fat = snapshot.child("fat(g)").getValue().toString().toFloat()
+                                    if(booster_fat <= 1.6F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
@@ -705,6 +711,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {
@@ -742,7 +749,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         if(feeling == "clean") {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -752,10 +759,12 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
-                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
-                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                        if (snapshot.child("texture").getValue().toString() == "clear") {
+                                val booster_protein = snapshot.child("protein(g)").getValue().toString().toFloat()
+                                if(booster_protein >= 19.2F) {
+                                    if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                             if(kind_after == "vegan_protein") {
                                                 if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
                                                     for (taste in taste_list!!) {
@@ -824,7 +833,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                     }
                                                 }
                                             }
-                                        }
                                     }
                                 }
 
@@ -840,9 +848,9 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
-                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                            if(snapshot.child("texture").getValue().toString() == "clear"){
+                                    val booster_protein = snapshot.child("protein(g)").getValue().toString().toFloat()
+                                    if(booster_protein >= 19.2F) {
+                                        if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                                 val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                                 if(kind_after == "vegan_protein") {
@@ -870,7 +878,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                         }
                                                     }
                                                 }
-                                            }
                                         }
                                     }
                                 }
@@ -902,7 +909,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         else {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -912,8 +919,11 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
-                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                val booster_protein = snapshot.child("protein(g)").getValue().toString().toFloat()
+                                if(booster_protein >= 19.2F) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if(kind_after == "vegan_protein") {
                                             if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
@@ -996,7 +1006,8 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                    val booster_protein = snapshot.child("protein(g)").getValue().toString().toFloat()
+                                    if(booster_protein >= 19.2F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
@@ -1057,6 +1068,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {
@@ -1094,7 +1106,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         if(feeling == "clean") {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -1104,9 +1116,10 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
-                                if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                    if (snapshot.child("texture").getValue().toString() == "clear") {
+                                if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                         if(kind_after == "vegan_protein") {
                                             if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
                                                 for (taste in taste_list!!) {
@@ -1175,7 +1188,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                 }
                                             }
                                         }
-                                    }
                                 }
                             }
                             for (taste in sort_taste2) {
@@ -1188,8 +1200,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
-                                        if(snapshot.child("texture").getValue().toString() == "clear"){
+                                    if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1" && snapshot.child("texture").getValue().toString() == "clear") {
                                             val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                             if(kind_after == "vegan_protein") {
@@ -1217,7 +1228,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                     }
                                                 }
                                             }
-                                        }
                                     }
                                 }
                                 for (taste in sort_taste1) {
@@ -1248,7 +1258,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         else {
                             for (snapshot in dataSnapshot.getChildren()) {
                                 val taste2 = snapshot.child("taste2").getValue().toString().split(",")
-                                val taste1 = snapshot.child("taste2").getValue().toString().split(",")
+                                val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
                                 for (fav_taste in taste_list!!) {
                                     if (fav_taste in taste2) {
@@ -1258,6 +1268,8 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                         list_taste1.distinct()
                                     }
                                 }
+                                list_taste1.distinct()
+                                Log.d("list_taste1", "$list_taste1")
 
                                 if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                     if(kind_after == "vegan_protein") {
@@ -1398,6 +1410,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {

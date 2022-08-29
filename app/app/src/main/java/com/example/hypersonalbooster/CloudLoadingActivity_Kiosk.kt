@@ -61,7 +61,7 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
     }
 
     override fun onCallback() {
-        val check_cloud = getSharedPreferences("data_cloud", 0).getString("check_cloud", "nothing")
+        val check_cloud = getSharedPreferences("data_cloud", 0).getString("cloud_check", "nothing")
         val check_health = getSharedPreferences("data_health", 0).getString("check_health", "nothing")
 
         if(check_cloud == "true") {

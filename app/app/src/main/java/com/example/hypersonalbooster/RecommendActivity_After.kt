@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutRecommendAfterBinding
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
@@ -402,7 +403,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
 
-                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                //if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if (snapshot.child("texture").getValue().toString() == "clear") {
                                             if(kind_after == "vegan_protein") {
@@ -475,7 +476,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
                                         }
                                     }
-                                }
+                                //}
                             }
                             for (taste in sort_taste2) {
                                 for (company in sort_company) {
@@ -487,7 +488,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                    //if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             if(snapshot.child("texture").getValue().toString() == "clear"){
                                                 val taste1 = snapshot.child("taste1").getValue().toString().split(",")
@@ -519,7 +520,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                 }
                                             }
                                         }
-                                    }
+                                    //}
                                 }
                                 for (taste in sort_taste1) {
                                     for (company in sort_company) {
@@ -560,7 +561,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
 
-                                if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                //if(snapshot.child("fat(g)").getValue() <= 1.6) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if(kind_after == "vegan_protein") {
                                             if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
@@ -631,7 +632,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
                                         }
                                     }
-                                }
+                                //}
 
 
                             }
@@ -645,7 +646,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
+                                    //if(snapshot.child("fat(g)").getValue().toString().toFloat() <= 1.6F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
@@ -676,7 +677,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
 
                                         }
-                                    }
+                                    //}
                                 }
                                 for (taste in sort_taste1) {
                                     for (company in sort_company) {
@@ -753,7 +754,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
 
-                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                //if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if (snapshot.child("texture").getValue().toString() == "clear") {
                                             if(kind_after == "vegan_protein") {
@@ -826,7 +827,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
                                         }
                                     }
-                                }
+                                //}
 
 
                             }
@@ -840,7 +841,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                    //if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             if(snapshot.child("texture").getValue().toString() == "clear"){
                                                 val taste1 = snapshot.child("taste1").getValue().toString().split(",")
@@ -872,7 +873,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                                 }
                                             }
                                         }
-                                    }
+                                    //}
                                 }
                                 for (taste in sort_taste1) {
                                     for (company in sort_company) {
@@ -913,7 +914,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                     }
                                 }
 
-                                if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                //if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
                                     if (snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                         if(kind_after == "vegan_protein") {
                                             if(snapshot.child("class3(카페인x0카페인o1)(WPC0WPI1WPH2비건3카제인4)").getValue().toString() == "3") {
@@ -984,7 +985,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
                                         }
                                     }
-                                }
+                                //}
                             }
                             for (taste in sort_taste2) {
                                 for (company in sort_company) {
@@ -996,7 +997,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
                             if(result.size < 3) {
                                 for(snapshot in dataSnapshot.getChildren()) {
-                                    if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
+                                    //if(snapshot.child("protein(g)").getValue().toString().toFloat() >= 19.2F) {
                                         if(snapshot.child("class1(전0후1)").getValue().toString() == "1" && snapshot.child("class2(BCAA0부스터류1)(게이너0그외1)").getValue().toString() == "1") {
                                             val taste1 = snapshot.child("taste1").getValue().toString().split(",")
 
@@ -1027,7 +1028,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                             }
 
                                         }
-                                    }
+                                    //}
 
                                 }
                                 for (taste in sort_taste1) {

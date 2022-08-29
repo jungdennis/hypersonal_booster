@@ -15,7 +15,7 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
     private lateinit var binding : LayoutCloudLoadingBinding
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+    val ref = database.getReference("kiosk")
 
     var kiosk_list = ""
 
@@ -44,6 +44,7 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var temp = ArrayList<String>()
+                Log.d("CLOUD_KIOSK", "$dataSnapshot")
                 for (snapshot in dataSnapshot.getChildren()) {
                     val name = snapshot.child("name").getValue().toString()
                     val location = snapshot.child("location").getValue().toString()
@@ -56,6 +57,7 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
                             else{
                                 kiosk_list = kiosk_list + "/" + kiosk
                             }
+                            Log.d("CLOUD_KIOSK", "String : $kiosk_list")
                         }
                         temp.add(kiosk)
                     }

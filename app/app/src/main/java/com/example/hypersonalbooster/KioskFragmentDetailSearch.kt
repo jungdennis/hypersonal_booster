@@ -13,10 +13,6 @@ class KioskFragmentDetailSearch : AppCompatActivity() {
 
     private lateinit var binding: FragmentMapRequestSearchBinding
 
-    private lateinit var adapter : ListViewAdapter_BoostReq
-
-
-
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)

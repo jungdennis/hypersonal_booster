@@ -4,6 +4,7 @@ package com.example.hypersonalbooster
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 
@@ -43,15 +44,12 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("kiosk")
     var kioskData_list = ""
+    var kioskName_list = ""
     var kioskName = ""
     var cMarkerPos = ""
     var mm : Int = 0
     var kiosks_string = ""
 
-    var kiosks_listSt = ArrayList<String>()
-    var listSt = ArrayList<String>()
-    var kiosks_list = ArrayList<Kiosks>()
-    var list = ArrayList<Kiosks>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +61,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         binding = LayoutMapMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        for(kiosks in kiosks_listSt) {
-            kiosks_list.add(Kiosks(kiosks))
-        }
-
-        list.addAll(kiosks_list)
 
 
         val mapFragment: SupportMapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
@@ -76,6 +69,9 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
         val shared_kioskData = getSharedPreferences("data_kioskData", 0)
         val editor_kioskData = shared_kioskData.edit()
+
+        val shared_kioskNameData = getSharedPreferences("data_kioskNameData", 0)
+        val editor_kioskNameData = shared_kioskNameData.edit()
     
             // kiosk 별 보충제 정보 받아오기
             ref.addValueEventListener(object : ValueEventListener {
@@ -90,26 +86,34 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             val b5 = snapshot.child("보충제").child("5").getValue().toString()
             val b6 = snapshot.child("보충제").child("6").getValue().toString()
             val kioskDB = "$name,$b1,$b2,$b3,$b4,$b5,$b6"
+                val kioskNameDB = "$name"
             if(kioskDB.isNotEmpty()) {
             if(kioskDB !in temp){
             if(kioskData_list.isEmpty()){
-            kioskData_list = kioskData_list + kioskDB
+                kioskData_list = kioskData_list + kioskDB
+                kioskName_list += kioskNameDB
+            } else{
+                kioskData_list = kioskData_list + "/" + kioskDB
+                kioskName_list = kioskName_list + "/" + kioskNameDB
             }
-            else{
-            kioskData_list = kioskData_list + "/" + kioskDB
             }
-            }
+                Log.d("kioskName_list", "$kioskName_list")
             temp.add(kioskDB)
             }
             }
             editor_kioskData.putString("kioskData", kioskData_list)
             editor_kioskData.apply()
+                editor_kioskNameData.putString("kioskNameData", kioskName_list)
+                editor_kioskNameData.apply()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}})
 
 
-        binding.mapSearch.setOnQueryTextListener(searchViewTextListener)
+        binding.searchButton.setOnClickListener {
+            val intent = Intent(this, KioskSearch::class.java)
+            startActivity(intent)
+        }
 
         binding.back.setOnClickListener {
             finish()
@@ -126,34 +130,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         }
     }
 
-    var searchViewTextListener: SearchView.OnQueryTextListener =
-        object : SearchView.OnQueryTextListener {
-            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
-            override fun onQueryTextSubmit(s: String): Boolean {
-                return false
-            }
-
-            //텍스트 입력/수정시에 호출
-            override fun onQueryTextChange(s: String): Boolean {
-                search(s)
-                return false
-            }
-        }
-    private fun search(charText: String) {
-        listSt.clear()
-
-        if (charText.length == 0) {
-            listSt.addAll(kiosks_listSt)
-        } else {
-            for (i in 0 until kiosks_listSt.size) {
-                if (kiosks_listSt.get(i).toLowerCase().contains(charText)) {
-                    listSt.add(kiosks_listSt.get(i))
-                }
-            }
-        }
-
-    }
-
 
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -162,11 +138,30 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         googleMap.setOnMyLocationClickListener(this)
         googleMap.uiSettings.isMyLocationButtonEnabled = true
         enableMyLocation()
+        val shared_selName = getSharedPreferences("data_selectedName", 0).getString("selKiosk", "failed")
+        var shared_selNameasd = shared_selName
+/*
+        if(shared_selNameasd != ""){
+            var lat:Double = 0.0
+            var long:Double = 0.0
+            for(i in 0..mm){
+                if(shared_selNameasd == globalKioskArr[i][0]){
+                    lat = globalKioskArr[i][1]!!.toDouble()
+                    long = globalKioskArr[i][2]!!.toDouble()
+                }
+            }
+            CameraUpdateFactory.newLatLngZoom(LatLng(lat, long),17f)
+            shared_selNameasd = ""
+        }else{
+            CameraUpdateFactory.zoomBy(10f)
+        }
+*/
 
         val shared_kiosk = getSharedPreferences("data_kiosk", 0)
         var cnt = 0
         var kioskNum:Int = 0
         val kiosk = shared_kiosk.getString("kiosk", "NoKiosk")
+        Log.d("Kiosk_String", "$kiosk")
         val stKiosk: String = kiosk.toString()
         var mKioskArr = Array(3) { arrayOfNulls<String>(3) }
 
@@ -209,8 +204,6 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
                 mKioskArr[i][2]!!.toDouble())).title(mKioskArr[i][0]))
             Map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(mKioskArr[i][1]!!.toDouble(),
                 mKioskArr[i][2]!!.toDouble())))
-
-            kiosks_listSt.add(mKioskArr[i][0].toString())
 
         }
 

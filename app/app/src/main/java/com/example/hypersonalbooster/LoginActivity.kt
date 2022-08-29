@@ -42,11 +42,16 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 나중에 첫 화면으로 빠질 예정
         binding = LayoutLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
+
+        if(mAuth?.currentUser != null) {
+            val intent: Intent = Intent(this, WelcomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()

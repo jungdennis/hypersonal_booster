@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.example.hypersonalbooster.databinding.LayoutCloudLoadingBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
+    private lateinit var binding : LayoutCloudLoadingBinding
 
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
@@ -17,10 +20,17 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
     var kiosk_list = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("KioskLoading", "Kiosk Loading Start")
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_cloud_loading)
+
+        Log.d("BoosterLoading", "Booster Loading Start")
+
+        binding = LayoutCloudLoadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val auto_login = getSharedPreferences("auto_login", 0).getString("auto_login", "false")
+        if(auto_login == "true") {
+            binding.login.setVisibility(View.INVISIBLE)
+        }
 
         val shared_cloud = getSharedPreferences("data_cloud", 0)
 

@@ -49,6 +49,8 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
             finish()
         }
         binding.back.setOnClickListener {
+            val intent = Intent(this, RegisterActivity_2_Health::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -76,7 +78,6 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
 
             if(cloud_check == "true") {
                 val intent = Intent(this, RecommendActivity_Before::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 finish()
             }
@@ -103,7 +104,6 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
 
             if(cloud_check == "true") {
                 val intent = Intent(this, RecommendActivity_Before::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 finish()
             }

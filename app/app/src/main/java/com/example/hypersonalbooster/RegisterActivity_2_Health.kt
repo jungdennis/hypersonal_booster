@@ -114,10 +114,12 @@ class RegisterActivity_2_Health : AppCompatActivity() {
                 if(intent_flag){
                     val intent = Intent(this, RegisterActivity_3_Target::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 else{
                     val intent = Intent(this, RegisterActivity_3_Target_NoInbody::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }

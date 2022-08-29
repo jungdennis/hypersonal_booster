@@ -53,35 +53,6 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        val shared_kiosk = getSharedPreferences("data_kiosk", 0)
-        val editor_kiosk = shared_kiosk.edit()
-
-        // 키오스크 정보 받기
-        ref_kiosk.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var temp = ArrayList<String>()
-                for (snapshot in dataSnapshot.getChildren()) {
-                    val name = snapshot.child("name").getValue().toString()
-                    val location = snapshot.child("location").getValue().toString()
-                    val kiosk = name + "," + location
-                    if(kiosk.isNotEmpty()) {
-                        if(kiosk !in temp){
-                            if(kiosk_list.isEmpty()){
-                                kiosk_list = kiosk_list + kiosk
-                            }
-                            else{
-                                kiosk_list = kiosk_list + "/" + kiosk
-                            }
-                        }
-                        temp.add(kiosk)
-                    }
-                }
-                editor_kiosk.putString("kiosk", kiosk_list)
-                editor_kiosk.apply()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}})
-
         binding.login.setOnClickListener {
             signIn()
         }
@@ -193,25 +164,16 @@ class LoginActivity : AppCompatActivity(), CloudCallbackListener {
     }
 
     override fun onCallback() {
-        check_health = getSharedPreferences("data_health", 0).getString("health_check", "false").toString()
         if(check_cloud == "true") {
             getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "true").apply()
-            if(check_health == "true") {
-                val intent = Intent(this, RecommendActivity_Before::class.java)
-                startActivity(intent)
-                finish()
-            }
-            else {
-                val intent = Intent(this, RegisterActivity_0_Return::class.java)
-                startActivity(intent)
-                finish()
-            }
         }
-        else{
+        else {
             getSharedPreferences("data_cloud", 0).edit().putString("cloud_check", "false").apply()
-            val intent = Intent(this, RegisterActivity_0_Welcome::class.java)
-            startActivity(intent)
-            finish()
         }
+
+        val intent = Intent(this,CloudLoadingActivity_Booster::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
+        finish()
     }
 }

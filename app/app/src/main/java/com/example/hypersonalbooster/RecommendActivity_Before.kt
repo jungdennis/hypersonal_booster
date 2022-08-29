@@ -266,6 +266,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_before = ""
                     for(id in result) {
@@ -389,6 +390,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_before = ""
                     for(id in result) {

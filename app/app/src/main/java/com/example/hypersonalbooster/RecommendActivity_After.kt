@@ -354,6 +354,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                     }
 
                     result.distinct()
+                    result.shuffle()
 
                     var booster_after = ""
                     for(id in result) {
@@ -710,6 +711,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {
@@ -1066,6 +1068,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {
@@ -1407,6 +1410,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                         }
 
                         result.distinct()
+                        result.shuffle()
 
                         var booster_after = ""
                         for(id in result) {

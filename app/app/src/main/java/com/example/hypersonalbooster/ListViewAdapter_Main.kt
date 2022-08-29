@@ -32,7 +32,14 @@ class ListViewAdapter_Main(private val context: Context, private val booster_lis
         binding.boosterKind.text = booster.class_2
         binding.boosterName.text = booster.name
 
-        val booster_url_name = booster.name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        var booster_url_name : String = ""
+
+        if(booster.name.contains(":")) {
+            booster_url_name += booster.name.replace(":", "").replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        }
+        else {
+            booster_url_name += booster.name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        }
 
         val url = "https://firebasestorage.googleapis.com/v0/b/hypersonal-booster.appspot.com/o/" + booster_url_name + ".jpg?alt=media"
         Log.d("ListViewAdapter_Main", "Url : $url")

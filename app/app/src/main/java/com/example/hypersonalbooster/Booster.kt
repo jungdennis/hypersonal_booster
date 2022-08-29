@@ -70,7 +70,7 @@ class Booster(id : String) {
                         if(temp_3 == 0L) {
                             class_2 += "무카페인 BCAA"
                         }
-                        else if(temp_3 == 1L) {
+                        else if(temp_3 == 1L || temp_3 == 3L) {
                             class_2 += "BCAA"
                         }
                     }
@@ -134,9 +134,7 @@ class Booster(id : String) {
                 carb = snapshot.child("carb(g)").getValue().toString().toFloat()
                 sugar = snapshot.child("sugars(g)").getValue().toString().toFloat()
                 fat = snapshot.child("fat(g)").getValue().toString().toFloat()
-                sat_fat = snapshot.child("sat fat(g)").getValue().toString().toFloat(
-
-                )
+                sat_fat = snapshot.child("sat fat(g)").getValue().toString().toFloat()
                 protein = snapshot.child("protein(g)").getValue().toString().toFloat()
 
                 Log.d("Booster Init", "Nutruent : $calories, $carb, $sugar, $fat, $sat_fat, $protein")

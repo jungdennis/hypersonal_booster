@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.hypersonalbooster.databinding.LayoutRegisterTargetBinding
 import com.example.hypersonalbooster.databinding.LayoutRegisterTargetNoInbodyBinding
+import kotlin.math.roundToInt
 
 class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
 
@@ -64,6 +66,10 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
             normal_weight = (now_height / 100) * (now_height / 100) * 21
         }
 
+        val weight_boundary = arrayOf(normal_weight*0.9.toFloat(), normal_weight*1.1.toFloat())
+
+        weight_display(binding, now_weight, weight_boundary[0], weight_boundary[1])
+
         binding.noTraget.setOnClickListener {
             input_target_weight = String.format("%.1f", normal_weight)
 
@@ -111,6 +117,40 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
                 val intent = Intent(this, RegisterActivity_4_Feeling::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+    fun weight_display(binding: LayoutRegisterTargetNoInbodyBinding, weight : Float, boundary1 : Float, boundary2 : Float) {
+        binding.weightLess.setVisibility(View.INVISIBLE)
+        binding.weightBoundary1.setVisibility(View.INVISIBLE)
+        binding.weightNormal.setVisibility(View.INVISIBLE)
+        binding.weightBoundary2.setVisibility(View.INVISIBLE)
+        binding.weightMuch.setVisibility(View.INVISIBLE)
+
+        binding.weightNormalMin.text = "%.1f".format(boundary1) + "kg"
+        binding.weightNormalMax.text = "%.1f".format(boundary2) + "kg"
+
+        val display_weight = ((weight * 10.0).roundToInt() / 10.0).toFloat()
+
+        if(display_weight < boundary1) {
+            binding.weightLess.setVisibility(View.VISIBLE)
+            binding.weightDisplayMin.text = "%.1f".format(display_weight) + "kg"
+        }
+        else if(display_weight == boundary1) {
+            binding.weightBoundary1.setVisibility(View.VISIBLE)
+            binding.weightDisplayBoundary1.text = "%.1f".format(display_weight) + "kg"
+        }
+        else if(display_weight > boundary1 && display_weight < boundary2) {
+            binding.weightNormal.setVisibility(View.VISIBLE)
+            binding.weightDisplayNormal.text = "%.1f".format(display_weight) + "kg"
+        }
+        else if(display_weight == boundary2) {
+            binding.weightBoundary2.setVisibility(View.VISIBLE)
+            binding.weightDisplayBoundary2.text = "%.1f".format(display_weight) + "kg"
+        }
+        else {
+            binding.weightMuch.setVisibility(View.VISIBLE)
+            binding.weightDisplayMuch.text = "%.1f".format(display_weight) + "kg"
         }
     }
 }

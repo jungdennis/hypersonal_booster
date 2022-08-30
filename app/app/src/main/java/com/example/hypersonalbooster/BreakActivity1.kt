@@ -19,7 +19,7 @@ class BreakActivity1 : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
-        }, 500)
+        }, 700)
     }
 
     override fun onBackPressed() {

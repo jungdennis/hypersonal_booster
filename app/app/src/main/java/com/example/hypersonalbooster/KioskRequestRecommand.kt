@@ -10,9 +10,9 @@ class KioskRequestRecommand : AppCompatActivity() {
 
     private lateinit var binding : LayoutMapRequestRecommandBinding
 
-    var booster_before = ArrayList<Booster>()
-    var booster_after = ArrayList<Booster>()
-    var booster_init = ArrayList<Booster>()
+    var booster_before = ArrayList<String>()
+    var booster_after = ArrayList<String>()
+    var booster_init = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +25,26 @@ class KioskRequestRecommand : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        val shared_before = getSharedPreferences("booster_before", 0)
+        val shared_after = getSharedPreferences("booster_after", 0)
+
         for(boosterID in before) {
-            booster_before.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_before.add(info.toString())
+            }
         }
         for(boosterID in after) {
-            booster_after.add(Booster(boosterID))
+            val info = shared_after.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_after.add(info.toString())
+            }
         }
         for(boosterID in before) {
-            booster_init.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_init.add(info.toString())
+            }
         }
 
         val mlAdapter = ListViewAdapter_Main(this, booster_init)
@@ -63,6 +75,7 @@ class KioskRequestRecommand : AppCompatActivity() {
             val ReqSearch_intent = Intent(this, KioskFragmentDetailSearch::class.java)
             ReqSearch_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(ReqSearch_intent)
+            finish()
         }
 
 

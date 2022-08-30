@@ -160,6 +160,7 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             val supply_intent = Intent(this, BoosterActivity::class.java)
             supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(supply_intent)
+            finish()
         }
         binding.qr.setOnClickListener {
             val qr_popup = MainFragment_QR()

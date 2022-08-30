@@ -56,14 +56,13 @@ class BoosterActivity_After : AppCompatActivity(), OnRecommendBoosterClickListen
         }
 
         binding.supply.setOnClickListener {
-            val supply_intent = Intent(this, BoosterActivity::class.java)
-            supply_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(supply_intent)
+            finish()
         }
         binding.location.setOnClickListener {
             val location_intent = Intent(this, KioskActivity::class.java)
             location_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(location_intent)
+            finish()
         }
         binding.qr.setOnClickListener {
             val qr_popup = MainFragment_QR()

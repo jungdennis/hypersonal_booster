@@ -74,7 +74,6 @@ class BoosterActivity : AppCompatActivity() {
             val intent = Intent(this, BoosterActivity_Before :: class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
-            finish()
         }
         binding.moreAfter.setOnClickListener {
             val intent = Intent(this, BoosterActivity_After::class.java)
@@ -82,7 +81,6 @@ class BoosterActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
-            finish()
         }
 
         binding.back.setOnClickListener {

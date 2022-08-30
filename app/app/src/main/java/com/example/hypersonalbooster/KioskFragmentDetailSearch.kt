@@ -66,6 +66,7 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
             val ReqRecomm_intent = Intent(this, KioskRequestRecommand::class.java)
             ReqRecomm_intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(ReqRecomm_intent)
+            finish()
         }
 
     }

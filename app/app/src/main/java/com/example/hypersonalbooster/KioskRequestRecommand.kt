@@ -1,12 +1,13 @@
 package com.example.hypersonalbooster
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutMapRequestRecommandBinding
 
-class KioskRequestRecommand : AppCompatActivity() {
+class KioskRequestRecommand : AppCompatActivity(), OnRecommendBoosterClickListener {
 
     private lateinit var binding : LayoutMapRequestRecommandBinding
 
@@ -14,6 +15,9 @@ class KioskRequestRecommand : AppCompatActivity() {
     var booster_after = ArrayList<Booster>()
     var booster_init = ArrayList<Booster>()
 
+    var check_booster = ArrayList<String>()
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,24 +39,28 @@ class KioskRequestRecommand : AppCompatActivity() {
             booster_init.add(Booster(boosterID))
         }
 
-        val mlAdapter = ListViewAdapter_Main(this, booster_init)
+        val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_init, this)
         binding.boosterList.adapter = mlAdapter
 
         binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
             if (isChecked) {
-                val mlAdapter = ListViewAdapter_Main(this, booster_after)
+                val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_after,this)
                 binding.boosterList.adapter = mlAdapter
             }
             else {
-                val mlAdapter = ListViewAdapter_Main(this, booster_before)
+                val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_before,this)
                 binding.boosterList.adapter = mlAdapter
             }
         }
 
 
         binding.request.setOnClickListener {
-            Toast.makeText(this, "보충제를 요청하였습니다", Toast.LENGTH_SHORT)
-                .show()
+            if(check_booster.isEmpty()){
+                Toast.makeText(this, "보충제를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(this, "보충제를 요청하였습니다", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
         binding.cancel.setOnClickListener {
@@ -72,6 +80,13 @@ class KioskRequestRecommand : AppCompatActivity() {
 
         overridePendingTransition(0, 0)
         finish()
+    }
+
+    override fun onBoosterClickAdd(booster_name : String){
+        check_booster.add(booster_name)
+    }
+    override fun onBoosterClickRemove(booster_name: String){
+        check_booster.remove(booster_name)
     }
 
 }

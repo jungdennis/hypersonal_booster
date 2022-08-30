@@ -15,85 +15,110 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/qr"
-        android:layout_width="78dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/btn_bottom_qr"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_qr_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_qr_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar_top" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/supply"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_bottom"
         android:drawableTop="@drawable/icon_supply"
-        android:text="오늘의 추천"
         android:fontFamily="@font/font_medium"
+        android:paddingTop="6dp"
+        android:text="오늘의 추천"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/qr"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_qr_left"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
         app:layout_constraintVertical_bias="1.0" />
+
     <android.widget.Button
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/location"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="00dp"
         android:background="@drawable/back_bottom"
         android:drawableTop="@drawable/icon_location"
-        android:text="키오스크 위치"
         android:fontFamily="@font/font_medium"
-        android:textSize="10sp"
         android:gravity="center"
+        android:paddingTop="6dp"
+        android:text="키오스크 위치"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/qr"
+        app:layout_constraintStart_toStartOf="@+id/guideline_qr_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
         app:layout_constraintVertical_bias="1.0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="63dp" />
+        app:layout_constraintGuide_percent="0.08" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="88dp" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottombar_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="78dp" />
+        app:layout_constraintGuide_percent="0.88" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_percent="0.05" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottombar_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottombar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="48dp" />
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_qr_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_qr_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.60" />
 
     <!-- 작업 공간 -->
 

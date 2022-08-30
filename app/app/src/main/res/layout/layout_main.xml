@@ -10,9 +10,9 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".MainActivity">
 
         <!-- 건들지 마세요 -->
@@ -25,85 +25,110 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline_bottombar" />
+
         <android.widget.Button
-            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/qr"
-            android:layout_width="78dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/btn_bottom_qr"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_qr_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_qr_left"
             app:layout_constraintTop_toTopOf="@+id/guideline_bottombar_top" />
+
         <android.widget.Button
-            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/supply"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/back_bottom"
             android:drawableTop="@drawable/icon_supply"
-            android:text="오늘의 추천"
             android:fontFamily="@font/font_medium"
+            android:paddingTop="6dp"
+            android:text="오늘의 추천"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/qr"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_qr_left"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
             app:layout_constraintVertical_bias="1.0" />
+
         <android.widget.Button
-            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/location"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="00dp"
             android:background="@drawable/back_bottom"
             android:drawableTop="@drawable/icon_location"
-            android:text="키오스크 위치"
             android:fontFamily="@font/font_medium"
-            android:textSize="10sp"
             android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="키오스크 위치"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/qr"
+            app:layout_constraintStart_toStartOf="@+id/guideline_qr_right"
             app:layout_constraintTop_toTopOf="@+id/guideline_bottombar"
             app:layout_constraintVertical_bias="1.0" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="63dp" />
+            app:layout_constraintGuide_percent="0.08" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="88dp" />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_bottombar_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="78dp" />
+            app:layout_constraintGuide_percent="0.88" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_percent="0.05" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="20dp" />
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottombar_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.90" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_bottombar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="48dp" />
+            app:layout_constraintGuide_percent="0.93" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_qr_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_qr_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.60" />
 
         <!-- 작업 공간 -->
 
@@ -119,13 +144,13 @@
         <TextView
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/font_bold"
             android:text="Hypersonal\nBooster"
-            android:textSize="18sp"
             android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/guideline_top"
-            android:layout_marginStart="5dp"
             app:layout_constraintStart_toEndOf="@+id/icon_main" />
 
         <Button
@@ -140,13 +165,15 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/font_bold"
             android:text="정승용"
             android:textColor="@color/sub_color_dark"
             android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@+id/welcome_message"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
-            app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_main"
+            app:layout_constraintVertical_chainStyle="packed" />
 
 
         <TextView
@@ -161,25 +188,49 @@
 
         <TextView
             android:id="@+id/welcome_message"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_medium"
+            android:text="즐거운 운동 되세요!"
             android:textColor="@color/black"
-            android:text="오늘도 즐거운 운동 되세요!"
             android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/health_info"
             android:layout_width="0dp"
-            android:layout_height="186dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="15dp"
             android:background="@drawable/back_fragment"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_message">
+            app:layout_constraintTop_toTopOf="@+id/guideline11">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.29" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
             <TextView
                 android:id="@+id/info_health"
@@ -195,8 +246,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                style="?android:attr/borderlessButtonStyle"
                 android:id="@+id/edit_health"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="15dp"
@@ -212,12 +263,15 @@
                 android:id="@+id/info_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/font_medium"
-                android:layout_marginStart="25dp"
                 android:text="체중"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+                app:layout_constraintEnd_toStartOf="@+id/weight_display"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/weight_display" />
 
@@ -225,14 +279,15 @@
                 android:id="@+id/weight_display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
                 android:fontFamily="@font/font_medium"
                 android:text="100.0"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="27sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline14"
+                app:layout_constraintEnd_toStartOf="@+id/kg"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/info_weight"
-                app:layout_constraintTop_toBottomOf="@+id/info_health" />
+                app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
             <TextView
                 android:id="@+id/kg"
@@ -242,8 +297,10 @@
                 android:fontFamily="@font/font_medium"
                 android:text="kg"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/weight_display"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/weight_display" />
 
 
@@ -251,13 +308,17 @@
                 android:id="@+id/info_bmi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_medium"
                 android:layout_marginEnd="5dp"
-                android:text="BMI "
+                android:fontFamily="@font/font_medium"
+                android:text="BMI"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="@+id/display_bmi"
                 app:layout_constraintEnd_toStartOf="@+id/display_bmi"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/kg"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
                 app:layout_constraintTop_toTopOf="@+id/display_bmi" />
 
             <TextView
@@ -266,13 +327,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_medium"
                 android:text="99.9"
-                android:layout_marginEnd="25dp"
                 android:textColor="@color/black"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="@+id/weight_display"
+                android:textSize="27sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline14"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/weight_display"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/info_bmi"
+                app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
             <TextView
                 android:id="@+id/info_fat"
@@ -280,35 +341,38 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_medium"
                 android:text="체지방율"
-                android:layout_marginTop="15dp"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/info_muscle"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toTopOf="@+id/frame_fat"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weight_display" />
+                app:layout_constraintTop_toTopOf="@+id/guideline14"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/info_muscle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_medium"
-                android:layout_marginTop="15dp"
                 android:text="골격근량"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toTopOf="@+id/frame_muscle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/info_fat"
-                app:layout_constraintTop_toBottomOf="@+id/display_bmi" />
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toTopOf="@+id/guideline14"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/frame_fat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="@+id/info_fat"
-                app:layout_constraintStart_toStartOf="@+id/info_fat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/info_fat">
 
                 <TextView
@@ -320,7 +384,7 @@
                     android:gravity="center"
                     android:text="99.9"
                     android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:textSize="27sp" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -330,7 +394,7 @@
                     android:fontFamily="@font/font_medium"
                     android:text="%"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/display_fat"
                     app:layout_constraintStart_toEndOf="@+id/display_fat" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -339,9 +403,10 @@
                 android:id="@+id/frame_muscle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="@+id/info_muscle"
-                app:layout_constraintStart_toStartOf="@+id/info_muscle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
                 app:layout_constraintTop_toBottomOf="@+id/info_muscle">
 
                 <TextView
@@ -352,7 +417,7 @@
                     android:gravity="center"
                     android:text="99.9"
                     android:textColor="@color/black"
-                    android:textSize="30sp"
+                    android:textSize="27sp"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="-1dp" />
 
@@ -360,11 +425,11 @@
                     android:id="@+id/textView5"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_medium"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/font_medium"
                     android:text="kg"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/display_muscle"
                     app:layout_constraintStart_toEndOf="@+id/display_muscle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -373,7 +438,6 @@
                 android:id="@+id/message_no_fat_muscle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
                 android:fontFamily="@font/font_medium"
                 android:gravity="center"
                 android:text="체지방율과 골격근량을 입력하시면\n더욱 정확한 추천을 받으실 수 있어요!"
@@ -381,7 +445,9 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline14" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -389,7 +455,7 @@
             android:id="@+id/booster_info"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/back_fragment"
             app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
@@ -428,8 +494,8 @@
                 android:id="@+id/info_after"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_medium"
                 android:layout_marginEnd="15dp"
+                android:fontFamily="@font/font_medium"
                 android:text="운동후"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -450,20 +516,33 @@
 
             <ListView
                 android:id="@+id/booster_list"
-                android:scrollbars="none"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginVertical="15dp"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:divider="@null"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch2"
-                android:divider="@null"
-                android:listSelector="@android:color/transparent" />
-
-
+                app:layout_constraintTop_toBottomOf="@+id/switch2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -475,11 +554,11 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/side_menu"
             android:layout_width="288dp"
             android:layout_height="match_parent"
             android:background="@color/sub_color_light"
-            android:id="@+id/side_menu"
-            android:fitsSystemWindows="true" >
+            android:fitsSystemWindows="true">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -493,18 +572,18 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/icon_close"
                 app:layout_constraintBottom_toTopOf="@id/guideline"
-                android:background="@drawable/icon_close" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/private_setting"
                 android:layout_width="254dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:gravity="start"
                 android:ems="30"
                 android:fontFamily="@font/font_bold"
+                android:gravity="start"
                 android:text=" 개인 설정"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -515,71 +594,71 @@
                 android:id="@+id/line1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="3dp"
                 app:layout_constraintTop_toBottomOf="@+id/private_setting" />
 
             <Button
                 android:id="@+id/basic_setting"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_marginTop="3dp"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/sub_color_light"
                 android:fontFamily="@font/font_medium"
                 android:gravity="start"
-                android:text="개인정보 수정"
-                android:textSize="15sp"
-                android:background="@color/sub_color_light"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="개인정보 수정"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
             <Button
                 android:id="@+id/health_setting"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:gravity="start"
-                style="?android:attr/borderlessButtonStyle"
-                android:fontFamily="@font/font_medium"
-                android:text="신체정보 및 개인목표 수정"
-                android:textSize="15sp"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="신체정보 및 개인목표 수정"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/basic_setting" />
 
             <Button
                 android:id="@+id/feeling_setting"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:gravity="start"
-                style="?android:attr/borderlessButtonStyle"
-                android:fontFamily="@font/font_medium"
-                android:text="선호 느낌 수정"
-                android:textSize="15sp"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="선호 느낌 수정"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/health_setting" />
 
             <Button
                 android:id="@+id/taste_setting"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:gravity="start"
-                style="?android:attr/borderlessButtonStyle"
-                android:fontFamily="@font/font_medium"
-                android:text="선호 맛 수정"
-                android:textSize="15sp"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="선호 맛 수정"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/feeling_setting" />
 
@@ -587,14 +666,14 @@
                 android:id="@+id/company_setting"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
-                android:gravity="start"
                 android:layout_height="35dp"
-                android:fontFamily="@font/font_medium"
-                android:text="선호 브랜드 수정"
-                android:textSize="15dp"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="선호 브랜드 수정"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/taste_setting" />
 
@@ -602,14 +681,14 @@
                 android:id="@+id/particular_setting"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
-                android:gravity="start"
                 android:layout_height="35dp"
-                android:fontFamily="@font/font_medium"
-                android:text="개인 특이사항 수정"
-                android:textSize="15dp"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="개인 특이사항 수정"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@+id/private_setting"
                 app:layout_constraintTop_toBottomOf="@+id/company_setting" />
 
@@ -617,9 +696,9 @@
                 android:id="@+id/booster_detail"
                 android:layout_width="254dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/font_bold"
-                android:layout_marginStart="5dp"
                 android:text=" 보충제"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -630,11 +709,11 @@
                 android:id="@+id/line2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="3dp"
                 app:layout_constraintTop_toBottomOf="@+id/booster_detail" />
 
             <Button
@@ -642,14 +721,14 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/sub_color_light"
                 android:fontFamily="@font/font_medium"
                 android:gravity="start"
-                android:layout_marginTop="3dp"
-                android:text="보충제 제공 이력"
-                android:textSize="15sp"
-                android:background="@color/sub_color_light"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="보충제 제공 이력"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/booster_detail"
                 app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -658,13 +737,13 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:fontFamily="@font/font_medium"
-                android:text="즐겨찾는 보충제"
-                android:textSize="15sp"
-                android:gravity="start"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="즐겨찾는 보충제"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/booster_record"
                 app:layout_constraintTop_toBottomOf="@+id/booster_record" />
 
@@ -672,11 +751,11 @@
                 android:id="@+id/payment"
                 android:layout_width="254dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:ems="30"
                 android:fontFamily="@font/font_bold"
                 android:text=" 결제 및 포인트"
-                android:layout_marginStart="5dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -686,74 +765,76 @@
                 android:id="@+id/line3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="3dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="3dp"
                 app:layout_constraintTop_toBottomOf="@+id/payment" />
 
             <Button
                 android:id="@+id/payment_record"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:fontFamily="@font/font_medium"
-                android:text="결제내역 확인"
-                android:textSize="15sp"
-                android:gravity="start"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
-                style="?android:attr/borderlessButtonStyle"
+                android:text="결제내역 확인"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/payment"
                 app:layout_constraintTop_toBottomOf="@+id/line3" />
 
             <Button
                 android:id="@+id/reward"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="35dp"
-                android:fontFamily="@font/font_medium"
-                style="?android:attr/borderlessButtonStyle"
-                android:text="쿠폰 및 포인트"
-                android:textSize="15sp"
-                android:gravity="start"
                 android:background="@color/sub_color_light"
+                android:fontFamily="@font/font_medium"
+                android:gravity="start"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
+                android:text="쿠폰 및 포인트"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/payment"
                 app:layout_constraintTop_toBottomOf="@+id/payment_record" />
 
             <Button
                 android:id="@+id/log_out"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/back_fragment"
+                android:fontFamily="@font/font_medium"
                 android:text="로그아웃"
                 android:textColor="@color/black"
-                android:fontFamily="@font/font_medium"
                 android:textSize="17sp"
-                style="?android:attr/borderlessButtonStyle"
-                android:background="@drawable/back_fragment"
                 app:layout_constraintBottom_toTopOf="@+id/delete_account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/delete_account"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="15dp"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/btn_black_with_main"
+                android:fontFamily="@font/font_medium"
                 android:text="회원탈퇴"
                 android:textColor="@color/main_color"
-                android:fontFamily="@font/font_medium"
                 android:textSize="17sp"
-                style="?android:attr/borderlessButtonStyle"
-                android:background="@drawable/btn_black_with_main"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

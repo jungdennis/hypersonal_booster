@@ -14,7 +14,7 @@ import com.example.hypersonalbooster.databinding.LayoutBoosterBeforeBinding
 import com.google.firebase.database.FirebaseDatabase
 
 
-class BoosterActivity_Before : AppCompatActivity() {
+class BoosterActivity_Before : AppCompatActivity(), OnRecommendBoosterClickListener {
 
     private lateinit var binding : LayoutBoosterBeforeBinding
 
@@ -41,7 +41,7 @@ class BoosterActivity_Before : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
+        val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before,this)
         binding.boosterList.adapter = mlAdapter
 
         binding.boosterList.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
@@ -51,11 +51,11 @@ class BoosterActivity_Before : AppCompatActivity() {
 
         binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
             if (isChecked) {
-                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
+                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before,this)
                 binding.boosterList.adapter = mlAdapter
             }
             else {
-                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before)
+                val mlAdapter = ListViewAdapter_BoosterMain(this, booster_before,this)
                 binding.boosterList.adapter = mlAdapter
             }
         }
@@ -88,5 +88,13 @@ class BoosterActivity_Before : AppCompatActivity() {
 
         overridePendingTransition(0, 0)
         finish()
+    }
+
+    override fun onBoosterClickAdd(booster_name : String){
+        Toast.makeText(this, "$booster_name 을 클릭함", Toast.LENGTH_SHORT)
+            .show()
+    }
+    override fun onBoosterClickRemove(booster_name : String){
+
     }
 }

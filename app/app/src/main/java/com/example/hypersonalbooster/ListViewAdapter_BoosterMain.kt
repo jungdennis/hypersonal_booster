@@ -13,7 +13,7 @@ import com.google.firebase.storage.StorageReference
 
 
 
-class ListViewAdapter_BoosterMain(private val context: Context, private val booster_list : ArrayList<Booster>)
+class ListViewAdapter_BoosterMain(private val context: Context, private val booster_list : ArrayList<Booster>, private val listener: OnRecommendBoosterClickListener)
     : BaseAdapter() {
 
     override fun getCount() : Int = booster_list.size
@@ -26,14 +26,22 @@ class ListViewAdapter_BoosterMain(private val context: Context, private val boos
         val binding = FragmentBoosterButtonAdapterBinding.inflate(LayoutInflater.from(context))
 
         val booster = booster_list[position]
+        val booster_name = booster.name
 
         val image_name = booster.name + "jpg"
+
+        var booster_url_name : String = ""
 
         binding.boosterName.text = "제품명 : " + booster.name
         binding.boosterInfo.text = "제조사 : " + booster.company
         binding.boosterFlavor.text = " 맛  : " + booster.taste1
 
-        val booster_url_name = booster.name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        if(booster.name.contains(":")) {
+            booster_url_name += booster.name.replace(":", "").replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        }
+        else {
+            booster_url_name += booster.name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        }
 
         val booster_image = context.resources.getIdentifier("img_main", "drawable", context.packageName)
 
@@ -44,6 +52,12 @@ class ListViewAdapter_BoosterMain(private val context: Context, private val boos
             placeholder(R.drawable.icon_loading)
             error(R.drawable.img_scoop)
         }
+
+        binding.boosterList.setOnClickListener{
+            listener.onBoosterClickAdd(booster_name)
+
+        }
+
 
         return binding.root
     }

@@ -21,6 +21,9 @@
         android:theme="@style/Theme.HyperBooster"
         tools:targetApi="31">
         <activity
+            android:name=".RecommendActivity_Save"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <!--
@@ -43,7 +46,8 @@
             android:exported="false"
             android:label="@string/title_activity_google_maps"
             android:screenOrientation="portrait" />
-        <!-- booster database 복구용
+        <!--
+ booster database 복구용
         <activity
             android:name=".RepairActivity"
             android:exported="true"
@@ -60,8 +64,8 @@
             android:label="@string/title_activity_google_maps"
             android:screenOrientation="portrait" />
         -->
-
-        <!-- 데이터베이스 오타 확인용
+        <!--
+ 데이터베이스 오타 확인용
         <activity
             android:name=".BoosterCheckActivity"
             android:exported="true"
@@ -166,13 +170,13 @@
         <activity
             android:name=".KioskFragmentDetailSearch"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".KioskSearch"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 
 </manifest>

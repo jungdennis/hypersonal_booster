@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     private var end_time: Long = 0
 
-    var booster_before = ArrayList<Booster>()
-    var booster_after = ArrayList<Booster>()
-    var booster_init = ArrayList<Booster>()
+    var booster_before = ArrayList<String>()
+    var booster_after = ArrayList<String>()
+    var booster_init = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +48,28 @@ class MainActivity : AppCompatActivity() {
         val before = shared_cloud.getString("booster_before", "NoBooster")!!.split(",").distinct()
         val after = shared_cloud.getString("booster_after", "NoBooster")!!.split(",").distinct()
 
+        val shared_before = getSharedPreferences("booster_before", 0)
+        val shared_after = getSharedPreferences("booster_after", 0)
+
         for(boosterID in before) {
-            booster_before.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_before.add(info.toString())
+            }
         }
         for(boosterID in after) {
-            booster_after.add(Booster(boosterID))
+            val info = shared_after.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_after.add(info.toString())
+            }
         }
         for(boosterID in before) {
-            booster_init.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_init.add(info.toString())
+            }
         }
+
 
         val bmi : Float = weight / ((height / 100) * (height / 100))
 

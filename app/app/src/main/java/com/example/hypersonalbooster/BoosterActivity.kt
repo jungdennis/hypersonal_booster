@@ -18,9 +18,9 @@ class BoosterActivity : AppCompatActivity() {
 
     private var end_time: Long = 0
 
-    var booster_before = ArrayList<Booster>()
-    var booster_after = ArrayList<Booster>()
-    var booster_init = ArrayList<Booster>()
+    var booster_before = ArrayList<String>()
+    var booster_after = ArrayList<String>()
+    var booster_init = ArrayList<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -39,14 +39,26 @@ class BoosterActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        val shared_before = getSharedPreferences("booster_before", 0)
+        val shared_after = getSharedPreferences("booster_after", 0)
+
         for(boosterID in before) {
-            booster_before.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_before.add(info.toString())
+            }
         }
         for(boosterID in after) {
-            booster_after.add(Booster(boosterID))
+            val info = shared_after.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_after.add(info.toString())
+            }
         }
         for(boosterID in before) {
-            booster_init.add(Booster(boosterID))
+            val info = shared_before.getString(boosterID, "Nothing")
+            if(info != "Nothing") {
+                booster_init.add(info.toString())
+            }
         }
 
         val mlAdapter = ListViewAdapter_Main(this, booster_before)
@@ -62,11 +74,15 @@ class BoosterActivity : AppCompatActivity() {
             val intent = Intent(this, BoosterActivity_Before :: class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
         binding.moreAfter.setOnClickListener {
-            val intent = Intent(this, BoosterActivity_After :: class.java)
+            val intent = Intent(this, BoosterActivity_After::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
 
         binding.back.setOnClickListener {

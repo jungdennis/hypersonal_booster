@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
 
     <!-- 건들지 마세요 -->
     <ImageView
@@ -120,88 +119,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.60" />
+    <!-- 작업 공간 -->
 
-    <!-- 여기서부터 작업 -->
-
-    <!--
-    <ImageView
-        android:id="@+id/back_circle"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:srcCompat="@drawable/back_circle_sub_color_light"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="-139dp" />
-    -->
-
-    <Button
-        android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="3dp"
-        android:background="@drawable/icon_back"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
-        app:layout_constraintStart_toStartOf="@id/guideline_start" />
-
-    <ImageView
-        android:id="@+id/icon_after"
-        android:layout_width="60dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="3dp"
-        app:layout_constraintBottom_toBottomOf="@+id/info_2"
-        app:layout_constraintEnd_toStartOf="@+id/info_1"
-        app:layout_constraintTop_toTopOf="@+id/info_1"
-        app:srcCompat="@drawable/ic_health" />
-
-    <TextView
-        android:id="@+id/info_1"
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/font_medium"
-        android:text="추천 보충제"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end" />
-
-    <TextView
-        android:id="@+id/info_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_medium"
-        android:gravity="end"
-        android:text="운동 후"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/info_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
-
-    <ListView
-        android:id="@+id/booster_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginVertical="15dp"
-        android:listSelector="@android:color/transparent"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottombar_top"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/icon_after" />
-
-    <Switch
-        android:id="@+id/switch2"
-        android:textColor="@color/black"
-        android:fontFamily="@font/font_medium"
-        android:track="@drawable/btn_sub_color_light_no_stroke"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="새로 고침"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="74dp"
-        app:layout_constraintBottom_toTopOf="@id/booster_list"
-        app:layout_constraintLeft_toRightOf="@id/guideline_start"/>
-
-
+        app:layout_constraintBottom_toTopOf="@+id/qr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

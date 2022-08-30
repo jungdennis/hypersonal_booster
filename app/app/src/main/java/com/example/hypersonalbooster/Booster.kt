@@ -14,6 +14,7 @@ class Booster(id : String) {
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY/booster")
 
     // 데이터베이스로 주로 사용할 변수들
+    var ID : String = id
     var name : String = ""              // 이름
     var class_0 : String = ""           // 분류0 : 가루, 액체, 그외
     var class_1 : String = ""           // 분류1 : 운동 전/후
@@ -34,9 +35,8 @@ class Booster(id : String) {
 
     // 엥간하면 사용할 일 없는 변수들
     var company : String = ""           // 회사
-    //var taste_1 = ArrayList<String>()   // 맛1 : 대분류
-    var taste1 : String = ""
-    //var taste_2 : ArrayList<String>()   // 맛2 : 상세분류
+    var taste1 : String = ""            // 맛1 : 대분류
+    var taste2 : String = ""             // 맛2 : 상세분류
     var texture : String = ""           // 느낌
 
     init {
@@ -139,6 +139,11 @@ class Booster(id : String) {
                 fat = snapshot.child("fat(g)").getValue().toString().toFloat()
                 sat_fat = snapshot.child("sat fat(g)").getValue().toString().toFloat()
                 protein = snapshot.child("protein(g)").getValue().toString().toFloat()
+
+                taste2 = snapshot.child("taste2").getValue().toString()
+                if(taste2.contains(",")) {
+                        taste2.replace(",", ", ")
+                }
 
                 Log.d("Booster Init", "Nutruent : $calories, $carb, $sugar, $fat, $sat_fat, $protein")
 

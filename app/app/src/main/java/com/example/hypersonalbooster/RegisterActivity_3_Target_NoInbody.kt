@@ -43,11 +43,6 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
         }
 
         binding.close.setOnClickListener {
-            val intent = Intent(this, RecommendActivity_After::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener {
@@ -109,6 +104,10 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
             Toast.makeText(this, "$input_target_weight", Toast.LENGTH_SHORT).show()
 
             if(cloud_check == "true") {
+                val shared_flag = getSharedPreferences("data_cloud", 0).edit()
+                shared_flag.remove("flag_before").apply()
+                shared_flag.remove("flag_after").apply()
+
                 val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()

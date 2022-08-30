@@ -45,11 +45,6 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
             finish()
         }
         binding.close.setOnClickListener {
-            val intent = Intent(this, RecommendActivity_After::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
             finish()
         }
 
@@ -122,6 +117,10 @@ class RegisterActivity_7_Particular : AppCompatActivity() {
 
                 if(uid_check) {
                     Toast.makeText(this, "$input_vegan / $input_milk / $input_caffeine", Toast.LENGTH_SHORT).show()
+
+                    val shared_flag = getSharedPreferences("data_cloud", 0).edit()
+                    shared_flag.remove("flag_before").apply()
+                    shared_flag.remove("flag_after").apply()
 
                     val intent = Intent(this, RecommendActivity_Before::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

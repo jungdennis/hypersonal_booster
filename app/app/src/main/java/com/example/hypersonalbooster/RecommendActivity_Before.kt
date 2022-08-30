@@ -173,7 +173,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
             Toast.makeText(this, "Before : $kind_before",Toast.LENGTH_SHORT).show()
 
             if(kind_before == "caffeine_no") {
-                ref.addValueEventListener(object : ValueEventListener {
+                ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         var list_taste1 = ArrayList<String>()
                         var sort_taste2 = ArrayList<String>()
@@ -294,14 +294,15 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                             database.getReference("members").child(uid!!).child("booster_before").setValue(booster_before)
                             shared_cloud.edit().remove("flag_before").apply()
                             shared_cloud.edit().putString("flag_before", "true").apply()
-                            onCallback()
                         }
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {}})
+
+                onCallback()
             }
             else {
-                ref.addValueEventListener(object : ValueEventListener {
+                ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         var list_taste1 = ArrayList<String>()
                         var sort_taste2 = ArrayList<String>()
@@ -419,11 +420,12 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                             database.getReference("members").child(uid!!).child("booster_before").setValue(booster_before)
                             shared_cloud.edit().remove("flag_before").apply()
                             shared_cloud.edit().putString("flag_before", "true").apply()
-                            onCallback()
                         }
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {}})
+
+                onCallback()
             }
         }
     }
@@ -434,7 +436,7 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
 
     override fun onCallback() {
         Log.d("Before_Callback", "Called")
-        val intent = Intent(this, RecommendActivity_After::class.java)
+        val intent = Intent(this, BreakActivity1::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

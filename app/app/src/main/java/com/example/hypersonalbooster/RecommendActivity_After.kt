@@ -183,7 +183,7 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
 
 
             if(kind_after == "gainer") {      // 게이너 추천
-                ref.addValueEventListener(object : ValueEventListener {
+                ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         var list_taste1 = ArrayList<String>()
                         var sort_taste2 = ArrayList<String>()
@@ -382,15 +382,15 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                             database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
                             shared_cloud.edit().remove("flag_after").apply()
                             shared_cloud.edit().putString("flag_after", "true").apply()
-                            onCallback()
                         }
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {}})
+                onCallback()
             }
             else {                      // 프로틴 추천
                 if(now_fat > target_fat) {
-                    ref.addValueEventListener(object : ValueEventListener {
+                    ref.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             var list_taste1 = ArrayList<String>()
                             var sort_taste2 = ArrayList<String>()
@@ -740,14 +740,14 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                 database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
                                 shared_cloud.edit().remove("flag_after").apply()
                                 shared_cloud.edit().putString("flag_after", "true").apply()
-                                onCallback()
                             }
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {}})
+                    onCallback()
                 }
                 else if(now_muscle > target_muscle) {
-                    ref.addValueEventListener(object : ValueEventListener {
+                    ref.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             var list_taste1 = ArrayList<String>()
                             var sort_taste2 = ArrayList<String>()
@@ -1098,14 +1098,14 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                 database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
                                 shared_cloud.edit().remove("flag_after").apply()
                                 shared_cloud.edit().putString("flag_after", "true").apply()
-                                onCallback()
                             }
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {}})
+                    onCallback()
                 }
                 else {
-                    ref.addValueEventListener(object : ValueEventListener {
+                    ref.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             var list_taste1 = ArrayList<String>()
                             var sort_taste2 = ArrayList<String>()
@@ -1441,13 +1441,13 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                                 database.getReference("members").child(uid!!).child("booster_after").setValue(booster_after)
                                 shared_cloud.edit().remove("flag_after").apply()
                                 shared_cloud.edit().putString("flag_after", "true").apply()
-                                onCallback()
                             }
 
 
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {}})
+                    onCallback()
                 }
             }
         }

@@ -41,11 +41,6 @@ class RegisterActivity_2_Health : AppCompatActivity() {
         }
 
         binding.close.setOnClickListener {
-            val intent = Intent(this, RecommendActivity_After::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener {

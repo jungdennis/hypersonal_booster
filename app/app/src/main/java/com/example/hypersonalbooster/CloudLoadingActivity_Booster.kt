@@ -89,6 +89,10 @@ class CloudLoadingActivity_Booster : AppCompatActivity(), CloudCallbackListener 
             override fun onCancelled(databaseError: DatabaseError) {}})
     }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+    }
+
     override fun onCallback() {
         val intent = Intent(this, CloudLoadingActivity_Kiosk::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

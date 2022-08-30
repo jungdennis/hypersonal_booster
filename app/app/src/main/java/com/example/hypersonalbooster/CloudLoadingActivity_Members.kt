@@ -71,6 +71,10 @@ class CloudLoadingActivity_Members : AppCompatActivity(), CloudCallbackListener 
             override fun onCancelled(databaseError: DatabaseError) {}})
     }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+    }
+
     override fun onCallback() {
         val intent = Intent(this, RegisterActivity_0_Return::class.java)
         startActivity(intent)

@@ -32,6 +32,10 @@ class RegisterActivity_0_Return : AppCompatActivity() {
             Log.d("RegisterActivity_0", "health_check, cloud_check : $health_check, $cloud_check")
 
             if(health_check == "true" && cloud_check == "true") {
+                val shared_flag = getSharedPreferences("data_cloud", 0).edit()
+                shared_flag.remove("flag_before").apply()
+                shared_flag.remove("flag_after").apply()
+
                 val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()

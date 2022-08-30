@@ -72,12 +72,20 @@ class CloudLoadingActivity_Kiosk : AppCompatActivity(), CloudCallbackListener {
             override fun onCancelled(databaseError: DatabaseError) {}})
     }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+    }
+
     override fun onCallback() {
         val check_cloud = getSharedPreferences("data_cloud", 0).getString("cloud_check", "nothing")
         val check_health = getSharedPreferences("data_health", 0).getString("check_health", "nothing")
 
         if(check_cloud == "true") {
             if(check_health == "true") {
+                val shared_flag = getSharedPreferences("data_cloud", 0).edit()
+                shared_flag.remove("flag_before").apply()
+                shared_flag.remove("flag_after").apply()
+
                 val intent = Intent(this, RecommendActivity_Before::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)

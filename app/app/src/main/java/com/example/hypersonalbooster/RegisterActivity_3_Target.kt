@@ -146,8 +146,6 @@ class RegisterActivity_3_Target : AppCompatActivity() {
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
             if(cloud_check == "true") {
-                val intent = Intent(this, RecommendActivity_Before::class.java)
-                startActivity(intent)
                 finish()
             }
             else {
@@ -180,6 +178,10 @@ class RegisterActivity_3_Target : AppCompatActivity() {
             Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
 
             if(cloud_check == "true") {
+                val shared_flag = getSharedPreferences("data_cloud", 0).edit()
+                shared_flag.remove("flag_before").apply()
+                shared_flag.remove("flag_after").apply()
+
                 val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)
                 finish()

@@ -1,5 +1,13 @@
 package com.example.hypersonalbooster
 
+import android.view.View
+import com.example.hypersonalbooster.databinding.LayoutRegisterTargetBinding
+import kotlin.math.roundToInt
+
+
+
+
+
 /*
 class Database 연동 가이드 {
     1. 반드시 onCreate 밖에서 선언해줘야 할 것들

@@ -29,6 +29,9 @@ class Booster(id : String) {
     var link : String = ""              // 구매링크
     var etc : String = ""               // 특이사항
 
+    //  클릭 확인용 변수
+    var check: Boolean = false
+
     // 엥간하면 사용할 일 없는 변수들
     var company : String = ""           // 회사
     //var taste_1 = ArrayList<String>()   // 맛1 : 대분류

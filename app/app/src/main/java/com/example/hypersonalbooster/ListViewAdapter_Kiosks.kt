@@ -8,23 +8,23 @@ import android.widget.BaseAdapter
 import com.example.hypersonalbooster.databinding.FragmentRegisterCompanyAdapterBinding
 import com.example.hypersonalbooster.databinding.FragmentRegisterKiosksAdapterBinding
 
-class ListViewAdapter_BoostReq (private val context: Context, private val taste_list : ArrayList<Taste>, private val listener : OnTasteClickListener)
+class ListViewAdapter_Kiosks (private val context: Context, private val Kiosks_list : ArrayList<Kiosks>, private val listener : OnKiosksClickListener)
     : BaseAdapter() {
 
-    override fun getCount() : Int = taste_list.size
+    override fun getCount() : Int = Kiosks_list.size
 
-    override fun getItem(position :Int) : Taste = taste_list[position]
+    override fun getItem(position :Int) : Kiosks = Kiosks_list[position]
 
-    override fun getItemId(position: Int) : Long = position.toLong()
+    override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val binding = FragmentRegisterKiosksAdapterBinding.inflate(LayoutInflater.from(context))
 
-        val taste_name = taste_list[position].name.toString()
+        val kiosks_name = Kiosks_list[position].name.toString()
 
-        binding.btn.text = taste_name
+        binding.btn.text = kiosks_name
 
-        if(taste_list[position].check == false) {
+        if(Kiosks_list[position].check == false) {
             binding.btn.setBackgroundResource(R.drawable.btn_sub_color_light)
         }
         else{
@@ -32,18 +32,20 @@ class ListViewAdapter_BoostReq (private val context: Context, private val taste_
         }
 
         binding.btn.setOnClickListener {
-            if(taste_list[position].check == false) {
+            if(Kiosks_list[position].check == false) {
                 binding.btn.setBackgroundResource(R.drawable.btn_main_color)
-                taste_list[position].check = true
-                listener.onTasteClickAdd(taste_name)
+                Kiosks_list[position].check = true
+                listener.onKiosksClickAdd(kiosks_name)
             }
             else {
                 binding.btn.setBackgroundResource(R.drawable.btn_sub_color_light)
-                taste_list[position].check = false
-                listener.onTasteClickRemove(taste_name)
+                Kiosks_list[position].check = false
+                listener.onKiosksClickRemove(kiosks_name)
             }
         }
 
         return binding.root
     }
 }
+
+

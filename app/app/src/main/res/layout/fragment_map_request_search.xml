@@ -62,7 +62,7 @@
         <SearchView
             android:id="@+id/booster_search"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
@@ -78,12 +78,11 @@
 
         <ListView
             android:id="@+id/req_search_select"
-            android:layout_width="321dp"
-            android:layout_height="310dp"
+            android:layout_width="337dp"
+            android:layout_height="0dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,27 +100,10 @@
         android:fontFamily="@font/font_medium"
         android:text="나의 추천 보충제에서 선택하기"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/my_choose"
+        app:layout_constraintBottom_toTopOf="@+id/request"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/my_choose"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/back_fragment"
-        android:fontFamily="@font/font_medium"
-        android:gravity="center"
-        android:text="@string/selected_booster"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="사용자 선택 보충제" />
 
     <Button
         android:id="@+id/request"

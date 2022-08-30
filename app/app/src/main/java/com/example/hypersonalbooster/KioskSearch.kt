@@ -61,7 +61,7 @@ class KioskSearch : AppCompatActivity(), OnKiosksClickListener {
         binding.kioskSearch.setOnQueryTextListener(searchViewTextListener)
 
         adapter = ListViewAdapter_Kiosks(this, list, this)
-        binding.kioskSelect.setAdapter(adapter)
+        binding.kioskSelect.adapter = adapter
 
         binding.confirm.setOnClickListener{
             if(check_kiosk.isEmpty()){

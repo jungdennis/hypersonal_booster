@@ -16,9 +16,9 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
     private lateinit var binding: FragmentMapRequestSearchBinding
 
     var Boosters_list = ArrayList<Booster>()
-    var list = ArrayList<Boosters>()
+    var list = ArrayList<Booster>()
 
-
+    private lateinit var adapter : ListViewAdapter_KioskBoosterSearch
 
     var check_booster = ArrayList<String>()
 
@@ -38,12 +38,12 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
             Boosters_list.add(Booster(boosterID))
         }
 
+        list.addAll(Boosters_list)
 
 
-
-        // binding.boosterSearch.setOnQueryTextListener(searchViewTextListener)
-        val mlAdapter = ListViewAdapter_KioskRecommend(this, Boosters_list, this)
-        binding.reqSearchSelect.adapter = mlAdapter
+        binding.boosterSearch.setOnQueryTextListener(searchViewTextListener)
+        adapter = ListViewAdapter_KioskBoosterSearch(this, list, this)
+        binding.reqSearchSelect.adapter = adapter
 
 
 
@@ -69,7 +69,7 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
         }
 
     }
-/*
+
     var searchViewTextListener: SearchView.OnQueryTextListener =
         object : SearchView.OnQueryTextListener {
             //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
@@ -88,11 +88,11 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
         list.clear()
 
         if (charText.length == 0) {
-            list.addAll(kiosks_list)
+            list.addAll(Boosters_list)
         } else {
-            for (i in 0 until kiosks_list.size) {
-                if (kiosks_list.get(i).name.toLowerCase().contains(charText)) {
-                    list.add(kiosks_list.get(i))
+            for (i in 0 until Boosters_list.size) {
+                if (Boosters_list.get(i).name.toLowerCase().contains(charText)) {
+                    list.add(Boosters_list.get(i))
                 }
             }
         }
@@ -100,7 +100,7 @@ class KioskFragmentDetailSearch : AppCompatActivity(), OnRecommendBoosterClickLi
         adapter.notifyDataSetChanged()
     }
 
- */
+
     override fun onBackPressed() {
         super.onBackPressed()
 

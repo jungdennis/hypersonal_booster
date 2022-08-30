@@ -166,6 +166,7 @@
         <activity
             android:name=".KioskFragmentDetailSearch"
             android:exported="false"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait" />
         <activity
             android:name=".KioskSearch"

@@ -26,6 +26,9 @@ class ListViewAdapter_BoosterMain(private val context: Context, private val boos
         val binding = FragmentBoosterButtonAdapterBinding.inflate(LayoutInflater.from(context))
 
         val booster = booster_list[position]
+
+        val booster_id = booster.ID
+
         val booster_name = booster.name
 
         val image_name = booster.name + "jpg"
@@ -54,10 +57,8 @@ class ListViewAdapter_BoosterMain(private val context: Context, private val boos
         }
 
         binding.boosterList.setOnClickListener{
-            listener.onBoosterClickAdd(booster_name)
-
+            listener.onBoosterClickAdd(booster_id)
         }
-
 
         return binding.root
     }

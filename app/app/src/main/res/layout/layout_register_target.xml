@@ -10,71 +10,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="63dp" />
+        app:layout_constraintGuide_percent="0.09" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="78dp" />
+        app:layout_constraintGuide_percent="0.895" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginBottom="3dp"
         android:background="@drawable/icon_back"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintStart_toStartOf="@id/guideline_start" />
 
     <Button
         android:id="@+id/close"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginTop="30dp"
         android:background="@drawable/icon_close"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end" />
 
     <TextView
         android:id="@+id/info_particular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
         android:text="회원님이 원하는\n 운동 목표를 입력해주세요."
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginBottom="10dp"
         android:id="@+id/frame_now"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/go_to_target"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start">
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
 
         <TextView
             android:id="@+id/info_now_weight"
@@ -224,23 +230,30 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:layout_marginBottom="10dp"
         android:id="@+id/go_to_target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_arrow_dowm"
         app:layout_constraintBottom_toTopOf="@+id/frame_target"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/frame_now" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginBottom="15dp"
         android:id="@+id/frame_target"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start">
@@ -397,35 +410,24 @@
         android:id="@+id/frame_graph"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/back_fragment"
-        app:layout_constraintBottom_toTopOf="@+id/frame_now"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/info_particular">
-
-        <TextView
-            android:id="@+id/info_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_medium"
-            android:text="체중"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/graph_weight"
-            app:layout_constraintEnd_toStartOf="@+id/graph_weight"
-            app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_info"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/graph_weight"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toTopOf="@+id/graph_fat"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.Guideline
@@ -444,8 +446,8 @@
 
             <ImageView
                 android:id="@+id/graphbar_weight"
-                android:layout_width="263dp"
-                android:layout_height="15dp"
+                android:layout_width="0dp"
+                android:layout_height="11dp"
                 app:layout_constraintBottom_toTopOf="@+id/weight_normal_min"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -624,28 +626,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/icon_marker" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/info_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_medium"
-            android:text="체지방율"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/graph_fat"
-            app:layout_constraintEnd_toStartOf="@+id/graph_fat"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/info_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/font_medium"
+                android:text="체중"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/weight_less"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/graph_fat"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toTopOf="@+id/graph_muscle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/graph_weight">
 
             <androidx.constraintlayout.widget.Guideline
@@ -664,8 +667,8 @@
 
             <ImageView
                 android:id="@+id/graphbar_fat"
-                android:layout_width="263dp"
-                android:layout_height="15dp"
+                android:layout_width="0dp"
+                android:layout_height="11dp"
                 app:layout_constraintBottom_toTopOf="@+id/fat_normal_min"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -844,28 +847,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/icon_marker" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/info_muscle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/font_medium"
-            android:text="골격근량"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/graph_muscle"
-            app:layout_constraintEnd_toStartOf="@+id/graph_muscle"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/info_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/font_medium"
+                android:text="체지방율"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/fat_less"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/graph_muscle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/graph_fat">
 
             <androidx.constraintlayout.widget.Guideline
@@ -884,8 +888,8 @@
 
             <ImageView
                 android:id="@+id/graphbar_muscle"
-                android:layout_width="263dp"
-                android:layout_height="15dp"
+                android:layout_width="0dp"
+                android:layout_height="11dp"
                 app:layout_constraintBottom_toTopOf="@+id/muscle_normal_min"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1064,6 +1068,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/icon_marker" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/info_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/font_medium"
+                android:text="골격근량"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/muscle_less"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1073,17 +1090,15 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/back_fragment"
         android:fontFamily="@font/font_medium"
         android:text="운동목표 없음"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/confirm"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start" />
-
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom" />
 
 
     <Button
@@ -1092,16 +1107,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/btn_main_color"
         android:fontFamily="@font/font_medium"
         android:text="확인"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/no_traget" />
+        app:layout_constraintStart_toEndOf="@+id/no_traget"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,78 +82,90 @@
             android:id="@+id/info_booster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_medium"
-            android:text="현재 키오스크에 있는 보충제"
+            android:fontFamily="@font/font_bold"
+            android:text="현재 키오스크 재고"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/b1"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num1"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_booster" />
 
         <TextView
             android:id="@+id/b2"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num2"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b1" />
 
         <TextView
             android:id="@+id/b3"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num3"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b2" />
 
         <TextView
             android:id="@+id/b4"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num4"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b3" />
 
         <TextView
             android:id="@+id/b5"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num5"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b4" />
 
         <TextView
             android:id="@+id/b6"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_light"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/font_medium"
             android:text="@string/booster_num6"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b5" />
 
@@ -161,6 +173,7 @@
 
     <Button
         android:id="@+id/request"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginBottom="20dp"
@@ -176,6 +189,7 @@
 
     <Button
         android:id="@+id/favorite"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="15dp"

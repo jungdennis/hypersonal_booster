@@ -7,7 +7,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hypersonalbooster.databinding.LayoutSearchKioskBinding
-import com.google.firebase.database.FirebaseDatabase
+
 
 class KioskSearch : AppCompatActivity(), OnKiosksClickListener {
 
@@ -17,13 +17,11 @@ class KioskSearch : AppCompatActivity(), OnKiosksClickListener {
     var kiosks_list = ArrayList<Kiosks>()
     var list = ArrayList<Kiosks>()
 
+
     private lateinit var adapter : ListViewAdapter_Kiosks
 
     var mInput_kiosk = ""
     var check_kiosk = ArrayList<String>()
-
-    val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val ref = database.getReference("kiosk")
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?){

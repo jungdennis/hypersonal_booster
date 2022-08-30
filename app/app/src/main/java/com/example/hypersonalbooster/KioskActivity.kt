@@ -43,12 +43,16 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
     lateinit var database_data : String
     val database = FirebaseDatabase.getInstance("https://hypersonal-booster-default-rtdb.asia-southeast1.firebasedatabase.app")
     val ref = database.getReference("kiosk")
+    val ref_main = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
+
     var kioskData_list = ""
     var kioskName_list = ""
     var kioskName = ""
     var cMarkerPos = ""
     var mm : Int = 0
     var kiosks_string = ""
+
+    var BoosterID_list = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +76,11 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
         val shared_kioskNameData = getSharedPreferences("data_kioskNameData", 0)
         val editor_kioskNameData = shared_kioskNameData.edit()
-    
+
+        val shared_BoosterID = getSharedPreferences("BoosterID_list", 0)
+        val editor_BoosterID = shared_BoosterID.edit()
+
+
             // kiosk 별 보충제 정보 받아오기
             ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -105,6 +113,35 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
             editor_kioskData.apply()
                 editor_kioskNameData.putString("kioskNameData", kioskName_list)
                 editor_kioskNameData.apply()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}})
+
+        // 부스터 ID 정보 받기
+        ref_main.child("booster").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var temp = ArrayList<String>()
+                Log.d("CLOUD_KIOSK", "$dataSnapshot")
+                for (snapshot in dataSnapshot.getChildren()) {
+                    val name = snapshot.child("ID").getValue().toString()
+
+                    if(name.isNotEmpty()) {
+                        if(name !in temp){
+                            if(BoosterID_list.isEmpty()){
+                                BoosterID_list = BoosterID_list + name
+                            }
+                            else{
+                                BoosterID_list = BoosterID_list + "/" + name
+                            }
+                            Log.d("CLOUD_KIOSK", "String : $BoosterID_list")
+                        }
+                        temp.add(name)
+                    }
+                }
+                editor_BoosterID.putString("BoosterID_list", BoosterID_list)
+                editor_BoosterID.apply()
+
+                Log.d("KioskLoading", "Kiosk Loading Success")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}})

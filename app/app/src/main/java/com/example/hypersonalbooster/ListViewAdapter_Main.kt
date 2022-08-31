@@ -41,6 +41,7 @@ class ListViewAdapter_Main(private val context: Context, private val booster_lis
         val sat_fat = booster[13]
         val protein = booster[14]
         val link = booster[15]
+        val etc = booster[16]
 
         binding.boosterKind.text = class_2
         binding.boosterName.text = name

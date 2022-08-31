@@ -154,6 +154,9 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 */
         
         binding.back.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
             finish()
         }
 
@@ -422,6 +425,15 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
         // for the default behavior to occur (which is for the camera to move such that the
         // marker is centered and for the marker's info window to open, if it has one).
         return false
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
+        finish()
     }
 
 }

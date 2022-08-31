@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import coil.api.load
 import com.example.hypersonalbooster.databinding.FragmentBoosterDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -29,7 +30,6 @@ class BoosterFragment(booster_info : String) : BottomSheetDialogFragment() {
 
         val shared = context.getSharedPreferences("data_cloud", 0)
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -51,6 +51,7 @@ class BoosterFragment(booster_info : String) : BottomSheetDialogFragment() {
         val sat_fat = booster[13]
         val protein = booster[14]
         val link = booster[15]
+        val etc = booster[16]
 
         binding.close.setOnClickListener {
             dismiss()
@@ -70,6 +71,7 @@ class BoosterFragment(booster_info : String) : BottomSheetDialogFragment() {
         binding.dataFat.text = fat + "g"
         binding.dataSatFat.text = sat_fat + "g"
         binding.dataProtein.text = protein + "g"
+        binding.dataReason.text = etc
 
         var booster_url_name = ""
 
@@ -106,8 +108,15 @@ class BoosterFragment(booster_info : String) : BottomSheetDialogFragment() {
         dialog.setOnShowListener { dialogInterface ->
             val bottomSheetDialog = dialogInterface as BottomSheetDialog
             setupRatio(bottomSheetDialog)
-        }
 
+            val bottomSheet = bottomSheetDialog
+                .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+
+            if (bottomSheet != null) {
+                val behavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheet)
+                behavior.isDraggable = false
+            }
+        }
         return dialog
     }
 

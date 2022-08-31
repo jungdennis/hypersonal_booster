@@ -39,16 +39,6 @@ class BoosterActivity_After : AppCompatActivity(), OnRecommendBoosterClickListen
         val mlAdapter = ListViewAdapter_Booster(this, booster_after,this)
         binding.boosterList.adapter = mlAdapter
 
-        binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
-            if (isChecked) {
-                val mlAdapter = ListViewAdapter_Booster(this, booster_after,this)
-                binding.boosterList.adapter = mlAdapter
-            }
-            else {
-                val mlAdapter = ListViewAdapter_Booster(this, booster_after,this)
-                binding.boosterList.adapter = mlAdapter
-            }
-        }
 
         binding.back.setOnClickListener {
             overridePendingTransition(0, 0)

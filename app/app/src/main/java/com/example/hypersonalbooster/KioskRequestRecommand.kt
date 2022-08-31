@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.LayoutMapRequestRecommandBinding
 
-class KioskRequestRecommand : AppCompatActivity() {
+class KioskRequestRecommand : AppCompatActivity(), OnRecommendBoosterClickListener {
 
     private lateinit var binding : LayoutMapRequestRecommandBinding
 
-    var booster_before = ArrayList<String>()
-    var booster_after = ArrayList<String>()
-    var booster_init = ArrayList<String>()
+    var booster_before = ArrayList<KioskBooster>()
+    var booster_after = ArrayList<KioskBooster>()
+    var booster_init = ArrayList<KioskBooster>()
+
+    var check_kiosk = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,32 +33,32 @@ class KioskRequestRecommand : AppCompatActivity() {
         for(boosterID in before) {
             val info = shared_before.getString(boosterID, "Nothing")
             if(info != "Nothing") {
-                booster_before.add(info.toString())
+                booster_before.add(KioskBooster(info.toString(), false))
             }
         }
         for(boosterID in after) {
             val info = shared_after.getString(boosterID, "Nothing")
             if(info != "Nothing") {
-                booster_after.add(info.toString())
+                booster_after.add(KioskBooster(info.toString(), false))
             }
         }
         for(boosterID in before) {
             val info = shared_before.getString(boosterID, "Nothing")
             if(info != "Nothing") {
-                booster_init.add(info.toString())
+                booster_init.add(KioskBooster(info.toString(), false))
             }
         }
 
-        val mlAdapter = ListViewAdapter_Main(this, booster_init)
+        val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_init, this)
         binding.boosterList.adapter = mlAdapter
 
         binding.switch2.setOnCheckedChangeListener { CompoundButton, isChecked ->
             if (isChecked) {
-                val mlAdapter = ListViewAdapter_Main(this, booster_after)
+                val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_after, this)
                 binding.boosterList.adapter = mlAdapter
             }
             else {
-                val mlAdapter = ListViewAdapter_Main(this, booster_before)
+                val mlAdapter = ListViewAdapter_KioskRecommend(this, booster_before, this)
                 binding.boosterList.adapter = mlAdapter
             }
         }
@@ -85,6 +87,13 @@ class KioskRequestRecommand : AppCompatActivity() {
 
         overridePendingTransition(0, 0)
         finish()
+    }
+
+    override fun onBoosterClickAdd(Kiosks_name: String) {
+        check_kiosk.add(Kiosks_name)
+    }
+    override fun onBoosterClickRemove(Kiosks_name: String){
+        check_kiosk.remove(Kiosks_name)
     }
 
 }

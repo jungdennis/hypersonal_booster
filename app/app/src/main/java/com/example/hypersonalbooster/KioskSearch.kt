@@ -117,7 +117,6 @@ class KioskSearch : AppCompatActivity(), OnKiosksClickListener {
     override fun onKiosksClickRemove(Kiosks_name: String){
         check_kiosk.remove(Kiosks_name)
     }
-
 }
 
 

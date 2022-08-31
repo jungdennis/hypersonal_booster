@@ -14,33 +14,45 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
-class ListViewAdapter_KioskRecommend(private val context: Context, private val booster_list : ArrayList<Booster>, private val listener : OnRecommendBoosterClickListener)
+class ListViewAdapter_KioskRecommend(private val context: Context, private val booster_list : ArrayList<KioskBooster>, private val listener : OnRecommendBoosterClickListener)
     : BaseAdapter() {
     override fun getCount() : Int = booster_list.size
 
-    override fun getItem(position :Int) : Booster = booster_list[position]
+    override fun getItem(position :Int) : KioskBooster = booster_list[position]
 
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val binding = FragmentRecommendBoosterAdapterBinding.inflate(LayoutInflater.from(context))
 
-        val booster = booster_list[position]
-        val booster_name = booster_list[position].name.toString()
+        // ID/name/company/taste/texture/class_0/class_1/class_2/amount/calories/carb/sugar/fat/sat_fat/protein*link
+        val booster = booster_list[position].data.split("*")
 
-        val image_name = booster.name + ".jpg"
-        val image_path : StorageReference = FirebaseStorage.getInstance("gs://hypersonal-booster.appspot.com").reference.child(image_name)
+        val id = booster[0]
+        val name = booster[1]
+        val company = booster[2]
+        val taste = booster[3]
+        val texture = booster[4]
+        val class_2 = booster[7]
+        val amount = booster[8]
+        val calories = booster[9]
+        val carb = booster[10]
+        val sugar = booster[11]
+        val fat = booster[12]
+        val sat_fat = booster[13]
+        val protein = booster[14]
+        val link = booster[15]
 
-        binding.boosterKind.text = booster.class_2
-        binding.boosterName.text = booster.name
+        binding.boosterKind.text = class_2
+        binding.boosterName.text = name
 
         var booster_url_name : String = ""
 
-        if(booster.name.contains(":")) {
-            booster_url_name += booster.name.replace(":", "").replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+        if(name.contains(":")) {
+            booster_url_name += name.replace(":", "").replace("%", "%25").replace(" ", "%20").replace("+","%2B")
         }
         else {
-            booster_url_name += booster.name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
+            booster_url_name += name.replace("%", "%25").replace(" ", "%20").replace("+","%2B")
         }
 
         val url = "https://firebasestorage.googleapis.com/v0/b/hypersonal-booster.appspot.com/o/" + booster_url_name + ".jpg?alt=media"
@@ -62,17 +74,15 @@ class ListViewAdapter_KioskRecommend(private val context: Context, private val b
             if(booster_list[position].check == false) {
                 binding.btn.setBackgroundResource(R.drawable.btn_main_color)
                 booster_list[position].check = true
-                listener.onBoosterClickAdd(booster_name)
+                listener.onBoosterClickAdd(id)
             }
             else {
                 binding.btn.setBackgroundResource(R.drawable.btn_sub_color_light)
                 booster_list[position].check = false
-                listener.onBoosterClickRemove(booster_name)
+                listener.onBoosterClickRemove(id)
             }
         }
 
         return binding.root
     }
-
-
 }

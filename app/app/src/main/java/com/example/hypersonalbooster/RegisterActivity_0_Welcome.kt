@@ -19,9 +19,6 @@ class RegisterActivity_0_Welcome : AppCompatActivity() {
     val ref_booster = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
     val ref_members = database.getReference("members")
 
-
-
-
     // 어플리케이션 테스트용 (나중에 BoosterRecommend로 넘어갈 예정)
     var booster_before = ""
     var booster_after = ""

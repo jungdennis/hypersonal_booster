@@ -170,8 +170,6 @@ class RecommendActivity_Before() : AppCompatActivity(), CloudCallbackListener {
                 kind_before = "caffeine_ok"
             }
 
-            Toast.makeText(this, "Before : $kind_before",Toast.LENGTH_SHORT).show()
-
             if(kind_before == "caffeine_no") {
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {

@@ -62,6 +62,15 @@ class BoosterFragment(booster_info : String) : BottomSheetDialogFragment() {
 
         binding.boosterFlavor.text = taste
 
+        binding.infoAmount.text = "(1회 제공량 " + amount + " 기준)"
+
+        binding.dataCalories.text = calories + "kcal"
+        binding.dataCarb.text = carb + "g"
+        binding.dataSugar.text = sugar + "g"
+        binding.dataFat.text = fat + "g"
+        binding.dataSatFat.text = sat_fat + "g"
+        binding.dataProtein.text = protein + "g"
+
         var booster_url_name = ""
 
         if(name.contains(":")) {

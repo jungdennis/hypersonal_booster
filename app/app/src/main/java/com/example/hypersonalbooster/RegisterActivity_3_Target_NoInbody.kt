@@ -75,8 +75,6 @@ class RegisterActivity_3_Target_NoInbody : AppCompatActivity() {
             editor.putString("health_check", "true")
             editor.apply()
 
-            Toast.makeText(this, "$input_target_weight", Toast.LENGTH_SHORT).show()
-
             if(cloud_check == "true") {
                 val intent = Intent(this, RecommendActivity_Before::class.java)
                 startActivity(intent)

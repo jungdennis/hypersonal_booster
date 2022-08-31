@@ -179,8 +179,6 @@ class RecommendActivity_After() : AppCompatActivity(), CloudCallbackListener {
                     kind_after = "normal_protein"           // 모든 종류 제공
                 }
             }
-            Toast.makeText(this, "After : $kind_after",Toast.LENGTH_SHORT).show()
-
 
             if(kind_after == "gainer") {      // 게이너 추천
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {

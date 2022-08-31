@@ -175,8 +175,6 @@ class RegisterActivity_3_Target : AppCompatActivity() {
             editor.putString("health_check", "true")
             editor.apply()
 
-            Toast.makeText(this, "$input_target_weight / $input_target_fat / $input_target_muscle", Toast.LENGTH_SHORT).show()
-
             if(cloud_check == "true") {
                 val shared_flag = getSharedPreferences("data_cloud", 0).edit()
                 shared_flag.remove("flag_before").apply()

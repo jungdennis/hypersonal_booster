@@ -165,6 +165,7 @@
         android:paddingStart="10dp"
         android:text="키오스크 찾기"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/search_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toStartOf="@+id/guideline19" />

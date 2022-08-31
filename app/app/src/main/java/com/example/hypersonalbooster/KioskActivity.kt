@@ -146,12 +146,13 @@ class KioskActivity : AppCompatActivity(), GoogleMap.OnMyLocationButtonClickList
 
             override fun onCancelled(databaseError: DatabaseError) {}})
 
-
+/*
         binding.searchButton.setOnClickListener {
             val intent = Intent(this, KioskSearch::class.java)
             startActivity(intent)
         }
-
+*/
+        
         binding.back.setOnClickListener {
             finish()
         }

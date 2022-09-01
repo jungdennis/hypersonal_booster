@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
-import android.widget.SearchView
 import android.widget.Toast
 import com.example.hypersonalbooster.databinding.FragmentBoosterButtonAdapterBinding
 import com.example.hypersonalbooster.databinding.LayoutBoosterAfterBinding
@@ -24,9 +23,6 @@ class BoosterActivity_Before : AppCompatActivity(), OnRecommendBoosterClickListe
     val ref = database.getReference("1RwUEzmqz5l9hilFIeJI5gEQu3AUwRAepCc4YzzJGnZY")
 
     var booster_before = ArrayList<String>()
-    var list = ArrayList<String>()
-
-    private lateinit var adapter : ListViewAdapter_Booster
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,25 +43,18 @@ class BoosterActivity_Before : AppCompatActivity(), OnRecommendBoosterClickListe
             }
         }
 
-        list.addAll(booster_before)
-
         setContentView(binding.root)
 
-        adapter = ListViewAdapter_Booster(this, list,this)
-        binding.boosterList.adapter = adapter
+        val mlAdapter = ListViewAdapter_Booster(this, booster_before,this)
+        binding.boosterList.adapter = mlAdapter
 
 
         binding.back.setOnClickListener {
-            val intent = Intent(this, BoosterActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.supply.setOnClickListener {
-            val intent = Intent(this, BoosterActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
             finish()
         }
         binding.location.setOnClickListener {
@@ -79,47 +68,13 @@ class BoosterActivity_Before : AppCompatActivity(), OnRecommendBoosterClickListe
             qr_popup.show(supportFragmentManager, qr_popup.tag)
         }
 
-        binding.boosterSearch.setOnQueryTextListener(searchViewTextListener)
-
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
+        super.onBackPressed()
 
-        val intent = Intent(this, BoosterActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        startActivity(intent)
+        overridePendingTransition(0, 0)
         finish()
-    }
-
-    var searchViewTextListener: SearchView.OnQueryTextListener =
-        object : SearchView.OnQueryTextListener {
-            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
-            override fun onQueryTextSubmit(s: String): Boolean {
-                return false
-            }
-
-            //텍스트 입력/수정시에 호출
-            override fun onQueryTextChange(s: String): Boolean {
-                search(s)
-                return false
-            }
-        }
-
-    private fun search(charText: String) {
-        list.clear()
-
-        if (charText.length == 0) {
-            list.addAll(booster_before)
-        } else {
-            for (i in 0 until booster_before.size) {
-                if (booster_before.get(i).toLowerCase().contains(charText)) {
-                    list.add(booster_before.get(i))
-                }
-            }
-        }
-
-        adapter.notifyDataSetChanged()
     }
 
     override fun onBoosterClickAdd(booster_info: String) {

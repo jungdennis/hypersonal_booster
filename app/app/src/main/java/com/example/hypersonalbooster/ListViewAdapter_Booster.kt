@@ -43,13 +43,12 @@ class ListViewAdapter_Booster(private val context: Context, private val booster_
         val sat_fat = booster[13]
         val protein = booster[14]
         val link = booster[15]
-        val etc = booster[16]
 
         var booster_url_name : String = ""
 
-        binding.boosterName.text = name
-        binding.boosterInfo.text = company
-        binding.boosterFlavor.text = taste
+        binding.boosterName.text = "제품명 : " + name
+        binding.boosterInfo.text = "제조사 : " + company
+        binding.boosterFlavor.text = " 맛  : " + taste
 
         if(name.contains(":")) {
             booster_url_name += name.replace(":", "").replace("%", "%25").replace(" ", "%20").replace("+","%2B")

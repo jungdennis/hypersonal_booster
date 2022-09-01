@@ -73,17 +73,6 @@ class MainActivity : AppCompatActivity() {
 
         val bmi : Float = weight / ((height / 100) * (height / 100))
 
-        val random = (1..4).random()
-        if(random == 1) {
-            binding.welcomeMessage.text = "즐거운 운동 되세요!"
-        } else if(random == 2) {
-            binding.welcomeMessage.text = "오늘도 득근득근!"
-        } else if(random == 3) {
-            binding.welcomeMessage.text = "오늘도 달려볼까요?"
-        } else {
-            binding.welcomeMessage.text = "부스터 한잔 어때요?"
-        }
-
         binding.displayBmi.text = "%.1f".format(bmi)
         binding.weightDisplay.text = weight.toString()
         binding.displayFat.text = fat.toString()

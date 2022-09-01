@@ -193,9 +193,8 @@ class RecommendActivity_Save() : AppCompatActivity(), CloudCallbackListener {
 
 
                         link = snapshot.child("link").getValue().toString()
-                        etc = snapshot.child("비고").getValue().toString()
 
-                        val info = ID + "*" + name + "*" + info_basic + "*" +  info_class + "*" +  info_amount + "*" +  info_nutrient + "*" + link + "*" + etc
+                        val info = ID + "*" + name + "*" + info_basic + "*" +  info_class + "*" +  info_amount + "*" +  info_nutrient + "*" + link
                         editor_before.putString(ID, info).apply()
                     }
                     if(cloud_id in booster_after) {
@@ -328,9 +327,8 @@ class RecommendActivity_Save() : AppCompatActivity(), CloudCallbackListener {
 
 
                         link = snapshot.child("link").getValue().toString()
-                        etc = snapshot.child("비고").getValue().toString()
 
-                        val info = ID + "*" + name + "*" + info_basic + "*" +  info_class + "*" +  info_amount + "*" +  info_nutrient + "*" + link + "*" + etc
+                        val info = ID + "*" + name + "*" + info_basic + "*" +  info_class + "*" +  info_amount + "*" +  info_nutrient + "*" + link
                         editor_after.putString(ID, info).apply()
                         shared_cloud.edit().remove("flag_save").apply()
                         shared_cloud.edit().putString("flag_save", "true").apply()

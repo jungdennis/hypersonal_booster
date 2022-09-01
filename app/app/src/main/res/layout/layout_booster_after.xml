@@ -176,35 +176,17 @@
         app:layout_constraintStart_toStartOf="@+id/info_1"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <SearchView
-        android:id="@+id/booster_search"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="10dp"
-        android:background="@drawable/btn_sub_color_light"
-        android:fontFamily="@font/font_medium"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@null"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/icon_after"
-        app:queryHint="주소 검색"
-        app:searchIcon="@drawable/icon_search" />
-
     <ListView
         android:id="@+id/booster_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginVertical="15dp"
-        android:divider="@null"
         android:listSelector="@android:color/transparent"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottombar_top"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/booster_search" />
+        app:layout_constraintTop_toBottomOf="@id/icon_after" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

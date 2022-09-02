@@ -1,0 +1,96 @@
+<<<<<<< Updated upstream
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="128dp"
+        android:layout_height="44dp"
+        android:text="***회원님"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="28dp" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="164dp"
+        android:layout_height="49dp"
+        android:text="환영합니다!"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="386dp"
+        android:layout_height="159dp"
+        app:srcCompat="@drawable/btn_sub_color_light"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="161dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="134dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:text="회원 신체 정보"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="128dp"
+        android:layout_height="44dp"
+        android:text="***회원님"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="28dp" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="164dp"
+        android:layout_height="49dp"
+        android:text="환영합니다!"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="386dp"
+        android:layout_height="159dp"
+        app:srcCompat="@drawable/btn_sub_color_light"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="161dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="134dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:text="회원 신체 정보"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+>>>>>>> Stashed changes
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,262 @@
+<<<<<<< Updated upstream
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="800dp">
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="-12dp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="210dp" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_circle_inner_circle"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="714dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#FEEBB6"
+        app:srcCompat="@drawable/icon_qr"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="734dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/ic___1"
+        tools:layout_editor_absoluteX="-127dp"
+        tools:layout_editor_absoluteY="-114dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="284dp"
+        android:layout_height="253dp"
+        app:srcCompat="@drawable/ic_light_yellow_circle"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="-51dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="정승용"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="회원님에게"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="알맞는 보충제를\n 추천합니다!"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_running"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="143dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="운동 전"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="177dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="329dp"
+        android:layout_height="236dp"
+        android:backgroundTint="#1A000000"
+        android:drawableLeft="@drawable/icon_supply"
+        android:text="운동 전 먹을 단백질 타입"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="257dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="329dp"
+        android:layout_height="236dp"
+        android:backgroundTint="#1A000000"
+        android:drawableLeft="@drawable/icon_supply"
+        android:text="운동 후 먹을 단백질 타입"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="493dp" />
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="800dp">
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="-12dp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="162dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/back_bottom"
+        tools:layout_editor_absoluteX="210dp" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_circle_inner_circle"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="714dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#FEEBB6"
+        app:srcCompat="@drawable/icon_qr"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="734dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/ic___1"
+        tools:layout_editor_absoluteX="-127dp"
+        tools:layout_editor_absoluteY="-114dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="284dp"
+        android:layout_height="253dp"
+        app:srcCompat="@drawable/ic_light_yellow_circle"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="-51dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="정승용"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="회원님에게"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="알맞는 보충제를\n 추천합니다!"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_running"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="143dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="운동 전"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="177dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="329dp"
+        android:layout_height="236dp"
+        android:backgroundTint="#1A000000"
+        android:drawableLeft="@drawable/icon_supply"
+        android:text="운동 전 먹을 단백질 타입"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="257dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="329dp"
+        android:layout_height="236dp"
+        android:backgroundTint="#1A000000"
+        android:drawableLeft="@drawable/icon_supply"
+        android:text="운동 후 먹을 단백질 타입"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="493dp" />
+>>>>>>> Stashed changes
+</androidx.constraintlayout.widget.ConstraintLayout>
